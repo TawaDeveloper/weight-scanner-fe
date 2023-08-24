@@ -1,0 +1,15 @@
+export default {
+  title0001: 'Category name',
+  title0002: 'Status',
+  title0003: 'Category ID',
+  title0004: 'Category Name',
+  title0005: 'Number of attributes',
+  title0006: 'Updated by',
+  title0007: 'Update time',
+  title0008: 'Operation',
+  title0009: 'Enabled',
+  title0010: 'Not enabled',
+  title0011: 'Enabled',
+  title0012: 'Disabled',
+  title0013: 'Please enter, limited to 50 characters',
+};

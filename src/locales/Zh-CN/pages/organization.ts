@@ -1,0 +1,18 @@
+export default {
+  departmentName: '部门名称',
+  placeholder: '请输入部门名称',
+  newDepartment: '新建部门',
+  updateDepartment: '更新部门信息',
+  deleteDepartment: '删除部门',
+  higherDepartment: '上级部门',
+  users: '用户数',
+  subordinateDepartment: '下级部门数量',
+  updater: '更新人',
+  updateTime: '更新时间',
+  createdTime: '创建时间',
+  operation: '操作',
+  deleteTip: '是否确认删除，删除后不可恢复',
+  enDepartmentName: '部门名称 (英文)',
+  zhDepartmentName: '部门名称 (简体中文)',
+  twDepartmentName: '部门名称 (繁体中文)',
+};

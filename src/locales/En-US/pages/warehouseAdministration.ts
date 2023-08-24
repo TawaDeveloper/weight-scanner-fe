@@ -1,0 +1,15 @@
+export default {
+  title0001: 'warehouse name',
+  title0002: 'warehouse No',
+  title0003: 'Contact',
+  title0004: 'Contact Phone',
+  title0005: 'Address',
+  title0006: 'Modifier',
+  title0007: 'Modification time',
+  title0008: 'Status',
+  title0009: 'Warehouse name (EN)',
+  title0010: 'Warehouse name (ZH)',
+  title0011: 'Warehouse name (Tw)',
+  title0012: 'Address',
+  title0013: 'Warehouse numbers cannot overlap',
+};

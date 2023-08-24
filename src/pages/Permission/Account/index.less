@@ -1,0 +1,51 @@
+.pageContainer {
+  display: flex;
+  justify-content: flex-start;
+
+  .departmentTree {
+    min-width: 320px;
+    padding: 16px;
+    background: #fff;
+    border-right: 1px solid #f0f0f0;
+    margin-right: 16px;
+    border-radius: 4px;
+
+    .spinning {
+      height: 100%;
+    }
+
+    .treeNode {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .actionContainer {
+        display: none;
+
+        span {
+          margin: 0 2px;
+
+          &:hover {
+            color: #1890ff;
+          }
+
+          &:last-child:hover {
+            color: #ff4d50;
+          }
+        }
+      }
+
+      &:hover .actionContainer {
+        display: block;
+      }
+    }
+  }
+
+  .departmentPage {
+    padding: 16px;
+    background: #fff;
+    flex: auto;
+    min-width: 0;
+    border-radius: 4px;
+  }
+}

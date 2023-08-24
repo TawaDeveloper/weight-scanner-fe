@@ -1,0 +1,28 @@
+export default {
+  newKeywords: 'New keywords',
+  updateKeywords: 'Edit Keywords',
+  offShelfTip:
+    'The front desk will not be visible after it is taken off the shelf. Are you sure you want to take it off the shelf?',
+  operations: 'Operations',
+  edit: 'Edit',
+  coverageService: 'Coverage Service',
+  O2OArea: 'O2O Area',
+  clickNumber: 'Click Number',
+  updater: 'Updater ',
+  updatedTime: 'Update Time',
+  status: 'Status',
+  keywords: 'Keywords',
+  createdTime: 'Created Time',
+  bulkOffShelves: 'Bulk Off Shelves',
+  batchShelves: 'Batch On Shelves',
+  sort: 'Sort',
+  shelf: 'Shelf',
+  offShelf: 'Off Shelf',
+  chineseKeywords: 'Chinese Keywords',
+  traditionalKeywords: 'Traditional Keywords',
+  englishKeywords: 'English Keywords',
+  batchAction:
+    'Please select at least one record that meets the operating conditions',
+  displayOrder: 'Display order',
+  default: 'Default',
+};

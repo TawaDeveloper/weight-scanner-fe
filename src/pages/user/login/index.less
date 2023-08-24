@@ -1,0 +1,132 @@
+@import url('../../../styles/default.less');
+.systemHeader {
+  height: 80px;
+  background: #fff;
+  box-shadow: 0 8px 24px -2px rgb(0 0 0 / 5%);
+
+  .innerWrapper {
+    width: 1200px;
+    margin: 0 auto;
+    height: 80px;
+    line-height: 80px;
+
+    & > h1 {
+      margin-left: 12px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.slogon {
+  height: 60px;
+}
+
+.main {
+  width: 1280px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-around;
+  margin-top: 80px;
+
+  @media screen and (max-width: @screen-sm) {
+    width: 95%;
+    max-width: 328px;
+  }
+
+  :global {
+    .@{ant-prefix}-tabs-nav-list {
+      margin: auto;
+      font-size: 16px;
+    }
+  }
+
+  .icon {
+    margin-left: 16px;
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 24px;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: color 0.3s;
+    float: left;
+
+    &:hover {
+      color: @primary-color;
+    }
+  }
+
+  .p {
+    float: left;
+  }
+
+  .other {
+    margin-top: 24px;
+    line-height: 22px;
+    text-align: left;
+    display: block;
+
+    .register {
+      float: right;
+    }
+  }
+
+  .prefixIcon {
+    color: @primary-color;
+    font-size: @font-size-base;
+  }
+
+  .outerContainer {
+    width: 470px;
+    padding: 32px 20px 20px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    box-shadow: 0 0 10px 0 rgb(42 43 46 / 8%), 0 15px 15px 0 rgb(42 43 46 / 3%);
+    background: #fff;
+  }
+
+  .selectLang {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .brandDisplay {
+    width: 700px;
+    height: 540px;
+    border-radius: 12px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #f9f9f9;
+  }
+
+  .header {
+    height: 44px;
+    line-height: 44px;
+    margin-top: 50px;
+    margin-bottom: 60px;
+    text-align: center;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .logo {
+    height: 44px;
+    vertical-align: top;
+  }
+
+  .title {
+    position: relative;
+    top: 2px;
+    color: @heading-color;
+    font-weight: 600;
+    font-size: 33px;
+    font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  }
+
+  .desc {
+    margin-top: 12px;
+    margin-bottom: 40px;
+    color: @text-color-secondary;
+    font-size: @font-size-base;
+  }
+}
