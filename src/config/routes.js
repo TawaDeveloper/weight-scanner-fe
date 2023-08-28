@@ -24,7 +24,9 @@ const Organization = lazy(() =>
 const Menu = lazy(() =>
   import(/* webpackChunkName: "Menu" */ '@/pages/Permission/Menu'),
 );
-
+const OrderList = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/Order/List'),
+);
 const baseRoutes = [
   {
     name: 'all',
@@ -51,7 +53,37 @@ const baseRoutes = [
   },
 ];
 
+const orderMenus = [
+  {
+    path: 'list',
+    name: 'menus.top.order',
+    component: OrderList,
+    code: 'list',
+    parentCode: 'order',
+  },
+  {
+    path: 'create',
+    name: 'menus.top.order',
+    component: OrderList,
+    code: 'create',
+    parentCode: 'order',
+  },
+  {
+    path: 'detail',
+    name: 'menus.top.order',
+    component: OrderList,
+    code: 'detail',
+    parentCode: 'order',
+  },
+]
 const permissionMenus = [
+  {
+    path: 'list',
+    name: 'menus.top.order',
+    component: OrderList,
+    code: 'role',
+    parentCode: 'permissions',
+  },
   {
     path: 'role',
     name: 'menus.top.rolePermissions',
@@ -59,6 +91,7 @@ const permissionMenus = [
     code: 'role',
     parentCode: 'permissions',
   },
+ 
   {
     path: 'organization',
     name: 'menus.top.organization',
@@ -82,4 +115,4 @@ const permissionMenus = [
   },
 ];
 
-export { permissionMenus, baseRoutes };
+export { permissionMenus, orderMenus, baseRoutes };
