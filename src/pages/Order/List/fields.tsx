@@ -1,9 +1,8 @@
 import { t } from 'i18next';
 import {
-  MESSAGE_STATUS_TYPES,
   checkStatus,
-  checkType,
   enumsObjectToArray,
+  orderStatus,
 } from '@/constants/enums';
 
 // "brandId": 0,
@@ -18,106 +17,108 @@ import {
 export const tableFields = [
   {
     key: 'id',
-    width: 60,
-    align: 'left',
-    name: 'ID',
+    width: 100,
+    name: t<string>(`pages.orderList.title0091`),
   },
   {
-    key: 'submitByName',
-    name: t<string>(`pages.websiteMessageManagement.sponsor`),
+    key: 'sapPo',
+    width: 100,
+    name: t<string>(`pages.orderList.title0092`),
   },
   {
-    key: 'title',
-    name: t<string>(`pages.websiteMessageManagement.contentTitle`),
+    key: 'storeName',
+    width: 100,
+    name: t<string>(`pages.orderList.title0048`),
   },
   {
-    key: 'content',
-    name: t<string>(`pages.websiteMessageManagement.messageContent`),
+    key: 'storeId',
+    width: 100,
+    name: t<string>(`pages.orderList.title0007`),
   },
   {
-    key: 'submitTime',
-    name: t<string>(`pages.websiteMessageManagement.submitTime`),
+    key: 'dep',
+    width: 100,
+    name: t<string>(`pages.orderList.title0090`),
+  },
+  {
+    key: 'createTime',
+    width: 200,
+    name: t<string>(`pages.orderList.title0012`),
     type: 'time-pst',
   },
   {
-    key: 'sendTotal',
-    name: t<string>(`pages.websiteMessageManagement.sendCount`),
+    key: 'createUserName',
+    width: 100,
+    name: t<string>(`pages.orderList.title0088`),
   },
   {
-    key: 'receivedRate',
-    name: t<string>(`pages.smsManagement.receivedRate`),
+    key: 'status',
+    width: 100,
+    name: t<string>(`pages.orderList.title0006`),
     render: (value: number) => {
-      return `${value} %`;
+      return (
+        <span
+          style={{
+            color:
+              value === 1
+                ? 'rgba(22, 163, 74, 0.85)'
+                : value === 2
+                ? '#7722EE'
+                : 'rgba(247, 186, 30, 0.85)',
+          }}
+        >
+          {orderStatus[value]}
+        </span>
+      );
     },
   },
   {
-    key: 'sendStatus',
-    name: t<string>(`pages.smsManagement.sendStatus`),
-    render: (value: number) => {
-      return MESSAGE_STATUS_TYPES[value];
-    },
+    key: 'amount',
+    width: 140,
+    name: t<string>(`pages.orderList.title0016`),
   },
   {
-    key: 'auditOpinion',
-    name: t<string>(`pages.websiteMessageManagement.auditOpinion`),
+    key: 'skuNum',
+    width: 100,
+    name: t<string>(`pages.orderList.title0093`),
   },
   {
-    key: 'auditByName',
-    name: t<string>(`pages.websiteMessageManagement.reviewer`),
+    key: 'estDeliveredTime',
+    width: 200,
+    name: t<string>(`pages.orderList.title0040`),
   },
-  {
-    key: 'auditTime',
-    name: t<string>(`pages.websiteMessageManagement.reviewTime`),
-    sorter: (a: any, b: any) => (a.auditTime > b.auditTime ? 1 : -1),
-    type: 'time-pst',
-  },
-  {
-    key: 'auditStatus',
-    name: t<string>(`pages.websiteMessageManagement.approvalStatus`),
-    render: (value: number) => {
-      return checkType[value + 1];
-    },
-  },
-  // {
-  //   key: 'status',
-  //   name: t<string>(`pages.appHomepageBannerConfigManagement.title0015`),
-  //   type: 'badge',
-  //   props: (value: number) => ({
-  //     color: `${value === 1 ? 'geekblue' : '#d9d9d9'}`,
-  //     text: `${shelvesStatus[value]}`,
-  //   }),
-  // },
 ];
 
 export const formFields = [
   {
-    key: 'content',
-    name: t<string>(`pages.websiteMessageManagement.messageContent`),
+    key: 'id',
+    name: t<string>(`pages.orderList.title0001`),
   },
   {
-    key: 'auditStatus',
-    name: t<string>(`pages.websiteMessageManagement.approvalStatus`),
-    type: 'select',
-    props: () => ({
-      options: enumsObjectToArray(checkType),
-    }),
+    key: 'createUserName',
+    name: t<string>(`pages.orderList.title0088`),
   },
   {
-    key: 'submitByName',
-    name: t<string>(`pages.websiteMessageManagement.sponsor`),
-  },
-  {
-    key: 'auditByName',
-    name: t<string>(`pages.websiteMessageManagement.reviewer`),
-  },
-  {
-    key: 'submitTime',
-    name: t<string>(`pages.websiteMessageManagement.submitTime`),
+    key: 'createTime',
+    name: t<string>(`pages.orderList.title0012`),
     type: 'date-range-picker',
   },
   {
-    key: 'title',
-    name: t<string>(`pages.websiteMessageManagement.contentTitle`),
+    key: 'storeGroup',
+    name: t<string>(`pages.orderList.title0089`),
+  },
+  {
+    key: 'storeId',
+    name: t<string>(`pages.orderList.title0007`),
+  },
+  {
+    key: 'storeName',
+    name: t<string>(`pages.orderList.title0048`),
+  },
+  {
+    key: 'dep',
+    name: t<string>(`pages.orderList.title0090`),
+    type: 'select',
   },
 ];
 

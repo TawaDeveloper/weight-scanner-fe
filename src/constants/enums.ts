@@ -197,11 +197,6 @@ export const orderStatus = {
   2: t<string>(`pages.enums.orderStatus.title002`),
   3: t<string>(`pages.enums.orderStatus.title003`),
   4: t<string>(`pages.enums.orderStatus.title004`),
-  5: t<string>(`pages.enums.orderStatus.title005`),
-  6: t<string>(`pages.enums.orderStatus.title006`),
-  7: t<string>(`pages.enums.orderStatus.title007`),
-  8: t<string>(`pages.enums.orderStatus.title008`),
-  9: t<string>(`pages.enums.orderStatus.title009`),
 };
 export const orderChannelsType = {
   1: t<string>(`pages.enums.orderChannelsType.title001`),

@@ -1,3 +1,4 @@
+
 import { order } from './order';
 import { backoffice } from './backoffice';
 import { account } from './account';
@@ -8,7 +9,9 @@ import { search } from './search';
 import { warehouse } from './warehouse';
 import { message } from './message';
 import { finance } from './finance';
+import { bakery } from './bakery';
 
+export const bakeryAPI = bakery;
 export const orderAPI = order;
 export const backofficeAPI = backoffice;
 export const accountAPI = account;
@@ -28,6 +31,7 @@ export default {
   product,
   store,
   search,
+  bakery,
   warehouse,
   message,
   finance,

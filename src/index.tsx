@@ -7,6 +7,7 @@ import App from './App';
 
 import 'antd/dist/antd.variable.min.css';
 import './styles/global.less';
+import './styles/common.less';
 
 const initalContainer = document.getElementById('root') as Element;
 
