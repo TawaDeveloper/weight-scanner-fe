@@ -451,6 +451,14 @@ class SaveLossFactorDTO {
   list = [];
 }
 
+class StatisticalSalesProductReport {
+  /** 报表内容 */
+  contents = [];
+
+  /** 报表编号 */
+  reportId = '';
+}
+
 class StatisticsStoreReport {
   /** 前十二周平均销售额 */
   averageAmountFor12Week = undefined;
@@ -571,6 +579,7 @@ export const bakery = {
   SAPMchEntity,
   SapOrderingDTO,
   SaveLossFactorDTO,
+  StatisticalSalesProductReport,
   StatisticsStoreReport,
   StatisticsStoreSales,
   StoreGroupOption,

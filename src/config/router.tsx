@@ -1,7 +1,12 @@
 import React, { lazy } from 'react';
-import { SafetyCertificateOutlined } from '@ant-design/icons';
+import { SafetyCertificateOutlined, BarChartOutlined } from '@ant-design/icons';
 import type { MenuDataItem } from '@ant-design/pro-layout';
-import { permissionMenus, baseRoutes, orderMenus } from './routes';
+import {
+  permissionMenus,
+  baseRoutes,
+  orderMenus,
+  salesReportMenus,
+} from './routes';
 
 const SecurityLayout = lazy(() => import('@/layouts/SecurityLayout'));
 
@@ -37,6 +42,15 @@ export interface StaticRouteType extends MenuDataItem {
 
 // use a request result to instead it.
 const menuTabs: StaticRouteType[] = [
+  {
+    name: 'menus.top.report',
+    path: '/report',
+    icon: <BarChartOutlined />,
+    children: salesReportMenus,
+    code: 'report',
+    component: SecurityLayout,
+    skipAuthentication: true,
+  },
   {
     name: 'menus.top.order',
     path: '/order',

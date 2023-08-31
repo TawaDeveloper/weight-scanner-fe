@@ -1,35 +1,33 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { useMount, useRequest } from 'ahooks';
+import { useMount } from 'ahooks';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { stringify } from 'qs';
 
 import { loginStateAtom } from '@/atoms/login';
 import BasicLayout from './BasicLayout';
 import { getPermissionsMenus } from '@/utils/route-utils';
-import { backofficeAPI } from '@/services';
-import { PageLoading } from '@/components';
+// import { backofficeAPI } from '@/services';
+// import { PageLoading } from '@/components';
 
 const SecurityLayout: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [login, setLogin] = useRecoilState(loginStateAtom);
-  const { runAsync, loading } = useRequest(
-    backofficeAPI.webAdmin.getUserInfo.request,
-  );
+  // const { runAsync, loading } = useRequest(
+  //   backofficeAPI.webAdmin.getUserInfo.request,
+  // );
 
   useMount(() => {
     if (login.isLogin) {
-      runAsync({ useCache: true }).then((data) => {
-        const { routePremiss, indexPath, filteredMenus } = getPermissionsMenus(
-          data?.data?.menus,
-        );
-        setLogin({
-          ...login,
-          routes: routePremiss,
-          indexPath,
-          routesFlat: filteredMenus,
-        });
+      const { routePremiss, indexPath, filteredMenus } = getPermissionsMenus(
+        [],
+      );
+      setLogin({
+        ...login,
+        routes: routePremiss,
+        indexPath,
+        routesFlat: filteredMenus,
       });
     }
   });
@@ -44,9 +42,9 @@ const SecurityLayout: React.FC = () => {
   if (location.pathname === '/' && login.indexPath) {
     navigate(login.indexPath, { replace: true });
   }
-  if (loading) {
-    return <PageLoading />;
-  }
+  // if (loading) {
+  //   return <PageLoading />;
+  // }
   return <BasicLayout />;
 };
 
