@@ -9,62 +9,8 @@
   "pollingTime": 1200,
   "origins": [
     {
-      "name": "order",
-      "originUrl": "https://api.dev.99ranch.online/order/v2/api-docs",
-      "originType": "SwaggerV2",
-      "usingOperationId": true
-    },
-    {
-      "name": "backoffice",
-      "originUrl": "https://api.dev.99ranch.online/backoffice/v2/api-docs",
-      "originType": "SwaggerV2",
-      "usingOperationId": true
-    },
-    {
-      "name": "account",
-      "originUrl": "https://api.dev.99ranch.online/account/v2/api-docs",
-      "originType": "SwaggerV2",
-      "usingOperationId": true
-    },
-    {
-      "name": "promotion",
-      "originUrl": "https://api.dev.99ranch.online/promotion/v2/api-docs",
-      "originType": "SwaggerV2",
-      "usingOperationId": true
-    },
-    {
-      "name": "product",
-      "originUrl": "https://api.dev.99ranch.online/product/v2/api-docs",
-      "originType": "SwaggerV2",
-      "usingOperationId": true
-    },
-    {
-      "name": "store",
-      "originUrl": "https://api.dev.99ranch.online/store/v2/api-docs",
-      "originType": "SwaggerV2",
-      "usingOperationId": true
-    },
-    {
-      "name": "search",
-      "originUrl": "https://api.dev.99ranch.online/search/v2/api-docs",
-      "originType": "SwaggerV2",
-      "usingOperationId": true
-    },
-    {
-      "name": "warehouse",
-      "originUrl": "https://api.dev.99ranch.online/warehouse/v2/api-docs",
-      "originType": "SwaggerV2",
-      "usingOperationId": true
-    },
-    {
-      "name": "message",
-      "originUrl": "https://api.dev.99ranch.online/message/v2/api-docs",
-      "originType": "SwaggerV2",
-      "usingOperationId": true
-    },
-    {
-      "name": "finance",
-      "originUrl": "https://api.dev.99ranch.online/finance/v2/api-docs",
+      "name": "bakery",
+      "originUrl": "http://10.89.24.25:8080/hot-deli-bakery/v2/api-docs",
       "originType": "SwaggerV2",
       "usingOperationId": true
     }

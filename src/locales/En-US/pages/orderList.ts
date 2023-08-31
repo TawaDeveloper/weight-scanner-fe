@@ -5,7 +5,7 @@ export default {
   title0004: 'After-sales order number',
   title0005: 'Delivery method',
   title0006: 'Order Status',
-  title0007: 'Store',
+  title0007: 'Store ID',
   title0008: 'User ID',
   title0009: 'User Phone',
   title0010: 'Member card number',
@@ -87,4 +87,7 @@ export default {
   title0085: 'totalAmount',
   title0086: 'Capture Time',
   title0087: 'Cancel order',
+  title0088: '下单人',
+  title0089: '区域',
+  title0090: '部门',
 };
