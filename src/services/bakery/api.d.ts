@@ -457,6 +457,14 @@ declare namespace defs {
       list?: Array<defs.bakery.LossFactor>;
     }
 
+    export class StatisticalSalesProductReport {
+      /** 报表内容 */
+      contents?: Array<defs.bakery.Content>;
+
+      /** 报表编号 */
+      reportId?: string;
+    }
+
     export class StatisticsStoreReport {
       /** 前十二周平均销售额 */
       averageAmountFor12Week?: number;
@@ -934,6 +942,36 @@ declare namespace API {
         export type request = (
           options?: postStoreSAPOptions,
         ) => postStoreSAPResponse;
+      }
+    }
+
+    /**
+     * 销量报表 - 产品销量统计
+     */
+    export namespace statisticalSalesProduct {
+      /**
+        * 销量 & 销售额报表
+销量 & 销售额报表
+        * /hot-deli-bakery/api/statistical/sales/product/report
+        */
+      export namespace report {
+        export type reportParam = {
+          /** articleNumbers */
+          articleNumbers?: Array<string>;
+
+          /** department */
+          department: string;
+
+          /** storeIds */
+          storeIds?: Array<string>;
+        };
+        export type reportOptions = Record<string, any>;
+        export type reportResponse =
+          defs.bakery.Response<defs.bakery.StatisticalSalesProductReport>;
+        export type request = (
+          params: reportParam,
+          options?: reportOptions,
+        ) => reportResponse;
       }
     }
 

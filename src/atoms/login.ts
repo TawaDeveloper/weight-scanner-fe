@@ -19,10 +19,10 @@ export const loginStateAtom = atom<LoginStateAtomType>({
   default: {
     role: null,
     id: null,
-    account: '',
-    isLogin: !!token,
+    account: 'Tester',
+    isLogin: true,
     // isLogin: true,
-    token: null,
+    token,
     permission: {},
     indexPath: '',
     routesFlat: [],

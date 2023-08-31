@@ -96,7 +96,7 @@ const BasicLayout: React.FC = () => {
           className={styles.proLayoutDiv}
           style={{ minHeight: 'calc(100vh - 80px)' }}
         >
-          <Header></Header>
+          <Header />
           {accessed ? <Outlet /> : <NotFoundError />}
         </div>
       </Suspense>

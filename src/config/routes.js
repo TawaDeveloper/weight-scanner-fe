@@ -27,6 +27,15 @@ const Menu = lazy(() =>
 const OrderList = lazy(() =>
   import(/* webpackChunkName: "Menu" */ '@/pages/Order/List'),
 );
+const ReportByStore = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/SalesReport/ReportByStore'),
+);
+const ReportByProduct = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/SalesReport/ReportByProduct'),
+);
+const ReportByCategory = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/SalesReport/ReportByCategory'),
+);
 const baseRoutes = [
   {
     name: 'all',
@@ -75,7 +84,33 @@ const orderMenus = [
     code: 'detail',
     parentCode: 'order',
   },
-]
+];
+const salesReportMenus = [
+  {
+    path: 'reportByStore',
+    name: 'menus.top.reportByStore',
+    component: ReportByStore,
+    code: 'reportByStore',
+    parentCode: 'report',
+    skipAuthentication: true,
+  },
+  {
+    path: 'reportByProduct',
+    name: 'menus.top.reportByProduct',
+    component: ReportByProduct,
+    code: 'reportByProduct',
+    parentCode: 'report',
+    skipAuthentication: true,
+  },
+  {
+    path: 'reportByCategory',
+    name: 'menus.top.reportByCategory',
+    component: ReportByCategory,
+    code: 'reportByCategory',
+    parentCode: 'report',
+    skipAuthentication: true,
+  },
+];
 const permissionMenus = [
   {
     path: 'list',
@@ -91,7 +126,6 @@ const permissionMenus = [
     code: 'role',
     parentCode: 'permissions',
   },
- 
   {
     path: 'organization',
     name: 'menus.top.organization',
@@ -115,4 +149,4 @@ const permissionMenus = [
   },
 ];
 
-export { permissionMenus, orderMenus, baseRoutes };
+export { permissionMenus, orderMenus, baseRoutes, salesReportMenus };
