@@ -8,7 +8,7 @@ export type storesParam = {
 export type storesOptions = Record<string, any>;
 
 export type storesResponse = Promise<
-  defs.bakery.Response<Array<defs.bakery.StoreGroupOption>>
+  defs.bakery.Response<Array<any>>
 >;
 
 /**

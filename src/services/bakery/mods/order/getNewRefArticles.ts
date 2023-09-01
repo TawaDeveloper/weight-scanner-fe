@@ -22,7 +22,7 @@ export function request(
   options?: getNewRefArticlesOptions,
 ): getNewRefArticlesResponse {
   const host = getEnvHost();
-  const url = host + '/hot-deli-bakery/order/new/ref/articles';
+  const url = host + '/bakery/hot-deli-bakery/api/order/new/ref/articles';
   const fetchOption = {
     method: 'get',
     headers: {

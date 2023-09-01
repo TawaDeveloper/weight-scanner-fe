@@ -1,5 +1,5 @@
 /// <reference path="../../api.d.ts" />
-import sendRequest from '@/utils/request';
+import sendRequest, { getEnvHost } from '@/utils/request';
 
 export type getOrderListForPageBody = defs.bakery.OrderListPageDTO;
 export type getOrderListForPageOptions = Record<string, any>;
@@ -15,8 +15,9 @@ export function request(
   body: getOrderListForPageBody,
   options?: getOrderListForPageOptions,
 ): getOrderListForPageResponse {
-  // const host = getEnvHost();
-  const url = 'http://10.89.24.25:8080' + '/hot-deli-bakery/order/list/page';
+  const host = getEnvHost();
+  console.log(host)
+  const url = 'http://10.89.24.25:8080' + '/hot-deli-bakery/api/order/list/page';
   const fetchOption = {
     method: 'post',
     headers: {

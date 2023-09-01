@@ -17,6 +17,38 @@ class CategoryOption {
   id = undefined;
 }
 
+class Content {
+  /** 前十二周平均销售额 */
+  averageAmountFor12Week = undefined;
+
+  /** 前四周平均销售额 */
+  averageAmountFor4Week = undefined;
+
+  /** 上周平均销售额 */
+  averageAmountForLastWeek = undefined;
+
+  /** 前十二周平均销售量 */
+  averageVolumeFor12Week = undefined;
+
+  /** 前四周平均销售量 */
+  averageVolumeFor4Week = undefined;
+
+  /** 上周平均销售量 */
+  averageVolumeForLastWeek = undefined;
+
+  /** 部门 */
+  department = '';
+
+  /** 门店区域 */
+  storeGroup = '';
+
+  /** 门店 ID */
+  storeId = '';
+
+  /** 门店名称 */
+  storeName = '';
+}
+
 class CreateOrderDTO {
   /** 部门 */
   dep = '';
@@ -31,77 +63,6 @@ class CreateUserDTO {
 
   /** 账号 */
   username = '';
-}
-
-class DDXX {
-  /** articleNumber */
-  articleNumber = '';
-
-  /** blocked */
-  blocked = '';
-
-  /** changedOn */
-  changedOn = '';
-
-  /** createdAt */
-  createdAt = new Timestamp();
-
-  /** creator */
-  creator = '';
-
-  /** deleted */
-  deleted = false;
-
-  /** deletionIndicator */
-  deletionIndicator = '';
-
-  /** deliveryDate */
-  deliveryDate = '';
-
-  /** desiredVendor */
-  desiredVendor = '';
-
-  /** fixedVendor */
-  fixedVendor = '';
-
-  /** id */
-  id = undefined;
-
-  /** itemNumber */
-  itemNumber = undefined;
-
-  /** mch */
-  mch = '';
-
-  /** poNumber */
-  poNumber = '';
-
-  /** prNumber */
-  prNumber = '';
-
-  /** processingState */
-  processingState = '';
-
-  /** processingStatus */
-  processingStatus = '';
-
-  /** quantity */
-  quantity = undefined;
-
-  /** releaseDate */
-  releaseDate = '';
-
-  /** requisitionDate */
-  requisitionDate = '';
-
-  /** requisitioner */
-  requisitioner = '';
-
-  /** storeId */
-  storeId = '';
-
-  /** updatedAt */
-  updatedAt = new Timestamp();
 }
 
 class IPage {
@@ -119,6 +80,14 @@ class IPage {
 
   /** total */
   total = undefined;
+}
+
+class Item {
+  /** 订单编号 */
+  orderId = '';
+
+  /** PO */
+  po = '';
 }
 
 class LoginDTO {
@@ -176,7 +145,30 @@ class MDXX {
   storeName = '';
 }
 
+class NewSalesGoalDTO {
+  /** 部门 ID */
+  dep = '';
+
+  /** 目标值 */
+  goal = undefined;
+
+  /** 月份 */
+  month = undefined;
+
+  /** 门店 ID */
+  storeId = '';
+
+  /** 门店名称 */
+  storeName = '';
+
+  /** 年份 */
+  year = undefined;
+}
+
 class OptionVO {
+  /** 子选项列表 */
+  children = [];
+
   /** 选项名称 */
   label = '';
 
@@ -198,12 +190,12 @@ class OrderDetailBaseVO {
   createUserName = '';
 
   /** 部门 */
-  dep = '';
+  depName = '';
 
   /** 预计送达时间 */
   estDeliveredTime = '';
 
-  /** 订单 id */
+  /** 订单编号 */
   orderId = '';
 
   /** 产品个数 */
@@ -212,20 +204,68 @@ class OrderDetailBaseVO {
   /** 产品数量 */
   skuQuantity = undefined;
 
-  /** 状态描述 */
-  statusDesc = '';
-
   /** 门店 id */
   storeId = '';
 
   /** 门店名称 */
   storeName = '';
+
+  /** 时区 */
+  timezone = '';
 }
 
-class OrderDetailItem {}
+class OrderDetailItem {
+  /** Article Number */
+  articleNumber = '';
+
+  /** 日实际订货量 */
+  dayActualQuantity = undefined;
+
+  /** 日参考订货量 */
+  dayRefQuantity = undefined;
+
+  /** 部门名称 */
+  depName = '';
+
+  /** 产品描述 - 英文 */
+  descriptionEn = '';
+
+  /** 产品描述 - 繁体 */
+  descriptionTc = '';
+
+  /** 尺寸大小 */
+  packSize = '';
+
+  /** PO */
+  po = '';
+
+  /** PR */
+  pr = '';
+
+  /** 产品价格 */
+  price = undefined;
+
+  /** PO 状态：1-已下单、2-已确认、3-已编辑、4-已取消 */
+  status = 'CANCELED';
+
+  /** PO 状态 */
+  statusDesc = '';
+
+  /** 门店 ID */
+  storeId = '';
+
+  /** 门店名称 */
+  storeName = '';
+
+  /** 供应商 */
+  supplier = '';
+
+  /** 单品周销售额目标 */
+  weekSalesGoal = undefined;
+}
 
 class OrderDetailItemDTO {
-  /** 订单 id */
+  /** 订单编号 */
   orderId = '';
 
   /** 第几页 */
@@ -233,9 +273,15 @@ class OrderDetailItemDTO {
 
   /** 每页多少条 */
   pageSize = undefined;
+
+  /** PO */
+  po = '';
+
+  /** 类型：1-订单纬度、2-PO 单纬度 */
+  type = undefined;
 }
 
-class OrderItem {
+class OrderItemVO {
   /** articleNumber */
   articleNumber = '';
 
@@ -253,11 +299,8 @@ class OrderListExportDTO {
   /** 部门 */
   dep = '';
 
-  /** 订单编号 */
-  id = '';
-
-  /** 批量导出 - 选中的 id */
-  ids = [];
+  /** 批量导出 - 选中的列表项 */
+  exportItems = [];
 
   /** 下单时间 - 结束时间 */
   maxCreateTime = '';
@@ -265,20 +308,23 @@ class OrderListExportDTO {
   /** 下单时间 - 开始时间 */
   minCreateTime = '';
 
+  /** 订单编号 */
+  orderId = '';
+
   /** 第几页 */
   pageNum = undefined;
 
   /** 每页多少条 */
   pageSize = undefined;
 
-  /** 区域 */
-  storeGroup = '';
+  /** po */
+  po = '';
+
+  /** PR */
+  pr = '';
 
   /** 门店 ID */
   storeId = '';
-
-  /** 门店名称 */
-  storeName = '';
 }
 
 class OrderListItem {
@@ -291,17 +337,20 @@ class OrderListItem {
   /** 下单人 */
   createUserName = '';
 
-  /** 部门 */
-  dep = '';
+  /** 部门名称 */
+  depName = '';
 
   /** 预计送达时间 */
   estDeliveredTime = '';
 
-  /** PR 编号 */
-  id = '';
+  /** 订单编号 */
+  orderId = '';
 
-  /** PO 编号 */
-  sapPo = '';
+  /** PO */
+  po = '';
+
+  /** PR */
+  pr = '';
 
   /** 商品个数 */
   skuNum = undefined;
@@ -309,25 +358,25 @@ class OrderListItem {
   /** 商品数量 */
   skuQuantity = undefined;
 
-  /** 订单状态：1-已下单、2-已确认、3-已编辑、4-已取消 */
+  /** PO 状态：1-已下单、2-已确认、3-已编辑、4-已取消 */
   status = 'CANCELED';
-
-  /** 区域 */
-  storeGroup = '';
 
   /** 门店 ID */
   storeId = '';
 
   /** 门店名称 */
   storeName = '';
+
+  /** 时区 */
+  timezone = '';
 }
 
 class OrderListOptionsVO {
   /** 部门列表 */
   deps = [];
 
-  /** 区域列表 */
-  storeGroups = [];
+  /** 门店列表 */
+  stores = [];
 }
 
 class OrderListPageDTO {
@@ -337,14 +386,14 @@ class OrderListPageDTO {
   /** 部门 */
   dep = '';
 
-  /** 订单编号 */
-  id = '';
-
   /** 下单时间 - 结束时间 */
   maxCreateTime = '';
 
   /** 下单时间 - 开始时间 */
   minCreateTime = '';
+
+  /** 订单编号 */
+  orderId = '';
 
   /** 第几页 */
   pageNum = undefined;
@@ -352,14 +401,14 @@ class OrderListPageDTO {
   /** 每页多少条 */
   pageSize = undefined;
 
-  /** 区域 */
-  storeGroup = '';
+  /** po */
+  po = '';
+
+  /** PR */
+  pr = '';
 
   /** 门店 ID */
   storeId = '';
-
-  /** 门店名称 */
-  storeName = '';
 }
 
 class OrderNewArticlesVO {}
@@ -388,54 +437,78 @@ class Response {
   success = false;
 }
 
-class SAPMchEntity {
-  /** createdAt */
-  createdAt = new Timestamp();
+class SalesGoalListDTO {
+  /** 部门 */
+  dep = '';
 
-  /** deleted */
-  deleted = false;
+  /** 月份 */
+  month = undefined;
+
+  /** 第几页 */
+  pageNum = undefined;
+
+  /** 每页多少条 */
+  pageSize = undefined;
+
+  /** 门店 ID */
+  storeId = '';
+
+  /** 年份 */
+  year = undefined;
+}
+
+class SalesGoalListItem {
+  /** 部门名称 */
+  depName = '';
+
+  /** 目标值 */
+  goal = undefined;
 
   /** id */
   id = undefined;
 
-  /** lossFactor */
-  lossFactor = undefined;
+  /** 月份 */
+  month = undefined;
 
-  /** mch */
-  mch = '';
+  /** 操作人姓名 */
+  optUserName = '';
 
-  /** mchClass */
-  mchClass = '';
+  /** 门店 ID */
+  storeId = '';
 
-  /** mchClassDescription */
-  mchClassDescription = '';
+  /** 门店名称 */
+  storeName = '';
 
-  /** mchCnDescription */
-  mchCnDescription = '';
+  /** 更新时间 */
+  updateTime = '';
 
-  /** mchDepartment */
-  mchDepartment = '';
+  /** 年份 */
+  year = undefined;
+}
 
-  /** mchDepartmentDescription */
-  mchDepartmentDescription = '';
+class SalesGoalListOptionVO {
+  /** 部门列表 */
+  deps = [];
 
-  /** mchDescription */
-  mchDescription = '';
+  /** 门店列表 */
+  stores = [];
 
-  /** mchDivision */
-  mchDivision = '';
+  /** 年份列表（含月份） */
+  yearWithMonths = [];
+}
 
-  /** mchDivisionDescription */
-  mchDivisionDescription = '';
+class SalesGoalOptLog {
+  /** 操作描述 */
+  optDesc = '';
 
-  /** updatedAt */
-  updatedAt = new Timestamp();
+  /** 操作人姓名 */
+  optUserName = '';
+
+  /** 更新时间 */
+  updateTime = '';
 }
 
 class SapOrderingDTO {
-  /** customerId */
-  customerId = '';
-
   /** deptId */
   deptId = '';
 
@@ -446,44 +519,115 @@ class SapOrderingDTO {
   storeId = '';
 }
 
+class SapPrEntity {
+  /** articleNumber */
+  articleNumber = '';
+
+  /** changedOn */
+  changedOn = '';
+
+  /** createdAt */
+  createdAt = '';
+
+  /** creator */
+  creator = '';
+
+  /** deleted */
+  deleted = undefined;
+
+  /** deletionIndicator */
+  deletionIndicator = '';
+
+  /** deliveryDate */
+  deliveryDate = '';
+
+  /** desiredVendor */
+  desiredVendor = '';
+
+  /** fixedVendor */
+  fixedVendor = '';
+
+  /** id */
+  id = undefined;
+
+  /** itemNumber */
+  itemNumber = '';
+
+  /** mch */
+  mch = '';
+
+  /** orderUnitOfMeasure */
+  orderUnitOfMeasure = '';
+
+  /** orderedQuantity */
+  orderedQuantity = undefined;
+
+  /** poNumber */
+  poNumber = '';
+
+  /** prNumber */
+  prNumber = '';
+
+  /** processingState */
+  processingState = '';
+
+  /** processingStatus */
+  processingStatus = '';
+
+  /** purchasingGroup */
+  purchasingGroup = '';
+
+  /** quantity */
+  quantity = undefined;
+
+  /** releaseDate */
+  releaseDate = '';
+
+  /** requisitionDate */
+  requisitionDate = '';
+
+  /** requisitioner */
+  requisitioner = '';
+
+  /** shortText */
+  shortText = '';
+
+  /** status */
+  status = undefined;
+
+  /** storageLocation */
+  storageLocation = '';
+
+  /** storeId */
+  storeId = '';
+
+  /** supplyingSite */
+  supplyingSite = '';
+
+  /** trackingNumber */
+  trackingNumber = '';
+
+  /** unitOfMeasure */
+  unitOfMeasure = '';
+
+  /** updatedAt */
+  updatedAt = '';
+}
+
 class SaveLossFactorDTO {
   /** 损耗系数列表 */
   list = [];
 }
 
-class StatisticsStoreReport {
-  /** 前十二周平均销售额 */
-  averageAmountFor12Week = undefined;
+class StatisticalSalesCategoryReport {
+  /** 报表内容 */
+  contents = [];
 
-  /** 前四周平均销售额 */
-  averageAmountFor4Week = undefined;
-
-  /** 上周平均销售额 */
-  averageAmountForLastWeek = undefined;
-
-  /** 前十二周平均销售量 */
-  averageVolumeFor12Week = undefined;
-
-  /** 前四周平均销售量 */
-  averageVolumeFor4Week = undefined;
-
-  /** 上周平均销售量 */
-  averageVolumeForLastWeek = undefined;
-
-  /** 部门 */
-  department = '';
-
-  /** 门店区域 */
-  storeGroup = '';
-
-  /** 门店 ID */
-  storeId = '';
-
-  /** 门店名称 */
-  storeName = '';
+  /** 报表编号 */
+  reportId = '';
 }
 
-class StatisticsStoreSales {
+class StatisticalSalesChart {
   /** 销售额 */
   amount = undefined;
 
@@ -503,7 +647,52 @@ class StatisticsStoreSales {
   volume = undefined;
 }
 
-class StoreGroupOption {
+class StatisticalSalesProductReport {
+  /** 报表内容 */
+  contents = [];
+
+  /** 报表编号 */
+  reportId = '';
+}
+
+class StatisticalSalesStoreReport {
+  /** 报表内容 */
+  contents = [];
+
+  /** 报表编号 */
+  reportId = '';
+}
+
+class StatisticalSearchConditionVo {
+  /** 查询产品编号 */
+  articleNumbers = [];
+
+  /** 查询分类 */
+  categories = [];
+
+  /** 是否对比去年同期 */
+  compareSamePeriod = false;
+
+  /** 查询部门 */
+  department = '';
+
+  /** 时间范围结束 */
+  endDate = '';
+
+  /** 业务模块 */
+  module = '';
+
+  /** 时间范围开始 */
+  startDate = '';
+
+  /** 查询门店 */
+  storeIds = [];
+
+  /** 查询名称 */
+  storeNames = [];
+}
+
+class StoreGroupTree {
   /** 门店分组名称 */
   storeGroupName = '';
 
@@ -511,55 +700,62 @@ class StoreGroupOption {
   stores = [];
 }
 
-class Timestamp {
-  /** date */
-  date = undefined;
+class StoreVo {
+  /** 主键 */
+  id = undefined;
 
-  /** day */
-  day = undefined;
+  /** 门店分组名称 */
+  storeGroupName = '';
 
-  /** hours */
-  hours = undefined;
+  /** 门店 ID */
+  storeId = '';
 
-  /** minutes */
-  minutes = undefined;
+  /** 门店名称 */
+  storeName = '';
+}
 
-  /** month */
+class UpdateSalesGoalDTO {
+  /** 部门 ID */
+  dep = '';
+
+  /** 目标值 */
+  goal = undefined;
+
+  /** ID */
+  id = undefined;
+
+  /** 月份 */
   month = undefined;
 
-  /** nanos */
-  nanos = undefined;
+  /** 门店 ID */
+  storeId = '';
 
-  /** seconds */
-  seconds = undefined;
+  /** 门店名称 */
+  storeName = '';
 
-  /** time */
-  time = undefined;
-
-  /** timezoneOffset */
-  timezoneOffset = undefined;
-
-  /** year */
+  /** 年份 */
   year = undefined;
 }
 
 export const bakery = {
   ArticleRefDTO,
   CategoryOption,
+  Content,
   CreateOrderDTO,
   CreateUserDTO,
-  DDXX,
   IPage,
+  Item,
   LoginDTO,
   LoginVO,
   LossFactor,
   LossFactorTree,
   MDXX,
+  NewSalesGoalDTO,
   OptionVO,
   OrderDetailBaseVO,
   OrderDetailItem,
   OrderDetailItemDTO,
-  OrderItem,
+  OrderItemVO,
   OrderListExportDTO,
   OrderListItem,
   OrderListOptionsVO,
@@ -568,11 +764,19 @@ export const bakery = {
   OrderNewOptionsVO,
   OrderNewRefArticle,
   Response,
-  SAPMchEntity,
+  SalesGoalListDTO,
+  SalesGoalListItem,
+  SalesGoalListOptionVO,
+  SalesGoalOptLog,
   SapOrderingDTO,
+  SapPrEntity,
   SaveLossFactorDTO,
-  StatisticsStoreReport,
-  StatisticsStoreSales,
-  StoreGroupOption,
-  Timestamp,
+  StatisticalSalesCategoryReport,
+  StatisticalSalesChart,
+  StatisticalSalesProductReport,
+  StatisticalSalesStoreReport,
+  StatisticalSearchConditionVo,
+  StoreGroupTree,
+  StoreVo,
+  UpdateSalesGoalDTO,
 };

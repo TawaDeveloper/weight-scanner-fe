@@ -92,4 +92,13 @@ export default {
   title0091: 'PR编号',
   title0092: 'PO编号',
   title0093: '产品个数',
+  title0094: '产品名称',
+  title0095: 'Artical N.O.',
+  title0096: '产品描述',
+  title0097: 'Description',
+  title0098: '产品价格',
+  title0099: 'Pack Size',
+  title0100: '供货商',
+  title0101: '单品周销售额目标',
+  title0102: 'PO单状态',
 };

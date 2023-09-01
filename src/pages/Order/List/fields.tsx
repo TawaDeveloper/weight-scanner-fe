@@ -16,12 +16,12 @@ import {
 // "updatedTime": "2023-07-11T07:11:01.256Z"
 export const tableFields = [
   {
-    key: 'id',
+    key: 'pr',
     width: 100,
     name: t<string>(`pages.orderList.title0091`),
   },
   {
-    key: 'sapPo',
+    key: 'po',
     width: 100,
     name: t<string>(`pages.orderList.title0092`),
   },

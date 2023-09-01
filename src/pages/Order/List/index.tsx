@@ -12,12 +12,14 @@ import { datePickerToTimestamp, download } from '@/utils';
 import { YYYY_MM_DD_MAX, YYYY_MM_DD_MIN } from '@/constants';
 import { CommonButton } from '@/components/CommonButton';
 import './index.less';
+import { useNavigate } from 'react-router-dom';
 
 const OrderList = () => {
   const auditModalRef = useRef<any>();
   const actionRef = useRef<TableQueryActions>(null);
   const [show, setShow] = useState<{ type: string; data?: any }>();
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
+  const navigate = useNavigate();
 
   const handleClose = () => {
     actionRef.current?.onQuery();
@@ -49,7 +51,7 @@ const OrderList = () => {
     fields: tableFields,
     data: data?.data?.records,
     total: data?.data?.total,
-    rowKey: 'id',
+    rowKey: 'orderId',
     rowSelection,
     nextFields: [
       {
@@ -63,7 +65,7 @@ const OrderList = () => {
             {
               name: t<string>(`pages.common.view`),
               onClick: () => {
-                console.log('11', record);
+                navigate(`/permissions/detail?id=${record.orderId}`, { replace: true })
               },
             },
             record.status === 1 && {
@@ -94,7 +96,9 @@ const OrderList = () => {
 
     const content = await bakeryAPI.order.exportOrderList.request(
       {
-        ids: selectedRowKeys,
+        exportItems: selectedRowKeys.map((el) => {
+          return { orderId: el };
+        }),
         ...params,
         maxCreateTime: createTime
           ? datePickerToTimestamp(createTime[1], YYYY_MM_DD_MAX).toString()

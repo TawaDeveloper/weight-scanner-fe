@@ -14,7 +14,7 @@ export function request(
   options?: createOrderOptions,
 ): createOrderResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/order/new/create';
+  const url = host + '/bakery/hot-deli-bakery/api/order/new/create';
   const fetchOption = {
     method: 'post',
     headers: {

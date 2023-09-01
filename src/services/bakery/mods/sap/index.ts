@@ -1,9 +1,9 @@
 /**
  * @description Sap Controller
  */
-import * as getMch from './getMch';
 import * as getPrTest from './getPrTest';
 import * as getSalesSAP from './getSalesSAP';
+import * as getSalesSAP2 from './getSalesSAP2';
 import * as getStoreSAP from './getStoreSAP';
 import * as postAllArticleByRange from './postAllArticleByRange';
 import * as postMch from './postMch';
@@ -13,9 +13,9 @@ import * as postSalesSAP from './postSalesSAP';
 import * as postStoreSAP from './postStoreSAP';
 
 export {
-  getMch,
   getPrTest,
   getSalesSAP,
+  getSalesSAP2,
   getStoreSAP,
   postAllArticleByRange,
   postMch,

@@ -227,7 +227,7 @@
           "description": "保存",
           "name": "saveLossFactor",
           "method": "post",
-          "path": "/hot-deli-bakery/loss/factor/save",
+          "path": "/hot-deli-bakery/api/loss/factor/save",
           "response": {
             "typeArgs": [
               {
@@ -299,7 +299,7 @@
           "description": "查询",
           "name": "getLossFactorTree",
           "method": "get",
-          "path": "/hot-deli-bakery/loss/factor/tree",
+          "path": "/hot-deli-bakery/api/loss/factor/tree",
           "response": {
             "typeArgs": [
               {
@@ -369,10 +369,13 @@
       "name": "order",
       "interfaces": [
         {
+          "consumes": [
+            "application/json"
+          ],
           "description": "订单详情 - 查询基础信息",
           "name": "getOrderBaseInfo",
-          "method": "get",
-          "path": "/hot-deli-bakery/order/detail/base",
+          "method": "post",
+          "path": "/hot-deli-bakery/api/order/detail/base",
           "response": {
             "typeArgs": [
               {
@@ -394,14 +397,14 @@
           },
           "parameters": [
             {
-              "in": "header",
-              "description": "language [en_US, zh_CN, zh_TW]",
-              "name": "lang",
-              "required": false,
+              "in": "body",
+              "description": "dto",
+              "name": "dto",
+              "required": true,
               "dataType": {
                 "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
+                "typeName": "OrderDetailItemDTO",
+                "isDefsType": true,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
                 "enum": [],
@@ -409,13 +412,13 @@
               }
             },
             {
-              "in": "query",
-              "description": "orderId",
-              "name": "orderId",
-              "required": true,
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
               "dataType": {
                 "typeArgs": [],
-                "typeName": "string",
+                "typeName": "",
                 "isDefsType": false,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
@@ -441,10 +444,13 @@
           ]
         },
         {
+          "consumes": [
+            "application/json"
+          ],
           "description": "订单详情 - 分页查询商品",
-          "name": "getOrderDetailItems",
-          "method": "get",
-          "path": "/hot-deli-bakery/order/detail/items/page",
+          "name": "getOrderDetailItemsForPage",
+          "method": "post",
+          "path": "/hot-deli-bakery/api/order/detail/items/page",
           "response": {
             "typeArgs": [
               {
@@ -529,7 +535,7 @@
           "description": "订单列表 - 批量导出",
           "name": "exportOrderList",
           "method": "post",
-          "path": "/hot-deli-bakery/order/list/export",
+          "path": "/hot-deli-bakery/api/order/list/export",
           "response": {
             "typeArgs": [],
             "typeName": "",
@@ -591,7 +597,7 @@
           "description": "订单列表 - 查询条件选项",
           "name": "getListOptions",
           "method": "get",
-          "path": "/hot-deli-bakery/order/list/options",
+          "path": "/hot-deli-bakery/api/order/list/options",
           "response": {
             "typeArgs": [
               {
@@ -651,7 +657,7 @@
           "description": "订单列表 - 分页查询",
           "name": "getOrderListForPage",
           "method": "post",
-          "path": "/hot-deli-bakery/order/list/page",
+          "path": "/hot-deli-bakery/api/order/list/page",
           "response": {
             "typeArgs": [
               {
@@ -733,7 +739,7 @@
           "description": "新建订单 - 查询产品分类",
           "name": "getNewArticles",
           "method": "get",
-          "path": "/hot-deli-bakery/order/new/articles",
+          "path": "/hot-deli-bakery/api/order/new/articles",
           "response": {
             "typeArgs": [
               {
@@ -823,7 +829,7 @@
           "description": "新建订单 - 提交订单",
           "name": "createOrder",
           "method": "post",
-          "path": "/hot-deli-bakery/order/new/create",
+          "path": "/hot-deli-bakery/api/order/new/create",
           "response": {
             "typeArgs": [
               {
@@ -895,7 +901,7 @@
           "description": "新建订单 - 查询预计送达时间",
           "name": "getNewEstDeliveredTime",
           "method": "get",
-          "path": "/hot-deli-bakery/order/new/estDeliveredTime",
+          "path": "/hot-deli-bakery/api/order/new/estDeliveredTime",
           "response": {
             "typeArgs": [
               {
@@ -967,7 +973,7 @@
           "description": "新建订单 - 查询条件选项",
           "name": "getNewOptions",
           "method": "get",
-          "path": "/hot-deli-bakery/order/new/options",
+          "path": "/hot-deli-bakery/api/order/new/options",
           "response": {
             "typeArgs": [
               {
@@ -1024,7 +1030,7 @@
           "description": "新建订单 - 查询添加产品",
           "name": "getNewRefArticle",
           "method": "get",
-          "path": "/hot-deli-bakery/order/new/ref/article",
+          "path": "/hot-deli-bakery/api/order/new/ref/article",
           "response": {
             "typeArgs": [
               {
@@ -1106,7 +1112,7 @@
           "description": "新建订单 - 查询参考产品",
           "name": "getNewRefArticles",
           "method": "get",
-          "path": "/hot-deli-bakery/order/new/ref/articles",
+          "path": "/hot-deli-bakery/api/order/new/ref/articles",
           "response": {
             "typeArgs": [
               {
@@ -1202,19 +1208,169 @@
       ]
     },
     {
-      "description": "Sap Controller",
-      "name": "sap",
+      "description": "销售目标",
+      "name": "salesGoal",
       "interfaces": [
         {
-          "description": "getMch",
-          "name": "getMch",
-          "method": "get",
-          "path": "/hot-deli-bakery/sap/get_mch",
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "description": "批量导入",
+          "name": "batchImport",
+          "method": "post",
+          "path": "/hot-deli-bakery/api/sales/goal/batch/import",
           "response": {
             "typeArgs": [
               {
                 "typeArgs": [],
-                "typeName": "SAPMchEntity",
+                "typeName": "void",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "body",
+              "description": "file",
+              "name": "file",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "consumes": [
+            "application/json"
+          ],
+          "description": "新建目标",
+          "name": "createSalesGoal",
+          "method": "post",
+          "path": "/hot-deli-bakery/api/sales/goal/create",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "void",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "body",
+              "description": "dto",
+              "name": "dto",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "NewSalesGoalDTO",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "description": "查询条件选项",
+          "name": "getListOptions",
+          "method": "get",
+          "path": "/hot-deli-bakery/api/sales/goal/list/options",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "SalesGoalListOptionVO",
                 "isDefsType": true,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
@@ -1222,7 +1378,221 @@
                 "typeProperties": []
               }
             ],
-            "typeName": "Array",
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "consumes": [
+            "application/json"
+          ],
+          "description": "分页查询",
+          "name": "getSalesGoalForPage",
+          "method": "post",
+          "path": "/hot-deli-bakery/api/sales/goal/list/page",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [
+                  {
+                    "typeArgs": [],
+                    "typeName": "SalesGoalListItem",
+                    "isDefsType": true,
+                    "templateIndex": -1,
+                    "compileTemplateKeyword": "#/definitions/",
+                    "enum": [],
+                    "typeProperties": []
+                  }
+                ],
+                "typeName": "IPage",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "body",
+              "description": "dto",
+              "name": "dto",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "SalesGoalListDTO",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "description": "查询操作日志",
+          "name": "getSalesGoalOptLogs",
+          "method": "get",
+          "path": "/hot-deli-bakery/api/sales/goal/opt/logs",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [
+                  {
+                    "typeArgs": [],
+                    "typeName": "SalesGoalOptLog",
+                    "isDefsType": true,
+                    "templateIndex": -1,
+                    "compileTemplateKeyword": "#/definitions/",
+                    "enum": [],
+                    "typeProperties": []
+                  }
+                ],
+                "typeName": "Array",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "query",
+              "description": "id",
+              "name": "id",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "number",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "description": "模版下载",
+          "name": "downloadTemplate",
+          "method": "get",
+          "path": "/hot-deli-bakery/api/sales/goal/template/download",
+          "response": {
+            "typeArgs": [],
+            "typeName": "",
             "isDefsType": false,
             "templateIndex": -1,
             "compileTemplateKeyword": "#/definitions/",
@@ -1263,6 +1633,87 @@
           ]
         },
         {
+          "consumes": [
+            "application/json"
+          ],
+          "description": "编辑目标",
+          "name": "updateSalesGoal",
+          "method": "put",
+          "path": "/hot-deli-bakery/api/sales/goal/update",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "void",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "body",
+              "description": "dto",
+              "name": "dto",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "UpdateSalesGoalDTO",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Sap Controller",
+      "name": "sap",
+      "interfaces": [
+        {
           "description": "getPrTest",
           "name": "getPrTest",
           "method": "get",
@@ -1271,7 +1722,7 @@
             "typeArgs": [
               {
                 "typeArgs": [],
-                "typeName": "DDXX",
+                "typeName": "SapPrEntity",
                 "isDefsType": true,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
@@ -1324,6 +1775,72 @@
           "name": "getSalesSAP",
           "method": "get",
           "path": "/hot-deli-bakery/sap/get_sales",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              },
+              {
+                "typeArgs": [],
+                "typeName": "object",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "ObjectMap",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "description": "获取sales data",
+          "name": "getSalesSAP2",
+          "method": "get",
+          "path": "/hot-deli-bakery/sap/get_sales2",
           "response": {
             "typeArgs": [
               {
@@ -1808,291 +2325,13 @@
     },
     {
       "description": "销量报表 - 通用查询",
-      "name": "statisticsCommon",
+      "name": "statisticalCommon",
       "interfaces": [
-        {
-          "description": "export",
-          "name": "exporting",
-          "method": "get",
-          "path": "/hot-deli-bakery/api/statistics/category/sales/export/{viewId}",
-          "response": {
-            "typeArgs": [
-              {
-                "typeArgs": [],
-                "typeName": "ObjectMap",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            ],
-            "typeName": "Response",
-            "isDefsType": true,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "parameters": [
-            {
-              "in": "header",
-              "description": "language [en_US, zh_CN, zh_TW]",
-              "name": "lang",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "header",
-              "description": "Auth Token",
-              "name": "token",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "path",
-              "description": "viewId",
-              "name": "viewId",
-              "required": true,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "string",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            }
-          ]
-        },
-        {
-          "description": "list",
-          "name": "list",
-          "method": "get",
-          "path": "/hot-deli-bakery/api/statistics/category/sales/list",
-          "response": {
-            "typeArgs": [
-              {
-                "typeArgs": [],
-                "typeName": "ObjectMap",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            ],
-            "typeName": "Response",
-            "isDefsType": true,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "parameters": [
-            {
-              "in": "query",
-              "description": "categories",
-              "name": "categories",
-              "required": false,
-              "dataType": {
-                "typeArgs": [
-                  {
-                    "typeArgs": [],
-                    "typeName": "string",
-                    "isDefsType": false,
-                    "templateIndex": -1,
-                    "compileTemplateKeyword": "#/definitions/",
-                    "enum": [],
-                    "typeProperties": []
-                  }
-                ],
-                "typeName": "Array",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "compareSamePeriod",
-              "name": "compareSamePeriod",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "boolean",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "departmentId",
-              "name": "departmentId",
-              "required": true,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "number",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "endDate",
-              "name": "endDate",
-              "required": true,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "string",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "header",
-              "description": "language [en_US, zh_CN, zh_TW]",
-              "name": "lang",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "rememberMe",
-              "name": "rememberMe",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "boolean",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "startDate",
-              "name": "startDate",
-              "required": true,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "string",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "storeId",
-              "name": "storeId",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "number",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "storeName",
-              "name": "storeName",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "string",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "header",
-              "description": "Auth Token",
-              "name": "token",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "viewBy",
-              "name": "viewBy",
-              "required": true,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [
-                  "'DAY'",
-                  "'WEEK'",
-                  "'YEAR'"
-                ],
-                "typeProperties": []
-              }
-            }
-          ]
-        },
         {
           "description": "查询产品\n查询产品用于下拉列表",
           "name": "articles",
           "method": "get",
-          "path": "/hot-deli-bakery/api/statistics/common/articles",
+          "path": "/hot-deli-bakery/api/statistical/common/articles",
           "response": {
             "typeArgs": [
               {
@@ -2179,7 +2418,7 @@
           "description": "查询类别\n查询类别用于下拉列表",
           "name": "categories",
           "method": "get",
-          "path": "/hot-deli-bakery/api/statistics/common/categories",
+          "path": "/hot-deli-bakery/api/statistical/common/categories",
           "response": {
             "typeArgs": [
               {
@@ -2288,10 +2527,252 @@
           ]
         },
         {
+          "description": "销售量 & 销售额图表\n销售量 & 销售额图表",
+          "name": "chart",
+          "method": "get",
+          "path": "/hot-deli-bakery/api/statistical/common/chart",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [
+                  {
+                    "typeArgs": [],
+                    "typeName": "StatisticalSalesChart",
+                    "isDefsType": true,
+                    "templateIndex": -1,
+                    "compileTemplateKeyword": "#/definitions/",
+                    "enum": [],
+                    "typeProperties": []
+                  }
+                ],
+                "typeName": "Array",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "query",
+              "description": "articleNumbers",
+              "name": "articleNumbers",
+              "required": false,
+              "dataType": {
+                "typeArgs": [
+                  {
+                    "typeArgs": [],
+                    "typeName": "string",
+                    "isDefsType": false,
+                    "templateIndex": -1,
+                    "compileTemplateKeyword": "#/definitions/",
+                    "enum": [],
+                    "typeProperties": []
+                  }
+                ],
+                "typeName": "Array",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "query",
+              "description": "categories",
+              "name": "categories",
+              "required": false,
+              "dataType": {
+                "typeArgs": [
+                  {
+                    "typeArgs": [],
+                    "typeName": "string",
+                    "isDefsType": false,
+                    "templateIndex": -1,
+                    "compileTemplateKeyword": "#/definitions/",
+                    "enum": [],
+                    "typeProperties": []
+                  }
+                ],
+                "typeName": "Array",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "query",
+              "description": "compareSamePeriod",
+              "name": "compareSamePeriod",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "boolean",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "query",
+              "description": "department",
+              "name": "department",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "query",
+              "description": "endDate",
+              "name": "endDate",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "number",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "query",
+              "description": "startDate",
+              "name": "startDate",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "number",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "query",
+              "description": "storeIds",
+              "name": "storeIds",
+              "required": false,
+              "dataType": {
+                "typeArgs": [
+                  {
+                    "typeArgs": [],
+                    "typeName": "string",
+                    "isDefsType": false,
+                    "templateIndex": -1,
+                    "compileTemplateKeyword": "#/definitions/",
+                    "enum": [],
+                    "typeProperties": []
+                  }
+                ],
+                "typeName": "Array",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "query",
+              "description": "storeNames",
+              "name": "storeNames",
+              "required": false,
+              "dataType": {
+                "typeArgs": [
+                  {
+                    "typeArgs": [],
+                    "typeName": "string",
+                    "isDefsType": false,
+                    "templateIndex": -1,
+                    "compileTemplateKeyword": "#/definitions/",
+                    "enum": [],
+                    "typeProperties": []
+                  }
+                ],
+                "typeName": "Array",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "query",
+              "description": "viewBy",
+              "name": "viewBy",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
           "description": "查询部门\n查询部门用于下拉列表",
           "name": "departments",
           "method": "get",
-          "path": "/hot-deli-bakery/api/statistics/common/departments",
+          "path": "/hot-deli-bakery/api/statistical/common/departments",
           "response": {
             "typeArgs": [
               {
@@ -2355,10 +2836,87 @@
           ]
         },
         {
-          "description": "获取用户记住的赛选条件",
+          "description": "销量 & 销售额报表导出\n销量 & 销售额报表导出",
+          "name": "exporting",
+          "method": "get",
+          "path": "/hot-deli-bakery/api/statistical/common/export/{module}/{reportId}",
+          "response": {
+            "typeArgs": [],
+            "typeName": "",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "path",
+              "description": "module",
+              "name": "module",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "path",
+              "description": "reportId",
+              "name": "reportId",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "description": "获取用户记住的筛选条件",
           "name": "findRemember",
           "method": "get",
-          "path": "/hot-deli-bakery/api/statistics/common/remember",
+          "path": "/hot-deli-bakery/api/statistical/common/remember",
           "response": {
             "typeArgs": [
               {
@@ -2380,13 +2938,13 @@
           },
           "parameters": [
             {
-              "in": "query",
-              "description": "category",
-              "name": "category",
-              "required": true,
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
               "dataType": {
                 "typeArgs": [],
-                "typeName": "string",
+                "typeName": "",
                 "isDefsType": false,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
@@ -2395,13 +2953,13 @@
               }
             },
             {
-              "in": "header",
-              "description": "language [en_US, zh_CN, zh_TW]",
-              "name": "lang",
-              "required": false,
+              "in": "query",
+              "description": "module",
+              "name": "module",
+              "required": true,
               "dataType": {
                 "typeArgs": [],
-                "typeName": "",
+                "typeName": "string",
                 "isDefsType": false,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
@@ -2430,15 +2988,15 @@
           "consumes": [
             "application/json"
           ],
-          "description": "保存用户记住的赛选条件",
+          "description": "保存用户记住的筛选条件",
           "name": "saveRemember",
           "method": "post",
-          "path": "/hot-deli-bakery/api/statistics/common/remember",
+          "path": "/hot-deli-bakery/api/statistical/common/remember",
           "response": {
             "typeArgs": [
               {
                 "typeArgs": [],
-                "typeName": "ObjectMap",
+                "typeName": "boolean",
                 "isDefsType": false,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
@@ -2455,13 +3013,13 @@
           },
           "parameters": [
             {
-              "in": "query",
-              "description": "category",
-              "name": "category",
-              "required": true,
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
               "dataType": {
                 "typeArgs": [],
-                "typeName": "string",
+                "typeName": "",
                 "isDefsType": false,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
@@ -2469,6 +3027,73 @@
                 "typeProperties": []
               }
             },
+            {
+              "in": "body",
+              "description": "request",
+              "name": "request",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "StatisticalSearchConditionVo",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "description": "查询门店树状结构\n查询门店树状结构",
+          "name": "storeTree",
+          "method": "get",
+          "path": "/hot-deli-bakery/api/statistical/common/store/tree",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [
+                  {
+                    "typeArgs": [],
+                    "typeName": "StoreGroupTree",
+                    "isDefsType": true,
+                    "templateIndex": -1,
+                    "compileTemplateKeyword": "#/definitions/",
+                    "enum": [],
+                    "typeProperties": []
+                  }
+                ],
+                "typeName": "Array",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
             {
               "in": "header",
               "description": "language [en_US, zh_CN, zh_TW]",
@@ -2505,14 +3130,14 @@
           "description": "查询门店\n查询门店名称用于下拉列表",
           "name": "stores",
           "method": "get",
-          "path": "/hot-deli-bakery/api/statistics/common/stores",
+          "path": "/hot-deli-bakery/api/statistical/common/stores",
           "response": {
             "typeArgs": [
               {
                 "typeArgs": [
                   {
                     "typeArgs": [],
-                    "typeName": "StoreGroupOption",
+                    "typeName": "StoreVo",
                     "isDefsType": true,
                     "templateIndex": -1,
                     "compileTemplateKeyword": "#/definitions/",
@@ -2586,92 +3211,20 @@
       ]
     },
     {
-      "description": "Statistics Product Sales Controller",
-      "name": "statisticsProductSales",
+      "description": "销量报表 - 分类销量统计",
+      "name": "statisticalSalesCategory",
       "interfaces": [
         {
-          "description": "export",
-          "name": "exporting",
+          "description": "销量 & 销售额报表\n销量 & 销售额报表",
+          "name": "report",
           "method": "get",
-          "path": "/hot-deli-bakery/api/statistics/product/sales/export/{viewId}",
+          "path": "/hot-deli-bakery/api/statistical/sales/category/report",
           "response": {
             "typeArgs": [
               {
                 "typeArgs": [],
-                "typeName": "ObjectMap",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            ],
-            "typeName": "Response",
-            "isDefsType": true,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "parameters": [
-            {
-              "in": "header",
-              "description": "language [en_US, zh_CN, zh_TW]",
-              "name": "lang",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "header",
-              "description": "Auth Token",
-              "name": "token",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "path",
-              "description": "viewId",
-              "name": "viewId",
-              "required": true,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "string",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            }
-          ]
-        },
-        {
-          "description": "list",
-          "name": "list",
-          "method": "get",
-          "path": "/hot-deli-bakery/api/statistics/product/sales/list",
-          "response": {
-            "typeArgs": [
-              {
-                "typeArgs": [],
-                "typeName": "ObjectMap",
-                "isDefsType": false,
+                "typeName": "StatisticalSalesCategoryReport",
+                "isDefsType": true,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
                 "enum": [],
@@ -2688,8 +3241,8 @@
           "parameters": [
             {
               "in": "query",
-              "description": "categories",
-              "name": "categories",
+              "description": "articleNumbers",
+              "name": "articleNumbers",
               "required": false,
               "dataType": {
                 "typeArgs": [
@@ -2713,38 +3266,8 @@
             },
             {
               "in": "query",
-              "description": "compareSamePeriod",
-              "name": "compareSamePeriod",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "boolean",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "departmentId",
-              "name": "departmentId",
-              "required": true,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "number",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "endDate",
-              "name": "endDate",
+              "description": "department",
+              "name": "department",
               "required": true,
               "dataType": {
                 "typeArgs": [],
@@ -2773,61 +3296,6 @@
             },
             {
               "in": "query",
-              "description": "productIds",
-              "name": "productIds",
-              "required": false,
-              "dataType": {
-                "typeArgs": [
-                  {
-                    "typeArgs": [],
-                    "typeName": "number",
-                    "isDefsType": false,
-                    "templateIndex": -1,
-                    "compileTemplateKeyword": "#/definitions/",
-                    "enum": [],
-                    "typeProperties": []
-                  }
-                ],
-                "typeName": "Array",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "rememberMe",
-              "name": "rememberMe",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "boolean",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "startDate",
-              "name": "startDate",
-              "required": true,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "string",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
               "description": "storeIds",
               "name": "storeIds",
               "required": false,
@@ -2835,7 +3303,7 @@
                 "typeArgs": [
                   {
                     "typeArgs": [],
-                    "typeName": "number",
+                    "typeName": "string",
                     "isDefsType": false,
                     "templateIndex": -1,
                     "compileTemplateKeyword": "#/definitions/",
@@ -2890,15 +3358,128 @@
                 "enum": [],
                 "typeProperties": []
               }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "销量报表 - 产品销量统计",
+      "name": "statisticalSalesProduct",
+      "interfaces": [
+        {
+          "description": "销量 & 销售额报表\n销量 & 销售额报表",
+          "name": "report",
+          "method": "get",
+          "path": "/hot-deli-bakery/api/statistical/sales/product/report",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "StatisticalSalesProductReport",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "query",
+              "description": "articleNumbers",
+              "name": "articleNumbers",
+              "required": false,
+              "dataType": {
+                "typeArgs": [
+                  {
+                    "typeArgs": [],
+                    "typeName": "string",
+                    "isDefsType": false,
+                    "templateIndex": -1,
+                    "compileTemplateKeyword": "#/definitions/",
+                    "enum": [],
+                    "typeProperties": []
+                  }
+                ],
+                "typeName": "Array",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
             },
             {
               "in": "query",
-              "description": "viewBy",
-              "name": "viewBy",
+              "description": "department",
+              "name": "department",
               "required": true,
               "dataType": {
                 "typeArgs": [],
                 "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "query",
+              "description": "storeIds",
+              "name": "storeIds",
+              "required": false,
+              "dataType": {
+                "typeArgs": [
+                  {
+                    "typeArgs": [],
+                    "typeName": "string",
+                    "isDefsType": false,
+                    "templateIndex": -1,
+                    "compileTemplateKeyword": "#/definitions/",
+                    "enum": [],
+                    "typeProperties": []
+                  }
+                ],
+                "typeName": "Array",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
                 "isDefsType": false,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
@@ -2912,293 +3493,19 @@
     },
     {
       "description": "销量报表 - 门店销量统计",
-      "name": "statisticsStoreSales",
+      "name": "statisticalSalesStore",
       "interfaces": [
-        {
-          "description": "销售量 & 销售额图表\n销售量 & 销售额图表",
-          "name": "chart",
-          "method": "get",
-          "path": "/hot-deli-bakery/api/statistics/store/sales/chart",
-          "response": {
-            "typeArgs": [
-              {
-                "typeArgs": [
-                  {
-                    "typeArgs": [],
-                    "typeName": "StatisticsStoreSales",
-                    "isDefsType": true,
-                    "templateIndex": -1,
-                    "compileTemplateKeyword": "#/definitions/",
-                    "enum": [],
-                    "typeProperties": []
-                  }
-                ],
-                "typeName": "Array",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            ],
-            "typeName": "Response",
-            "isDefsType": true,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "parameters": [
-            {
-              "in": "query",
-              "description": "articleNumbers",
-              "name": "articleNumbers",
-              "required": false,
-              "dataType": {
-                "typeArgs": [
-                  {
-                    "typeArgs": [],
-                    "typeName": "string",
-                    "isDefsType": false,
-                    "templateIndex": -1,
-                    "compileTemplateKeyword": "#/definitions/",
-                    "enum": [],
-                    "typeProperties": []
-                  }
-                ],
-                "typeName": "Array",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "compareSamePeriod",
-              "name": "compareSamePeriod",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "boolean",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "department",
-              "name": "department",
-              "required": true,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "string",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "endDate",
-              "name": "endDate",
-              "required": true,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "number",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "header",
-              "description": "language [en_US, zh_CN, zh_TW]",
-              "name": "lang",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "startDate",
-              "name": "startDate",
-              "required": true,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "number",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "storeIds",
-              "name": "storeIds",
-              "required": false,
-              "dataType": {
-                "typeArgs": [
-                  {
-                    "typeArgs": [],
-                    "typeName": "string",
-                    "isDefsType": false,
-                    "templateIndex": -1,
-                    "compileTemplateKeyword": "#/definitions/",
-                    "enum": [],
-                    "typeProperties": []
-                  }
-                ],
-                "typeName": "Array",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "header",
-              "description": "Auth Token",
-              "name": "token",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "query",
-              "description": "viewBy",
-              "name": "viewBy",
-              "required": true,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "string",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            }
-          ]
-        },
-        {
-          "description": "export",
-          "name": "exporting",
-          "method": "get",
-          "path": "/hot-deli-bakery/api/statistics/store/sales/export/{viewId}",
-          "response": {
-            "typeArgs": [
-              {
-                "typeArgs": [],
-                "typeName": "ObjectMap",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            ],
-            "typeName": "Response",
-            "isDefsType": true,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "parameters": [
-            {
-              "in": "header",
-              "description": "language [en_US, zh_CN, zh_TW]",
-              "name": "lang",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "header",
-              "description": "Auth Token",
-              "name": "token",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "path",
-              "description": "viewId",
-              "name": "viewId",
-              "required": true,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "string",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            }
-          ]
-        },
         {
           "description": "销量 & 销售额报表\n销量 & 销售额报表",
           "name": "report",
           "method": "get",
-          "path": "/hot-deli-bakery/api/statistics/store/sales/report",
+          "path": "/hot-deli-bakery/api/statistical/sales/store/report",
           "response": {
             "typeArgs": [
               {
-                "typeArgs": [
-                  {
-                    "typeArgs": [],
-                    "typeName": "StatisticsStoreReport",
-                    "isDefsType": true,
-                    "templateIndex": -1,
-                    "compileTemplateKeyword": "#/definitions/",
-                    "enum": [],
-                    "typeProperties": []
-                  }
-                ],
-                "typeName": "Array",
-                "isDefsType": false,
+                "typeArgs": [],
+                "typeName": "StatisticalSalesStoreReport",
+                "isDefsType": true,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
                 "enum": [],
@@ -3222,7 +3529,7 @@
                 "typeArgs": [
                   {
                     "typeArgs": [],
-                    "typeName": "number",
+                    "typeName": "string",
                     "isDefsType": false,
                     "templateIndex": -1,
                     "compileTemplateKeyword": "#/definitions/",
@@ -3277,7 +3584,7 @@
                 "typeArgs": [
                   {
                     "typeArgs": [],
-                    "typeName": "number",
+                    "typeName": "string",
                     "isDefsType": false,
                     "templateIndex": -1,
                     "compileTemplateKeyword": "#/definitions/",
@@ -3409,7 +3716,153 @@
       ]
     },
     {
-      "description": "新建订单 - DDXX",
+      "name": "Content",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "averageAmountFor12Week",
+          "description": "前十二周平均销售额",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "averageAmountFor4Week",
+          "description": "前四周平均销售额",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "averageAmountForLastWeek",
+          "description": "上周平均销售额",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "averageVolumeFor12Week",
+          "description": "前十二周平均销售量",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "averageVolumeFor4Week",
+          "description": "前四周平均销售量",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "averageVolumeForLastWeek",
+          "description": "上周平均销售量",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "department",
+          "description": "部门",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "storeGroup",
+          "description": "门店区域",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "storeId",
+          "description": "门店 ID",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "storeName",
+          "description": "门店名称",
+          "required": false
+        }
+      ]
+    },
+    {
+      "description": "新建订单 - 订单信息",
       "name": "CreateOrderDTO",
       "templateArgs": [],
       "properties": [
@@ -3474,311 +3927,6 @@
           },
           "name": "username",
           "description": "账号",
-          "required": false
-        }
-      ]
-    },
-    {
-      "name": "DDXX",
-      "templateArgs": [],
-      "properties": [
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "articleNumber",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "blocked",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "changedOn",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "Timestamp",
-            "isDefsType": true,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "createdAt",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "creator",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "boolean",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "deleted",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "deletionIndicator",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "deliveryDate",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "desiredVendor",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "fixedVendor",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "number",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "id",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "number",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "itemNumber",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "mch",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "poNumber",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "prNumber",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "processingState",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "processingStatus",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "number",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "quantity",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "releaseDate",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "requisitionDate",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "requisitioner",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "storeId",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "Timestamp",
-            "isDefsType": true,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "updatedAt",
           "required": false
         }
       ]
@@ -3870,6 +4018,41 @@
             "typeProperties": []
           },
           "name": "total",
+          "required": false
+        }
+      ]
+    },
+    {
+      "description": "订单列表导出项参数",
+      "name": "Item",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "orderId",
+          "description": "订单编号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "po",
+          "description": "PO",
           "required": false
         }
       ]
@@ -4129,10 +4312,125 @@
       ]
     },
     {
+      "description": "新建销售目标参数",
+      "name": "NewSalesGoalDTO",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "dep",
+          "description": "部门 ID",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "goal",
+          "description": "目标值",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "month",
+          "description": "月份",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "storeId",
+          "description": "门店 ID",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "storeName",
+          "description": "门店名称",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "year",
+          "description": "年份",
+          "required": false
+        }
+      ]
+    },
+    {
       "description": "选项信息",
       "name": "OptionVO",
       "templateArgs": [],
       "properties": [
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "OptionVO",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "children",
+          "description": "子选项列表",
+          "required": false
+        },
         {
           "dataType": {
             "typeArgs": [],
@@ -4234,7 +4532,7 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "dep",
+          "name": "depName",
           "description": "部门",
           "required": false
         },
@@ -4263,7 +4561,7 @@
             "typeProperties": []
           },
           "name": "orderId",
-          "description": "订单 id",
+          "description": "订单编号",
           "required": false
         },
         {
@@ -4304,20 +4602,6 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "statusDesc",
-          "description": "状态描述",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
           "name": "storeId",
           "description": "门店 id",
           "required": false
@@ -4335,6 +4619,20 @@
           "name": "storeName",
           "description": "门店名称",
           "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "timezone",
+          "description": "时区",
+          "required": false
         }
       ]
     },
@@ -4342,7 +4640,238 @@
       "description": "订单详情 - 商品信息",
       "name": "OrderDetailItem",
       "templateArgs": [],
-      "properties": []
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "articleNumber",
+          "description": "Article Number",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "dayActualQuantity",
+          "description": "日实际订货量",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "dayRefQuantity",
+          "description": "日参考订货量",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "depName",
+          "description": "部门名称",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "descriptionEn",
+          "description": "产品描述 - 英文",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "descriptionTc",
+          "description": "产品描述 - 繁体",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "packSize",
+          "description": "尺寸大小",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "po",
+          "description": "PO",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "pr",
+          "description": "PR",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "price",
+          "description": "产品价格",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [
+              "'CANCELED'",
+              "'CONFIRMED'",
+              "'INIT'",
+              "'ORDERED'",
+              "'UPDATED'"
+            ],
+            "typeProperties": []
+          },
+          "name": "status",
+          "description": "PO 状态：1-已下单、2-已确认、3-已编辑、4-已取消",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "statusDesc",
+          "description": "PO 状态",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "storeId",
+          "description": "门店 ID",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "storeName",
+          "description": "门店名称",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "supplier",
+          "description": "供应商",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "weekSalesGoal",
+          "description": "单品周销售额目标",
+          "required": false
+        }
+      ]
     },
     {
       "description": "订单详情 - 分页查询产品参数",
@@ -4360,8 +4889,8 @@
             "typeProperties": []
           },
           "name": "orderId",
-          "description": "订单 id",
-          "required": false
+          "description": "订单编号",
+          "required": true
         },
         {
           "dataType": {
@@ -4390,11 +4919,39 @@
           "name": "pageSize",
           "description": "每页多少条",
           "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "po",
+          "description": "PO",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "type",
+          "description": "类型：1-订单纬度、2-PO 单纬度",
+          "required": false
         }
       ]
     },
     {
-      "name": "OrderItem",
+      "name": "OrderItemVO",
       "templateArgs": [],
       "properties": [
         {
@@ -4473,25 +5030,11 @@
         },
         {
           "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "id",
-          "description": "订单编号",
-          "required": false
-        },
-        {
-          "dataType": {
             "typeArgs": [
               {
                 "typeArgs": [],
-                "typeName": "string",
-                "isDefsType": false,
+                "typeName": "Item",
+                "isDefsType": true,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
                 "enum": [],
@@ -4505,8 +5048,8 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "ids",
-          "description": "批量导出 - 选中的 id",
+          "name": "exportItems",
+          "description": "批量导出 - 选中的列表项",
           "required": false
         },
         {
@@ -4535,6 +5078,20 @@
           },
           "name": "minCreateTime",
           "description": "下单时间 - 开始时间",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "orderId",
+          "description": "订单编号",
           "required": false
         },
         {
@@ -4575,8 +5132,22 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "storeGroup",
-          "description": "区域",
+          "name": "po",
+          "description": "po",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "pr",
+          "description": "PR",
           "required": false
         },
         {
@@ -4591,20 +5162,6 @@
           },
           "name": "storeId",
           "description": "门店 ID",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "storeName",
-          "description": "门店名称",
           "required": false
         }
       ]
@@ -4666,8 +5223,8 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "dep",
-          "description": "部门",
+          "name": "depName",
+          "description": "部门名称",
           "required": false
         },
         {
@@ -4694,8 +5251,8 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "id",
-          "description": "PR 编号",
+          "name": "orderId",
+          "description": "订单编号",
           "required": false
         },
         {
@@ -4708,8 +5265,22 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "sapPo",
-          "description": "PO 编号",
+          "name": "po",
+          "description": "PO",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "pr",
+          "description": "PR",
           "required": false
         },
         {
@@ -4757,21 +5328,7 @@
             "typeProperties": []
           },
           "name": "status",
-          "description": "订单状态：1-已下单、2-已确认、3-已编辑、4-已取消",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "storeGroup",
-          "description": "区域",
+          "description": "PO 状态：1-已下单、2-已确认、3-已编辑、4-已取消",
           "required": false
         },
         {
@@ -4800,6 +5357,20 @@
           },
           "name": "storeName",
           "description": "门店名称",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "timezone",
+          "description": "时区",
           "required": false
         }
       ]
@@ -4853,8 +5424,8 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "storeGroups",
-          "description": "区域列表",
+          "name": "stores",
+          "description": "门店列表",
           "required": false
         }
       ]
@@ -4902,20 +5473,6 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "id",
-          "description": "订单编号",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
           "name": "maxCreateTime",
           "description": "下单时间 - 结束时间",
           "required": false
@@ -4932,6 +5489,20 @@
           },
           "name": "minCreateTime",
           "description": "下单时间 - 开始时间",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "orderId",
+          "description": "订单编号",
           "required": false
         },
         {
@@ -4972,8 +5543,22 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "storeGroup",
-          "description": "区域",
+          "name": "po",
+          "description": "po",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "pr",
+          "description": "PR",
           "required": false
         },
         {
@@ -4988,20 +5573,6 @@
           },
           "name": "storeId",
           "description": "门店 ID",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "storeName",
-          "description": "门店名称",
           "required": false
         }
       ]
@@ -5166,33 +5737,127 @@
       ]
     },
     {
-      "name": "SAPMchEntity",
+      "description": "分页查询销售目标参数",
+      "name": "SalesGoalListDTO",
       "templateArgs": [],
       "properties": [
         {
           "dataType": {
             "typeArgs": [],
-            "typeName": "Timestamp",
-            "isDefsType": true,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "createdAt",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "boolean",
+            "typeName": "string",
             "isDefsType": false,
             "templateIndex": -1,
             "compileTemplateKeyword": "#/definitions/",
             "enum": [],
             "typeProperties": []
           },
-          "name": "deleted",
+          "name": "dep",
+          "description": "部门",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "month",
+          "description": "月份",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "pageNum",
+          "description": "第几页",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "pageSize",
+          "description": "每页多少条",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "storeId",
+          "description": "门店 ID",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "year",
+          "description": "年份",
+          "required": false
+        }
+      ]
+    },
+    {
+      "description": "销售目标列表项",
+      "name": "SalesGoalListItem",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "depName",
+          "description": "部门名称",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "goal",
+          "description": "目标值",
           "required": false
         },
         {
@@ -5206,6 +5871,7 @@
             "typeProperties": []
           },
           "name": "id",
+          "description": "id",
           "required": false
         },
         {
@@ -5218,7 +5884,8 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "lossFactor",
+          "name": "month",
+          "description": "月份",
           "required": false
         },
         {
@@ -5231,7 +5898,8 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "mch",
+          "name": "optUserName",
+          "description": "操作人姓名",
           "required": false
         },
         {
@@ -5244,7 +5912,8 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "mchClass",
+          "name": "storeId",
+          "description": "门店 ID",
           "required": false
         },
         {
@@ -5257,7 +5926,8 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "mchClassDescription",
+          "name": "storeName",
+          "description": "门店名称",
           "required": false
         },
         {
@@ -5270,7 +5940,122 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "mchCnDescription",
+          "name": "updateTime",
+          "description": "更新时间",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "year",
+          "description": "年份",
+          "required": false
+        }
+      ]
+    },
+    {
+      "description": "销售目标列表条件选项",
+      "name": "SalesGoalListOptionVO",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "OptionVO",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "deps",
+          "description": "部门列表",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "OptionVO",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "stores",
+          "description": "门店列表",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "OptionVO",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "yearWithMonths",
+          "description": "年份列表（含月份）",
+          "required": false
+        }
+      ]
+    },
+    {
+      "description": "操作日志",
+      "name": "SalesGoalOptLog",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "optDesc",
+          "description": "操作描述",
           "required": false
         },
         {
@@ -5283,7 +6068,8 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "mchDepartment",
+          "name": "optUserName",
+          "description": "操作人姓名",
           "required": false
         },
         {
@@ -5296,59 +6082,8 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "mchDepartmentDescription",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "mchDescription",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "mchDivision",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "mchDivisionDescription",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "Timestamp",
-            "isDefsType": true,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "updatedAt",
+          "name": "updateTime",
+          "description": "更新时间",
           "required": false
         }
       ]
@@ -5367,19 +6102,6 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "customerId",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
           "name": "deptId",
           "required": false
         },
@@ -5388,7 +6110,7 @@
             "typeArgs": [
               {
                 "typeArgs": [],
-                "typeName": "OrderItem",
+                "typeName": "OrderItemVO",
                 "isDefsType": true,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
@@ -5417,6 +6139,415 @@
             "typeProperties": []
           },
           "name": "storeId",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "SapPrEntity",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "articleNumber",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "changedOn",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "createdAt",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "creator",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "deleted",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "deletionIndicator",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "deliveryDate",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "desiredVendor",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "fixedVendor",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "id",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "itemNumber",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "mch",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "orderUnitOfMeasure",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "orderedQuantity",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "poNumber",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "prNumber",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "processingState",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "processingStatus",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "purchasingGroup",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "quantity",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "releaseDate",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "requisitionDate",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "requisitioner",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "shortText",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "status",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "storageLocation",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "storeId",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "supplyingSite",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "trackingNumber",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "unitOfMeasure",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "updatedAt",
           "required": false
         }
       ]
@@ -5453,91 +6584,31 @@
       ]
     },
     {
-      "name": "StatisticsStoreReport",
+      "name": "StatisticalSalesCategoryReport",
       "templateArgs": [],
       "properties": [
         {
           "dataType": {
-            "typeArgs": [],
-            "typeName": "number",
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "Content",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
             "isDefsType": false,
             "templateIndex": -1,
             "compileTemplateKeyword": "#/definitions/",
             "enum": [],
             "typeProperties": []
           },
-          "name": "averageAmountFor12Week",
-          "description": "前十二周平均销售额",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "number",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "averageAmountFor4Week",
-          "description": "前四周平均销售额",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "number",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "averageAmountForLastWeek",
-          "description": "上周平均销售额",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "number",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "averageVolumeFor12Week",
-          "description": "前十二周平均销售量",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "number",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "averageVolumeFor4Week",
-          "description": "前四周平均销售量",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "number",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "averageVolumeForLastWeek",
-          "description": "上周平均销售量",
+          "name": "contents",
+          "description": "报表内容",
           "required": false
         },
         {
@@ -5550,56 +6621,14 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "department",
-          "description": "部门",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "storeGroup",
-          "description": "门店区域",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "storeId",
-          "description": "门店 ID",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "storeName",
-          "description": "门店名称",
+          "name": "reportId",
+          "description": "报表编号",
           "required": false
         }
       ]
     },
     {
-      "name": "StatisticsStoreSales",
+      "name": "StatisticalSalesChart",
       "templateArgs": [],
       "properties": [
         {
@@ -5689,7 +6718,267 @@
       ]
     },
     {
-      "name": "StoreGroupOption",
+      "name": "StatisticalSalesProductReport",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "Content",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "contents",
+          "description": "报表内容",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "reportId",
+          "description": "报表编号",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "StatisticalSalesStoreReport",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "Content",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "contents",
+          "description": "报表内容",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "reportId",
+          "description": "报表编号",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "StatisticalSearchConditionVo",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "articleNumbers",
+          "description": "查询产品编号",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "categories",
+          "description": "查询分类",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "boolean",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "compareSamePeriod",
+          "description": "是否对比去年同期",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "department",
+          "description": "查询部门",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "endDate",
+          "description": "时间范围结束",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "module",
+          "description": "业务模块",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "startDate",
+          "description": "时间范围开始",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "storeIds",
+          "description": "查询门店",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "storeNames",
+          "description": "查询名称",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "StoreGroupTree",
       "templateArgs": [],
       "properties": [
         {
@@ -5733,7 +7022,7 @@
       ]
     },
     {
-      "name": "Timestamp",
+      "name": "StoreVo",
       "templateArgs": [],
       "properties": [
         {
@@ -5746,7 +7035,71 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "date",
+          "name": "id",
+          "description": "主键",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "storeGroupName",
+          "description": "门店分组名称",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "storeId",
+          "description": "门店 ID",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "storeName",
+          "description": "门店名称",
+          "required": false
+        }
+      ]
+    },
+    {
+      "description": "编辑销售目标参数",
+      "name": "UpdateSalesGoalDTO",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "dep",
+          "description": "部门 ID",
           "required": false
         },
         {
@@ -5759,7 +7112,8 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "day",
+          "name": "goal",
+          "description": "目标值",
           "required": false
         },
         {
@@ -5772,20 +7126,8 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "hours",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "number",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "minutes",
+          "name": "id",
+          "description": "ID",
           "required": false
         },
         {
@@ -5799,58 +7141,35 @@
             "typeProperties": []
           },
           "name": "month",
+          "description": "月份",
           "required": false
         },
         {
           "dataType": {
             "typeArgs": [],
-            "typeName": "number",
+            "typeName": "string",
             "isDefsType": false,
             "templateIndex": -1,
             "compileTemplateKeyword": "#/definitions/",
             "enum": [],
             "typeProperties": []
           },
-          "name": "nanos",
+          "name": "storeId",
+          "description": "门店 ID",
           "required": false
         },
         {
           "dataType": {
             "typeArgs": [],
-            "typeName": "number",
+            "typeName": "string",
             "isDefsType": false,
             "templateIndex": -1,
             "compileTemplateKeyword": "#/definitions/",
             "enum": [],
             "typeProperties": []
           },
-          "name": "seconds",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "number",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "time",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "number",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "timezoneOffset",
+          "name": "storeName",
+          "description": "门店名称",
           "required": false
         },
         {
@@ -5864,6 +7183,7 @@
             "typeProperties": []
           },
           "name": "year",
+          "description": "年份",
           "required": false
         }
       ]

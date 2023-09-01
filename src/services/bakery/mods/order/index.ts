@@ -2,7 +2,7 @@
  * @description 订单管理
  */
 import * as getOrderBaseInfo from './getOrderBaseInfo';
-import * as getOrderDetailItems from './getOrderDetailItems';
+import * as getOrderDetailItemsForPage from './getOrderDetailItemsForPage';
 import * as exportOrderList from './exportOrderList';
 import * as getListOptions from './getListOptions';
 import * as getOrderListForPage from './getOrderListForPage';
@@ -15,7 +15,7 @@ import * as getNewRefArticles from './getNewRefArticles';
 
 export {
   getOrderBaseInfo,
-  getOrderDetailItems,
+  getOrderDetailItemsForPage,
   exportOrderList,
   getListOptions,
   getOrderListForPage,

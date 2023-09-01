@@ -14,7 +14,7 @@ export type reportParam = {
 export type reportOptions = Record<string, any>;
 
 export type reportResponse = Promise<
-  defs.bakery.Response<Array<defs.bakery.StatisticsStoreReport>>
+  defs.bakery.Response<Array<any>>
 >;
 
 /**

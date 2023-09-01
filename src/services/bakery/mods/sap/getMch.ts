@@ -3,7 +3,7 @@ import sendRequest, { getEnvHost } from '@/utils/request';
 
 export type getMchOptions = Record<string, any>;
 
-export type getMchResponse = Promise<Array<defs.bakery.SAPMchEntity>>;
+export type getMchResponse = Promise<Array<any>>;
 
 /**
  * @desc getMch

@@ -1,17 +1,21 @@
 import * as adminInterface from './admin';
 import * as lossFactorInterface from './lossFactor';
 import * as orderInterface from './order';
+import * as salesGoalInterface from './salesGoal';
 import * as sapInterface from './sap';
-import * as statisticsCommonInterface from './statisticsCommon';
-import * as statisticsProductSalesInterface from './statisticsProductSales';
-import * as statisticsStoreSalesInterface from './statisticsStoreSales';
+import * as statisticalCommonInterface from './statisticalCommon';
+import * as statisticalSalesCategoryInterface from './statisticalSalesCategory';
+import * as statisticalSalesProductInterface from './statisticalSalesProduct';
+import * as statisticalSalesStoreInterface from './statisticalSalesStore';
 
 export const bakery = {
   admin: adminInterface,
   lossFactor: lossFactorInterface,
   order: orderInterface,
+  salesGoal: salesGoalInterface,
   sap: sapInterface,
-  statisticsCommon: statisticsCommonInterface,
-  statisticsProductSales: statisticsProductSalesInterface,
-  statisticsStoreSales: statisticsStoreSalesInterface,
+  statisticalCommon: statisticalCommonInterface,
+  statisticalSalesCategory: statisticalSalesCategoryInterface,
+  statisticalSalesProduct: statisticalSalesProductInterface,
+  statisticalSalesStore: statisticalSalesStoreInterface,
 };
