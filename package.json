@@ -39,6 +39,7 @@
     ]
   },
   "dependencies": {
+    "@ant-design/charts": "^1.4.2",
     "@ant-design/pro-layout": "^6.38.19",
     "@tawa/mario-config-provider": "^0.2.3",
     "@tawa/mario-form": "^0.2.6",

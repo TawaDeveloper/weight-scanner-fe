@@ -14,7 +14,7 @@ export type reportParam = {
 export type reportOptions = Record<string, any>;
 
 export type reportResponse = Promise<
-  defs.bakery.Response<defs.bakery.StatisticalSalesProductReport>
+  defs.bakery.Response<defs.bakery.StatisticalSalesStoreReport>
 >;
 
 /**
@@ -27,7 +27,7 @@ export function request(
 ): reportResponse {
   const host = getEnvHost();
   const url =
-    host + '/hot-deli-bakery/api/statistical/sales/product/report';
+    host + '/hot-deli-bakery/api/statistical/sales/store/report';
   const fetchOption = {
     method: 'get',
     headers: {
