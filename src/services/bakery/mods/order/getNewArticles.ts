@@ -1,34 +1,28 @@
 /// <reference path="../../api.d.ts" />
 import sendRequest, { getEnvHost } from '@/utils/request';
 
-export type getNewArticlesParam = {
-  /** dep */
-  dep: string;
-
-  /** storeId */
-  storeId: string;
-};
+export type getNewArticlesBody = defs.bakery.NewArticlesDTO;
 export type getNewArticlesOptions = Record<string, any>;
 
 export type getNewArticlesResponse = Promise<
-  defs.bakery.Response<defs.bakery.OrderNewArticlesVO>
+  defs.bakery.Response<defs.bakery.IPage<defs.bakery.NewArticleItem>>
 >;
 
 /**
- * @desc 新建订单 - 查询产品分类
+ * @desc 新建订单 - 查询产品列表
  */
 export function request(
-  params: getNewArticlesParam,
+  body: getNewArticlesBody,
   options?: getNewArticlesOptions,
 ): getNewArticlesResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/order/new/articles';
+  const url = host + '/bakery/hot-deli-bakery/api/order/new/articles/page';
   const fetchOption = {
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
     },
-    params,
+    data: body,
     ...options,
   };
 

@@ -4,7 +4,7 @@ import sendRequest, { getEnvHost } from '@/utils/request';
 export type storeTreeOptions = Record<string, any>;
 
 export type storeTreeResponse = Promise<
-  defs.bakery.Response<Array<defs.bakery.StoreGroupTree>>
+  defs.bakery.Response<Array<any>>
 >;
 
 /**

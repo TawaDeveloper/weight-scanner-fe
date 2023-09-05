@@ -9,17 +9,18 @@ import './index.less';
 import { useSearchParams } from 'react-router-dom';
 import { timestampToLocal, timestampToZone } from '@/utils';
 
-const OrderDetail = () => {
+const OrderPoDetail = () => {
   const actionRef = useRef<TableQueryActions>(null);
   const [search] = useSearchParams();
   const id = search.get('id');
-  const [orderDetail, setOrderDetail] =
-    useState<defs.bakery.OrderDetailBaseVO>();
+  const po = search.get('po');
+  const [orderDetail, setOrderDetail] = useState<defs.bakery.PoDetailBaseVO>();
   useEffect(() => {
-    if (id) {
-      bakeryAPI.order.getOrderBaseInfo
+    if (id && po) {
+      bakeryAPI.order.getPoBaseInfo
         .request({
           orderId: id,
+          po,
         })
         .then((res) => {
           if (res.success && res.data) {
@@ -28,15 +29,17 @@ const OrderDetail = () => {
           console.log(res);
         });
     }
-  }, [id]);
+  }, [id, po]);
   const getList = (params: any) => {
-    return bakeryAPI.order.getOrderDetailItemsForPage.request({
+    return bakeryAPI.order.getPoDetailItemsForPage.request({
       ...params,
+      po,
       orderId: id,
     });
   };
 
   const { loading, data, run } = useRequest(getList);
+
 
   const tableProps = {
     loading,
@@ -44,33 +47,39 @@ const OrderDetail = () => {
     data: data?.data?.records,
     total: data?.data?.total,
     rowKey: 'id',
-    nextFields: [],
+    nextFields: []
   };
 
   return (
     <div>
       <Card className="order-placed">
-        <div className="page-title">订单号 {orderDetail?.orderId}</div>
+        <div className='flex'>
+        <div className="page-title">PO单号 {po}</div>
+        <div className="page-title">状态 {orderDetail?.statusDesc}</div>
+        </div>
         <div className="table">
           <div className="item">
             <div className="flex">
+              <div className="label">订单编号</div>
+              <div className="value">{id}</div>
+            </div>
+            <div className="flex">
+              <div className="label">PR编号</div>
+              <div className="value">{orderDetail?.pr}</div>
+            </div>
+          </div>
+          <div className="item">
+            <div className="flex">
               <div className="label">下单时间</div>
-              <div className="value">
-                {timestampToLocal(orderDetail?.createTime || '')}
-              </div>
+              <div className="value">{timestampToLocal(orderDetail?.createTime || '')}</div>
             </div>
             <div className="flex">
               <div className="label">预计送达时间</div>
-              <div className="value">
-                {timestampToZone(
-                  orderDetail?.estDeliveredTime || '',
-                  orderDetail?.timezone || '',
-                )}
-              </div>
+              <div className="value">{timestampToZone(orderDetail?.estDeliveredTime || '', orderDetail?.timezone || '')}</div>
             </div>
             <div className="flex">
               <div className="label">下单人</div>
-              <div className="value">{orderDetail?.createUserName}</div>
+              <div className="value">{orderDetail?.storeName}</div>
             </div>
           </div>
           <div className="item">
@@ -93,7 +102,7 @@ const OrderDetail = () => {
               <div className="value">{orderDetail?.skuQuantity}</div>
             </div>
             <div className="flex">
-              <div className="label">订单总金额</div>
+              <div className="label">PO单总金额</div>
               <div className="value">{orderDetail?.amount}</div>
             </div>
           </div>
@@ -101,7 +110,7 @@ const OrderDetail = () => {
       </Card>
       <Card>
         <div className="flex">
-          <div className="page-title">销量&产品明细</div>
+          <div className="page-title">产品明细</div>
         </div>
 
         <MarioListContent
@@ -116,4 +125,4 @@ const OrderDetail = () => {
   );
 };
 
-export default OrderDetail;
+export default OrderPoDetail;

@@ -4,6 +4,17 @@ type ObjectMap<Key extends string | number | symbol = any, Value = any> = {
 
 declare namespace defs {
   export namespace bakery {
+    export class ArticleOption {
+      /** 产品编号 */
+      articleNumber?: string;
+
+      /** 产品名称 */
+      description?: string;
+
+      /** 主键 */
+      id?: number;
+    }
+
     export class ArticleRefDTO {
       /** 产品 Article Number 列表 */
       articleNumbers?: Array<string>;
@@ -19,8 +30,11 @@ declare namespace defs {
       /** 类别描述 */
       description?: string;
 
-      /** 类别 ID */
+      /** 主键 */
       id?: number;
+
+      /** 类别 ID */
+      mch?: string;
     }
 
     export class Content {
@@ -57,10 +71,18 @@ declare namespace defs {
 
     export class CreateOrderDTO {
       /** 部门 */
-      dep?: string;
+      dep?: 'BAKERY' | 'HOT_DELI';
+
+      /** 商品列表 */
+      items?: Array<defs.bakery.Item>;
 
       /** 门店 id */
       storeId?: string;
+    }
+
+    export class CreateOrderVO {
+      /** 订单编号 */
+      orderId?: string;
     }
 
     export class CreateUserDTO {
@@ -69,6 +91,14 @@ declare namespace defs {
 
       /** 账号 */
       username?: string;
+    }
+
+    export class EstDeliveredDateVO {
+      /** 日期 */
+      date?: string;
+
+      /** 周几 */
+      dayOfWeek?: string;
     }
 
     export class IPage<T0 = any> {
@@ -89,11 +119,17 @@ declare namespace defs {
     }
 
     export class Item {
-      /** 订单编号 */
-      orderId: string;
+      /** Article Number */
+      articleNumber?: string;
 
-      /** PO */
-      po?: string;
+      /** 日实际订货量 */
+      dayActualQuantity?: number;
+
+      /** 日参考订货量 */
+      dayRefQuantity?: number;
+
+      /** 单品周销售额目标 */
+      weekSalesGoal?: number;
     }
 
     export class LoginDTO {
@@ -140,20 +176,40 @@ declare namespace defs {
       name?: string;
     }
 
-    export class MDXX {
-      /** 主键 */
-      id?: number;
+    export class NewArticleItem {
+      /** Article Number */
+      articleNumber?: string;
+
+      /** 分类 id */
+      categoryId?: string;
+
+      /** 分类名称 */
+      categoryName?: string;
+
+      /** 产品描述（产品名称） */
+      description?: string;
+    }
+
+    export class NewArticlesDTO {
+      /** 产品名称 */
+      articleName?: string;
+
+      /** 部门 ID */
+      depId: string;
+
+      /** 第几页 */
+      pageNum?: number;
+
+      /** 每页多少条 */
+      pageSize?: number;
 
       /** 门店 ID */
-      storeId?: string;
-
-      /** 门店名称 */
-      storeName?: string;
+      storeId: string;
     }
 
     export class NewSalesGoalDTO {
       /** 部门 ID */
-      dep?: string;
+      depId?: string;
 
       /** 目标值 */
       goal?: number;
@@ -279,12 +335,6 @@ declare namespace defs {
 
       /** 每页多少条 */
       pageSize?: number;
-
-      /** PO */
-      po?: string;
-
-      /** 类型：1-订单纬度、2-PO 单纬度 */
-      type?: number;
     }
 
     export class OrderItemVO {
@@ -417,8 +467,6 @@ declare namespace defs {
       storeId?: string;
     }
 
-    export class OrderNewArticlesVO {}
-
     export class OrderNewOptionsVO {
       /** 部门列表 */
       deps?: Array<defs.bakery.OptionVO>;
@@ -428,6 +476,108 @@ declare namespace defs {
     }
 
     export class OrderNewRefArticle {}
+
+    export class PoDetailBaseVO {
+      /** PO 单金额 */
+      amount?: number;
+
+      /** 下单时间 */
+      createTime?: string;
+
+      /** 下单人 id */
+      createUserId?: number;
+
+      /** 下单人姓名 */
+      createUserName?: string;
+
+      /** 部门 */
+      depName?: string;
+
+      /** 预计送达时间 */
+      estDeliveredTime?: string;
+
+      /** 订单编号 */
+      orderId?: string;
+
+      /** 编号 */
+      po?: string;
+
+      /** PR 编号 */
+      pr?: string;
+
+      /** 产品个数 */
+      skuNum?: number;
+
+      /** 产品数量 */
+      skuQuantity?: number;
+
+      /** PO 状态：1-已下单、2-已确认、3-已编辑、4-已取消 */
+      status?: 'CANCELED' | 'CONFIRMED' | 'INIT' | 'ORDERED' | 'UPDATED';
+
+      /** 状态 */
+      statusDesc?: string;
+
+      /** 门店 id */
+      storeId?: string;
+
+      /** 门店名称 */
+      storeName?: string;
+
+      /** 时区 */
+      timezone?: string;
+    }
+
+    export class PoDetailItem {
+      /** Article Number */
+      articleNumber?: string;
+
+      /** 日实际订货量 */
+      dayActualQuantity?: number;
+
+      /** 日参考订货量 */
+      dayRefQuantity?: number;
+
+      /** 部门名称 */
+      depName?: string;
+
+      /** 产品描述 - 英文 */
+      descriptionEn?: string;
+
+      /** 产品描述 - 繁体 */
+      descriptionTc?: string;
+
+      /** 尺寸大小 */
+      packSize?: string;
+
+      /** 产品价格 */
+      price?: number;
+
+      /** 门店 ID */
+      storeId?: string;
+
+      /** 门店名称 */
+      storeName?: string;
+
+      /** 供应商 */
+      supplier?: string;
+
+      /** 单品周销售额目标 */
+      weekSalesGoal?: number;
+    }
+
+    export class PoDetailItemDTO {
+      /** 订单编号 */
+      orderId: string;
+
+      /** 第几页 */
+      pageNum?: number;
+
+      /** 每页多少条 */
+      pageSize?: number;
+
+      /** PO 编号 */
+      po: string;
+    }
 
     export class Response<T0 = any> {
       /** 状态码：0-成功 */
@@ -464,6 +614,9 @@ declare namespace defs {
     }
 
     export class SalesGoalListItem {
+      /** 部门 ID */
+      depId?: string;
+
       /** 部门名称 */
       depName?: string;
 
@@ -640,6 +793,9 @@ declare namespace defs {
       /** 产品 */
       articleNumber?: string;
 
+      /** 分类 */
+      category?: string;
+
       /** 部门 */
       department?: string;
 
@@ -698,20 +854,9 @@ declare namespace defs {
       storeNames?: Array<string>;
     }
 
-    export class StoreGroupTree {
-      /** 门店分组名称 */
-      storeGroupName?: string;
-
-      /** 分组下的门店列表 */
-      stores?: Array<defs.bakery.MDXX>;
-    }
-
-    export class StoreVo {
+    export class StoreOption {
       /** 主键 */
       id?: number;
-
-      /** 门店分组名称 */
-      storeGroupName?: string;
 
       /** 门店 ID */
       storeId?: string;
@@ -835,12 +980,15 @@ declare namespace API {
        * /hot-deli-bakery/api/order/detail/base
        */
       export namespace getOrderBaseInfo {
-        export type getOrderBaseInfoBody = defs.bakery.OrderDetailItemDTO;
+        export type getOrderBaseInfoParam = {
+          /** orderId */
+          orderId: string;
+        };
         export type getOrderBaseInfoOptions = Record<string, any>;
         export type getOrderBaseInfoResponse =
           defs.bakery.Response<defs.bakery.OrderDetailBaseVO>;
         export type request = (
-          body: getOrderBaseInfoBody,
+          params: getOrderBaseInfoParam,
           options?: getOrderBaseInfoOptions,
         ) => getOrderBaseInfoResponse;
       }
@@ -906,22 +1054,17 @@ declare namespace API {
       }
 
       /**
-       * 新建订单 - 查询产品分类
-       * /hot-deli-bakery/api/order/new/articles
+       * 新建订单 - 查询产品列表
+       * /hot-deli-bakery/api/order/new/articles/page
        */
       export namespace getNewArticles {
-        export type getNewArticlesParam = {
-          /** dep */
-          dep: string;
-
-          /** storeId */
-          storeId: string;
-        };
+        export type getNewArticlesBody = defs.bakery.NewArticlesDTO;
         export type getNewArticlesOptions = Record<string, any>;
-        export type getNewArticlesResponse =
-          defs.bakery.Response<defs.bakery.OrderNewArticlesVO>;
+        export type getNewArticlesResponse = defs.bakery.Response<
+          defs.bakery.IPage<defs.bakery.NewArticleItem>
+        >;
         export type request = (
-          params: getNewArticlesParam,
+          body: getNewArticlesBody,
           options?: getNewArticlesOptions,
         ) => getNewArticlesResponse;
       }
@@ -933,7 +1076,8 @@ declare namespace API {
       export namespace createOrder {
         export type createOrderBody = defs.bakery.CreateOrderDTO;
         export type createOrderOptions = Record<string, any>;
-        export type createOrderResponse = defs.bakery.Response<string>;
+        export type createOrderResponse =
+          defs.bakery.Response<defs.bakery.CreateOrderVO>;
         export type request = (
           body: createOrderBody,
           options?: createOrderOptions,
@@ -944,18 +1088,18 @@ declare namespace API {
        * 新建订单 - 查询预计送达时间
        * /hot-deli-bakery/api/order/new/estDeliveredTime
        */
-      export namespace getNewEstDeliveredTime {
-        export type getNewEstDeliveredTimeParam = {
+      export namespace getNewEstDeliveredDate {
+        export type getNewEstDeliveredDateParam = {
           /** storeId */
           storeId: string;
         };
-        export type getNewEstDeliveredTimeOptions = Record<string, any>;
-        export type getNewEstDeliveredTimeResponse =
-          defs.bakery.Response<string>;
+        export type getNewEstDeliveredDateOptions = Record<string, any>;
+        export type getNewEstDeliveredDateResponse =
+          defs.bakery.Response<defs.bakery.EstDeliveredDateVO>;
         export type request = (
-          params: getNewEstDeliveredTimeParam,
-          options?: getNewEstDeliveredTimeOptions,
-        ) => getNewEstDeliveredTimeResponse;
+          params: getNewEstDeliveredDateParam,
+          options?: getNewEstDeliveredDateOptions,
+        ) => getNewEstDeliveredDateResponse;
       }
 
       /**
@@ -1008,6 +1152,43 @@ declare namespace API {
           options?: getNewRefArticlesOptions,
         ) => getNewRefArticlesResponse;
       }
+
+      /**
+       * PO 单详情 - 查询基础信息
+       * /hot-deli-bakery/api/order/po/detail/base
+       */
+      export namespace getPoBaseInfo {
+        export type getPoBaseInfoParam = {
+          /** orderId */
+          orderId: string;
+
+          /** po */
+          po: string;
+        };
+        export type getPoBaseInfoOptions = Record<string, any>;
+        export type getPoBaseInfoResponse =
+          defs.bakery.Response<defs.bakery.PoDetailBaseVO>;
+        export type request = (
+          params: getPoBaseInfoParam,
+          options?: getPoBaseInfoOptions,
+        ) => getPoBaseInfoResponse;
+      }
+
+      /**
+       * PO 单详情 - 分页查询商品
+       * /hot-deli-bakery/api/order/po/detail/items/page
+       */
+      export namespace getPoDetailItemsForPage {
+        export type getPoDetailItemsForPageBody = defs.bakery.PoDetailItemDTO;
+        export type getPoDetailItemsForPageOptions = Record<string, any>;
+        export type getPoDetailItemsForPageResponse = defs.bakery.Response<
+          defs.bakery.IPage<defs.bakery.PoDetailItem>
+        >;
+        export type request = (
+          body: getPoDetailItemsForPageBody,
+          options?: getPoDetailItemsForPageOptions,
+        ) => getPoDetailItemsForPageResponse;
+      }
     }
 
     /**
@@ -1019,11 +1200,11 @@ declare namespace API {
        * /hot-deli-bakery/api/sales/goal/batch/import
        */
       export namespace batchImport {
-        export type batchImportBody = string;
+        export type batchImportFormData = FormData;
         export type batchImportOptions = Record<string, any>;
         export type batchImportResponse = defs.bakery.Response<void>;
         export type request = (
-          body: batchImportBody,
+          formData: batchImportFormData,
           options?: batchImportOptions,
         ) => batchImportResponse;
       }
@@ -1122,6 +1303,16 @@ declare namespace API {
      */
     export namespace sap {
       /**
+       * getExcel
+       * /hot-deli-bakery/sap/get_excel
+       */
+      export namespace getExcel {
+        export type getExcelOptions = Record<string, any>;
+        export type getExcelResponse = ObjectMap<any, object>;
+        export type request = (options?: getExcelOptions) => getExcelResponse;
+      }
+
+      /**
        * getPrTest
        * /hot-deli-bakery/sap/get_pr_test
        */
@@ -1180,6 +1371,16 @@ declare namespace API {
       }
 
       /**
+       * postExcel
+       * /hot-deli-bakery/sap/post_excel
+       */
+      export namespace postExcel {
+        export type postExcelOptions = Record<string, any>;
+        export type postExcelResponse = ObjectMap<any, object>;
+        export type request = (options?: postExcelOptions) => postExcelResponse;
+      }
+
+      /**
        * postMch
        * /hot-deli-bakery/sap/post_mch
        */
@@ -1226,6 +1427,18 @@ declare namespace API {
       }
 
       /**
+       * 上传所有销售数据（耗时）
+       * /hot-deli-bakery/sap/post_sales_data
+       */
+      export namespace postSalesData {
+        export type postSalesDataOptions = Record<string, any>;
+        export type postSalesDataResponse = ObjectMap<any, object>;
+        export type request = (
+          options?: postSalesDataOptions,
+        ) => postSalesDataResponse;
+      }
+
+      /**
        * postStoreSAP
        * /hot-deli-bakery/sap/post_store
        */
@@ -1249,6 +1462,9 @@ declare namespace API {
         */
       export namespace articles {
         export type articlesParam = {
+          /** keyword */
+          keyword?: string;
+
           /** page */
           page: number;
 
@@ -1256,7 +1472,9 @@ declare namespace API {
           size: number;
         };
         export type articlesOptions = Record<string, any>;
-        export type articlesResponse = defs.bakery.Response<string>;
+        export type articlesResponse = defs.bakery.Response<
+          defs.bakery.IPage<defs.bakery.ArticleOption>
+        >;
         export type request = (
           params: articlesParam,
           options?: articlesOptions,
@@ -1272,16 +1490,10 @@ declare namespace API {
         export type categoriesParam = {
           /** keyword */
           keyword?: string;
-
-          /** page */
-          page?: number;
-
-          /** size */
-          size?: number;
         };
         export type categoriesOptions = Record<string, any>;
         export type categoriesResponse = defs.bakery.Response<
-          defs.bakery.IPage<defs.bakery.CategoryOption>
+          Array<defs.bakery.CategoryOption>
         >;
         export type request = (
           params: categoriesParam,
@@ -1310,6 +1522,9 @@ declare namespace API {
 
           /** endDate */
           endDate: number;
+
+          /** module */
+          module: string;
 
           /** startDate */
           startDate: number;
@@ -1396,21 +1611,8 @@ declare namespace API {
       }
 
       /**
-        * 查询门店树状结构
-查询门店树状结构
-        * /hot-deli-bakery/api/statistical/common/store/tree
-        */
-      export namespace storeTree {
-        export type storeTreeOptions = Record<string, any>;
-        export type storeTreeResponse = defs.bakery.Response<
-          Array<defs.bakery.StoreGroupTree>
-        >;
-        export type request = (options?: storeTreeOptions) => storeTreeResponse;
-      }
-
-      /**
         * 查询门店
-查询门店名称用于下拉列表
+查询门店用于下拉列表
         * /hot-deli-bakery/api/statistical/common/stores
         */
       export namespace stores {
@@ -1420,7 +1622,7 @@ declare namespace API {
         };
         export type storesOptions = Record<string, any>;
         export type storesResponse = defs.bakery.Response<
-          Array<defs.bakery.StoreVo>
+          Array<defs.bakery.StoreOption>
         >;
         export type request = (
           params: storesParam,

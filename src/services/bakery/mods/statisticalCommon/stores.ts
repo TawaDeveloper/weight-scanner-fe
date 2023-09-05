@@ -8,12 +8,12 @@ export type storesParam = {
 export type storesOptions = Record<string, any>;
 
 export type storesResponse = Promise<
-  defs.bakery.Response<Array<defs.bakery.StoreVo>>
+  defs.bakery.Response<Array<defs.bakery.StoreOption>>
 >;
 
 /**
        * @desc 查询门店
-查询门店名称用于下拉列表
+查询门店用于下拉列表
        */
 export function request(
   params: storesParam,

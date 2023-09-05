@@ -5,7 +5,6 @@ import {
   orderStatus,
 } from '@/constants/enums';
 import { Link } from 'react-router-dom';
-import { timestampToZone } from '@/utils';
 
 // "brandId": 0,
 // "brandNameEN": "string",
@@ -22,7 +21,7 @@ export const tableFields = [
     width: 100,
     name: t<string>(`pages.orderList.title0001`),
     render: (value: string) => {
-      return <Link to={`/permissions/detail?id=${value}`}>{value}</Link>;
+      return <Link to={`/permissions/detail?id=${value}?type=1`}>{value}</Link>;
     },
   },
   {
@@ -34,12 +33,8 @@ export const tableFields = [
     key: 'po',
     width: 100,
     name: t<string>(`pages.orderList.title0092`),
-    render: (value: string, record: any) => {
-      return (
-        <Link to={`/permissions/po-detail?po=${value}&id=${record.orderId}`}>
-          {value}
-        </Link>
-      );
+    render: (value: string) => {
+      return <Link to={`/permissions/detail?id=${value}?type=2`}>{value}</Link>;
     },
   },
   {
@@ -103,47 +98,14 @@ export const tableFields = [
     key: 'estDeliveredTime',
     width: 200,
     name: t<string>(`pages.orderList.title0040`),
-    render: (value: string, record: any) => {
-      return timestampToZone(value, record.timezone);
-    },
   },
 ];
 
 export const formFields = [
   {
-    key: 'id',
-    name: t<string>(`pages.orderList.title0001`),
+    key: 'storeGroup',
+    name: t<string>(`pages.orderList.title0089`),
   },
-  {
-    key: 'pr',
-    name: t<string>(`pages.orderList.title0091`),
-  },
-  {
-    key: 'po',
-    name: t<string>(`pages.orderList.title0092`),
-  },
-  // {
-  //   key: 'storeGroup',
-  //   name: t<string>(`pages.orderList.title0089`),
-  // },
-  {
-    key: 'storeId',
-    name: t<string>(`pages.orderList.title0007`),
-    type: 'select',
-  },
-  {
-    key: 'createTime',
-    name: t<string>(`pages.orderList.title0012`),
-    type: 'date-range-picker',
-  },
-  {
-    key: 'createUserName',
-    name: t<string>(`pages.orderList.title0088`),
-  },
-  // {
-  //   key: 'storeName',
-  //   name: t<string>(`pages.orderList.title0048`),
-  // },
   {
     key: 'dep',
     name: t<string>(`pages.orderList.title0090`),

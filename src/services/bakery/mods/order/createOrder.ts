@@ -4,7 +4,9 @@ import sendRequest, { getEnvHost } from '@/utils/request';
 export type createOrderBody = defs.bakery.CreateOrderDTO;
 export type createOrderOptions = Record<string, any>;
 
-export type createOrderResponse = Promise<defs.bakery.Response<string>>;
+export type createOrderResponse = Promise<
+  defs.bakery.Response<defs.bakery.CreateOrderVO>
+>;
 
 /**
  * @desc 新建订单 - 提交订单

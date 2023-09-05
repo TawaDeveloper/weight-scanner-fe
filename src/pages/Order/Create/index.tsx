@@ -6,18 +6,15 @@ import { TableQueryActions } from '@tawa/mario-hooks/lib/useTableQuery';
 import { tableFields, formFields } from './fields';
 import { bakeryAPI } from '@/services';
 import AddModal from './AddModal';
-import AuditModal from './AuditModal';
-import { datePickerToTimestamp, download } from '@/utils';
-import { YYYY_MM_DD_MAX, YYYY_MM_DD_MIN } from '@/constants';
 import { CommonButton } from '@/components/CommonButton';
+import TimeIcon from '@/assets/time.svg';
+
 import './index.less';
 // import { useNavigate } from 'react-router-dom';
 
-const OrderList = () => {
-  const auditModalRef = useRef<any>();
+const CreateOrder = () => {
   const actionRef = useRef<TableQueryActions>(null);
   const [show, setShow] = useState<{ type: string; data?: any }>();
-  const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
   const { data: optionsData, loading: optionLoading } = useRequest(
     bakeryAPI.order.getListOptions.request,
   );
@@ -29,24 +26,12 @@ const OrderList = () => {
   };
 
   const getList = (params: any) => {
-    const { createTime } = params || {};
     return bakeryAPI.order.getOrderListForPage.request({
       ...params,
-      maxCreateTime: createTime
-        ? datePickerToTimestamp(createTime[1], YYYY_MM_DD_MAX).toString()
-        : undefined,
-      minCreateTime: createTime
-        ? datePickerToTimestamp(createTime[0], YYYY_MM_DD_MIN).toString()
-        : undefined,
     });
   };
 
   const { loading, data, run } = useRequest(getList);
-
-  const rowSelection = {
-    selectedRowKeys,
-    onChange: setSelectedRowKeys,
-  };
 
   const tableProps = {
     loading,
@@ -54,7 +39,6 @@ const OrderList = () => {
     data: data?.data?.records,
     total: data?.data?.total,
     rowKey: 'orderId',
-    rowSelection,
     nextFields: [],
     scroll: { x: 1260 },
     pagination: {
@@ -67,18 +51,20 @@ const OrderList = () => {
   const formProps = useMemo(() => {
     return {
       fields: formFields.map((el) => {
-        if (el.key === 'storeId' || el.key === 'dep') {
+        if (el.key === 'storeGroup' || el.key === 'dep') {
           return {
             ...el,
             props: () => ({
               options:
-                el.key === 'storeId'
+                el.key === 'storeGroup'
                   ? optionsData &&
                     optionsData?.data &&
                     optionsData?.data?.stores
                     ? optionsData?.data?.stores
                     : []
-                  : optionsData && optionsData?.data && optionsData?.data?.deps
+                  : optionsData &&
+                    optionsData?.data &&
+                    optionsData?.data?.deps
                   ? optionsData?.data?.deps
                   : [],
             }),
@@ -90,67 +76,41 @@ const OrderList = () => {
     };
   }, [optionsData]);
 
-  const handleBatch = async (params: { [x in string]: any }) => {
-    const { createTime } = params || {};
-
-    const content = await bakeryAPI.order.exportOrderList.request(
-      {
-        exportItems: selectedRowKeys.map((el) => {
-          return { articleNumber: el };
-        }),
-        ...params,
-        maxCreateTime: createTime
-          ? datePickerToTimestamp(createTime[1], YYYY_MM_DD_MAX).toString()
-          : undefined,
-        minCreateTime: createTime
-          ? datePickerToTimestamp(createTime[0], YYYY_MM_DD_MIN).toString()
-          : undefined,
-      },
-      {
-        responseType: 'blob',
-        'response-type': 'blob',
-      },
-    );
-    download({ content, filename: 'Order_List.xlsx' });
-  };
   return (
     <Card>
       <div className="flex">
-        <div className="page-title"></div>
+        <div className="page-title">销量&销售额数据表</div>
         <div className="button-group">
           <CommonButton
             onClick={() => actionRef.current?.onQuery({ type: 'export' })}
           >
-            批量导出
+            添加产品
           </CommonButton>
-          <CommonButton>新建订单</CommonButton>
         </div>
+      </div>
+      <div className="time-content">
+        <div className="left">
+          <div className="img-box">
+            <img src={TimeIcon} alt=""></img>
+          </div>
+          <span>预计送货时间</span>
+          <span>2023-08-11 周四</span>
+        </div>
+        <CommonButton>一键填入实际进货量</CommonButton>
       </div>
       {!optionLoading && (
         <MarioListContent
           ref={actionRef}
+          action={<></>}
           formProps={formProps}
           tableProps={tableProps}
-          fetchData={(values: any) => {
-            if (values.type === 'export') {
-              handleBatch(values);
-            } else {
-              run(values);
-            }
-          }}
+          fetchData={run}
           toolbar={<></>}
         />
       )}
       {show?.type === 'add' && <AddModal onClose={handleClose} />}
-      <AuditModal
-        onPageQuery={() => {
-          actionRef.current!.onQuery();
-          // setSelectedRowKeys([]);
-        }}
-        ref={auditModalRef}
-      />
     </Card>
   );
 };
 
-export default OrderList;
+export default CreateOrder;

@@ -1,7 +1,10 @@
 /// <reference path="../../api.d.ts" />
 import sendRequest, { getEnvHost } from '@/utils/request';
 
-export type getOrderBaseInfoBody = defs.bakery.OrderDetailItemDTO;
+export type getOrderBaseInfoParam = {
+  /** orderId */
+  orderId: string;
+};
 export type getOrderBaseInfoOptions = Record<string, any>;
 
 export type getOrderBaseInfoResponse = Promise<
@@ -12,18 +15,18 @@ export type getOrderBaseInfoResponse = Promise<
  * @desc 订单详情 - 查询基础信息
  */
 export function request(
-  body: getOrderBaseInfoBody,
+  params: getOrderBaseInfoParam,
   options?: getOrderBaseInfoOptions,
 ): getOrderBaseInfoResponse {
   const host = getEnvHost();
   console.log(host)
-  const url = 'http://10.89.24.25:8080'  + '/hot-deli-bakery/api/order/detail/base';
+  const url = 'http://10.89.24.25:8080' + '/hot-deli-bakery/api/order/detail/base';
   const fetchOption = {
-    method: 'post',
+    method: 'get',
     headers: {
       'Content-Type': 'application/json',
     },
-    data: body,
+    params,
     ...options,
   };
 

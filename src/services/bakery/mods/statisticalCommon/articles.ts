@@ -2,6 +2,9 @@
 import sendRequest, { getEnvHost } from '@/utils/request';
 
 export type articlesParam = {
+  /** keyword */
+  keyword?: string;
+
   /** page */
   page: number;
 
@@ -10,7 +13,9 @@ export type articlesParam = {
 };
 export type articlesOptions = Record<string, any>;
 
-export type articlesResponse = Promise<defs.bakery.Response<string>>;
+export type articlesResponse = Promise<
+  defs.bakery.Response<defs.bakery.IPage<defs.bakery.ArticleOption>>
+>;
 
 /**
        * @desc 查询产品

@@ -8,7 +8,6 @@ import * as departments from './departments';
 import * as exporting from './exporting';
 import * as findRemember from './findRemember';
 import * as saveRemember from './saveRemember';
-import * as storeTree from './storeTree';
 import * as stores from './stores';
 
 export {
@@ -19,6 +18,5 @@ export {
   exporting,
   findRemember,
   saveRemember,
-  storeTree,
   stores,
 };

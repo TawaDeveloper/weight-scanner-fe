@@ -101,4 +101,6 @@ export default {
   title0100: '供货商',
   title0101: '单品周销售额目标',
   title0102: 'PO单状态',
+  title0103: '产品周销售额目标',
+  title0104: '日参考订货量',
 };

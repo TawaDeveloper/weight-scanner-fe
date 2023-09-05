@@ -30,6 +30,12 @@ const OrderList = lazy(() =>
 const OrderDetail = lazy(() =>
   import(/* webpackChunkName: "Menu" */ '@/pages/Order/Detail'),
 );
+const PoDetail = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/Order/PoDetail'),
+);
+const CreateOrder = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/Order/Create'),
+);
 const baseRoutes = [
   {
     name: 'all',
@@ -88,9 +94,23 @@ const permissionMenus = [
     parentCode: 'permissions',
   },
   {
+    path: 'create',
+    name: 'menus.top.createOrder',
+    component: CreateOrder,
+    code: 'role',
+    parentCode: 'permissions',
+  },
+  {
     path: 'detail',
     name: 'menus.top.orderDetails',
     component: OrderDetail,
+    code: 'role',
+    parentCode: 'permissions',
+  },
+  {
+    path: 'po-detail',
+    name: 'menus.top.poOrderDetail',
+    component: PoDetail,
     code: 'role',
     parentCode: 'permissions',
   },

@@ -17,6 +17,9 @@ export type chartParam = {
   /** endDate */
   endDate: number;
 
+  /** module */
+  module: string;
+
   /** startDate */
   startDate: number;
 

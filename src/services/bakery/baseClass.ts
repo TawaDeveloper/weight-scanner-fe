@@ -1,3 +1,14 @@
+class ArticleOption {
+  /** 产品编号 */
+  articleNumber = '';
+
+  /** 产品名称 */
+  description = '';
+
+  /** 主键 */
+  id = undefined;
+}
+
 class ArticleRefDTO {
   /** 产品 Article Number 列表 */
   articleNumbers = [];
@@ -13,8 +24,11 @@ class CategoryOption {
   /** 类别描述 */
   description = '';
 
-  /** 类别 ID */
+  /** 主键 */
   id = undefined;
+
+  /** 类别 ID */
+  mch = '';
 }
 
 class Content {
@@ -51,10 +65,18 @@ class Content {
 
 class CreateOrderDTO {
   /** 部门 */
-  dep = '';
+  dep = 'BAKERY';
+
+  /** 商品列表 */
+  items = [];
 
   /** 门店 id */
   storeId = '';
+}
+
+class CreateOrderVO {
+  /** 订单编号 */
+  orderId = '';
 }
 
 class CreateUserDTO {
@@ -63,6 +85,14 @@ class CreateUserDTO {
 
   /** 账号 */
   username = '';
+}
+
+class EstDeliveredDateVO {
+  /** 日期 */
+  date = '';
+
+  /** 周几 */
+  dayOfWeek = '';
 }
 
 class IPage {
@@ -83,11 +113,17 @@ class IPage {
 }
 
 class Item {
-  /** 订单编号 */
-  orderId = '';
+  /** Article Number */
+  articleNumber = '';
 
-  /** PO */
-  po = '';
+  /** 日实际订货量 */
+  dayActualQuantity = undefined;
+
+  /** 日参考订货量 */
+  dayRefQuantity = undefined;
+
+  /** 单品周销售额目标 */
+  weekSalesGoal = undefined;
 }
 
 class LoginDTO {
@@ -134,20 +170,40 @@ class LossFactorTree {
   name = '';
 }
 
-class MDXX {
-  /** 主键 */
-  id = undefined;
+class NewArticleItem {
+  /** Article Number */
+  articleNumber = '';
+
+  /** 分类 id */
+  categoryId = '';
+
+  /** 分类名称 */
+  categoryName = '';
+
+  /** 产品描述（产品名称） */
+  description = '';
+}
+
+class NewArticlesDTO {
+  /** 产品名称 */
+  articleName = '';
+
+  /** 部门 ID */
+  depId = '';
+
+  /** 第几页 */
+  pageNum = undefined;
+
+  /** 每页多少条 */
+  pageSize = undefined;
 
   /** 门店 ID */
   storeId = '';
-
-  /** 门店名称 */
-  storeName = '';
 }
 
 class NewSalesGoalDTO {
   /** 部门 ID */
-  dep = '';
+  depId = '';
 
   /** 目标值 */
   goal = undefined;
@@ -273,12 +329,6 @@ class OrderDetailItemDTO {
 
   /** 每页多少条 */
   pageSize = undefined;
-
-  /** PO */
-  po = '';
-
-  /** 类型：1-订单纬度、2-PO 单纬度 */
-  type = undefined;
 }
 
 class OrderItemVO {
@@ -411,8 +461,6 @@ class OrderListPageDTO {
   storeId = '';
 }
 
-class OrderNewArticlesVO {}
-
 class OrderNewOptionsVO {
   /** 部门列表 */
   deps = [];
@@ -423,12 +471,114 @@ class OrderNewOptionsVO {
 
 class OrderNewRefArticle {}
 
+class PoDetailBaseVO {
+  /** PO 单金额 */
+  amount = undefined;
+
+  /** 下单时间 */
+  createTime = '';
+
+  /** 下单人 id */
+  createUserId = undefined;
+
+  /** 下单人姓名 */
+  createUserName = '';
+
+  /** 部门 */
+  depName = '';
+
+  /** 预计送达时间 */
+  estDeliveredTime = '';
+
+  /** 订单编号 */
+  orderId = '';
+
+  /** 编号 */
+  po = '';
+
+  /** PR 编号 */
+  pr = '';
+
+  /** 产品个数 */
+  skuNum = undefined;
+
+  /** 产品数量 */
+  skuQuantity = undefined;
+
+  /** PO 状态：1-已下单、2-已确认、3-已编辑、4-已取消 */
+  status = 'CANCELED';
+
+  /** 状态 */
+  statusDesc = '';
+
+  /** 门店 id */
+  storeId = '';
+
+  /** 门店名称 */
+  storeName = '';
+
+  /** 时区 */
+  timezone = '';
+}
+
+class PoDetailItem {
+  /** Article Number */
+  articleNumber = '';
+
+  /** 日实际订货量 */
+  dayActualQuantity = undefined;
+
+  /** 日参考订货量 */
+  dayRefQuantity = undefined;
+
+  /** 部门名称 */
+  depName = '';
+
+  /** 产品描述 - 英文 */
+  descriptionEn = '';
+
+  /** 产品描述 - 繁体 */
+  descriptionTc = '';
+
+  /** 尺寸大小 */
+  packSize = '';
+
+  /** 产品价格 */
+  price = undefined;
+
+  /** 门店 ID */
+  storeId = '';
+
+  /** 门店名称 */
+  storeName = '';
+
+  /** 供应商 */
+  supplier = '';
+
+  /** 单品周销售额目标 */
+  weekSalesGoal = undefined;
+}
+
+class PoDetailItemDTO {
+  /** 订单编号 */
+  orderId = '';
+
+  /** 第几页 */
+  pageNum = undefined;
+
+  /** 每页多少条 */
+  pageSize = undefined;
+
+  /** PO 编号 */
+  po = '';
+}
+
 class Response {
   /** 状态码：0-成功 */
   code = undefined;
 
   /** 响应数据 */
-  data = new IPage();
+  data = new CreateOrderVO();
 
   /** 状态描述 */
   message = '';
@@ -458,6 +608,9 @@ class SalesGoalListDTO {
 }
 
 class SalesGoalListItem {
+  /** 部门 ID */
+  depId = '';
+
   /** 部门名称 */
   depName = '';
 
@@ -634,6 +787,9 @@ class StatisticalSalesChart {
   /** 产品 */
   articleNumber = '';
 
+  /** 分类 */
+  category = '';
+
   /** 部门 */
   department = '';
 
@@ -692,20 +848,9 @@ class StatisticalSearchConditionVo {
   storeNames = [];
 }
 
-class StoreGroupTree {
-  /** 门店分组名称 */
-  storeGroupName = '';
-
-  /** 分组下的门店列表 */
-  stores = [];
-}
-
-class StoreVo {
+class StoreOption {
   /** 主键 */
   id = undefined;
-
-  /** 门店分组名称 */
-  storeGroupName = '';
 
   /** 门店 ID */
   storeId = '';
@@ -738,18 +883,22 @@ class UpdateSalesGoalDTO {
 }
 
 export const bakery = {
+  ArticleOption,
   ArticleRefDTO,
   CategoryOption,
   Content,
   CreateOrderDTO,
+  CreateOrderVO,
   CreateUserDTO,
+  EstDeliveredDateVO,
   IPage,
   Item,
   LoginDTO,
   LoginVO,
   LossFactor,
   LossFactorTree,
-  MDXX,
+  NewArticleItem,
+  NewArticlesDTO,
   NewSalesGoalDTO,
   OptionVO,
   OrderDetailBaseVO,
@@ -760,9 +909,11 @@ export const bakery = {
   OrderListItem,
   OrderListOptionsVO,
   OrderListPageDTO,
-  OrderNewArticlesVO,
   OrderNewOptionsVO,
   OrderNewRefArticle,
+  PoDetailBaseVO,
+  PoDetailItem,
+  PoDetailItemDTO,
   Response,
   SalesGoalListDTO,
   SalesGoalListItem,
@@ -776,7 +927,6 @@ export const bakery = {
   StatisticalSalesProductReport,
   StatisticalSalesStoreReport,
   StatisticalSearchConditionVo,
-  StoreGroupTree,
-  StoreVo,
+  StoreOption,
   UpdateSalesGoalDTO,
 };

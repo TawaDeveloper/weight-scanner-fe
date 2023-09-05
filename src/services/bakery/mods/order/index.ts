@@ -8,10 +8,12 @@ import * as getListOptions from './getListOptions';
 import * as getOrderListForPage from './getOrderListForPage';
 import * as getNewArticles from './getNewArticles';
 import * as createOrder from './createOrder';
-import * as getNewEstDeliveredTime from './getNewEstDeliveredTime';
+import * as getNewEstDeliveredDate from './getNewEstDeliveredDate';
 import * as getNewOptions from './getNewOptions';
 import * as getNewRefArticle from './getNewRefArticle';
 import * as getNewRefArticles from './getNewRefArticles';
+import * as getPoBaseInfo from './getPoBaseInfo';
+import * as getPoDetailItemsForPage from './getPoDetailItemsForPage';
 
 export {
   getOrderBaseInfo,
@@ -21,8 +23,10 @@ export {
   getOrderListForPage,
   getNewArticles,
   createOrder,
-  getNewEstDeliveredTime,
+  getNewEstDeliveredDate,
   getNewOptions,
   getNewRefArticle,
   getNewRefArticles,
+  getPoBaseInfo,
+  getPoDetailItemsForPage,
 };

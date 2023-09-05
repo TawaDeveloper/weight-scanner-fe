@@ -79,3 +79,38 @@ export const datePickerToTimestamp = (
   }
   return 0;
 };
+
+/**
+ * @description  timestamp to format time string
+ * @param dateMoment number
+ * @param format string @default 'YYYY-MM-DD HH:mm:ss'
+ * @returns
+ */
+export const timestampToLocal = (
+  dateTime: number | string,
+  format = YYYY_MM_DD_HH_MM_SS,
+) => {
+  const m = moment(dateTime);
+  if (!dateTime || !m.isValid()) {
+    return 'is invalid time';
+  }
+  return m.format(format);
+};
+
+/**
+ * @description  timestamp to format time string
+ * @param dateMoment number
+ * @param format string @default 'YYYY-MM-DD HH:mm:ss'
+ * @returns
+ */
+export const timestampToZone = (
+  dateTime: number | string,
+  zone: string,
+  format = YYYY_MM_DD_HH_MM_SS,
+) => {
+  const m = moment(dateTime);
+  if (!dateTime || !m.isValid()) {
+    return 'is invalid time';
+  }
+  return m.tz(zone).format(format);
+};

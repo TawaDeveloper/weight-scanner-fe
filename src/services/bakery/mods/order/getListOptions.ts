@@ -14,7 +14,8 @@ export function request(
   options?: getListOptionsOptions,
 ): getListOptionsResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/order/list/options';
+  console.log(host)
+  const url = 'http://10.89.24.25:8080' + '/hot-deli-bakery/api/order/list/options';
   const fetchOption = {
     method: 'get',
     headers: {

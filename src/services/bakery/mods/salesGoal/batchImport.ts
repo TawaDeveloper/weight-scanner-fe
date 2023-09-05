@@ -1,7 +1,7 @@
 /// <reference path="../../api.d.ts" />
 import sendRequest, { getEnvHost } from '@/utils/request';
 
-export type batchImportBody = string;
+export type batchImportFormData = FormData;
 export type batchImportOptions = Record<string, any>;
 
 export type batchImportResponse = Promise<defs.bakery.Response<void>>;
@@ -10,7 +10,7 @@ export type batchImportResponse = Promise<defs.bakery.Response<void>>;
  * @desc 批量导入
  */
 export function request(
-  body: batchImportBody,
+  formData: batchImportFormData,
   options?: batchImportOptions,
 ): batchImportResponse {
   const host = getEnvHost();
@@ -20,7 +20,7 @@ export function request(
     headers: {
       'Content-Type': 'multipart/form-data',
     },
-    data: body,
+    data: formData,
     ...options,
   };
 

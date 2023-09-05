@@ -129,4 +129,6 @@ export default {
   paymentSummary: '支付汇总',
   pointsBudget: '积分预算',
   couponPromotion: '优惠码活动列表',
+  createOrder: '新建订单',
+  poOrderDetail: 'PO单详情',
 };
