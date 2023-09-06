@@ -1137,8 +1137,8 @@
           "parameters": [
             {
               "in": "query",
-              "description": "dep",
-              "name": "dep",
+              "description": "depId",
+              "name": "depId",
               "required": true,
               "dataType": {
                 "typeArgs": [],
@@ -4019,7 +4019,7 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "dep",
+          "name": "depId",
           "description": "部门",
           "required": false
         },

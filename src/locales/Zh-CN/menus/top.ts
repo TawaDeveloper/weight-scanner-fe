@@ -131,4 +131,9 @@ export default {
   couponPromotion: '优惠码活动列表',
   createOrder: '新建订单',
   poOrderDetail: 'PO单详情',
+  report: '销售报表',
+  reportByStore: '按门店销量统计',
+  reportByProduct: '按产品销量统计',
+  reportByCategory: '按类别销量统计',
+  SalesTargetSetting: '销售目标设置',
 };

@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { t } from 'i18next';
 
 import { tabsModelAtom } from '@/atoms/tabsModel';
-import { SelectLang, FullScreen, UserMessage } from '@/components';
+import { SelectLang, FullScreen } from '@/components';
 
 import Avatar from './AvatarDropdown';
 import styles from './index.less';
@@ -41,7 +41,6 @@ const GlobalHeaderRight: React.FC = () => {
         />
       </div>
       <SelectLang />
-      <UserMessage />
       <Avatar />
     </div>
   );

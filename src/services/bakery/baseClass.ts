@@ -14,7 +14,7 @@ class ArticleRefDTO {
   articleNumbers = [];
 
   /** 部门 */
-  dep = '';
+  depId = '';
 
   /** 门店 id */
   storeId = '';

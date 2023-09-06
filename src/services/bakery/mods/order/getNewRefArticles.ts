@@ -2,8 +2,8 @@
 import sendRequest, { getEnvHost } from '@/utils/request';
 
 export type getNewRefArticlesParam = {
-  /** dep */
-  dep: string;
+  /** depId */
+  depId: string;
 
   /** storeId */
   storeId: string;

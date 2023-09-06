@@ -16,8 +16,7 @@ export function request(
   options?: getOrderListForPageOptions,
 ): getOrderListForPageResponse {
   const host = getEnvHost();
-  console.log(host)
-  const url = 'http://10.89.24.25:8080' + '/hot-deli-bakery/api/order/list/page';
+  const url = host + '/bakery/hot-deli-bakery/api/order/list/page';
   const fetchOption = {
     method: 'post',
     headers: {

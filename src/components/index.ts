@@ -19,4 +19,3 @@ export { default as PageLoading } from './PageLoading';
 export { default as SelectLang } from './SelectLang';
 export { default as TabRoute } from './TabRoute';
 export { default as Office } from './Office';
-export { default as UserMessage } from './UserMessage';

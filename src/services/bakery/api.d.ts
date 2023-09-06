@@ -20,7 +20,7 @@ declare namespace defs {
       articleNumbers?: Array<string>;
 
       /** 部门 */
-      dep?: string;
+      depId?: string;
 
       /** 门店 id */
       storeId?: string;
@@ -1137,8 +1137,8 @@ declare namespace API {
        */
       export namespace getNewRefArticles {
         export type getNewRefArticlesParam = {
-          /** dep */
-          dep: string;
+          /** depId */
+          depId: string;
 
           /** storeId */
           storeId: string;

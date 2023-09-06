@@ -19,7 +19,7 @@ export function request(
   options?: getSalesGoalOptLogsOptions,
 ): getSalesGoalOptLogsResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/sales/goal/opt/logs';
+  const url = host + '/hot-deli-bakery/api/sales/goal/opt/logs';
   const fetchOption = {
     method: 'get',
     headers: {

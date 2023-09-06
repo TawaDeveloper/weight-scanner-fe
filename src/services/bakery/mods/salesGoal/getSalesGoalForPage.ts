@@ -16,7 +16,7 @@ export function request(
   options?: getSalesGoalForPageOptions,
 ): getSalesGoalForPageResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/sales/goal/list/page';
+  const url = host + '/hot-deli-bakery/api/sales/goal/list/page';
   const fetchOption = {
     method: 'post',
     headers: {

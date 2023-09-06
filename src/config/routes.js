@@ -36,6 +36,18 @@ const PoDetail = lazy(() =>
 const CreateOrder = lazy(() =>
   import(/* webpackChunkName: "Menu" */ '@/pages/Order/Create'),
 );
+const SalesTargetSetting = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/SalesTargetSetting/List'),
+);
+const ReportByStore = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/SalesReport/ReportByStore'),
+);
+const ReportByProduct = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/SalesReport/ReportByProduct'),
+);
+const ReportByCategory = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/SalesReport/ReportByCategory'),
+);
 const baseRoutes = [
   {
     name: 'all',
@@ -69,59 +81,71 @@ const orderMenus = [
     component: OrderList,
     code: 'list',
     parentCode: 'order',
-  },
-  {
-    path: 'create',
-    name: 'menus.top.order',
-    component: OrderList,
-    code: 'create',
-    parentCode: 'order',
-  },
-  {
-    path: 'detail',
-    name: 'menus.top.order',
-    component: OrderList,
-    code: 'detail',
-    parentCode: 'order',
-  },
-]
-const permissionMenus = [
-  {
-    path: 'list',
-    name: 'menus.top.orderList',
-    component: OrderList,
-    code: 'role',
-    parentCode: 'permissions',
+    skipAuthentication: true,
   },
   {
     path: 'create',
     name: 'menus.top.createOrder',
     component: CreateOrder,
-    code: 'role',
-    parentCode: 'permissions',
+    code: 'create',
+    parentCode: 'order',
+    skipAuthentication: true,
   },
   {
     path: 'detail',
     name: 'menus.top.orderDetails',
     component: OrderDetail,
-    code: 'role',
-    parentCode: 'permissions',
+    code: 'detail',
+    parentCode: 'order',
+    skipAuthentication: true,
   },
   {
     path: 'po-detail',
     name: 'menus.top.poOrderDetail',
     component: PoDetail,
-    code: 'role',
-    parentCode: 'permissions',
+    code: 'po-detail',
+    parentCode: 'order',
+    skipAuthentication: true,
+  },
+];
+const salesReportMenus = [
+  {
+    path: 'reportByStore',
+    name: 'menus.top.reportByStore',
+    component: ReportByStore,
+    code: 'reportByStore',
+    parentCode: 'report',
+    skipAuthentication: true,
   },
   {
-    path: 'role',
-    name: 'menus.top.rolePermissions',
-    component: RolePermissions,
-    code: 'role',
-    parentCode: 'permissions',
+    path: 'reportByProduct',
+    name: 'menus.top.reportByProduct',
+    component: ReportByProduct,
+    code: 'reportByProduct',
+    parentCode: 'report',
+    skipAuthentication: true,
   },
- 
+  {
+    path: 'reportByCategory',
+    name: 'menus.top.reportByCategory',
+    component: ReportByCategory,
+    code: 'reportByCategory',
+    parentCode: 'report',
+    skipAuthentication: true,
+  },
+];
+
+const salesTargetSettingMenus = [
+  {
+    path: 'index',
+    name: 'menus.top.SalesTargetSetting',
+    component: SalesTargetSetting,
+    code: 'salesTargetSetting',
+    parentCode: 'sales-target-setting',
+    skipAuthentication: true,
+  },
+]
+const permissionMenus = [
   {
     path: 'organization',
     name: 'menus.top.organization',
@@ -145,4 +169,4 @@ const permissionMenus = [
   },
 ];
 
-export { permissionMenus, orderMenus, baseRoutes };
+export { permissionMenus, salesTargetSettingMenus, orderMenus, baseRoutes, salesReportMenus };

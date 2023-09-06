@@ -22,7 +22,7 @@ export const tableFields = [
     width: 100,
     name: t<string>(`pages.orderList.title0001`),
     render: (value: string) => {
-      return <Link to={`/permissions/detail?id=${value}`}>{value}</Link>;
+      return <Link to={`/order/detail?id=${value}`}>{value}</Link>;
     },
   },
   {
@@ -36,7 +36,7 @@ export const tableFields = [
     name: t<string>(`pages.orderList.title0092`),
     render: (value: string, record: any) => {
       return (
-        <Link to={`/permissions/po-detail?po=${value}&id=${record.orderId}`}>
+        <Link to={`/order/po-detail?po=${value}&id=${record.orderId}`}>
           {value}
         </Link>
       );

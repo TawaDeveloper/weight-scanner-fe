@@ -19,8 +19,7 @@ export function request(
   options?: getOrderBaseInfoOptions,
 ): getOrderBaseInfoResponse {
   const host = getEnvHost();
-  console.log(host)
-  const url = 'http://10.89.24.25:8080' + '/hot-deli-bakery/api/order/detail/base';
+  const url = host + '/bakery/hot-deli-bakery/api/order/detail/base';
   const fetchOption = {
     method: 'get',
     headers: {
