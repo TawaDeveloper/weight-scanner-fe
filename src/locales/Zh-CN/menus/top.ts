@@ -133,4 +133,5 @@ export default {
   reportByStore: '按门店销量统计',
   reportByProduct: '按产品销量统计',
   reportByCategory: '按类别销量统计',
+  lossFactor: '损耗系数设置',
 };

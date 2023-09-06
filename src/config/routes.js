@@ -36,6 +36,9 @@ const ReportByProduct = lazy(() =>
 const ReportByCategory = lazy(() =>
   import(/* webpackChunkName: "Menu" */ '@/pages/SalesReport/ReportByCategory'),
 );
+const LossFactor = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/Setting/LossFactor'),
+);
 const baseRoutes = [
   {
     name: 'all',
@@ -149,4 +152,21 @@ const permissionMenus = [
   },
 ];
 
-export { permissionMenus, orderMenus, baseRoutes, salesReportMenus };
+const settingMenus = [
+  {
+    path: 'lossfactor',
+    name: 'menus.top.lossFactor',
+    component: LossFactor,
+    code: 'lossFactor',
+    parentCode: 'setting',
+    skipAuthentication: true,
+  },
+];
+
+export {
+  permissionMenus,
+  orderMenus,
+  baseRoutes,
+  salesReportMenus,
+  settingMenus,
+};

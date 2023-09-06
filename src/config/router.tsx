@@ -6,6 +6,7 @@ import {
   baseRoutes,
   orderMenus,
   salesReportMenus,
+  settingMenus,
 } from './routes';
 
 const SecurityLayout = lazy(() => import('@/layouts/SecurityLayout'));
@@ -66,6 +67,15 @@ const menuTabs: StaticRouteType[] = [
     children: permissionMenus,
     code: 'permissions',
     component: SecurityLayout,
+  },
+  {
+    name: 'menus.top.setting',
+    path: '/setting',
+    icon: <BarChartOutlined />,
+    children: settingMenus,
+    code: 'setting',
+    component: SecurityLayout,
+    skipAuthentication: true,
   },
 ];
 
