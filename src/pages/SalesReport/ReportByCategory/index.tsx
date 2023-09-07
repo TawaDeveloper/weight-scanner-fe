@@ -105,7 +105,7 @@ const ReportByCategory = () => {
     data: chartData,
     xField: 'salesDate',
     yField: 'volume',
-    seriesField: 'storeId',
+    seriesField: 'category',
     xAxis: {
       type: 'time',
     },
@@ -114,7 +114,7 @@ const ReportByCategory = () => {
     data: chartData,
     xField: 'salesDate',
     yField: 'amount',
-    seriesField: 'storeId',
+    seriesField: 'category',
     xAxis: {
       type: 'time',
     },

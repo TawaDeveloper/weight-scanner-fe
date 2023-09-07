@@ -43,18 +43,42 @@ const ReportByProduct = () => {
   };
 
   //   {
-  //     "department": "HOT_DELI",
-  //     "storeId": "0000001003",
-  //     "storeName": "Tawa Supermarket, Inc. - #1003",
-  //     "storeGroup": "SCA2",
-  //     "averageVolumeForLastWeek": 0.29,
-  //     "averageAmountForLastWeek": 0.23,
-  //     "averageVolumeFor4Week": 0.62,
-  //     "averageAmountFor4Week": 1.74,
-  //     "averageVolumeFor12Week": 0.53,
-  //     "averageAmountFor12Week": 2.13
+  //     "name": "WHITE BEAN CURD THREAD",
+  //     "articleNumber": "8085150",
+  //     "category": "60100207",
+  //     "description": "WHITE BEAN CURD THREAD",
+  //     "packSize": "",
+  //     "storeId": "1005",
+  //     "storeName": "Tawa Supermarket, Inc. - #1005",
+  //     "storeGroup": "SCA5",
+  //     "averageVolumeForLastWeek": 0,
+  //     "averageAmountForLastWeek": 0,
+  //     "averageVolumeFor4Week": 0,
+  //     "averageAmountFor4Week": 0,
+  //     "averageVolumeFor12Week": 0.05,
+  //     "averageAmountFor12Week": 0.49
   // }
   const columns = [
+    {
+      title: '产品名称',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Article Number',
+      dataIndex: 'articleNumber',
+      key: 'articleNumber',
+    },
+    {
+      title: '产品类别',
+      dataIndex: 'category',
+      key: 'category',
+    },
+    {
+      title: '产品描述',
+      dataIndex: 'description',
+      key: 'description',
+    },
     {
       title: '门店',
       dataIndex: 'storeName',
@@ -105,7 +129,7 @@ const ReportByProduct = () => {
     data: chartData,
     xField: 'salesDate',
     yField: 'volume',
-    seriesField: 'storeId',
+    seriesField: 'articleNumber',
     xAxis: {
       type: 'time',
     },
@@ -114,7 +138,7 @@ const ReportByProduct = () => {
     data: chartData,
     xField: 'salesDate',
     yField: 'amount',
-    seriesField: 'storeId',
+    seriesField: 'articleNumber',
     xAxis: {
       type: 'time',
     },
