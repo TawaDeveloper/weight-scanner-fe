@@ -103,11 +103,12 @@ export const tableFields = [
 
 export const formFields = [
   {
-    key: 'storeGroup',
+    key: 'storeId',
+    type: 'select',
     name: t<string>(`pages.orderList.title0089`),
   },
   {
-    key: 'dep',
+    key: 'depId',
     name: t<string>(`pages.orderList.title0090`),
     type: 'select',
   },

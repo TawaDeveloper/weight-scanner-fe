@@ -10,13 +10,14 @@ import { CommonButton } from '@/components/CommonButton';
 import TimeIcon from '@/assets/time.svg';
 
 import './index.less';
+import { GoodsSelect } from '@/components';
 // import { useNavigate } from 'react-router-dom';
 
 const CreateOrder = () => {
   const actionRef = useRef<TableQueryActions>(null);
   const [show, setShow] = useState<{ type: string; data?: any }>();
   const { data: optionsData, loading: optionLoading } = useRequest(
-    bakeryAPI.order.getListOptions.request,
+    bakeryAPI.order.getNewOptions.request,
   );
   // const navigate = useNavigate();
 
@@ -26,7 +27,7 @@ const CreateOrder = () => {
   };
 
   const getList = (params: any) => {
-    return bakeryAPI.order.getOrderListForPage.request({
+    return bakeryAPI.order.getNewArticles.request({
       ...params,
     });
   };
@@ -51,20 +52,18 @@ const CreateOrder = () => {
   const formProps = useMemo(() => {
     return {
       fields: formFields.map((el) => {
-        if (el.key === 'storeGroup' || el.key === 'dep') {
+        if (el.key === 'storeId' || el.key === 'depId') {
           return {
             ...el,
             props: () => ({
               options:
-                el.key === 'storeGroup'
+                el.key === 'storeId'
                   ? optionsData &&
                     optionsData?.data &&
                     optionsData?.data?.stores
                     ? optionsData?.data?.stores
                     : []
-                  : optionsData &&
-                    optionsData?.data &&
-                    optionsData?.data?.deps
+                  : optionsData && optionsData?.data && optionsData?.data?.deps
                   ? optionsData?.data?.deps
                   : [],
             }),
@@ -81,11 +80,14 @@ const CreateOrder = () => {
       <div className="flex">
         <div className="page-title">销量&销售额数据表</div>
         <div className="button-group">
-          <CommonButton
-            onClick={() => actionRef.current?.onQuery({ type: 'export' })}
-          >
+          <GoodsSelect
+            type="button"
+            buttonType="primary"
+            buttonTitle="添加产品"
+          />
+          {/* <CommonButton onClick={() => setShow({ type: 'add' })}>
             添加产品
-          </CommonButton>
+          </CommonButton> */}
         </div>
       </div>
       <div className="time-content">
@@ -101,7 +103,6 @@ const CreateOrder = () => {
       {!optionLoading && (
         <MarioListContent
           ref={actionRef}
-          action={<></>}
           formProps={formProps}
           tableProps={tableProps}
           fetchData={run}

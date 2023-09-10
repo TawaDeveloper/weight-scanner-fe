@@ -4,7 +4,6 @@ import { t } from 'i18next';
 import styles from './index.less';
 import SelectedTable from './SelectedTable';
 import TableSelect from './TableSelect';
-import ExcelLoad from './ExcelLoad';
 
 type IProps = {
   onChang?: (
@@ -17,7 +16,7 @@ type IProps = {
 };
 
 const SelectCard = (props: IProps) => {
-  const { onChang, data, disabled = false, onFileIdsChange } = props;
+  const { onChang, data, disabled = false } = props;
   const [tableV, setTableV] = useState<defs.product.BackendProduct[]>(
     data || [],
   );
@@ -34,26 +33,7 @@ const SelectCard = (props: IProps) => {
       onChang(values);
     }
   };
-  const handleFiles = (files: defs.promotion.Product[]) => {
-    if (onFileIdsChange) {
-      // console.log(files);
-      if (onChang) {
-        onChang([
-          ...tableV,
-          ...files.map((el) => {
-            return { ...el, productNameEN: el.name, productId: el.id };
-          }),
-        ]);
-      }
-      setTableV([
-        ...tableV,
-        ...files.map((el) => {
-          return { ...el, productNameEN: el.name, productId: el.id };
-        }),
-      ]);
-      // onFileIdsChange(files.map((el) => el.id || 0));
-    }
-  };
+
   const tabs = [
     {
       label: t<string>(`components.goodsSelect.title0002`),
@@ -61,11 +41,6 @@ const SelectCard = (props: IProps) => {
         <TableSelect onChang={handleSelect} data={tableV} disabled={disabled} />
       ),
       key: 'TableSelect',
-    },
-    {
-      label: t<string>(`components.goodsSelect.title0013`),
-      children: <ExcelLoad onChange={handleFiles} disabled={disabled} />,
-      key: 'EXCELExport',
     },
   ];
   return (

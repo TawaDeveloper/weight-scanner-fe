@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { t } from 'i18next';
 import SelectCard from './SelectCard';
 import styles from './index.less';
+import { CommonButton } from '../CommonButton';
 
 export type GoodsValue = {
   fileIds?: number[];
@@ -30,7 +31,6 @@ const GoodsSelect = (props: StoreSelectProps) => {
     value,
     type = 'input',
     placeholder,
-    buttonType,
     buttonTitle,
     tagsMaxLen = 10,
     defaultValue = [],
@@ -116,9 +116,9 @@ const GoodsSelect = (props: StoreSelectProps) => {
         </div>
       )}
       {type === 'button' && (
-        <Button onClick={handleOpen} type={buttonType}>
+        <CommonButton onClick={handleOpen}>
           {buttonTitle || t<string>(`pages.rules.select`)}
-        </Button>
+        </CommonButton>
       )}
       {open && (
         <Modal

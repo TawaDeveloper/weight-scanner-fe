@@ -12,17 +12,18 @@ export type getNewArticlesResponse = Promise<
  * @desc 新建订单 - 查询产品列表
  */
 export function request(
-  body: getNewArticlesBody,
+  params: getNewArticlesBody,
   options?: getNewArticlesOptions,
 ): getNewArticlesResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/order/new/articles/page';
+  console.log(params, 'body')
+  const url = host + '/hot-deli-bakery/api/order/new/articles/page';
   const fetchOption = {
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
     },
-    data: body,
+    params,
     ...options,
   };
 

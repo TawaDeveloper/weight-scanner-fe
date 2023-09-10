@@ -4,7 +4,7 @@ import type { ColumnsType } from 'antd/es/table';
 import { useRequest } from 'ahooks';
 import { t } from 'i18next';
 import styles from './index.less';
-import { productAPI } from '@/services';
+import { bakeryAPI } from '@/services';
 
 const columns: ColumnsType<defs.product.BackendProduct> = [
   {
@@ -48,7 +48,7 @@ type IProps = {
 const TableSelect = (props: IProps) => {
   const { data, onChang, disabled = false } = props;
   const [search, setSearch] = useState({
-    keywords: '',
+    articleName: '',
     pageNum: 1,
     pageSize: 10,
   });
@@ -56,12 +56,12 @@ const TableSelect = (props: IProps) => {
     loading,
     data: tableRes,
     run,
-  } = useRequest(productAPI.boProduct.pageProduct.request, { manual: true });
+  } = useRequest(bakeryAPI.order.getNewArticles.request, { manual: true });
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [rows, setRows] = useState<defs.product.BackendProduct[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch({ ...search, keywords: e.target.value });
+    setSearch({ ...search, articleName: e.target.value });
   };
 
   const handlePagination = (pageNum = 1, pageSize = 10) => {
