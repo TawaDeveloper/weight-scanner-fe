@@ -65,7 +65,7 @@ class Content {
 
 class CreateOrderDTO {
   /** 部门 */
-  dep = 'BAKERY';
+  dep = '';
 
   /** 商品列表 */
   items = [];
@@ -74,17 +74,26 @@ class CreateOrderDTO {
   storeId = '';
 }
 
+class CreateOrderItem {
+  /** Article Number */
+  articleNumber = '';
+
+  /** 日实际订货量 */
+  dayActualQuantity = undefined;
+
+  /** 日参考订货量 */
+  dayRefQuantity = undefined;
+
+  /** 单品周销售额目标 */
+  weekSalesGoal = undefined;
+}
+
 class CreateOrderVO {
   /** 订单编号 */
   orderId = '';
-}
 
-class CreateUserDTO {
-  /** 密码 */
-  password = '';
-
-  /** 账号 */
-  username = '';
+  /** PR 编号 */
+  pr = '';
 }
 
 class EstDeliveredDateVO {
@@ -113,36 +122,14 @@ class IPage {
 }
 
 class Item {
-  /** Article Number */
+  /** articleNumber */
   articleNumber = '';
 
-  /** 日实际订货量 */
-  dayActualQuantity = undefined;
+  /** qty */
+  qty = undefined;
 
-  /** 日参考订货量 */
-  dayRefQuantity = undefined;
-
-  /** 单品周销售额目标 */
-  weekSalesGoal = undefined;
-}
-
-class LoginDTO {
-  /** 密码 */
-  password = '';
-
-  /** 账号 */
-  username = '';
-}
-
-class LoginVO {
-  /** 用户标识（账号） */
-  identifier = '';
-
-  /** 会话 token */
-  token = '';
-
-  /** 用户 ID */
-  userId = undefined;
+  /** record_type */
+  record_type = '';
 }
 
 class LossFactor {
@@ -173,12 +160,6 @@ class LossFactorTree {
 class NewArticleItem {
   /** Article Number */
   articleNumber = '';
-
-  /** 分类 id */
-  categoryId = '';
-
-  /** 分类名称 */
-  categoryName = '';
 
   /** 产品描述（产品名称） */
   description = '';
@@ -331,17 +312,6 @@ class OrderDetailItemDTO {
   pageSize = undefined;
 }
 
-class OrderItemVO {
-  /** articleNumber */
-  articleNumber = '';
-
-  /** qty */
-  qty = undefined;
-
-  /** record_type */
-  record_type = '';
-}
-
 class OrderListExportDTO {
   /** 下单人 */
   createUserName = '';
@@ -375,6 +345,14 @@ class OrderListExportDTO {
 
   /** 门店 ID */
   storeId = '';
+}
+
+class OrderListExportItem {
+  /** 订单编号 */
+  orderId = '';
+
+  /** PO */
+  po = '';
 }
 
 class OrderListItem {
@@ -469,7 +447,28 @@ class OrderNewOptionsVO {
   stores = [];
 }
 
-class OrderNewRefArticle {}
+class OrderNewRefArticle {
+  /** Article Number */
+  articleNumber = '';
+
+  /** 日参考订货量 */
+  dayRefQuantity = undefined;
+
+  /** 产品描述 */
+  description = '';
+
+  /** 规格尺寸 */
+  packSize = '';
+
+  /** 产品单价 */
+  price = undefined;
+
+  /** 供应商名称 */
+  supplierName = '';
+
+  /** 单品周销售额目标 */
+  weekSalesGoal = undefined;
+}
 
 class PoDetailBaseVO {
   /** PO 单金额 */
@@ -888,13 +887,11 @@ export const bakery = {
   CategoryOption,
   Content,
   CreateOrderDTO,
+  CreateOrderItem,
   CreateOrderVO,
-  CreateUserDTO,
   EstDeliveredDateVO,
   IPage,
   Item,
-  LoginDTO,
-  LoginVO,
   LossFactor,
   LossFactorTree,
   NewArticleItem,
@@ -904,8 +901,8 @@ export const bakery = {
   OrderDetailBaseVO,
   OrderDetailItem,
   OrderDetailItemDTO,
-  OrderItemVO,
   OrderListExportDTO,
+  OrderListExportItem,
   OrderListItem,
   OrderListOptionsVO,
   OrderListPageDTO,

@@ -71,26 +71,35 @@ declare namespace defs {
 
     export class CreateOrderDTO {
       /** 部门 */
-      dep?: 'BAKERY' | 'HOT_DELI';
+      dep?: string;
 
       /** 商品列表 */
-      items?: Array<defs.bakery.Item>;
+      items?: Array<defs.bakery.CreateOrderItem>;
 
       /** 门店 id */
       storeId?: string;
     }
 
+    export class CreateOrderItem {
+      /** Article Number */
+      articleNumber?: string;
+
+      /** 日实际订货量 */
+      dayActualQuantity?: number;
+
+      /** 日参考订货量 */
+      dayRefQuantity?: number;
+
+      /** 单品周销售额目标 */
+      weekSalesGoal?: number;
+    }
+
     export class CreateOrderVO {
       /** 订单编号 */
       orderId?: string;
-    }
 
-    export class CreateUserDTO {
-      /** 密码 */
-      password?: string;
-
-      /** 账号 */
-      username?: string;
+      /** PR 编号 */
+      pr?: string;
     }
 
     export class EstDeliveredDateVO {
@@ -119,36 +128,14 @@ declare namespace defs {
     }
 
     export class Item {
-      /** Article Number */
+      /** articleNumber */
       articleNumber?: string;
 
-      /** 日实际订货量 */
-      dayActualQuantity?: number;
+      /** qty */
+      qty?: number;
 
-      /** 日参考订货量 */
-      dayRefQuantity?: number;
-
-      /** 单品周销售额目标 */
-      weekSalesGoal?: number;
-    }
-
-    export class LoginDTO {
-      /** 密码 */
-      password?: string;
-
-      /** 账号 */
-      username?: string;
-    }
-
-    export class LoginVO {
-      /** 用户标识（账号） */
-      identifier?: string;
-
-      /** 会话 token */
-      token?: string;
-
-      /** 用户 ID */
-      userId?: number;
+      /** record_type */
+      record_type?: string;
     }
 
     export class LossFactor {
@@ -179,12 +166,6 @@ declare namespace defs {
     export class NewArticleItem {
       /** Article Number */
       articleNumber?: string;
-
-      /** 分类 id */
-      categoryId?: string;
-
-      /** 分类名称 */
-      categoryName?: string;
 
       /** 产品描述（产品名称） */
       description?: string;
@@ -337,17 +318,6 @@ declare namespace defs {
       pageSize?: number;
     }
 
-    export class OrderItemVO {
-      /** articleNumber */
-      articleNumber?: string;
-
-      /** qty */
-      qty?: number;
-
-      /** record_type */
-      record_type?: string;
-    }
-
     export class OrderListExportDTO {
       /** 下单人 */
       createUserName?: string;
@@ -356,7 +326,7 @@ declare namespace defs {
       dep?: string;
 
       /** 批量导出 - 选中的列表项 */
-      exportItems?: Array<defs.bakery.Item>;
+      exportItems?: Array<defs.bakery.OrderListExportItem>;
 
       /** 下单时间 - 结束时间 */
       maxCreateTime?: string;
@@ -381,6 +351,14 @@ declare namespace defs {
 
       /** 门店 ID */
       storeId?: string;
+    }
+
+    export class OrderListExportItem {
+      /** 订单编号 */
+      orderId: string;
+
+      /** PO */
+      po?: string;
     }
 
     export class OrderListItem {
@@ -475,7 +453,31 @@ declare namespace defs {
       stores?: Array<defs.bakery.OptionVO>;
     }
 
-    export class OrderNewRefArticle {}
+    export class OrderNewRefArticle {
+      /** Article Number */
+      articleNumber?: string;
+
+      /** 日参考订货量 */
+      dayRefQuantity?: number;
+
+      /** 产品描述 */
+      description?: string;
+
+      /** 规格尺寸 */
+      packSize?: string;
+
+      /** 产品单价 */
+      price?: number;
+
+      /** 供应商名称 */
+      supplierName?: string;
+
+      /** 单品周销售额目标 */
+      weekSalesGoal?: number;
+
+      /** 实际订货量 */
+      actualOrderQuantity?: number;
+    }
 
     export class PoDetailBaseVO {
       /** PO 单金额 */
@@ -672,7 +674,7 @@ declare namespace defs {
       deptId?: string;
 
       /** items */
-      items: Array<defs.bakery.OrderItemVO>;
+      items: Array<defs.bakery.Item>;
 
       /** storeId */
       storeId?: string;
@@ -892,52 +894,6 @@ declare namespace defs {
 
 declare namespace API {
   export namespace bakery {
-    /**
-     * 登陆权限
-     */
-    export namespace admin {
-      /**
-       * 创建用户
-       * /hot-deli-bakery/admin/user/create
-       */
-      export namespace createUser {
-        export type createUserBody = defs.bakery.CreateUserDTO;
-        export type createUserOptions = Record<string, any>;
-        export type createUserResponse = defs.bakery.Response<number>;
-        export type request = (
-          body: createUserBody,
-          options?: createUserOptions,
-        ) => createUserResponse;
-      }
-
-      /**
-       * 用户登陆
-       * /hot-deli-bakery/admin/user/login
-       */
-      export namespace login {
-        export type loginBody = defs.bakery.LoginDTO;
-        export type loginOptions = Record<string, any>;
-        export type loginResponse = defs.bakery.Response<defs.bakery.LoginVO>;
-        export type request = (
-          body: loginBody,
-          options?: loginOptions,
-        ) => loginResponse;
-      }
-
-      /**
-       * 测试登陆
-       * /hot-deli-bakery/admin/user/login/check
-       */
-      export namespace checkLogin {
-        export type checkLoginOptions = Record<string, any>;
-        export type checkLoginResponse =
-          defs.bakery.Response<defs.bakery.LoginVO>;
-        export type request = (
-          options?: checkLoginOptions,
-        ) => checkLoginResponse;
-      }
-    }
-
     /**
      * 损耗系数
      */

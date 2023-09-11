@@ -12,7 +12,7 @@ export function request(
   options?: downloadTemplateOptions,
 ): downloadTemplateResponse {
   const host = getEnvHost();
-  const url = host + '/hot-deli-bakery/api/sales/goal/template/download';
+  const url = host + '/bakery/hot-deli-bakery/api/sales/goal/template/download';
   const fetchOption = {
     method: 'get',
     headers: {

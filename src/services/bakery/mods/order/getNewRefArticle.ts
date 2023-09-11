@@ -16,9 +16,9 @@ export function request(
   options?: getNewRefArticleOptions,
 ): getNewRefArticleResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/order/new/ref/article';
+  const url = host + '/hot-deli-bakery/api/order/new/ref/article';
   const fetchOption = {
-    method: 'get',
+    method: 'post',
     headers: {
       'Content-Type': 'application/json',
     },

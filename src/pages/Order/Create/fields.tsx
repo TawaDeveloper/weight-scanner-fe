@@ -1,10 +1,5 @@
 import { t } from 'i18next';
-import {
-  checkStatus,
-  enumsObjectToArray,
-  orderStatus,
-} from '@/constants/enums';
-import { Link } from 'react-router-dom';
+import { checkStatus, enumsObjectToArray } from '@/constants/enums';
 
 // "brandId": 0,
 // "brandNameEN": "string",
@@ -17,87 +12,64 @@ import { Link } from 'react-router-dom';
 // "updatedTime": "2023-07-11T07:11:01.256Z"
 export const tableFields = [
   {
-    key: 'orderId',
-    width: 100,
-    name: t<string>(`pages.orderList.title0001`),
-    render: (value: string) => {
-      return <Link to={`/permissions/detail?id=${value}?type=1`}>{value}</Link>;
-    },
+    key: 'descriptionTc',
+    width: 160,
+    name: t<string>(`pages.orderList.title0096`),
   },
   {
-    key: 'pr',
-    width: 100,
-    name: t<string>(`pages.orderList.title0091`),
+    key: 'descriptionEn',
+    width: 160,
+    name: t<string>(`pages.orderList.title0097`),
   },
   {
-    key: 'po',
-    width: 100,
-    name: t<string>(`pages.orderList.title0092`),
-    render: (value: string) => {
-      return <Link to={`/permissions/detail?id=${value}?type=2`}>{value}</Link>;
-    },
+    key: 'articleNumber',
+    width: 160,
+    name: t<string>(`pages.orderList.title0095`),
   },
   {
     key: 'storeName',
-    width: 100,
+    width: 160,
     name: t<string>(`pages.orderList.title0048`),
   },
   {
     key: 'storeId',
-    width: 100,
+    width: 160,
     name: t<string>(`pages.orderList.title0007`),
   },
   {
-    key: 'dep',
-    width: 100,
+    key: 'depName',
+    width: 160,
     name: t<string>(`pages.orderList.title0090`),
   },
   {
-    key: 'createTime',
+    key: 'price',
+    width: 160,
+    name: t<string>(`pages.orderList.title0098`),
+  },
+  {
+    key: 'packSize',
+    width: 160,
+    name: t<string>(`pages.orderList.title0099`),
+  },
+  {
+    key: 'supplierName',
+    width: 160,
+    name: t<string>(`pages.orderList.title0100`),
+  },
+  {
+    key: 'weekSalesGoal',
     width: 200,
-    name: t<string>(`pages.orderList.title0012`),
-    type: 'time-pst',
+    name: t<string>(`pages.orderList.title0101`),
   },
   {
-    key: 'createUserName',
-    width: 100,
-    name: t<string>(`pages.orderList.title0088`),
-  },
-  {
-    key: 'status',
-    width: 100,
-    name: t<string>(`pages.orderList.title0006`),
-    render: (value: number) => {
-      return (
-        <span
-          style={{
-            color:
-              value === 1
-                ? 'rgba(22, 163, 74, 0.85)'
-                : value === 2
-                ? '#7722EE'
-                : 'rgba(247, 186, 30, 0.85)',
-          }}
-        >
-          {orderStatus[value]}
-        </span>
-      );
-    },
-  },
-  {
-    key: 'amount',
-    width: 140,
-    name: t<string>(`pages.orderList.title0016`),
-  },
-  {
-    key: 'skuNum',
-    width: 100,
-    name: t<string>(`pages.orderList.title0093`),
-  },
-  {
-    key: 'estDeliveredTime',
+    key: 'dayRefQuantity',
     width: 200,
-    name: t<string>(`pages.orderList.title0040`),
+    name: t<string>(`pages.orderList.title0104`),
+  },
+  {
+    key: 'quantity',
+    width: 200,
+    name: t<string>(`pages.orderList.title0113`),
   },
 ];
 

@@ -1,4 +1,3 @@
-import * as adminInterface from './admin';
 import * as lossFactorInterface from './lossFactor';
 import * as orderInterface from './order';
 import * as salesGoalInterface from './salesGoal';
@@ -9,7 +8,6 @@ import * as statisticalSalesProductInterface from './statisticalSalesProduct';
 import * as statisticalSalesStoreInterface from './statisticalSalesStore';
 
 export const bakery = {
-  admin: adminInterface,
   lossFactor: lossFactorInterface,
   order: orderInterface,
   salesGoal: salesGoalInterface,

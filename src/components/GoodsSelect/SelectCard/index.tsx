@@ -6,28 +6,30 @@ import SelectedTable from './SelectedTable';
 import TableSelect from './TableSelect';
 
 type IProps = {
+  storeId?: string
+  depId?: string
   onChang?: (
-    products: defs.product.BackendProduct[],
+    products: defs.bakery.NewArticleItem[],
     fileIds?: number[],
   ) => void;
   onFileIdsChange?: (fileIds: number[]) => void;
-  data?: defs.product.BackendProduct[];
+  data?: defs.bakery.NewArticleItem[];
   disabled?: boolean;
 };
 
 const SelectCard = (props: IProps) => {
-  const { onChang, data, disabled = false } = props;
-  const [tableV, setTableV] = useState<defs.product.BackendProduct[]>(
+  const { onChang, data, disabled = false, storeId, depId } = props;
+  const [tableV, setTableV] = useState<defs.bakery.NewArticleItem[]>(
     data || [],
   );
-  const handleSelect = (values: defs.product.BackendProduct[]) => {
+  const handleSelect = (values: defs.bakery.NewArticleItem[]) => {
     setTableV(values);
     if (onChang) {
       onChang(values);
     }
   };
-  const handleTableRemove = (newValue: defs.product.BackendProduct) => {
-    const values = tableV.filter((i) => i.productId !== newValue.productId);
+  const handleTableRemove = (newValue: defs.bakery.NewArticleItem) => {
+    const values = tableV.filter((i) => i.articleNumber !== newValue.articleNumber);
     setTableV(values);
     if (onChang) {
       onChang(values);
@@ -38,7 +40,7 @@ const SelectCard = (props: IProps) => {
     {
       label: t<string>(`components.goodsSelect.title0002`),
       children: (
-        <TableSelect onChang={handleSelect} data={tableV} disabled={disabled} />
+        <TableSelect onChang={handleSelect} data={tableV} storeId={storeId} depId={depId} disabled={disabled} />
       ),
       key: 'TableSelect',
     },

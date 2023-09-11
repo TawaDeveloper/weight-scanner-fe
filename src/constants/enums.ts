@@ -313,3 +313,13 @@ export const DELIVERY_TYPE = {
   3: 'Fedex',
   4: t<string>('pages.enums.deliveryType.self'),
 };
+
+export const WEEK_TYPE = {
+  'MONDAY': t<string>('pages.common.monday'),
+  'TUESDAY': t<string>('pages.common.tuesday'),
+  'WEDNESDAY': t<string>('pages.common.wednesday'),
+  'THURSDAY': t<string>('pages.common.thursday'),
+  'FRIDAY': t<string>('pages.common.friday'),
+  'SATURDAY': t<string>('pages.common.saturday'),
+  'SUNDAY': t<string>('pages.common.sunday'),
+};

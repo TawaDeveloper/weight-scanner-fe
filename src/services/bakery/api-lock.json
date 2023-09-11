@@ -1,222 +1,6 @@
 {
   "mods": [
     {
-      "description": "登陆权限",
-      "name": "admin",
-      "interfaces": [
-        {
-          "consumes": [
-            "application/json"
-          ],
-          "description": "创建用户",
-          "name": "createUser",
-          "method": "post",
-          "path": "/hot-deli-bakery/admin/user/create",
-          "response": {
-            "typeArgs": [
-              {
-                "typeArgs": [],
-                "typeName": "number",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            ],
-            "typeName": "Response",
-            "isDefsType": true,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "parameters": [
-            {
-              "in": "body",
-              "description": "dto",
-              "name": "dto",
-              "required": true,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "CreateUserDTO",
-                "isDefsType": true,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "header",
-              "description": "language [en_US, zh_CN, zh_TW]",
-              "name": "lang",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "header",
-              "description": "Auth Token",
-              "name": "token",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            }
-          ]
-        },
-        {
-          "consumes": [
-            "application/json"
-          ],
-          "description": "用户登陆",
-          "name": "login",
-          "method": "post",
-          "path": "/hot-deli-bakery/admin/user/login",
-          "response": {
-            "typeArgs": [
-              {
-                "typeArgs": [],
-                "typeName": "LoginVO",
-                "isDefsType": true,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            ],
-            "typeName": "Response",
-            "isDefsType": true,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "parameters": [
-            {
-              "in": "body",
-              "description": "dto",
-              "name": "dto",
-              "required": true,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "LoginDTO",
-                "isDefsType": true,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "header",
-              "description": "language [en_US, zh_CN, zh_TW]",
-              "name": "lang",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "header",
-              "description": "Auth Token",
-              "name": "token",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            }
-          ]
-        },
-        {
-          "consumes": [
-            "application/json"
-          ],
-          "description": "测试登陆",
-          "name": "checkLogin",
-          "method": "post",
-          "path": "/hot-deli-bakery/admin/user/login/check",
-          "response": {
-            "typeArgs": [
-              {
-                "typeArgs": [],
-                "typeName": "LoginVO",
-                "isDefsType": true,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            ],
-            "typeName": "Response",
-            "isDefsType": true,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "parameters": [
-            {
-              "in": "header",
-              "description": "language [en_US, zh_CN, zh_TW]",
-              "name": "lang",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "header",
-              "description": "Auth Token",
-              "name": "token",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
       "description": "损耗系数",
       "name": "lossFactor",
       "interfaces": [
@@ -4241,14 +4025,11 @@
         {
           "dataType": {
             "typeArgs": [],
-            "typeName": "",
+            "typeName": "string",
             "isDefsType": false,
             "templateIndex": -1,
             "compileTemplateKeyword": "#/definitions/",
-            "enum": [
-              "'BAKERY'",
-              "'HOT_DELI'"
-            ],
+            "enum": [],
             "typeProperties": []
           },
           "name": "dep",
@@ -4260,7 +4041,7 @@
             "typeArgs": [
               {
                 "typeArgs": [],
-                "typeName": "Item",
+                "typeName": "CreateOrderItem",
                 "isDefsType": true,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
@@ -4296,6 +4077,69 @@
       ]
     },
     {
+      "description": "商品信息",
+      "name": "CreateOrderItem",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "articleNumber",
+          "description": "Article Number",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "dayActualQuantity",
+          "description": "日实际订货量",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "dayRefQuantity",
+          "description": "日参考订货量",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "weekSalesGoal",
+          "description": "单品周销售额目标",
+          "required": false
+        }
+      ]
+    },
+    {
       "description": "新建订单信息",
       "name": "CreateOrderVO",
       "templateArgs": [],
@@ -4313,27 +4157,6 @@
           "name": "orderId",
           "description": "订单编号",
           "required": false
-        }
-      ]
-    },
-    {
-      "description": "创建用户",
-      "name": "CreateUserDTO",
-      "templateArgs": [],
-      "properties": [
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "password",
-          "description": "密码",
-          "required": false
         },
         {
           "dataType": {
@@ -4345,8 +4168,8 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "username",
-          "description": "账号",
+          "name": "pr",
+          "description": "PR 编号",
           "required": false
         }
       ]
@@ -4478,7 +4301,6 @@
       ]
     },
     {
-      "description": "商品信息",
       "name": "Item",
       "templateArgs": [],
       "properties": [
@@ -4493,7 +4315,6 @@
             "typeProperties": []
           },
           "name": "articleNumber",
-          "description": "Article Number",
           "required": false
         },
         {
@@ -4506,57 +4327,7 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "dayActualQuantity",
-          "description": "日实际订货量",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "number",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "dayRefQuantity",
-          "description": "日参考订货量",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "number",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "weekSalesGoal",
-          "description": "单品周销售额目标",
-          "required": false
-        }
-      ]
-    },
-    {
-      "description": "用户登陆",
-      "name": "LoginDTO",
-      "templateArgs": [],
-      "properties": [
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "password",
-          "description": "密码",
+          "name": "qty",
           "required": false
         },
         {
@@ -4569,57 +4340,7 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "username",
-          "description": "账号",
-          "required": false
-        }
-      ]
-    },
-    {
-      "description": "登陆信息",
-      "name": "LoginVO",
-      "templateArgs": [],
-      "properties": [
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "identifier",
-          "description": "用户标识（账号）",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "token",
-          "description": "会话 token",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "number",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "userId",
-          "description": "用户 ID",
+          "name": "record_type",
           "required": false
         }
       ]
@@ -4763,34 +4484,6 @@
           },
           "name": "articleNumber",
           "description": "Article Number",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "categoryId",
-          "description": "分类 id",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "categoryName",
-          "description": "分类名称",
           "required": false
         },
         {
@@ -5498,51 +5191,6 @@
       ]
     },
     {
-      "name": "OrderItemVO",
-      "templateArgs": [],
-      "properties": [
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "articleNumber",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "number",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "qty",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "record_type",
-          "required": false
-        }
-      ]
-    },
-    {
       "description": "订单列表 - 批量导出参数",
       "name": "OrderListExportDTO",
       "templateArgs": [],
@@ -5580,7 +5228,7 @@
             "typeArgs": [
               {
                 "typeArgs": [],
-                "typeName": "Item",
+                "typeName": "OrderListExportItem",
                 "isDefsType": true,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
@@ -5709,6 +5357,41 @@
           },
           "name": "storeId",
           "description": "门店 ID",
+          "required": false
+        }
+      ]
+    },
+    {
+      "description": "订单列表导出项参数",
+      "name": "OrderListExportItem",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "orderId",
+          "description": "订单编号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "po",
+          "description": "PO",
           "required": false
         }
       ]
@@ -6183,7 +5866,106 @@
       "description": "新建订单 - 参考产品",
       "name": "OrderNewRefArticle",
       "templateArgs": [],
-      "properties": []
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "articleNumber",
+          "description": "Article Number",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "dayRefQuantity",
+          "description": "日参考订货量",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "description",
+          "description": "产品描述",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "packSize",
+          "description": "规格尺寸",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "price",
+          "description": "产品单价",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "supplierName",
+          "description": "供应商名称",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "weekSalesGoal",
+          "description": "单品周销售额目标",
+          "required": false
+        }
+      ]
     },
     {
       "description": "PO 单详情 - 基础信息",
@@ -7120,7 +6902,7 @@
             "typeArgs": [
               {
                 "typeArgs": [],
-                "typeName": "OrderItemVO",
+                "typeName": "Item",
                 "isDefsType": true,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",

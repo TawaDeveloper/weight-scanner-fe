@@ -1,4 +1,4 @@
-import { Table, Row, Col, Input, Button, Image } from 'antd';
+import { Table, Row, Col, Input, Button } from 'antd';
 import React, { useState, useEffect } from 'react';
 import type { ColumnsType } from 'antd/es/table';
 import { useRequest } from 'ahooks';
@@ -6,59 +6,44 @@ import { t } from 'i18next';
 import styles from './index.less';
 import { bakeryAPI } from '@/services';
 
-const columns: ColumnsType<defs.product.BackendProduct> = [
+const columns: ColumnsType<defs.bakery.NewArticleItem> = [
   {
     title: t<string>(`components.goodsSelect.title0005`),
-    dataIndex: 'productNameEN',
-    key: 'productNameEN',
+    dataIndex: 'descriptionEn',
+    key: 'descriptionEn',
     align: 'center',
   },
   {
-    title: t<string>(`components.goodsSelect.title0006`),
-    dataIndex: 'productId',
-    key: 'productId',
-    align: 'center',
-  },
-  {
-    title: t<string>(`components.goodsSelect.title0007`),
-    dataIndex: 'upc',
-    key: 'upc',
-    align: 'center',
-  },
-  {
-    title: t<string>(`components.goodsSelect.title0009`),
-    dataIndex: 'image',
-    key: 'image',
-    render: (url) => <Image width="50px" src={url} />,
-    align: 'center',
-  },
-  {
-    title: t<string>(`components.goodsSelect.title0008`),
-    dataIndex: 'category',
-    key: 'category',
+    title: t<string>(`pages.orderList.title0095`),
+    dataIndex: 'articleNumber',
+    key: 'articleNumber',
     align: 'center',
   },
 ];
 
 type IProps = {
-  onChang?: (values: defs.product.BackendProduct[]) => void;
-  data?: defs.product.BackendProduct[];
+  depId?: string;
+  storeId?: string;
+  onChang?: (values: defs.bakery.NewArticleItem[]) => void;
+  data?: defs.bakery.NewArticleItem[];
   disabled?: boolean;
 };
 const TableSelect = (props: IProps) => {
-  const { data, onChang, disabled = false } = props;
+  const { data, onChang, disabled = false, storeId, depId } = props;
   const [search, setSearch] = useState({
     articleName: '',
     pageNum: 1,
     pageSize: 10,
+    storeId: storeId || '',
+    depId: depId || '',
   });
   const {
     loading,
     data: tableRes,
     run,
-  } = useRequest(bakeryAPI.order.getNewArticles.request, { manual: true });
+  } = useRequest(bakeryAPI.order.getNewArticles.request);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-  const [rows, setRows] = useState<defs.product.BackendProduct[]>([]);
+  const [rows, setRows] = useState<defs.bakery.NewArticleItem[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch({ ...search, articleName: e.target.value });
@@ -70,11 +55,11 @@ const TableSelect = (props: IProps) => {
     run(v);
   };
 
-  const handleRowChange = (_: any, s_rows: defs.product.BackendProduct[]) => {
-    const list: defs.product.BackendProduct[] = [];
+  const handleRowChange = (_: any, s_rows: defs.bakery.NewArticleItem[]) => {
+    const list: defs.bakery.NewArticleItem[] = [];
     if (tableRes?.data) {
       rows.forEach((i) => {
-        if (!tableRes?.data?.list?.find((n) => n.productId === i.productId)) {
+        if (!tableRes?.data?.records?.find((n) => n.articleNumber === i.articleNumber)) {
           list.push(i);
         }
       });
@@ -93,8 +78,8 @@ const TableSelect = (props: IProps) => {
 
   useEffect(() => {
     if (data) {
-      const list: number[] = [];
-      data?.forEach((i) => i.productId && list.push(i.productId));
+      const list: string[] = [];
+      data?.forEach((i) => i.articleNumber && list.push(i.articleNumber));
       setRows(data);
       setSelectedRowKeys(list);
     }
@@ -118,14 +103,14 @@ const TableSelect = (props: IProps) => {
         </Col>
       </Row>
       <Table
-        rowKey="productId"
+        rowKey="articleNumber"
         rowSelection={rowSelection}
         columns={columns}
-        dataSource={tableRes?.data?.list || []}
+        dataSource={tableRes?.data?.records || []}
         scroll={{ y: '266px' }}
         size="small"
         pagination={{
-          current: tableRes?.data?.pageNum,
+          current: tableRes?.data?.current,
           total: tableRes?.data?.total,
           onChange: handlePagination,
           pageSizeOptions: [10, 20, 30, 50],

@@ -7,7 +7,7 @@ import { CommonButton } from '../CommonButton';
 
 export type GoodsValue = {
   fileIds?: number[];
-  products?: defs.product.BackendProduct[];
+  products?: defs.bakery.NewArticleItem[];
 };
 
 export type StoreSelectProps = {
@@ -22,10 +22,14 @@ export type StoreSelectProps = {
   disabled?: boolean;
   value?: GoodsValue;
   tagsMaxLen?: number;
-  defaultValue?: defs.promotion.Product[];
+  depId?: string;
+  storeId?: string;
+  defaultValue?: defs.bakery.NewArticleItem[];
 };
 const GoodsSelect = (props: StoreSelectProps) => {
   const {
+    storeId,
+    depId,
     onChange,
     disabled,
     value,
@@ -36,10 +40,10 @@ const GoodsSelect = (props: StoreSelectProps) => {
     defaultValue = [],
   } = props;
   const [open, setOpen] = useState(false);
-  const [data, setData] = useState<defs.product.BackendProduct[] | undefined>(
+  const [data, setData] = useState<defs.bakery.NewArticleItem[] | undefined>(
     value?.products,
   );
-  const [data1, setData1] = useState<defs.product.BackendProduct[] | undefined>(
+  const [data1, setData1] = useState<defs.bakery.NewArticleItem[] | undefined>(
     value?.products,
   );
   const [fileIds, setIds] = useState<number[] | undefined>(value?.fileIds);
@@ -47,10 +51,10 @@ const GoodsSelect = (props: StoreSelectProps) => {
     if (onChange) {
       if (data?.length || fileIds?.length) {
         onChange({ products: data, fileIds });
-        const newData1: defs.product.BackendProduct[] =
+        const newData1: defs.bakery.NewArticleItem[] =
           fileIds?.map((i) => ({
-            productId: i,
-            productNameEN: `file-${i}`,
+            articleNumber: i.toString(),
+            description: `file-${i}`,
           })) || [];
         if (data?.length) {
           newData1.push(...data);
@@ -63,7 +67,7 @@ const GoodsSelect = (props: StoreSelectProps) => {
     }
     setOpen(false);
   };
-  const handleChange = (products: defs.product.BackendProduct[]) => {
+  const handleChange = (products: defs.bakery.NewArticleItem[]) => {
     setData(products);
   };
   const handleCancel = () => {
@@ -79,18 +83,7 @@ const GoodsSelect = (props: StoreSelectProps) => {
   const isTagsMax = data?.length ? data?.length > tagsMaxLen : false;
   useEffect(() => {
     if (data && data.length > 0) return;
-    setData(
-      defaultValue.map((item) => {
-        const { id = 0, name = '', upc = 0 } = item;
-
-        return {
-          ...item,
-          productNameEN: name,
-          productId: +id,
-          articleNumber: +upc,
-        };
-      }),
-    );
+    setData(defaultValue);
   }, [defaultValue.length]);
   return (
     <div className={`ant-select ${styles.storeSelectCard}`}>
@@ -102,7 +95,7 @@ const GoodsSelect = (props: StoreSelectProps) => {
           {showTags?.length ? (
             <div className={styles.storeTags}>
               {showTags?.map((item) => (
-                <Tag key={item.productId}>{item.productNameEN}</Tag>
+                <Tag key={item.articleNumber}>{item.description}</Tag>
               ))}
               {isTagsMax && <Tag>...</Tag>}
             </div>
@@ -130,6 +123,8 @@ const GoodsSelect = (props: StoreSelectProps) => {
           width="1000px"
         >
           <SelectCard
+            depId={depId}
+            storeId={storeId}
             onChang={handleChange}
             data={data}
             disabled={disabled}

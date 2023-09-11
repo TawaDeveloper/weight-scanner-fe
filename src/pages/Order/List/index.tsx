@@ -96,7 +96,7 @@ const OrderList = () => {
     const content = await bakeryAPI.order.exportOrderList.request(
       {
         exportItems: selectedRowKeys.map((el) => {
-          return { articleNumber: el };
+          return { orderId: el };
         }),
         ...params,
         maxCreateTime: createTime
