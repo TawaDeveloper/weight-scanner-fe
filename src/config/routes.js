@@ -3,6 +3,9 @@ import { lazy } from 'react';
 const UserLogin = lazy(() =>
   import(/* webpackChunkName: "login" */ '@/pages/user/login'),
 );
+const ForgetPassword = lazy(() =>
+  import(/* webpackChunkName: "login" */ '@/pages/user/forget-password'),
+);
 const SecurityLayout = lazy(() =>
   import(/* webpackChunkName: "SecurityLayout" */ '@/layouts/SecurityLayout'),
 );
@@ -65,6 +68,11 @@ const baseRoutes = [
     name: 'user',
     component: UserLayout,
     children: [
+      {
+        path: 'forget-password',
+        name: 'forget-password',
+        component: ForgetPassword,
+      },
       {
         path: 'login',
         name: 'login',

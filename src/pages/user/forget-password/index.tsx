@@ -2,7 +2,7 @@ import React from 'react';
 import { useRequest } from 'ahooks';
 import { Alert, Button, Form, Input } from 'antd';
 import { useRecoilState } from 'recoil';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { t } from 'i18next';
 // import MD5 from "md5";
 
@@ -28,7 +28,7 @@ interface Props {
   userLogin?: Record<string, any>;
   submitting?: boolean;
 }
-const Login: React.FC<Props> = (props) => {
+const ForgetPassword: React.FC<Props> = (props) => {
   const { userLogin = {}, submitting } = props;
   const { loading, runAsync } = useRequest(
     backofficeAPI.webAdmin.login.request,
@@ -148,11 +148,35 @@ const Login: React.FC<Props> = (props) => {
               />
             </Form.Item>
 
-            <div className={styles.forgotPassword}>
-              <Link to={'/user/forget-password'}>
-                {t<string>('pages.login.forgotPassword')}
-              </Link>
-            </div>
+            <div className={styles.label}>New Password</div>
+            <Form.Item
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: t<string>('pages.login.password.required'),
+                },
+                {
+                  validator: (rule, value) => {
+                    let message;
+                    if (value?.includes(' ')) {
+                      message = t<string>('pages.login.password.valid');
+                    }
+
+                    if (message) {
+                      return Promise.reject(new Error(message));
+                    }
+                    return Promise.resolve();
+                  },
+                },
+              ]}
+            >
+              <Input.Password
+                size="large"
+                className={styles.input}
+                placeholder={t<string>('pages.login.password.placeholder')}
+              />
+            </Form.Item>
 
             <Button
               loading={loading}
@@ -180,4 +204,4 @@ const Login: React.FC<Props> = (props) => {
   );
 };
 
-export default Login;
+export default ForgetPassword;
