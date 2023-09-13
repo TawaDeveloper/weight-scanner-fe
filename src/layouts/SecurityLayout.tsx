@@ -20,13 +20,11 @@ const SecurityLayout: React.FC = () => {
 
   useMount(() => {
     if (login.isLogin) {
-      const { routePremiss, indexPath, filteredMenus } = getPermissionsMenus(
-        [],
-      );
+      const { routePremiss, filteredMenus } = getPermissionsMenus([]);
       setLogin({
         ...login,
         routes: routePremiss,
-        indexPath,
+        indexPath: login.indexPath,
         routesFlat: filteredMenus,
       });
     }

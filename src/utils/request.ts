@@ -81,7 +81,7 @@ const requestHandler = (url: string, options: Record<string, any>) => {
         lang,
         'time-pst': moment.tz.guess(),
       }
-    : {};
+    : { lang, 'time-pst': moment.tz.guess() };
 
   return {
     url,

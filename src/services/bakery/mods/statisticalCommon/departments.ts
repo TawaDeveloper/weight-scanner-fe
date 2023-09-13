@@ -12,7 +12,7 @@ export type departmentsResponse = Promise<defs.bakery.Response<Set<string>>>;
 export function request(options?: departmentsOptions): departmentsResponse {
   const host = getEnvHost();
   const url =
-    host + '/bakery/hot-deli-bakery/api/statistical/common/departments';
+    host + '/hot-deli-bakery/api/statistical/common/departments';
   const fetchOption = {
     method: 'get',
     headers: {

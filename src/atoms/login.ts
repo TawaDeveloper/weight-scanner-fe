@@ -24,7 +24,7 @@ export const loginStateAtom = atom<LoginStateAtomType>({
     // isLogin: true,
     token,
     permission: {},
-    indexPath: '',
+    indexPath: '/report/reportByCategory',
     routesFlat: [],
     routes: [],
   },

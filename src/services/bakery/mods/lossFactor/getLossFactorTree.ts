@@ -14,7 +14,7 @@ export function request(
   options?: getLossFactorTreeOptions,
 ): getLossFactorTreeResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/loss/factor/tree';
+  const url = host + '/hot-deli-bakery/api/loss/factor/tree';
   const fetchOption = {
     method: 'get',
     headers: {

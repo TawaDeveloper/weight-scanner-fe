@@ -26,7 +26,7 @@ export function request(
   options?: articlesOptions,
 ): articlesResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/statistical/common/articles';
+  const url = host + '/hot-deli-bakery/api/statistical/common/articles';
   const fetchOption = {
     method: 'get',
     headers: {
