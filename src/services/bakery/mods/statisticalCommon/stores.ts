@@ -20,7 +20,7 @@ export function request(
   options?: storesOptions,
 ): storesResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/statistical/common/stores';
+  const url = host + '/hot-deli-bakery/api/statistical/common/stores';
   const fetchOption = {
     method: 'get',
     headers: {

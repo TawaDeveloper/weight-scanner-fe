@@ -16,9 +16,9 @@ const UserLayout = lazy(() =>
 const Account = lazy(() =>
   import(/* webpackChunkName: "Account" */ '@/pages/Permission/Account'),
 );
-const RolePermissions = lazy(() =>
-  import(/* webpackChunkName: "RolePermissions" */ '@/pages/Permission/Role'),
-);
+// const RolePermissions = lazy(() =>
+//   import(/* webpackChunkName: "RolePermissions" */ '@/pages/Permission/Role'),
+// );
 const Organization = lazy(() =>
   import(
     /* webpackChunkName: "Organization" */ '@/pages/Permission/Organization'
@@ -50,6 +50,9 @@ const ReportByProduct = lazy(() =>
 );
 const ReportByCategory = lazy(() =>
   import(/* webpackChunkName: "Menu" */ '@/pages/SalesReport/ReportByCategory'),
+);
+const LossFactor = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/Setting/LossFactor'),
 );
 const baseRoutes = [
   {
@@ -143,16 +146,6 @@ const salesReportMenus = [
   },
 ];
 
-const salesTargetSettingMenus = [
-  {
-    path: 'index',
-    name: 'menus.top.SalesTargetSetting',
-    component: SalesTargetSetting,
-    code: 'salesTargetSetting',
-    parentCode: 'sales-target-setting',
-    skipAuthentication: true,
-  },
-]
 const permissionMenus = [
   {
     path: 'organization',
@@ -176,5 +169,28 @@ const permissionMenus = [
     parentCode: 'permissions',
   },
 ];
-
-export { permissionMenus, salesTargetSettingMenus, orderMenus, baseRoutes, salesReportMenus };
+const settingMenus = [
+  {
+    path: 'lossfactor',
+    name: 'menus.top.lossFactor',
+    component: LossFactor,
+    code: 'lossFactor',
+    parentCode: 'setting',
+    skipAuthentication: true,
+  },
+  {
+    path: 'saletarget',
+    name: 'menus.top.SalesTargetSetting',
+    component: SalesTargetSetting,
+    code: 'salesTargetSetting',
+    parentCode: 'setting',
+    skipAuthentication: true,
+  },
+];
+export {
+  permissionMenus,
+  orderMenus,
+  baseRoutes,
+  salesReportMenus,
+  settingMenus,
+};
