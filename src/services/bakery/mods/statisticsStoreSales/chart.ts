@@ -26,7 +26,7 @@ export type chartParam = {
 export type chartOptions = Record<string, any>;
 
 export type chartResponse = Promise<
-  defs.bakery.Response<Array<defs.bakery.StatisticsStoreSales>>
+  defs.bakery.Response<Array<any>>
 >;
 
 /**

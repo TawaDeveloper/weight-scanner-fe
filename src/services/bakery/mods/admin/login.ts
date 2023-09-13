@@ -1,10 +1,10 @@
 /// <reference path="../../api.d.ts" />
 import sendRequest, { getEnvHost } from '@/utils/request';
 
-export type loginBody = defs.bakery.LoginDTO;
+export type loginBody = any;
 export type loginOptions = Record<string, any>;
 
-export type loginResponse = Promise<defs.bakery.Response<defs.bakery.LoginVO>>;
+export type loginResponse = Promise<defs.bakery.Response<any>>;
 
 /**
  * @desc 用户登陆

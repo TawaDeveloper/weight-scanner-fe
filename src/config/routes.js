@@ -3,6 +3,9 @@ import { lazy } from 'react';
 const UserLogin = lazy(() =>
   import(/* webpackChunkName: "login" */ '@/pages/user/login'),
 );
+const ForgetPassword = lazy(() =>
+  import(/* webpackChunkName: "login" */ '@/pages/user/forget-password'),
+);
 const SecurityLayout = lazy(() =>
   import(/* webpackChunkName: "SecurityLayout" */ '@/layouts/SecurityLayout'),
 );
@@ -27,6 +30,18 @@ const Menu = lazy(() =>
 const OrderList = lazy(() =>
   import(/* webpackChunkName: "Menu" */ '@/pages/Order/List'),
 );
+const OrderDetail = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/Order/Detail'),
+);
+const PoDetail = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/Order/PoDetail'),
+);
+const CreateOrder = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/Order/Create'),
+);
+const SalesTargetSetting = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/SalesTargetSetting/List'),
+);
 const ReportByStore = lazy(() =>
   import(/* webpackChunkName: "Menu" */ '@/pages/SalesReport/ReportByStore'),
 );
@@ -35,9 +50,6 @@ const ReportByProduct = lazy(() =>
 );
 const ReportByCategory = lazy(() =>
   import(/* webpackChunkName: "Menu" */ '@/pages/SalesReport/ReportByCategory'),
-);
-const LossFactor = lazy(() =>
-  import(/* webpackChunkName: "Menu" */ '@/pages/Setting/LossFactor'),
 );
 const baseRoutes = [
   {
@@ -57,6 +69,11 @@ const baseRoutes = [
     component: UserLayout,
     children: [
       {
+        path: 'forget-password',
+        name: 'forget-password',
+        component: ForgetPassword,
+      },
+      {
         path: 'login',
         name: 'login',
         component: UserLogin,
@@ -72,20 +89,31 @@ const orderMenus = [
     component: OrderList,
     code: 'list',
     parentCode: 'order',
+    skipAuthentication: true,
   },
   {
     path: 'create',
-    name: 'menus.top.order',
-    component: OrderList,
+    name: 'menus.top.createOrder',
+    component: CreateOrder,
     code: 'create',
     parentCode: 'order',
+    skipAuthentication: true,
   },
   {
     path: 'detail',
-    name: 'menus.top.order',
-    component: OrderList,
+    name: 'menus.top.orderDetails',
+    component: OrderDetail,
     code: 'detail',
     parentCode: 'order',
+    skipAuthentication: true,
+  },
+  {
+    path: 'po-detail',
+    name: 'menus.top.poOrderDetail',
+    component: PoDetail,
+    code: 'po-detail',
+    parentCode: 'order',
+    skipAuthentication: true,
   },
 ];
 const salesReportMenus = [
@@ -114,21 +142,18 @@ const salesReportMenus = [
     skipAuthentication: true,
   },
 ];
+
+const salesTargetSettingMenus = [
+  {
+    path: 'index',
+    name: 'menus.top.SalesTargetSetting',
+    component: SalesTargetSetting,
+    code: 'salesTargetSetting',
+    parentCode: 'sales-target-setting',
+    skipAuthentication: true,
+  },
+]
 const permissionMenus = [
-  {
-    path: 'list',
-    name: 'menus.top.order',
-    component: OrderList,
-    code: 'role',
-    parentCode: 'permissions',
-  },
-  {
-    path: 'role',
-    name: 'menus.top.rolePermissions',
-    component: RolePermissions,
-    code: 'role',
-    parentCode: 'permissions',
-  },
   {
     path: 'organization',
     name: 'menus.top.organization',
@@ -152,21 +177,4 @@ const permissionMenus = [
   },
 ];
 
-const settingMenus = [
-  {
-    path: 'lossfactor',
-    name: 'menus.top.lossFactor',
-    component: LossFactor,
-    code: 'lossFactor',
-    parentCode: 'setting',
-    skipAuthentication: true,
-  },
-];
-
-export {
-  permissionMenus,
-  orderMenus,
-  baseRoutes,
-  salesReportMenus,
-  settingMenus,
-};
+export { permissionMenus, salesTargetSettingMenus, orderMenus, baseRoutes, salesReportMenus };

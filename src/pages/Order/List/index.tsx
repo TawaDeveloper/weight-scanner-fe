@@ -1,9 +1,8 @@
 import { Card } from 'antd';
 import { useRequest } from 'ahooks';
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import MarioListContent from '@tawa/mario-list-content';
 import { TableQueryActions } from '@tawa/mario-hooks/lib/useTableQuery';
-import { t } from 'i18next';
 import { tableFields, formFields } from './fields';
 import { bakeryAPI } from '@/services';
 import AddModal from './AddModal';
@@ -12,12 +11,17 @@ import { datePickerToTimestamp, download } from '@/utils';
 import { YYYY_MM_DD_MAX, YYYY_MM_DD_MIN } from '@/constants';
 import { CommonButton } from '@/components/CommonButton';
 import './index.less';
+// import { useNavigate } from 'react-router-dom';
 
 const OrderList = () => {
   const auditModalRef = useRef<any>();
   const actionRef = useRef<TableQueryActions>(null);
   const [show, setShow] = useState<{ type: string; data?: any }>();
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
+  const { data: optionsData, loading: optionLoading } = useRequest(
+    bakeryAPI.order.getListOptions.request,
+  );
+  // const navigate = useNavigate();
 
   const handleClose = () => {
     actionRef.current?.onQuery();
@@ -49,34 +53,9 @@ const OrderList = () => {
     fields: tableFields,
     data: data?.data?.records,
     total: data?.data?.total,
-    rowKey: 'id',
+    rowKey: 'orderId',
     rowSelection,
-    nextFields: [
-      {
-        key: 'action',
-        name: t<string>(`pages.commentModerationManagement.operations`),
-        width: 120,
-        type: 'action',
-        fixed: 'right',
-        props: (_: any, record: any) => ({
-          options: [
-            {
-              name: t<string>(`pages.common.view`),
-              onClick: () => {
-                console.log('11', record);
-              },
-            },
-            record.status === 1 && {
-              name: t<string>(`pages.common.cancel`),
-              onClick: () => {
-                // bakeryAPI.order.
-                console.log('121');
-              },
-            },
-          ],
-        }),
-      },
-    ],
+    nextFields: [],
     scroll: { x: 1260 },
     pagination: {
       defaultPageSize: 20,
@@ -85,16 +64,40 @@ const OrderList = () => {
     },
   };
 
-  const formProps = {
-    fields: formFields,
-  };
+  const formProps = useMemo(() => {
+    return {
+      fields: formFields.map((el) => {
+        if (el.key === 'storeId' || el.key === 'dep') {
+          return {
+            ...el,
+            props: () => ({
+              options:
+                el.key === 'storeId'
+                  ? optionsData &&
+                    optionsData?.data &&
+                    optionsData?.data?.stores
+                    ? optionsData?.data?.stores
+                    : []
+                  : optionsData && optionsData?.data && optionsData?.data?.deps
+                  ? optionsData?.data?.deps
+                  : [],
+            }),
+          };
+        } else {
+          return { ...el };
+        }
+      }),
+    };
+  }, [optionsData]);
 
   const handleBatch = async (params: { [x in string]: any }) => {
     const { createTime } = params || {};
 
     const content = await bakeryAPI.order.exportOrderList.request(
       {
-        ids: selectedRowKeys,
+        exportItems: selectedRowKeys.map((el) => {
+          return { orderId: el };
+        }),
         ...params,
         maxCreateTime: createTime
           ? datePickerToTimestamp(createTime[1], YYYY_MM_DD_MAX).toString()
@@ -113,7 +116,7 @@ const OrderList = () => {
   return (
     <Card>
       <div className="flex">
-        <div className="page-title">销量&销售额数据表</div>
+        <div className="page-title"></div>
         <div className="button-group">
           <CommonButton
             onClick={() => actionRef.current?.onQuery({ type: 'export' })}
@@ -123,20 +126,21 @@ const OrderList = () => {
           <CommonButton>新建订单</CommonButton>
         </div>
       </div>
-
-      <MarioListContent
-        ref={actionRef}
-        formProps={formProps}
-        tableProps={tableProps}
-        fetchData={(values: any) => {
-          if (values.type === 'export') {
-            handleBatch(values);
-          } else {
-            run(values);
-          }
-        }}
-        toolbar={<></>}
-      />
+      {!optionLoading && (
+        <MarioListContent
+          ref={actionRef}
+          formProps={formProps}
+          tableProps={tableProps}
+          fetchData={(values: any) => {
+            if (values.type === 'export') {
+              handleBatch(values);
+            } else {
+              run(values);
+            }
+          }}
+          toolbar={<></>}
+        />
+      )}
       {show?.type === 'add' && <AddModal onClose={handleClose} />}
       <AuditModal
         onPageQuery={() => {

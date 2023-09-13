@@ -27,7 +27,7 @@ export function request(
 ): reportResponse {
   const host = getEnvHost();
   const url =
-    host + '/hot-deli-bakery/api/statistical/sales/store/report';
+    host + '/bakery/hot-deli-bakery/api/statistical/sales/store/report';
   const fetchOption = {
     method: 'get',
     headers: {

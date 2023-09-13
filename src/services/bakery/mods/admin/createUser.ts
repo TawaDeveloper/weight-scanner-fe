@@ -1,7 +1,7 @@
 /// <reference path="../../api.d.ts" />
 import sendRequest, { getEnvHost } from '@/utils/request';
 
-export type createUserBody = defs.bakery.CreateUserDTO;
+export type createUserBody = any;
 export type createUserOptions = Record<string, any>;
 
 export type createUserResponse = Promise<defs.bakery.Response<number>>;

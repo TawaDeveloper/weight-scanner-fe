@@ -3,7 +3,7 @@ import sendRequest, { getEnvHost } from '@/utils/request';
 
 export type getPrTestOptions = Record<string, any>;
 
-export type getPrTestResponse = Promise<Array<defs.bakery.DDXX>>;
+export type getPrTestResponse = Promise<Array<defs.bakery.SapPrEntity>>;
 
 /**
  * @desc getPrTest

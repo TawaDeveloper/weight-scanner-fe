@@ -2,14 +2,13 @@ import React from 'react';
 import { useRequest } from 'ahooks';
 import { Alert, Button, Form, Input } from 'antd';
 import { useRecoilState } from 'recoil';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { t } from 'i18next';
-import { LockTwoTone, UserOutlined } from '@ant-design/icons';
 // import MD5 from "md5";
 
 import { backofficeAPI } from '@/services';
 import { loginStateAtom } from '@/atoms/login';
-import { Office, SelectLang } from '@/components';
+import { SelectLang } from '@/components';
 import slogon from '@/assets/99-Ranch-Market.png';
 
 import styles from './index.less';
@@ -66,15 +65,7 @@ const Login: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <div className={styles.systemHeader}>
-        <div className={styles.innerWrapper}>
-          <img src={slogon} className={styles.slogon} alt="" />
-        </div>
-      </div>
       <div className={styles.main}>
-        <div className={styles.brandDisplay}>
-          <Office />
-        </div>
         <div className={styles.outerContainer}>
           <div className={styles.selectLang}>
             <SelectLang />
@@ -82,6 +73,7 @@ const Login: React.FC<Props> = (props) => {
 
           <div className={styles.header}>
             <img src={slogon} className={styles.slogon} alt="" />
+            <div className={styles.title}>99 Ranch Market</div>
           </div>
 
           <Form
@@ -93,6 +85,7 @@ const Login: React.FC<Props> = (props) => {
             {status === 'error' && !submitting && (
               <LoginMessage content={t<string>('pages.login.errorMessage')} />
             )}
+            <div className={styles.label}>Account</div>
             <Form.Item
               name="username"
               rules={[
@@ -121,10 +114,11 @@ const Login: React.FC<Props> = (props) => {
             >
               <Input
                 size="large"
-                prefix={<UserOutlined className={styles.prefixIcon} />}
+                className={styles.input}
                 placeholder={t<string>('pages.login.user.placeholder')}
               />
             </Form.Item>
+            <div className={styles.label}>Password</div>
             <Form.Item
               name="password"
               rules={[
@@ -149,29 +143,21 @@ const Login: React.FC<Props> = (props) => {
             >
               <Input.Password
                 size="large"
-                prefix={<LockTwoTone className={styles.prefixIcon} />}
+                className={styles.input}
                 placeholder={t<string>('pages.login.password.placeholder')}
               />
             </Form.Item>
 
-            <div
-              style={{
-                marginBottom: 88,
-              }}
-            >
-              <a
-                href="https://support.tawa.com/password/new"
-                style={{
-                  float: 'right',
-                }}
-              >
+            <div className={styles.forgotPassword}>
+              <Link to={'/user/forget-password'}>
                 {t<string>('pages.login.forgotPassword')}
-              </a>
+              </Link>
             </div>
 
             <Button
               loading={loading}
               size="large"
+              className={styles.button}
               style={{
                 width: '100%',
               }}

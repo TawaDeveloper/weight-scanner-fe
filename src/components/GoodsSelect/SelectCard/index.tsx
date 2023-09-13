@@ -4,68 +4,45 @@ import { t } from 'i18next';
 import styles from './index.less';
 import SelectedTable from './SelectedTable';
 import TableSelect from './TableSelect';
-import ExcelLoad from './ExcelLoad';
 
 type IProps = {
+  storeId?: string
+  depId?: string
   onChang?: (
-    products: defs.product.BackendProduct[],
+    products: defs.bakery.NewArticleItem[],
     fileIds?: number[],
   ) => void;
   onFileIdsChange?: (fileIds: number[]) => void;
-  data?: defs.product.BackendProduct[];
+  data?: defs.bakery.NewArticleItem[];
   disabled?: boolean;
 };
 
 const SelectCard = (props: IProps) => {
-  const { onChang, data, disabled = false, onFileIdsChange } = props;
-  const [tableV, setTableV] = useState<defs.product.BackendProduct[]>(
+  const { onChang, data, disabled = false, storeId, depId } = props;
+  const [tableV, setTableV] = useState<defs.bakery.NewArticleItem[]>(
     data || [],
   );
-  const handleSelect = (values: defs.product.BackendProduct[]) => {
+  const handleSelect = (values: defs.bakery.NewArticleItem[]) => {
     setTableV(values);
     if (onChang) {
       onChang(values);
     }
   };
-  const handleTableRemove = (newValue: defs.product.BackendProduct) => {
-    const values = tableV.filter((i) => i.productId !== newValue.productId);
+  const handleTableRemove = (newValue: defs.bakery.NewArticleItem) => {
+    const values = tableV.filter((i) => i.articleNumber !== newValue.articleNumber);
     setTableV(values);
     if (onChang) {
       onChang(values);
     }
   };
-  const handleFiles = (files: defs.promotion.Product[]) => {
-    if (onFileIdsChange) {
-      // console.log(files);
-      if (onChang) {
-        onChang([
-          ...tableV,
-          ...files.map((el) => {
-            return { ...el, productNameEN: el.name, productId: el.id };
-          }),
-        ]);
-      }
-      setTableV([
-        ...tableV,
-        ...files.map((el) => {
-          return { ...el, productNameEN: el.name, productId: el.id };
-        }),
-      ]);
-      // onFileIdsChange(files.map((el) => el.id || 0));
-    }
-  };
+
   const tabs = [
     {
       label: t<string>(`components.goodsSelect.title0002`),
       children: (
-        <TableSelect onChang={handleSelect} data={tableV} disabled={disabled} />
+        <TableSelect onChang={handleSelect} data={tableV} storeId={storeId} depId={depId} disabled={disabled} />
       ),
       key: 'TableSelect',
-    },
-    {
-      label: t<string>(`components.goodsSelect.title0013`),
-      children: <ExcelLoad onChange={handleFiles} disabled={disabled} />,
-      key: 'EXCELExport',
     },
   ];
   return (

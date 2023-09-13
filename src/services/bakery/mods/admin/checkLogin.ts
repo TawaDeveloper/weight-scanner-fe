@@ -4,7 +4,7 @@ import sendRequest, { getEnvHost } from '@/utils/request';
 export type checkLoginOptions = Record<string, any>;
 
 export type checkLoginResponse = Promise<
-  defs.bakery.Response<defs.bakery.LoginVO>
+  defs.bakery.Response<any>
 >;
 
 /**

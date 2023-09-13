@@ -4,6 +4,8 @@ import {
   enumsObjectToArray,
   orderStatus,
 } from '@/constants/enums';
+import { Link } from 'react-router-dom';
+import { timestampToZone } from '@/utils';
 
 // "brandId": 0,
 // "brandNameEN": "string",
@@ -16,14 +18,29 @@ import {
 // "updatedTime": "2023-07-11T07:11:01.256Z"
 export const tableFields = [
   {
-    key: 'id',
+    key: 'orderId',
+    width: 100,
+    name: t<string>(`pages.orderList.title0001`),
+    render: (value: string) => {
+      return <Link to={`/order/detail?id=${value}`}>{value}</Link>;
+    },
+  },
+  {
+    key: 'pr',
     width: 100,
     name: t<string>(`pages.orderList.title0091`),
   },
   {
-    key: 'sapPo',
+    key: 'po',
     width: 100,
     name: t<string>(`pages.orderList.title0092`),
+    render: (value: string, record: any) => {
+      return (
+        <Link to={`/order/po-detail?po=${value}&id=${record.orderId}`}>
+          {value}
+        </Link>
+      );
+    },
   },
   {
     key: 'storeName',
@@ -86,6 +103,9 @@ export const tableFields = [
     key: 'estDeliveredTime',
     width: 200,
     name: t<string>(`pages.orderList.title0040`),
+    render: (value: string, record: any) => {
+      return timestampToZone(value, record.timezone);
+    },
   },
 ];
 
@@ -95,8 +115,21 @@ export const formFields = [
     name: t<string>(`pages.orderList.title0001`),
   },
   {
-    key: 'createUserName',
-    name: t<string>(`pages.orderList.title0088`),
+    key: 'pr',
+    name: t<string>(`pages.orderList.title0091`),
+  },
+  {
+    key: 'po',
+    name: t<string>(`pages.orderList.title0092`),
+  },
+  // {
+  //   key: 'storeGroup',
+  //   name: t<string>(`pages.orderList.title0089`),
+  // },
+  {
+    key: 'storeId',
+    name: t<string>(`pages.orderList.title0007`),
+    type: 'select',
   },
   {
     key: 'createTime',
@@ -104,17 +137,13 @@ export const formFields = [
     type: 'date-range-picker',
   },
   {
-    key: 'storeGroup',
-    name: t<string>(`pages.orderList.title0089`),
+    key: 'createUserName',
+    name: t<string>(`pages.orderList.title0088`),
   },
-  {
-    key: 'storeId',
-    name: t<string>(`pages.orderList.title0007`),
-  },
-  {
-    key: 'storeName',
-    name: t<string>(`pages.orderList.title0048`),
-  },
+  // {
+  //   key: 'storeName',
+  //   name: t<string>(`pages.orderList.title0048`),
+  // },
   {
     key: 'dep',
     name: t<string>(`pages.orderList.title0090`),

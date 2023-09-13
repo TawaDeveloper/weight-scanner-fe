@@ -12,7 +12,7 @@ export type getNewOptionsResponse = Promise<
  */
 export function request(options?: getNewOptionsOptions): getNewOptionsResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/order/new/options';
+  const url = host + '/hot-deli-bakery/api/order/new/options';
   const fetchOption = {
     method: 'get',
     headers: {

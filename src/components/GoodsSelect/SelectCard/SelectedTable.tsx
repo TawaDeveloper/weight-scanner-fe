@@ -1,47 +1,28 @@
-import { Button, Table, Image } from 'antd';
+import { Button, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { t } from 'i18next';
 import styles from './index.less';
 
 type IProps = {
-  data?: defs.product.BackendProduct[];
-  handleRemove: (item: defs.product.BackendProduct) => void;
+  data?: defs.bakery.NewArticleItem[];
+  handleRemove: (item: defs.bakery.NewArticleItem) => void;
   disabled?: boolean;
 };
 const SelectedTable = (props: IProps) => {
   const { data = [], handleRemove, disabled } = props;
 
-  const columns: ColumnsType<defs.product.BackendProduct> = [
+  const columns: ColumnsType<defs.bakery.NewArticleItem> = [
     {
       title: t<string>(`components.goodsSelect.title0005`),
-      dataIndex: 'productNameEN',
-      key: 'productNameEN',
+      dataIndex: 'descriptionEn',
+      key: 'descriptionEn',
       align: 'center',
       fixed: 'left',
     },
     {
-      title: t<string>(`components.goodsSelect.title0006`),
-      dataIndex: 'productId',
-      key: 'productId',
-      align: 'center',
-    },
-    {
-      title: t<string>(`components.goodsSelect.title0007`),
-      dataIndex: 'upc',
-      key: 'upc',
-      align: 'center',
-    },
-    {
-      title: t<string>(`components.goodsSelect.title0009`),
-      dataIndex: 'image',
-      key: 'image',
-      render: (url) => <Image width="50px" src={url} />,
-      align: 'center',
-    },
-    {
-      title: t<string>(`components.goodsSelect.title0008`),
-      dataIndex: 'category',
-      key: 'category',
+      title: t<string>(`pages.orderList.title0095`),
+      dataIndex: 'articleNumber',
+      key: 'articleNumber',
       align: 'center',
     },
     {
@@ -64,7 +45,7 @@ const SelectedTable = (props: IProps) => {
     <div className={styles.selectedTableCard}>
       <h3>{t<string>(`components.goodsSelect.title0010`)}</h3>
       <Table
-        rowKey="productId"
+        rowKey="articleNumber"
         columns={columns}
         dataSource={data}
         scroll={{ y: '335px', x: '600px' }}

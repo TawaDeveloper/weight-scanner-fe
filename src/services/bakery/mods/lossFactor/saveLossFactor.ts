@@ -14,7 +14,7 @@ export function request(
   options?: saveLossFactorOptions,
 ): saveLossFactorResponse {
   const host = getEnvHost();
-  const url = host + '/hot-deli-bakery/api/loss/factor/save';
+  const url = host + '/bakery/hot-deli-bakery/api/loss/factor/save';
   const fetchOption = {
     method: 'post',
     headers: {
