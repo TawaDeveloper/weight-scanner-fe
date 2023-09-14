@@ -13,11 +13,14 @@ import './index.less';
 import { GoodsSelect } from '@/components';
 import { WEEK_TYPE } from '@/constants/enums';
 import { t } from 'i18next';
+import { useNavigate } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 const CreateOrder = () => {
   const actionRef = useRef<TableQueryActions>(null);
   const [show, setShow] = useState<{ type: string; data?: any }>();
+  const [order, setOrder] = useState<defs.bakery.CreateOrderVO>();
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useState({
     storeId: '',
     depId: '',
@@ -29,11 +32,14 @@ const CreateOrder = () => {
   const { data: optionsData, loading: optionLoading } = useRequest(
     bakeryAPI.order.getNewOptions.request,
   );
-  // const navigate = useNavigate();
 
-  const handleClose = () => {
-    actionRef.current?.onQuery();
+  const handleClose = (type?: string) => {
     setShow(undefined);
+    if (type === 'go') {
+      navigate(`/order/detail?id=${order?.orderId}`)
+    } else {
+      actionRef.current?.onQuery();
+    }
   };
 
   const getList = (params: any) => {
@@ -143,6 +149,14 @@ const CreateOrder = () => {
           return {
             ...el,
             props: () => ({
+              onChange: (value: string) => {
+                setSearchParams(_searchParams => {
+                  return {
+                    ..._searchParams,
+                    [el.key]: value
+                  }
+                })
+              },
               options:
                 el.key === 'storeId'
                   ? optionsData &&
@@ -161,7 +175,7 @@ const CreateOrder = () => {
       }),
     };
   }, [optionsData]);
-
+  
   return (
     <Card>
       <div className="flex">
@@ -283,7 +297,10 @@ const CreateOrder = () => {
               })
               .then((res) => {
                 if (res.data && res.success) {
-                  actionRef.current?.onQuery();
+                  setOrder(res.data);
+                  setShow({
+                    type: 'add',
+                  });
                 }
               });
           }}

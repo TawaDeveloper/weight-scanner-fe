@@ -22,6 +22,7 @@ const SelectCard = (props: IProps) => {
   const [tableV, setTableV] = useState<defs.bakery.NewArticleItem[]>(
     data || [],
   );
+  console.log(tableV)
   const handleSelect = (values: defs.bakery.NewArticleItem[]) => {
     setTableV(values);
     if (onChang) {

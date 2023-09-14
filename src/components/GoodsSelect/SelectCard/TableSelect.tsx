@@ -42,7 +42,7 @@ const TableSelect = (props: IProps) => {
     data: tableRes,
     run,
   } = useRequest(bakeryAPI.order.getNewArticles.request, {
-    manual: false,
+    manual: true,
   });
   useEffect(() => {
     if (storeId && depId) {

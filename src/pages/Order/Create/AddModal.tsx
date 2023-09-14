@@ -1,32 +1,26 @@
 import { useState } from 'react';
 import { t } from 'i18next';
-import { Modal, Form, Button, Space, ModalProps, Row } from 'antd';
-import { useRequest } from 'ahooks';
-import { messageAPI } from '@/services';
-import GoodsSelect from '@/components/GoodsSelect';
+import { Modal, Button, Space, ModalProps, Row, Card } from 'antd';
 
-export type BatchType = 'upc' | 'article';
 type IProps = {
-  onClose: () => void;
+  onClose: (type?: string) => void;
 };
 export default (props: IProps) => {
   const { onClose } = props;
-  const [form] = Form.useForm();
   const [open, setOpen] = useState(true);
-  const { loading } = useRequest(messageAPI.smsMessage.add.request, {
-    manual: true,
-  });
+
   const handleClose = () => {
     onClose();
     setOpen(false);
   };
 
   const handleOk = () => {
-    form.validateFields().then((values) => console.log(values));
+    onClose('go');
+    setOpen(false);
   };
 
   const modalProps: ModalProps = {
-    title: t<string>(`pages.websiteMessageManagement.add`),
+    title: '',
     open,
     footer: null,
     width: '640px',
@@ -35,33 +29,18 @@ export default (props: IProps) => {
 
   return (
     <Modal {...modalProps}>
-      <Form
-        labelCol={{ span: 8 }}
-        form={form}
-        name="import_form"
-        autoComplete="off"
-        scrollToFirstError
-      >
-        <Form.Item
-          name="file"
-          label={t<string>(`pages.smsManagement.uploadLabel`)}
-          rules={[{ required: true }]}
-        >
-          <GoodsSelect
-            type="button"
-            buttonType="primary"
-            buttonTitle={t('select_product') as string}
-          />
-        </Form.Item>
-      </Form>
-
+      <Card style={{
+        padding: '24px',
+        marginBottom: '24px',
+        border: 'none'
+      }}>{t('pages.orderList.title0115') as string}</Card>
       <Row justify="end">
         <Space>
-          <Button onClick={handleClose} loading={loading}>
-            {t<string>(`button.common.cancel`)}
+          <Button onClick={handleClose}>
+            {t<string>(`button.common.close`)}
           </Button>
-          <Button onClick={handleOk} type="primary" loading={loading}>
-            {t<string>(`button.common.ok`)}
+          <Button onClick={handleOk} type="primary">
+            {t<string>(`pages.orderList.title0114`)}
           </Button>
         </Space>
       </Row>
