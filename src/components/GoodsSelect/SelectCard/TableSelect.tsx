@@ -41,7 +41,14 @@ const TableSelect = (props: IProps) => {
     loading,
     data: tableRes,
     run,
-  } = useRequest(bakeryAPI.order.getNewArticles.request);
+  } = useRequest(bakeryAPI.order.getNewArticles.request, {
+    manual: false,
+  });
+  useEffect(() => {
+    if (storeId && depId) {
+      run(search)
+    }
+  }, [depId, storeId])
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
   const [rows, setRows] = useState<defs.bakery.NewArticleItem[]>([]);
 

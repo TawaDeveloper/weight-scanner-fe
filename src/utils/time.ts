@@ -92,7 +92,7 @@ export const timestampToLocal = (
 ) => {
   const m = moment(dateTime);
   if (!dateTime || !m.isValid()) {
-    return 'is invalid time';
+    return '';
   }
   return m.format(format);
 };
@@ -110,7 +110,7 @@ export const timestampToZone = (
 ) => {
   const m = moment(dateTime);
   if (!dateTime || !m.isValid()) {
-    return 'is invalid time';
+    return '';
   }
   return m.tz(zone).format(format);
 };

@@ -14,6 +14,7 @@ import moment from 'moment';
 import { RcFile } from 'antd/lib/upload';
 import { t } from 'i18next';
 import LogModal from './LogModal';
+import { INITIAL_PAGE_PARAMS } from '@/constants';
 // import { useNavigate } from 'react-router-dom';
 
 const SalesTargetSetting = () => {
@@ -38,6 +39,7 @@ const SalesTargetSetting = () => {
   const getList = (params: any) => {
     const { createTime } = params || {};
     return bakeryAPI.salesGoal.getSalesGoalForPage.request({
+      ...INITIAL_PAGE_PARAMS,
       ...params,
       month: createTime ? moment(createTime).month() + 1 : undefined,
       year: createTime ? moment(createTime).year() : undefined,

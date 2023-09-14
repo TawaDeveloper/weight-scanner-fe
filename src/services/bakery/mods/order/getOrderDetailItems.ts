@@ -16,8 +16,7 @@ export function request(
   options?: getOrderDetailItemsOptions,
 ): getOrderDetailItemsResponse {
   const host = getEnvHost();
-  console.log(host)
-  const url = 'http://10.89.24.25:8080'  + '/hot-deli-bakery/order/detail/items/page';
+  const url = host  + '/hot-deli-bakery/order/detail/items/page';
   const fetchOption = {
     method: 'get',
     headers: {

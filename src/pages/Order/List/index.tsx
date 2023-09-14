@@ -8,7 +8,7 @@ import { bakeryAPI } from '@/services';
 import AddModal from './AddModal';
 import AuditModal from './AuditModal';
 import { datePickerToTimestamp, download } from '@/utils';
-import { YYYY_MM_DD_MAX, YYYY_MM_DD_MIN } from '@/constants';
+import { INITIAL_PAGE_PARAMS, YYYY_MM_DD_MAX, YYYY_MM_DD_MIN } from '@/constants';
 import { CommonButton } from '@/components/CommonButton';
 import './index.less';
 // import { useNavigate } from 'react-router-dom';
@@ -30,7 +30,9 @@ const OrderList = () => {
 
   const getList = (params: any) => {
     const { createTime } = params || {};
+
     return bakeryAPI.order.getOrderListForPage.request({
+      ...INITIAL_PAGE_PARAMS,
       ...params,
       maxCreateTime: createTime
         ? datePickerToTimestamp(createTime[1], YYYY_MM_DD_MAX).toString()
