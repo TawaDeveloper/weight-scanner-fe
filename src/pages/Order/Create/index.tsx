@@ -46,6 +46,8 @@ const CreateOrder = () => {
       });
     return bakeryAPI.order.getNewRefArticles.request({
       ...params,
+      pageSize: undefined,
+      pageNum: undefined,
     });
   };
 
@@ -56,10 +58,10 @@ const CreateOrder = () => {
   useEffect(() => {
     if (data && data.data) {
       const _store = optionsData?.data?.stores?.find(
-        (el) => el.label === searchParams.storeId,
+        (el) => el.value?.toString() === searchParams.storeId,
       );
       const _dep = optionsData?.data?.deps?.find(
-        (el) => el.label === searchParams.depId,
+        (el) => el.value?.toString() === searchParams.depId,
       );
       setSubmitData(
         data.data.map((el) => {
@@ -113,7 +115,7 @@ const CreateOrder = () => {
         props: (_: any, record: defs.bakery.OrderNewRefArticle) => ({
           options: [
             {
-              name: t<string>(`pages.common.remove`),
+              name: t<string>(`button.common.remove`),
               onClick: () => {
                 setSubmitData((_submitData) =>
                   _submitData.filter(
@@ -173,7 +175,8 @@ const CreateOrder = () => {
               if (values && values.products && values.products.length > 0) {
                 bakeryAPI.order.getNewRefArticle
                   .request({
-                    ...searchParams,
+                    depId: searchParams.depId,
+                    storeId: searchParams.storeId,
                     articleNumbers:
                       values && values.products
                         ? values?.products.map((el) =>
@@ -185,7 +188,28 @@ const CreateOrder = () => {
                   })
                   .then((res) => {
                     if (res.data && res.success) {
-                      actionRef.current?.onQuery();
+                      const _store = optionsData?.data?.stores?.find(
+                        (el) => el.value?.toString() === searchParams.storeId,
+                      );
+                      const _dep = optionsData?.data?.deps?.find(
+                        (el) => el.value?.toString() === searchParams.depId,
+                      );
+                      const _articles = res.data;
+                      if (_articles) {
+                        setSubmitData((_submitData) => {
+                          return [
+                            ..._submitData,
+                            ..._articles.map((el) => {
+                              return {
+                                ...el,
+                                storeId: _store?.value || '',
+                                storeName: _store?.label || '',
+                                depName: _dep?.label || '',
+                              };
+                            }),
+                          ];
+                        });
+                      }
                     }
                   });
               }

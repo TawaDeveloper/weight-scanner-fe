@@ -19,7 +19,7 @@ export function request(
   options?: getNewEstDeliveredTimeOptions,
 ): getNewEstDeliveredTimeResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/order/new/estDeliveredTime';
+  const url = host + '/hot-deli-bakery/api/order/new/estDeliveredTime';
   const fetchOption = {
     method: 'get',
     headers: {

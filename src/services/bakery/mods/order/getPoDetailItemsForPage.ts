@@ -16,7 +16,7 @@ export function request(
   options?: getPoDetailItemsForPageOptions,
 ): getPoDetailItemsForPageResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/order/po/detail/items/page';
+  const url = host + '/hot-deli-bakery/api/order/po/detail/items/page';
   const fetchOption = {
     method: 'post',
     headers: {

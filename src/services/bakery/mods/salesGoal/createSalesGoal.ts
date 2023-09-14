@@ -14,7 +14,7 @@ export function request(
   options?: createSalesGoalOptions,
 ): createSalesGoalResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/sales/goal/create';
+  const url = host + '/hot-deli-bakery/api/sales/goal/create';
   const fetchOption = {
     method: 'post',
     headers: {

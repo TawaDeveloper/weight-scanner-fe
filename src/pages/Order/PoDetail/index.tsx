@@ -27,7 +27,9 @@ const OrderPoDetail = () => {
             setOrderDetail(res.data);
           }
           console.log(res);
-        });
+        }).catch(err => {
+          console.log(err)
+        })
     }
   }, [id, po]);
   const getList = (params: any) => {

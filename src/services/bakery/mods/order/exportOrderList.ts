@@ -14,7 +14,7 @@ export function request(
   options?: exportOrderListOptions,
 ): exportOrderListResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/order/list/export';
+  const url = host + '/hot-deli-bakery/api/order/list/export';
   const fetchOption = {
     method: 'post',
     headers: {

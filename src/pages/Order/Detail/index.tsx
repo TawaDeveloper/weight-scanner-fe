@@ -25,8 +25,9 @@ const OrderDetail = () => {
           if (res.success && res.data) {
             setOrderDetail(res.data);
           }
-          console.log(res);
-        });
+        }).catch(err => {
+          console.log(err)
+        })
     }
   }, [id]);
   const getList = (params: any) => {

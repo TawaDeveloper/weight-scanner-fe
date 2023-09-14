@@ -14,7 +14,7 @@ export function request(
   options?: batchImportOptions,
 ): batchImportResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/sales/goal/batch/import';
+  const url = host + '/hot-deli-bakery/api/sales/goal/batch/import';
   const fetchOption = {
     method: 'post',
     headers: {

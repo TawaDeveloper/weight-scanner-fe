@@ -22,7 +22,7 @@ export function request(
   options?: getPoBaseInfoOptions,
 ): getPoBaseInfoResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/order/po/detail/base';
+  const url = host + '/hot-deli-bakery/api/order/po/detail/base';
   const fetchOption = {
     method: 'get',
     headers: {
