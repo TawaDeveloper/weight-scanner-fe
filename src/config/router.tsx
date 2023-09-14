@@ -1,12 +1,16 @@
 import React, { lazy } from 'react';
-import { SafetyCertificateOutlined, BarChartOutlined, UnorderedListOutlined, AccountBookOutlined } from '@ant-design/icons';
+import {
+  SafetyCertificateOutlined,
+  BarChartOutlined,
+  UnorderedListOutlined,
+} from '@ant-design/icons';
 import type { MenuDataItem } from '@ant-design/pro-layout';
 import {
   permissionMenus,
   baseRoutes,
   orderMenus,
   salesReportMenus,
-  salesTargetSettingMenus,
+  settingMenus,
 } from './routes';
 
 const SecurityLayout = lazy(() => import('@/layouts/SecurityLayout'));
@@ -62,21 +66,21 @@ const menuTabs: StaticRouteType[] = [
     skipAuthentication: true,
   },
   {
-    name: 'menus.top.SalesTargetSetting',
-    path: '/sales-target-setting',
-    icon: <AccountBookOutlined />,
-    children: salesTargetSettingMenus,
-    code: 'sales-target-setting',
-    component: SecurityLayout,
-    skipAuthentication: true,
-  },
-  {
     name: 'menus.top.permission',
     path: '/permissions',
     icon: <SafetyCertificateOutlined />,
     children: permissionMenus,
     code: 'permissions',
     component: SecurityLayout,
+  },
+  {
+    name: 'menus.top.setting',
+    path: '/setting',
+    icon: <BarChartOutlined />,
+    children: settingMenus,
+    code: 'setting',
+    component: SecurityLayout,
+    skipAuthentication: true,
   },
 ];
 
