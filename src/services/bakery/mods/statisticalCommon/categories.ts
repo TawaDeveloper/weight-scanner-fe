@@ -21,7 +21,7 @@ export function request(
 ): categoriesResponse {
   const host = getEnvHost();
   const url =
-    host + '/bakery/hot-deli-bakery/api/statistical/common/categories';
+    host + '/hot-deli-bakery/api/statistical/common/categories';
   const fetchOption = {
     method: 'get',
     headers: {
