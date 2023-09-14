@@ -8,6 +8,7 @@ import { bakeryAPI } from '@/services';
 import './index.less';
 import { useSearchParams } from 'react-router-dom';
 import { timestampToLocal, timestampToZone } from '@/utils';
+import { INITIAL_PAGE_PARAMS } from '@/constants';
 
 const OrderDetail = () => {
   const actionRef = useRef<TableQueryActions>(null);
@@ -32,6 +33,7 @@ const OrderDetail = () => {
   }, [id]);
   const getList = (params: any) => {
     return bakeryAPI.order.getOrderDetailItemsForPage.request({
+      ...INITIAL_PAGE_PARAMS,
       ...params,
       orderId: id,
     });
