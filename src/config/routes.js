@@ -108,6 +108,7 @@ const orderMenus = [
     component: OrderDetail,
     code: 'detail',
     parentCode: 'order',
+    hideInMenu: true,
     skipAuthentication: true,
   },
   {
@@ -116,6 +117,7 @@ const orderMenus = [
     component: PoDetail,
     code: 'po-detail',
     parentCode: 'order',
+    hideInMenu: true,
     skipAuthentication: true,
   },
 ];

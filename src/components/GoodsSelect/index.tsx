@@ -51,15 +51,8 @@ const GoodsSelect = (props: StoreSelectProps) => {
     if (onChange) {
       if (data?.length || fileIds?.length) {
         onChange({ products: data, fileIds });
-        const newData1: defs.bakery.NewArticleItem[] =
-          fileIds?.map((i) => ({
-            articleNumber: i.toString(),
-            description: `file-${i}`,
-          })) || [];
-        if (data?.length) {
-          newData1.push(...data);
-        }
-        setData1(newData1);
+        setData(undefined)
+        setIds([])
       } else {
         onChange(undefined);
         setData1(undefined);
