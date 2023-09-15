@@ -38,7 +38,13 @@ const CreateOrder = () => {
     if (type === 'go') {
       navigate(`/order/detail?id=${order?.orderId}`)
     } else {
-      actionRef.current?.onQuery();
+      actionRef.current?.onReset()
+      setSubmitData([])
+      setSearchParams({
+        storeId: '',
+        depId: '',
+      })
+      // actionRef.current?.onQuery();
     }
   };
 
@@ -90,6 +96,8 @@ const CreateOrder = () => {
           render: (value: string, record: defs.bakery.OrderNewRefArticle) => {
             return (
               <InputNumber
+                min={0}
+                precision={0}
                 value={record.actualOrderQuantity}
                 onChange={(value: number | null) => {
                   setSubmitData((_submitData) =>

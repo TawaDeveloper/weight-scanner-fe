@@ -11,17 +11,18 @@ import { datePickerToTimestamp, download } from '@/utils';
 import { INITIAL_PAGE_PARAMS, YYYY_MM_DD_MAX, YYYY_MM_DD_MIN } from '@/constants';
 import { CommonButton } from '@/components/CommonButton';
 import './index.less';
+import { useNavigate } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 const OrderList = () => {
   const auditModalRef = useRef<any>();
+  const navigate = useNavigate();
   const actionRef = useRef<TableQueryActions>(null);
   const [show, setShow] = useState<{ type: string; data?: any }>();
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
   const { data: optionsData, loading: optionLoading } = useRequest(
     bakeryAPI.order.getListOptions.request,
   );
-  // const navigate = useNavigate();
 
   const handleClose = () => {
     actionRef.current?.onQuery();
@@ -125,7 +126,7 @@ const OrderList = () => {
           >
             批量导出
           </CommonButton>
-          <CommonButton>新建订单</CommonButton>
+          <CommonButton  onClick={() => navigate('/order/create')}>新建订单</CommonButton>
         </div>
       </div>
       {!optionLoading && (

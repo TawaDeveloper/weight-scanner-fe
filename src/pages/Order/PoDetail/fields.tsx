@@ -60,14 +60,19 @@ export const tableFields = [
     name: t<string>(`pages.orderList.title0100`),
   },
   {
-    key: 'supplier',
+    key: 'weekSalesGoal',
     width: 200,
     name: t<string>(`pages.orderList.title0103`),
   },
   {
-    key: 'supplier',
+    key: 'dayRefQuantity',
     width: 200,
     name: t<string>(`pages.orderList.title0104`),
+  },
+  {
+    key: 'dayActualQuantity',
+    width: 100,
+    name: t<string>(`pages.orderList.title0116`),
   },
 ];
 

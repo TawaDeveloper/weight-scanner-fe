@@ -88,8 +88,13 @@ export const tableFields = [
   },
   {
     key: 'supplier',
-    width: 200,
+    width: 100,
     name: t<string>(`pages.orderList.title0100`),
+  },
+  {
+    key: 'dayActualQuantity',
+    width: 100,
+    name: t<string>(`pages.orderList.title0116`),
   },
 ];
 
