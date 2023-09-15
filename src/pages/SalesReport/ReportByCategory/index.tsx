@@ -5,18 +5,20 @@ import ContentPanel from '@/components/ContentPanel';
 import DateSelect from '../components/DateSelect';
 import DepartmentSelect from '../components/DepartmentSelect';
 import styles from './index.less';
-import ProductSelect from '../components/ProductSelect';
+
 import StoreSelect from '../components/StoreSelect';
 import { bakeryAPI } from '@/services';
+import CategorySelect from '../components/CategorySelect';
 
 const ReportByCategory = () => {
   const selectedDate = useRef<number[] | null>(null);
   const selectedStoreIds = useRef<string[] | null>(null);
   const selectedDepartment = useRef<string | null>(null);
-  const selectedProducts = useRef<string[] | null>(null);
+  const selectedCategorys = useRef<string[] | null>(null);
   const selectedViewBy = useRef<string>('day');
   const [reportData, setReportData] = useState<any>([]);
   const [chartData, setChartData] = useState<any>([]);
+  const compareSamePeriod = useRef(false);
   const onSearch = async () => {
     if (selectedDepartment.current) {
       const response = await bakeryAPI.statisticalSalesCategory.report.request({
@@ -32,9 +34,11 @@ const ReportByCategory = () => {
       const response = await bakeryAPI.statisticalCommon.chart.request({
         module: 'CATEGORY',
         department: selectedDepartment.current,
+        categories: selectedCategorys.current ? selectedCategorys.current : [],
         startDate: selectedDate.current[0],
         endDate: selectedDate.current[1],
         viewBy: selectedViewBy.current,
+        compareSamePeriod: compareSamePeriod.current,
       });
       if (response.data) {
         setChartData(response.data);
@@ -87,8 +91,8 @@ const ReportByCategory = () => {
     },
     {
       title: '4周平均销售额',
-      dataIndex: 'averageAmountFor12Week',
-      key: 'averageAmountFor12Week',
+      dataIndex: 'averageAmountFor4Week',
+      key: 'averageAmountFor4Week',
     },
     {
       title: '上周平均销量',
@@ -138,16 +142,16 @@ const ReportByCategory = () => {
       <ContentPanel>
         <div className={styles.selectGroup2}>
           <div className={styles.productSelect}>
-            <ProductSelect
-              onChange={(value: any) => {
-                selectedProducts.current = value;
+            <StoreSelect
+              onChange={(value) => {
+                selectedStoreIds.current = value;
               }}
             />
           </div>
           <div className={styles.storeSelect}>
-            <StoreSelect
+            <CategorySelect
               onChange={(value) => {
-                selectedStoreIds.current = value;
+                selectedCategorys.current = value;
               }}
             />
           </div>
@@ -175,7 +179,14 @@ const ReportByCategory = () => {
               <Radio.Button value="month">月</Radio.Button>
               <Radio.Button value="day">日</Radio.Button>
             </Radio.Group>
-            <Checkbox style={{ marginRight: '15px' }}>对比去年周期</Checkbox>
+            <Checkbox
+              style={{ marginRight: '15px' }}
+              onChange={(event) => {
+                compareSamePeriod.current = event.target.checked;
+              }}
+            >
+              对比去年周期
+            </Checkbox>
             <Checkbox>记住我的选择</Checkbox>
           </div>
 
