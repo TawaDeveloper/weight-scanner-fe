@@ -129,6 +129,9 @@ export const formFields = [
   {
     key: 'storeId',
     name: t<string>(`pages.orderList.title0007`),
+    props: {
+      showSearch: true
+    },
     type: 'select',
   },
   {

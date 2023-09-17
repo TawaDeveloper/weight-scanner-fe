@@ -74,6 +74,10 @@ const OrderList = () => {
           return {
             ...el,
             props: () => ({
+              ...el.props,
+              filterOption: (inputValue: string, option: defs.bakery.OptionVO) => {
+                return option.label?.includes(inputValue)
+              },
               options:
                 el.key === 'storeId'
                   ? optionsData &&
