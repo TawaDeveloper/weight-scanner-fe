@@ -157,6 +157,10 @@ const CreateOrder = () => {
           return {
             ...el,
             props: () => ({
+              ...el.props,
+              filterOption: (inputValue: string, option: defs.bakery.OptionVO) => {
+                return option.label?.includes(inputValue)
+              },
               onChange: (value: string) => {
                 setSearchParams(_searchParams => {
                   return {
