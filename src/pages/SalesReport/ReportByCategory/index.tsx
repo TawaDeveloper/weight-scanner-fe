@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import { Button, Checkbox, Radio, Table } from 'antd';
+import { useState } from 'react';
+import { Button, Checkbox, Empty, Radio, Spin, Table } from 'antd';
 import { Line } from '@ant-design/plots';
 import ContentPanel from '@/components/ContentPanel';
 import DateSelect from '../components/DateSelect';
@@ -10,39 +10,67 @@ import StoreSelect from '../components/StoreSelect';
 import { bakeryAPI } from '@/services';
 import CategorySelect from '../components/CategorySelect';
 
+interface UserParams {
+  storeIds: string[];
+  viewBy: string;
+  articleNumbers: string[];
+  department: string | null;
+  compareSamePeriod: boolean;
+  categories: string[];
+  startDate: number | null;
+  endDate: number | null;
+}
+const DEFAULT_USER_PARAMS = {
+  storeIds: [],
+  viewBy: 'month',
+  articleNumbers: [],
+  department: null,
+  compareSamePeriod: false,
+  categories: [],
+  startDate: null,
+  endDate: null,
+};
 const ReportByCategory = () => {
-  const selectedDate = useRef<number[] | null>(null);
-  const selectedStoreIds = useRef<string[] | null>(null);
-  const selectedDepartment = useRef<string | null>(null);
-  const selectedCategorys = useRef<string[] | null>(null);
-  const selectedViewBy = useRef<string>('day');
+  const [userParams, setUserParams] = useState<UserParams>(DEFAULT_USER_PARAMS);
+  const [chartLoading, setChartLoading] = useState(false);
+  const [reportLoading, setReportLoading] = useState(false);
   const [reportData, setReportData] = useState<any>([]);
   const [chartData, setChartData] = useState<any>([]);
-  const compareSamePeriod = useRef(false);
+
   const onSearch = async () => {
-    if (selectedDepartment.current) {
-      const response = await bakeryAPI.statisticalSalesCategory.report.request({
-        department: selectedDepartment.current,
-      });
-      setReportData(response.data?.contents);
+    setChartLoading(true);
+    setReportLoading(true);
+    if (userParams.department) {
+      bakeryAPI.statisticalSalesCategory.report
+        .request({
+          department: userParams.department,
+          articleNumbers: userParams.articleNumbers,
+          storeIds: userParams.storeIds,
+        })
+        .then((response) => {
+          setReportLoading(false);
+          setReportData(response.data?.contents);
+        });
     }
-    if (
-      selectedDepartment.current &&
-      selectedDate.current &&
-      selectedViewBy.current
-    ) {
-      const response = await bakeryAPI.statisticalCommon.chart.request({
-        module: 'CATEGORY',
-        department: selectedDepartment.current,
-        categories: selectedCategorys.current ? selectedCategorys.current : [],
-        startDate: selectedDate.current[0],
-        endDate: selectedDate.current[1],
-        viewBy: selectedViewBy.current,
-        compareSamePeriod: compareSamePeriod.current,
-      });
-      if (response.data) {
-        setChartData(response.data);
-      }
+    if (userParams.department && userParams.startDate && userParams.endDate) {
+      bakeryAPI.statisticalCommon.chart
+        .request({
+          module: 'CATEGORY',
+          department: userParams.department,
+          startDate: userParams.startDate,
+          endDate: userParams.endDate,
+          viewBy: userParams.viewBy,
+          articleNumbers: userParams.articleNumbers,
+          categories: userParams.categories,
+          compareSamePeriod: userParams.compareSamePeriod,
+          storeIds: userParams.storeIds,
+        })
+        .then((response) => {
+          setChartLoading(false);
+          if (response.data) {
+            setChartData(response.data);
+          }
+        });
     }
   };
 
@@ -59,6 +87,11 @@ const ReportByCategory = () => {
   //     "averageAmountFor12Week": 2.13
   // }
   const columns = [
+    {
+      title: '类别',
+      dataIndex: 'category',
+      key: 'category',
+    },
     {
       title: '门店',
       dataIndex: 'storeName',
@@ -109,7 +142,7 @@ const ReportByCategory = () => {
     data: chartData,
     xField: 'salesDate',
     yField: 'volume',
-    seriesField: 'category',
+    seriesField: 'categoryName',
     xAxis: {
       type: 'time',
     },
@@ -118,7 +151,7 @@ const ReportByCategory = () => {
     data: chartData,
     xField: 'salesDate',
     yField: 'amount',
-    seriesField: 'category',
+    seriesField: 'categoryName',
     xAxis: {
       type: 'time',
     },
@@ -129,12 +162,22 @@ const ReportByCategory = () => {
         <div className={styles.selectGroup1}>
           <DateSelect
             onChange={(values) => {
-              selectedDate.current = values;
+              setUserParams((item) => {
+                const newParams = { ...item };
+                newParams.startDate = values[0] as any;
+                newParams.endDate = values[1] as any;
+                return newParams;
+              });
             }}
           />
           <DepartmentSelect
+            value={userParams.department}
             onChange={(value) => {
-              selectedDepartment.current = value;
+              setUserParams((item) => {
+                const newParams = { ...item };
+                newParams.department = value;
+                return newParams;
+              });
             }}
           />
         </div>
@@ -143,15 +186,25 @@ const ReportByCategory = () => {
         <div className={styles.selectGroup2}>
           <div className={styles.productSelect}>
             <StoreSelect
+              value={userParams.storeIds}
               onChange={(value) => {
-                selectedStoreIds.current = value;
+                setUserParams((item) => {
+                  const newParams = { ...item };
+                  newParams.storeIds = value;
+                  return newParams;
+                });
               }}
             />
           </div>
           <div className={styles.storeSelect}>
             <CategorySelect
+              value={userParams.categories}
               onChange={(value) => {
-                selectedCategorys.current = value;
+                setUserParams((item) => {
+                  const newParams = { ...item };
+                  newParams.categories = value;
+                  return newParams;
+                });
               }}
             />
           </div>
@@ -164,25 +217,42 @@ const ReportByCategory = () => {
           >
             查询
           </Button>
-          <Button>重置</Button>
+          <Button
+            onClick={() => {
+              setUserParams(DEFAULT_USER_PARAMS);
+              setChartData([]);
+              setReportData([]);
+            }}
+          >
+            重置
+          </Button>
         </div>
         <div className={styles.selectGroup3}>
           <div className={styles.selectGroup4}>
             <Radio.Group
               style={{ marginRight: '15px' }}
+              value={userParams.viewBy}
               onChange={(event) => {
-                selectedViewBy.current = event.target.value;
+                setUserParams((item) => {
+                  const newItem = { ...item };
+                  newItem.viewBy = event.target.value;
+                  return newItem;
+                });
               }}
-              defaultValue="day"
             >
-              <Radio.Button value="year">年</Radio.Button>
               <Radio.Button value="month">月</Radio.Button>
+              <Radio.Button value="week">周</Radio.Button>
               <Radio.Button value="day">日</Radio.Button>
             </Radio.Group>
             <Checkbox
               style={{ marginRight: '15px' }}
+              value={userParams.compareSamePeriod}
               onChange={(event) => {
-                compareSamePeriod.current = event.target.checked;
+                setUserParams((item) => {
+                  const newItem = { ...item };
+                  newItem.compareSamePeriod = event.target.checked;
+                  return newItem;
+                });
               }}
             >
               对比去年周期
@@ -195,16 +265,27 @@ const ReportByCategory = () => {
       </ContentPanel>
       <ContentPanel>
         <div className={styles.tableHeader}>销量趋势图</div>
-        <Line {...volumeConfig} />
+        {chartData.length === 0 && <Empty />}
+        {chartData.length !== 0 && (
+          <Spin spinning={chartLoading}>
+            <Line {...volumeConfig} />
+          </Spin>
+        )}
       </ContentPanel>
       <ContentPanel>
         <div className={styles.tableHeader}>销售额趋势图</div>
-        <Line {...amountConfig} />
+        {chartData.length === 0 && <Empty />}
+        {chartData.length !== 0 && (
+          <Spin spinning={chartLoading}>
+            <Line {...amountConfig} />
+          </Spin>
+        )}
       </ContentPanel>
       <ContentPanel>
         <div className={styles.tableHeader}>销量&销售额数据表</div>
         <div className={styles.table}>
           <Table
+            loading={reportLoading}
             dataSource={reportData}
             rowKey="storeId"
             columns={columns}

@@ -6,9 +6,10 @@ import styles from './index.less';
 import { bakeryAPI } from '@/services';
 
 interface IProps {
+  value: string[];
   onChange: (value: string[]) => void;
 }
-const StoreSelect = ({ onChange }: IProps) => {
+const StoreSelect = ({ onChange, value }: IProps) => {
   const [options, setOptions] = useState<SelectProps['options']>([]);
   useEffect(() => {
     const loadAllStores = async () => {
@@ -33,6 +34,7 @@ const StoreSelect = ({ onChange }: IProps) => {
         allowClear
         style={{ width: '268px' }}
         placeholder="请选择"
+        value={value}
         onChange={(value: string[]) => {
           onChange(value);
         }}
