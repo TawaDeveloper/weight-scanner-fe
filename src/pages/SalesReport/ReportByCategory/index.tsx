@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Checkbox, Radio, Spin, Table } from 'antd';
+import { Button, Checkbox, Empty, Radio, Spin, Table } from 'antd';
 import { Line } from '@ant-design/plots';
 import ContentPanel from '@/components/ContentPanel';
 import DateSelect from '../components/DateSelect';
@@ -88,6 +88,11 @@ const ReportByCategory = () => {
   // }
   const columns = [
     {
+      title: '类别',
+      dataIndex: 'category',
+      key: 'category',
+    },
+    {
       title: '门店',
       dataIndex: 'storeName',
       key: 'storeName',
@@ -137,7 +142,7 @@ const ReportByCategory = () => {
     data: chartData,
     xField: 'salesDate',
     yField: 'volume',
-    seriesField: 'category',
+    seriesField: 'categoryName',
     xAxis: {
       type: 'time',
     },
@@ -146,7 +151,7 @@ const ReportByCategory = () => {
     data: chartData,
     xField: 'salesDate',
     yField: 'amount',
-    seriesField: 'category',
+    seriesField: 'categoryName',
     xAxis: {
       type: 'time',
     },
@@ -260,15 +265,21 @@ const ReportByCategory = () => {
       </ContentPanel>
       <ContentPanel>
         <div className={styles.tableHeader}>销量趋势图</div>
-        <Spin spinning={chartLoading}>
-          <Line {...volumeConfig} />
-        </Spin>
+        {chartData.length === 0 && <Empty />}
+        {chartData.length !== 0 && (
+          <Spin spinning={chartLoading}>
+            <Line {...volumeConfig} />
+          </Spin>
+        )}
       </ContentPanel>
       <ContentPanel>
         <div className={styles.tableHeader}>销售额趋势图</div>
-        <Spin spinning={chartLoading}>
-          <Line {...amountConfig} />
-        </Spin>
+        {chartData.length === 0 && <Empty />}
+        {chartData.length !== 0 && (
+          <Spin spinning={chartLoading}>
+            <Line {...amountConfig} />
+          </Spin>
+        )}
       </ContentPanel>
       <ContentPanel>
         <div className={styles.tableHeader}>销量&销售额数据表</div>
