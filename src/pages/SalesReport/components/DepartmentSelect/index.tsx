@@ -8,8 +8,9 @@ import { bakeryAPI } from '@/services';
 
 interface IProps {
   onChange: (value: string) => void;
+  value: string | null;
 }
-const DepartmentSelect = ({ onChange }: IProps) => {
+const DepartmentSelect = ({ onChange, value }: IProps) => {
   const [options, setOptions] = useState<SelectProps['options']>([]);
   useEffect(() => {
     const loadAllStores = async () => {
@@ -35,6 +36,7 @@ const DepartmentSelect = ({ onChange }: IProps) => {
         style={{ width: '272px' }}
         placeholder="Please select"
         options={options}
+        value={value}
         onChange={(value: string) => {
           onChange(value);
         }}

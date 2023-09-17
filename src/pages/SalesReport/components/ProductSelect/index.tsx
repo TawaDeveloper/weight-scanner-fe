@@ -6,9 +6,10 @@ import styles from './index.less';
 import { bakeryAPI } from '@/services';
 
 interface IProps {
+  value: string[];
   onChange: (value: string[]) => void;
 }
-const ProductSelect = ({ onChange }: IProps) => {
+const ProductSelect = ({ onChange, value }: IProps) => {
   const [options, setOptions] = useState<SelectProps['options']>([]);
   const [fetching, setFetching] = useState(false);
   const fetchRef = useRef(0);
@@ -54,6 +55,7 @@ const ProductSelect = ({ onChange }: IProps) => {
         allowClear
         filterOption={false}
         onSearch={debounceFetcher}
+        value={value}
         notFoundContent={fetching ? <Spin size="small" /> : null}
         style={{ width: '268px' }}
         placeholder="请选择"
