@@ -87,7 +87,7 @@ export default {
   title0086: '扣款时间',
   title0087: '取消订单',
   title0088: '下单人',
-  title0089: '区域',
+  title0089: '门店',
   title0090: '部门',
   title0091: 'PR编号',
   title0092: 'PO编号',
