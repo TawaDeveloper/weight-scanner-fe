@@ -8,9 +8,14 @@ import { bakeryAPI } from '@/services';
 import AddModal from './AddModal';
 import AuditModal from './AuditModal';
 import { datePickerToTimestamp, download } from '@/utils';
-import { INITIAL_PAGE_PARAMS, YYYY_MM_DD_MAX, YYYY_MM_DD_MIN } from '@/constants';
+import {
+  INITIAL_PAGE_PARAMS,
+  YYYY_MM_DD_MAX,
+  YYYY_MM_DD_MIN,
+} from '@/constants';
 import { CommonButton } from '@/components/CommonButton';
 import './index.less';
+import { t } from 'i18next';
 import { useNavigate } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
@@ -75,8 +80,11 @@ const OrderList = () => {
             ...el,
             props: () => ({
               ...el.props,
-              filterOption: (inputValue: string, option: defs.bakery.OptionVO) => {
-                return option.label?.includes(inputValue)
+              filterOption: (
+                inputValue: string,
+                option: defs.bakery.OptionVO,
+              ) => {
+                return option.label?.includes(inputValue);
               },
               options:
                 el.key === 'storeId'
@@ -128,9 +136,11 @@ const OrderList = () => {
           <CommonButton
             onClick={() => actionRef.current?.onQuery({ type: 'export' })}
           >
-            批量导出
+            {t<string>(`pages.orderList.title0015`)}
           </CommonButton>
-          <CommonButton  onClick={() => navigate('/order/create')}>新建订单</CommonButton>
+          <CommonButton onClick={() => navigate('/order/create')}>
+            {t<string>(`menus.top.createOrder`)}
+          </CommonButton>
         </div>
       </div>
       {!optionLoading && (

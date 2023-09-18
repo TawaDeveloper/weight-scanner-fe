@@ -9,6 +9,7 @@ import './index.less';
 import { useSearchParams } from 'react-router-dom';
 import { timestampToLocal, timestampToZone } from '@/utils';
 import { INITIAL_PAGE_PARAMS } from '@/constants';
+import { t } from 'i18next';
 
 const OrderDetail = () => {
   const actionRef = useRef<TableQueryActions>(null);
@@ -53,17 +54,17 @@ const OrderDetail = () => {
   return (
     <div>
       <Card className="order-placed">
-        <div className="page-title">订单号 {orderDetail?.orderId}</div>
+        <div className="page-title">{t<string>(`pages.orderList.title0024`)} {orderDetail?.orderId}</div>
         <div className="table">
           <div className="item">
             <div className="flex">
-              <div className="label">下单时间</div>
+              <div className="label">{t<string>(`pages.orderList.title0012`)}</div>
               <div className="value">
                 {timestampToLocal(orderDetail?.createTime || '')}
               </div>
             </div>
             <div className="flex">
-              <div className="label">预计送达时间</div>
+              <div className="label">{t<string>(`pages.orderList.title0040`)}</div>
               <div className="value">
                 {timestampToZone(
                   orderDetail?.estDeliveredTime || '',
@@ -72,31 +73,31 @@ const OrderDetail = () => {
               </div>
             </div>
             <div className="flex">
-              <div className="label">下单人</div>
+              <div className="label">{t<string>(`pages.orderList.title0088`)}</div>
               <div className="value">{orderDetail?.createUserName}</div>
             </div>
           </div>
           <div className="item">
             <div className="flex">
-              <div className="label">部门</div>
+              <div className="label">{t<string>(`pages.orderList.title0090`)}</div>
               <div className="value">{orderDetail?.depName}</div>
             </div>
             <div className="flex">
-              <div className="label">门店</div>
+              <div className="label">{t<string>(`pages.orderList.title0089`)}</div>
               <div className="value">{orderDetail?.storeName}</div>
             </div>
           </div>
           <div className="item">
             <div className="flex">
-              <div className="label">产品个数</div>
+              <div className="label">{t<string>(`pages.orderList.title0093`)}</div>
               <div className="value">{orderDetail?.skuNum}</div>
             </div>
             <div className="flex">
-              <div className="label">产品数量</div>
+              <div className="label">{t<string>(`pages.orderList.title0116`)}</div>
               <div className="value">{orderDetail?.skuQuantity}</div>
             </div>
             <div className="flex">
-              <div className="label">订单总金额</div>
+              <div className="label">{t<string>(`pages.orderList.title0121`)}</div>
               <div className="value">{orderDetail?.amount}</div>
             </div>
           </div>
@@ -104,7 +105,7 @@ const OrderDetail = () => {
       </Card>
       <Card>
         <div className="flex">
-          <div className="page-title">销量&产品明细</div>
+          <div className="page-title">{t<string>(`pages.orderList.title0125`)}</div>
         </div>
 
         <MarioListContent
