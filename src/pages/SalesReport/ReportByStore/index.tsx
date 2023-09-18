@@ -41,9 +41,8 @@ const ReportByStore = () => {
   const amountChart = useRef<any>();
   const volumnChart = useRef<any>();
   const onSearch = async () => {
-    setChartLoading(true);
-    setReportLoading(true);
     if (userParams.department) {
+      setReportLoading(true);
       bakeryAPI.statisticalSalesStore.report
         .request({
           department: userParams.department,
@@ -57,6 +56,7 @@ const ReportByStore = () => {
         });
     }
     if (userParams.department && userParams.startDate && userParams.endDate) {
+      setChartLoading(true);
       bakeryAPI.statisticalCommon.chart
         .request({
           module: 'STORE',

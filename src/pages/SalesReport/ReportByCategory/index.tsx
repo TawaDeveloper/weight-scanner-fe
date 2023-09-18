@@ -42,13 +42,12 @@ const ReportByCategory = () => {
   const amountChart = useRef<any>();
   const volumnChart = useRef<any>();
   const onSearch = async () => {
-    setChartLoading(true);
-    setReportLoading(true);
     if (userParams.department) {
+      setReportLoading(true);
       bakeryAPI.statisticalSalesCategory.report
         .request({
           department: userParams.department,
-          articleNumbers: userParams.articleNumbers,
+          categories: userParams.categories,
           storeIds: userParams.storeIds,
         })
         .then((response) => {
@@ -58,6 +57,7 @@ const ReportByCategory = () => {
         });
     }
     if (userParams.department && userParams.startDate && userParams.endDate) {
+      setChartLoading(true);
       bakeryAPI.statisticalCommon.chart
         .request({
           module: 'CATEGORY',
@@ -109,8 +109,8 @@ const ReportByCategory = () => {
   const columns = [
     {
       title: '类别',
-      dataIndex: 'category',
-      key: 'category',
+      dataIndex: 'categoryName',
+      key: 'categoryName',
     },
     {
       title: '门店',
