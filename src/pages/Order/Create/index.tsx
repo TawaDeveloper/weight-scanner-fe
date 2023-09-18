@@ -242,7 +242,7 @@ const CreateOrder = () => {
             }}
             type="button"
             buttonType="primary"
-            buttonTitle="添加产品"
+            buttonTitle={t<string>(`pages.orderList.title0119`)}
           />
           {/* <CommonButton onClick={() => setShow({ type: 'add' })}>
             添加产品
@@ -254,7 +254,7 @@ const CreateOrder = () => {
           <div className="img-box">
             <img src={TimeIcon} alt=""></img>
           </div>
-          <span>预计送货时间</span>
+          <span>{t<string>(`pages.orderList.title0117`)}</span>
           <span>
             {estDeliveredDate?.date}{' '}
             {estDeliveredDate?.dayOfWeek &&
@@ -270,7 +270,7 @@ const CreateOrder = () => {
             );
           }}
         >
-          一键填入实际进货量
+          {t<string>(`pages.orderList.title0118`)}
         </CommonButton>
       </div>
       {!optionLoading && (
@@ -317,7 +317,7 @@ const CreateOrder = () => {
               });
           }}
         >
-          提交订单
+          {t<string>(`pages.orderList.title0120`)}
         </Button>
       </div>
       {show?.type === 'add' && <AddModal onClose={handleClose} />}

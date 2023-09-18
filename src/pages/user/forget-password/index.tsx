@@ -85,7 +85,7 @@ const ForgetPassword: React.FC<Props> = (props) => {
             {status === 'error' && !submitting && (
               <LoginMessage content={t<string>('pages.login.errorMessage')} />
             )}
-            <div className={styles.label}>Account</div>
+            <div className={styles.label}>{t<string>('pages.login.account')}</div>
             <Form.Item
               name="username"
               rules={[
@@ -115,10 +115,40 @@ const ForgetPassword: React.FC<Props> = (props) => {
               <Input
                 size="large"
                 className={styles.input}
-                placeholder={t<string>('pages.login.user.placeholder')}
+                placeholder={t<string>('pages.login.enterAccount')}
               />
             </Form.Item>
-            <div className={styles.label}>Password</div>
+            <div className={styles.label}>{t<string>('pages.login.password')}</div>
+            <Form.Item
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: t<string>('pages.login.enterAccount'),
+                },
+                {
+                  validator: (rule, value) => {
+                    let message;
+                    if (value?.includes(' ')) {
+                      message = t<string>('pages.login.password.valid');
+                    }
+
+                    if (message) {
+                      return Promise.reject(new Error(message));
+                    }
+                    return Promise.resolve();
+                  },
+                },
+              ]}
+            >
+              <Input.Password
+                size="large"
+                className={styles.input}
+                placeholder={t<string>('pages.login.enterPassword')}
+              />
+            </Form.Item>
+
+            <div className={styles.label}>{t<string>('pages.login.newPassword')}</div>
             <Form.Item
               name="password"
               rules={[
@@ -144,37 +174,7 @@ const ForgetPassword: React.FC<Props> = (props) => {
               <Input.Password
                 size="large"
                 className={styles.input}
-                placeholder={t<string>('pages.login.password.placeholder')}
-              />
-            </Form.Item>
-
-            <div className={styles.label}>New Password</div>
-            <Form.Item
-              name="password"
-              rules={[
-                {
-                  required: true,
-                  message: t<string>('pages.login.password.required'),
-                },
-                {
-                  validator: (rule, value) => {
-                    let message;
-                    if (value?.includes(' ')) {
-                      message = t<string>('pages.login.password.valid');
-                    }
-
-                    if (message) {
-                      return Promise.reject(new Error(message));
-                    }
-                    return Promise.resolve();
-                  },
-                },
-              ]}
-            >
-              <Input.Password
-                size="large"
-                className={styles.input}
-                placeholder={t<string>('pages.login.password.placeholder')}
+                placeholder={t<string>('pages.login.passwordTip')}
               />
             </Form.Item>
 

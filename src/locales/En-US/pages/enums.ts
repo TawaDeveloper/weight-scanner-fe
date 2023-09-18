@@ -141,10 +141,10 @@ export default {
   },
   orderStatus: {
     describe: 'Order Status',
-    title001: '已下单',
-    title002: '已确认',
-    title003: '已编辑',
-    title004: '已取消',
+    title001: 'Order Placed',
+    title002: 'Order Confirmed',
+    title003: 'Order Updated',
+    title004: 'Order Canceled',
   },
   orderChannelsType: {
     describe: 'Order channels',

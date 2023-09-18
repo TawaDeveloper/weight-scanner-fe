@@ -85,7 +85,7 @@ const Login: React.FC<Props> = (props) => {
             {status === 'error' && !submitting && (
               <LoginMessage content={t<string>('pages.login.errorMessage')} />
             )}
-            <div className={styles.label}>Account</div>
+            <div className={styles.label}>{t<string>('pages.login.account')}</div>
             <Form.Item
               name="username"
               rules={[
@@ -115,10 +115,10 @@ const Login: React.FC<Props> = (props) => {
               <Input
                 size="large"
                 className={styles.input}
-                placeholder={t<string>('pages.login.user.placeholder')}
+                placeholder={t<string>('pages.login.enterAccount')}
               />
             </Form.Item>
-            <div className={styles.label}>Password</div>
+            <div className={styles.label}>{t<string>('pages.login.password')}</div>
             <Form.Item
               name="password"
               rules={[
@@ -144,7 +144,7 @@ const Login: React.FC<Props> = (props) => {
               <Input.Password
                 size="large"
                 className={styles.input}
-                placeholder={t<string>('pages.login.password.placeholder')}
+                placeholder={t<string>('pages.login.enterPassword')}
               />
             </Form.Item>
 
