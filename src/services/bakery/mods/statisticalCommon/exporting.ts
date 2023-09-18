@@ -4,6 +4,7 @@ import sendRequest, { getEnvHost } from '@/utils/request';
 export type exportingPath = {
   /** module */
   module: string;
+  reportId: string;
 };
 export type exportingOptions = Record<string, any>;
 
@@ -20,10 +21,7 @@ export function request(
   const host = getEnvHost();
   const url =
     host +
-    '/bakery/hot-deli-bakery/api/statistical/common/export/{module}/{reportId}'.replace(
-      /\{[\w]+\}/,
-      String(path.module),
-    );
+    `/hot-deli-bakery/api/statistical/common/export/${path.module}/${path.reportId}`;
   const fetchOption = {
     method: 'get',
     headers: {

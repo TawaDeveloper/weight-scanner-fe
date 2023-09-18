@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { Button, Checkbox, Empty, Radio, Spin, Table } from 'antd';
+import { useRef, useState } from 'react';
+import { Button, Checkbox, Empty, Radio, Spin, Table, message } from 'antd';
 import { Line } from '@ant-design/plots';
+import { t } from 'i18next';
 import ContentPanel from '@/components/ContentPanel';
 import DateSelect from '../components/DateSelect';
 import DepartmentSelect from '../components/DepartmentSelect';
@@ -8,6 +9,7 @@ import styles from './index.less';
 import ProductSelect from '../components/ProductSelect';
 import StoreSelect from '../components/StoreSelect';
 import { bakeryAPI } from '@/services';
+import { download } from '@/utils';
 
 interface UserParams {
   storeIds: string[];
@@ -35,6 +37,9 @@ const ReportByProduct = () => {
   const [reportLoading, setReportLoading] = useState(false);
   const [reportData, setReportData] = useState<any>([]);
   const [chartData, setChartData] = useState<any>([]);
+  const currentReportId = useRef<string | undefined>(undefined);
+  const amountChart = useRef<any>();
+  const volumnChart = useRef<any>();
   // const onSearch = async () => {
   //   if (selectedDepartment.current) {
   //     const response = await bakeryAPI.statisticalSalesProduct.report.request({
@@ -72,6 +77,7 @@ const ReportByProduct = () => {
         .then((response) => {
           setReportLoading(false);
           setReportData(response.data?.contents);
+          currentReportId.current = response.data?.reportId;
         });
     }
     if (userParams.department && userParams.startDate && userParams.endDate) {
@@ -197,6 +203,20 @@ const ReportByProduct = () => {
       type: 'time',
     },
   };
+  const exportReport = async () => {
+    if (currentReportId.current) {
+      const content = await bakeryAPI.statisticalCommon.exporting.request(
+        { module: 'PRODUCT', reportId: currentReportId.current },
+        {
+          responseType: 'blob',
+        },
+      );
+
+      download({ content, filename: 'product_report.xlsx' });
+
+      message.success(t<string>('pages.common.operationSuccess'));
+    }
+  };
   return (
     <>
       <ContentPanel>
@@ -300,30 +320,68 @@ const ReportByProduct = () => {
             </Checkbox>
             <Checkbox>记住我的选择</Checkbox>
           </div>
-
-          <Button>导出</Button>
         </div>
       </ContentPanel>
       <ContentPanel>
-        <div className={styles.tableHeader}>销量趋势图</div>
-        {chartData.length === 0 && <Empty />}
-        {chartData.length !== 0 && (
-          <Spin spinning={chartLoading}>
-            <Line {...volumeConfig} />
-          </Spin>
-        )}
+        <div className={styles.tableHeader}>
+          <div>销量趋势图</div>
+          <Button
+            disabled={chartData.length === 0}
+            onClick={() => {
+              volumnChart.current.downloadImage();
+            }}
+          >
+            导出
+          </Button>
+        </div>
+        <Spin spinning={chartLoading}>
+          {chartData.length === 0 && <Empty />}
+          {chartData.length !== 0 && (
+            <Line
+              {...volumeConfig}
+              onReady={(plot) => {
+                volumnChart.current = plot;
+              }}
+            />
+          )}
+        </Spin>
       </ContentPanel>
       <ContentPanel>
-        <div className={styles.tableHeader}>销售额趋势图</div>
-        {chartData.length === 0 && <Empty />}
-        {chartData.length !== 0 && (
-          <Spin spinning={chartLoading}>
-            <Line {...amountConfig} />
-          </Spin>
-        )}
+        <div className={styles.tableHeader}>
+          <div>销售额趋势图</div>
+          <Button
+            disabled={chartData.length === 0}
+            onClick={() => {
+              amountChart.current.downloadImage();
+            }}
+          >
+            导出
+          </Button>
+        </div>
+        <Spin spinning={chartLoading}>
+          {chartData.length === 0 && <Empty />}
+          {chartData.length !== 0 && (
+            <Line
+              {...amountConfig}
+              onReady={(plot) => {
+                amountChart.current = plot;
+              }}
+            />
+          )}
+        </Spin>
       </ContentPanel>
       <ContentPanel>
-        <div className={styles.tableHeader}>销量&销售额数据表</div>
+        <div className={styles.tableHeader}>
+          <div>销量&销售额数据表 </div>
+          <Button
+            disabled={!currentReportId.current}
+            onClick={() => {
+              exportReport();
+            }}
+          >
+            导出
+          </Button>
+        </div>
         <div className={styles.table}>
           <Table
             loading={reportLoading}
