@@ -65,9 +65,8 @@ const ReportByProduct = () => {
   //   }
   // };
   const onSearch = async () => {
-    setChartLoading(true);
-    setReportLoading(true);
     if (userParams.department) {
+      setReportLoading(true);
       bakeryAPI.statisticalSalesProduct.report
         .request({
           department: userParams.department,
@@ -81,6 +80,7 @@ const ReportByProduct = () => {
         });
     }
     if (userParams.department && userParams.startDate && userParams.endDate) {
+      setChartLoading(true);
       bakeryAPI.statisticalCommon.chart
         .request({
           module: 'PRODUCT',

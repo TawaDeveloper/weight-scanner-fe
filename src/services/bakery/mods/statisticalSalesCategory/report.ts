@@ -2,8 +2,8 @@
 import sendRequest, { getEnvHost } from '@/utils/request';
 
 export type reportParam = {
-  /** articleNumbers */
-  articleNumbers?: Array<string>;
+  /** categories */
+  categories?: Array<string>;
 
   /** department */
   department: string;
