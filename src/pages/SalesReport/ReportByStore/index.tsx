@@ -224,6 +224,7 @@ const ReportByStore = () => {
           <Button
             type="primary"
             style={{ marginRight: '20px' }}
+            loading={chartLoading || reportLoading}
             onClick={() => {
               onSearch();
             }}
@@ -232,9 +233,16 @@ const ReportByStore = () => {
           </Button>
           <Button
             onClick={() => {
-              setUserParams(DEFAULT_USER_PARAMS);
+              setUserParams((item) => {
+                const newItem: any = DEFAULT_USER_PARAMS;
+                newItem.startDate = item.startDate;
+                newItem.endDate = item.endDate;
+                return newItem;
+              });
               setChartData([]);
               setReportData([]);
+              setReportLoading(false);
+              setChartLoading(false);
             }}
           >
             重置
