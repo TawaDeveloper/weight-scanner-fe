@@ -168,6 +168,7 @@ const CreateOrder = () => {
                     [el.key]: value
                   }
                 })
+                actionRef.current?.onQuery()
               },
               options:
                 el.key === 'storeId'
