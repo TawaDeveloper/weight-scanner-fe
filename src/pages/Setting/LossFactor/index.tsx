@@ -86,6 +86,8 @@ const LossFactor = () => {
             损耗系数:
             <InputNumber
               min={100}
+              step={1}
+              precision={0}
               addonAfter={<div>%</div>}
               className={styles.lossFactorInput}
               value={
