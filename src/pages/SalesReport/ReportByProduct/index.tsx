@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { Button, Checkbox, Empty, Radio, Spin, Table, message } from 'antd';
 import { Line } from '@ant-design/plots';
 import { t } from 'i18next';
+import moment from 'moment';
 import ContentPanel from '@/components/ContentPanel';
 import DateSelect from '../components/DateSelect';
 import DepartmentSelect from '../components/DepartmentSelect';
@@ -81,8 +82,9 @@ const ReportByProduct = () => {
     }
     if (userParams.department && userParams.startDate && userParams.endDate) {
       setChartLoading(true);
-      bakeryAPI.statisticalCommon.chart
-        .request({
+      const chartRequest: any = [];
+      chartRequest.push(
+        bakeryAPI.statisticalCommon.chart.request({
           module: 'PRODUCT',
           department: userParams.department,
           startDate: userParams.startDate,
@@ -90,16 +92,107 @@ const ReportByProduct = () => {
           viewBy: userParams.viewBy,
           articleNumbers: userParams.articleNumbers,
           categories: userParams.categories,
-          compareSamePeriod: userParams.compareSamePeriod,
+          // compareSamePeriod: userParams.compareSamePeriod,
           storeIds: userParams.storeIds,
-        })
-        .then((response) => {
-          setChartLoading(false);
-          if (response.data) {
-            setChartData(response.data);
+        }),
+      );
+      if (userParams.compareSamePeriod === true) {
+        chartRequest.push(
+          bakeryAPI.statisticalCommon.chart.request({
+            module: 'PRODUCT',
+            department: userParams.department,
+            startDate: moment(userParams.startDate)
+              .subtract(1, 'year')
+              .toDate()
+              .getTime(),
+            endDate: moment(userParams.endDate)
+              .subtract(1, 'year')
+              .toDate()
+              .getTime(),
+            viewBy: userParams.viewBy,
+            articleNumbers: userParams.articleNumbers,
+            categories: userParams.categories,
+            // compareSamePeriod: userParams.compareSamePeriod,
+            storeIds: userParams.storeIds,
+          }),
+        );
+      }
+      Promise.all(chartRequest).then((responseList) => {
+        let response1: any = {
+          data: [],
+        };
+        let response2: any = {
+          data: [],
+        };
+        if (responseList[0]) {
+          // eslint-disable-next-line prefer-destructuring
+          response1 = responseList[0];
+        }
+        if (responseList[1]) {
+          // eslint-disable-next-line prefer-destructuring
+          response2 = responseList[1];
+        }
+        setChartLoading(false);
+        let dataFormat = 'YYYY-MM';
+        switch (userParams.viewBy) {
+          case 'month': {
+            dataFormat = 'YYYY-MM';
+            break;
           }
-        });
+          case 'day': {
+            dataFormat = 'YYYY-MM-DD';
+            break;
+          }
+          case 'week': {
+            dataFormat = 'YYYY-WW';
+            break;
+          }
+          default: {
+            dataFormat = 'YYYY-MM';
+            break;
+          }
+        }
+        setChartData(
+          response1.data
+            .map((item: any) => {
+              const newItem: any = { ...item };
+              newItem.formatDate = moment(item.salesDate).format(dataFormat);
+              return newItem;
+            })
+            .concat(
+              response2.data.map((item: any) => {
+                const newItem: any = { ...item };
+                newItem.articleName = `${item.articleName} - Last year`;
+                newItem.formatDate = moment(item.salesDate)
+                  .add(1, 'year')
+                  .format(dataFormat);
+                return newItem;
+              }),
+            ),
+        );
+      });
     }
+    // if (userParams.department && userParams.startDate && userParams.endDate) {
+    //   setChartLoading(true);
+    //   bakeryAPI.statisticalCommon.chart
+    //     .request({
+    //       module: 'PRODUCT',
+    //       department: userParams.department,
+    //       startDate: userParams.startDate,
+    //       endDate: userParams.endDate,
+    //       viewBy: userParams.viewBy,
+    //       articleNumbers: userParams.articleNumbers,
+    //       categories: userParams.categories,
+    //       compareSamePeriod: userParams.compareSamePeriod,
+    //       storeIds: userParams.storeIds,
+    //     })
+    //     .then((response) => {
+    //       setChartLoading(false);
+    //       if (response.data) {
+    //         setChartData(response.data);
+    //       }
+    //     });
+    // }
   };
 
   //   {
@@ -187,21 +280,15 @@ const ReportByProduct = () => {
   ];
   const volumeConfig = {
     data: chartData,
-    xField: 'salesDate',
+    xField: 'formatDate',
     yField: 'volume',
     seriesField: 'articleName',
-    xAxis: {
-      type: 'time',
-    },
   };
   const amountConfig = {
     data: chartData,
-    xField: 'salesDate',
+    xField: 'formatDate',
     yField: 'amount',
     seriesField: 'articleName',
-    xAxis: {
-      type: 'time',
-    },
   };
   const exportReport = async () => {
     if (currentReportId.current) {
