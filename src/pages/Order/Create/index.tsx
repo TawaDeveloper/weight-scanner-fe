@@ -14,9 +14,11 @@ import { GoodsSelect } from '@/components';
 import { WEEK_TYPE } from '@/constants/enums';
 import { t } from 'i18next';
 import { useNavigate } from 'react-router-dom';
+import { DEFAULT_LANG } from '@/constants';
 // import { useNavigate } from 'react-router-dom';
 
 const CreateOrder = () => {
+  const lang = localStorage.getItem('lang') ?? DEFAULT_LANG;
   const actionRef = useRef<TableQueryActions>(null);
   const [show, setShow] = useState<{ type: string; data?: any }>();
   const [order, setOrder] = useState<defs.bakery.CreateOrderVO>();
@@ -36,14 +38,14 @@ const CreateOrder = () => {
   const handleClose = (type?: string) => {
     setShow(undefined);
     if (type === 'go') {
-      navigate(`/order/detail?id=${order?.orderId}`)
+      navigate(`/order/detail?id=${order?.orderId}`);
     } else {
-      actionRef.current?.onReset()
-      setSubmitData([])
+      actionRef.current?.onReset();
+      setSubmitData([]);
       setSearchParams({
         storeId: '',
         depId: '',
-      })
+      });
       // actionRef.current?.onQuery();
     }
   };
@@ -158,17 +160,20 @@ const CreateOrder = () => {
             ...el,
             props: () => ({
               ...el.props,
-              filterOption: (inputValue: string, option: defs.bakery.OptionVO) => {
-                return option.label?.includes(inputValue)
+              filterOption: (
+                inputValue: string,
+                option: defs.bakery.OptionVO,
+              ) => {
+                return option.label?.includes(inputValue);
               },
               onChange: (value: string) => {
-                setSearchParams(_searchParams => {
+                setSearchParams((_searchParams) => {
                   return {
                     ..._searchParams,
-                    [el.key]: value
-                  }
-                })
-                actionRef.current?.onQuery()
+                    [el.key]: value,
+                  };
+                });
+                actionRef.current?.onQuery();
               },
               options:
                 el.key === 'storeId'
@@ -188,7 +193,7 @@ const CreateOrder = () => {
       }),
     };
   }, [optionsData]);
-  
+
   return (
     <Card>
       <div className="flex">
@@ -276,6 +281,7 @@ const CreateOrder = () => {
       </div>
       {!optionLoading && (
         <MarioListContent
+          lang={lang.replace('_', '')}
           ref={actionRef}
           formProps={formProps}
           tableProps={tableProps}

@@ -1,0 +1,18 @@
+export default {
+  title0001: 'Android version management',
+  title0002: 'iOS version management',
+  title0003: 'version No',
+  title0004: 'New version',
+  title0005: 'Android version number',
+  title0006: 'Android download address',
+  title0007: 'Force update',
+  title0008: 'Version Description',
+  title0009: 'Update by',
+  title0010: 'Update time',
+  title0011: 'Operation',
+  title0012: 'Edit',
+  title0013: 'Android version number',
+  title0014: 'Limit input to 200 characters',
+  title0015: 'iOS version number',
+  title0016: 'iOS download address',
+};

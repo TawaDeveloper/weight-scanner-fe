@@ -136,4 +136,5 @@ export default {
   reportByProduct: 'Sales Report by Procut',
   reportByCategory: 'Sales Report by Category',
   SalesTargetSetting: 'Sales Target Settings',
+  lossFactor: 'Loss Factor',
 };

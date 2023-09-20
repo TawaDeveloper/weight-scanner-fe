@@ -125,4 +125,7 @@ export default {
   title0124: 'PO单金额',
   title0125: '销量&产品明细',
   title0126: '产品明细',
+  title0127: '新建',
+  title0128: '批量导入',
+  title0129: '模版下载',
 };

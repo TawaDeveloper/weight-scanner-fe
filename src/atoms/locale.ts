@@ -1,6 +1,7 @@
 import { atom, selector } from 'recoil';
 import antdZh from 'antd/es/locale/zh_CN';
 import antdUs from 'antd/es/locale/en_US';
+import antdTw from 'antd/es/locale/zh_TW';
 import { DEFAULT_LANG } from '@/constants';
 
 export const locales = {
@@ -13,6 +14,11 @@ export const locales = {
     name: '简体中文',
     icon: '🇨🇳',
     antd: antdZh,
+  },
+  zh_TW: {
+    name: '繁體中文',
+    icon: '🇨🇳',
+    antd: antdTw,
   },
 };
 

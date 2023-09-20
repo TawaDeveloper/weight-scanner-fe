@@ -14,10 +14,11 @@ import moment from 'moment';
 import { RcFile } from 'antd/lib/upload';
 import { t } from 'i18next';
 import LogModal from './LogModal';
-import { INITIAL_PAGE_PARAMS } from '@/constants';
+import { DEFAULT_LANG, INITIAL_PAGE_PARAMS } from '@/constants';
 // import { useNavigate } from 'react-router-dom';
 
 const SalesTargetSetting = () => {
+  const lang = localStorage.getItem('lang') ?? DEFAULT_LANG;
   const [fileList, setFileList] = useState<any[]>([]);
   const [uploading, setUploading] = useState(false);
   const actionRef = useRef<TableQueryActions>(null);
@@ -176,25 +177,29 @@ const SalesTargetSetting = () => {
         <div className="button-group">
           <CommonButton
             onClick={() => {
-              setItem(undefined)
+              setItem(undefined);
               setShow({
                 type: 'add',
               });
             }}
           >
-            新建
+            {t<string>(`pages.orderList.title0127`)}
           </CommonButton>
 
           <Upload {...uploadProps}>
-            <CommonButton loading={uploading}>批量导入</CommonButton>
+            <CommonButton loading={uploading}>
+              {' '}
+              {t<string>(`pages.orderList.title0128`)}
+            </CommonButton>
           </Upload>
           <Link to={''} onClick={() => downloadTemplate()}>
-            模版下载
+            {t<string>(`pages.orderList.title0129`)}
           </Link>
         </div>
       </div>
       {!optionLoading && (
         <MarioListContent
+          lang={lang.replace('_', '')}
           ref={actionRef}
           formProps={formProps}
           tableProps={tableProps}
