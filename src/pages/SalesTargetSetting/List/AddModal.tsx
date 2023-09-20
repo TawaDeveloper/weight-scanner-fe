@@ -9,7 +9,7 @@ import {
   Row,
   DatePicker,
   Select,
-  Input,
+  InputNumber,
 } from 'antd';
 import { useRequest } from 'ahooks';
 import { bakeryAPI } from '@/services';
@@ -120,7 +120,15 @@ export default (props: IProps) => {
           label={t<string>(`pages.orderList.title0106`)}
           rules={[{ required: true }]}
         >
-          <Input placeholder={t<string>(`pages.orderList.title0106`)} />
+          <InputNumber
+            style={{
+              width: '200px',
+            }}
+            decimalSeparator={'0'}
+            precision={0}
+            min={0}
+            placeholder={t<string>(`pages.orderList.title0106`)}
+          />
         </Form.Item>
       </Form>
 

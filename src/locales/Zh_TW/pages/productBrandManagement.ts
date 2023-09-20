@@ -1,0 +1,17 @@
+export default {
+  brandNameEN: 'Brand English Name',
+  brandNameSCH: 'Brand Simplified Chinese Name',
+  brandNameTCH: 'Brand Traditional Chinese Name',
+  description: 'Brand Description',
+  logo: 'Brand LOGO',
+  updatedByName: 'Updated User',
+  updatedTime: 'Updated Time',
+  brandName: 'Brand Name',
+  status: 'Status',
+  createBrandBtn: 'Create Brand',
+  okButton: 'Confirm Submit',
+  createBrand: 'Create Brand',
+  updateBrand: 'Edit Brand',
+  confirmDisable: 'Confirm Disable?',
+  action: 'action',
+};

@@ -9,6 +9,7 @@ import AddModal from './AddModal';
 import AuditModal from './AuditModal';
 import { datePickerToTimestamp, download } from '@/utils';
 import {
+  DEFAULT_LANG,
   INITIAL_PAGE_PARAMS,
   YYYY_MM_DD_MAX,
   YYYY_MM_DD_MIN,
@@ -20,6 +21,7 @@ import { useNavigate } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 const OrderList = () => {
+  const lang = localStorage.getItem('lang') ?? DEFAULT_LANG;
   const auditModalRef = useRef<any>();
   const navigate = useNavigate();
   const actionRef = useRef<TableQueryActions>(null);
@@ -145,6 +147,7 @@ const OrderList = () => {
       </div>
       {!optionLoading && (
         <MarioListContent
+          lang={lang.replace('_', '')}
           ref={actionRef}
           formProps={formProps}
           tableProps={tableProps}

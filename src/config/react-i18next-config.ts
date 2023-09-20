@@ -1,7 +1,7 @@
 import i18n, { Resource } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import { cn, en } from '@/locales';
+import { cn, en, tw } from '@/locales';
 import { DEFAULT_LANG } from '@/constants';
 
 const lng = localStorage.getItem('lang') ?? DEFAULT_LANG;
@@ -12,9 +12,15 @@ const resources: Resource =
           translation: cn,
         },
       }
-    : {
+    : lng === 'en_US'
+    ? {
         en_US: {
           translation: en,
+        },
+      }
+    : {
+        zh_TW: {
+          translation: tw,
         },
       };
 

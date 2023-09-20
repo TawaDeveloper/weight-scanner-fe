@@ -1,0 +1,17 @@
+export default {
+  title0001: 'Member card number',
+  title0002: 'Time of occurrence',
+  title0003: 'Matter type',
+  title0004: 'Mobile phone number',
+  title0005: 'Offline store number',
+  title0006: 'Export',
+  title0007: 'Occurrence time',
+  title0008: 'Store number',
+  title0009: 'Lane N,O,',
+  title0010: 'Transaction N,O,',
+  title0011: 'Current points balance',
+  title0012: 'Points increase',
+  title0013: 'Decrease in points',
+  title0014: 'Order accumulation',
+  title0015: 'Order credit',
+};
