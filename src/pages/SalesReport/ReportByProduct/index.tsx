@@ -157,12 +157,14 @@ const ReportByProduct = () => {
             .map((item: any) => {
               const newItem: any = { ...item };
               newItem.formatDate = moment(item.salesDate).format(dataFormat);
+              newItem.formatProductName = `${newItem.articleNumber} - ${newItem.articleName}`;
               return newItem;
             })
             .concat(
               response2.data.map((item: any) => {
                 const newItem: any = { ...item };
-                newItem.articleName = `${item.articleName} - Last year`;
+           //     newItem.articleName = `${item.articleName} - Last year`;
+                newItem.formatProductName = `${newItem.articleNumber} - ${newItem.articleName} - Last year`;
                 newItem.formatDate = moment(item.salesDate)
                   .add(1, 'year')
                   .format(dataFormat);
@@ -282,13 +284,13 @@ const ReportByProduct = () => {
     data: chartData,
     xField: 'formatDate',
     yField: 'volume',
-    seriesField: 'articleName',
+    seriesField: 'formatProductName',
   };
   const amountConfig = {
     data: chartData,
     xField: 'formatDate',
     yField: 'amount',
-    seriesField: 'articleName',
+    seriesField: 'formatProductName',
   };
   const exportReport = async () => {
     if (currentReportId.current) {
