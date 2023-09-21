@@ -1,5 +1,6 @@
 import { Select, Spin } from 'antd';
 import { useMemo, useRef, useState } from 'react';
+import { t } from 'i18next';
 import { debounce } from 'lodash-es';
 import type { SelectProps } from 'antd';
 import styles from './index.less';
@@ -49,7 +50,7 @@ const ProductSelect = ({ onChange, value }: IProps) => {
   }, []);
   return (
     <div className={styles.root}>
-      <div className={styles.label}>产品</div>
+      <div className={styles.label}>{t<string>('pages.report.Product')}</div>
       <Select
         mode="multiple"
         allowClear
@@ -58,7 +59,7 @@ const ProductSelect = ({ onChange, value }: IProps) => {
         value={value}
         notFoundContent={fetching ? <Spin size="small" /> : null}
         style={{ width: '268px' }}
-        placeholder="请选择"
+        placeholder={t<string>('pages.report.PleaseChoose')}
         options={options}
         onChange={(value: string[]) => {
           onChange(value);

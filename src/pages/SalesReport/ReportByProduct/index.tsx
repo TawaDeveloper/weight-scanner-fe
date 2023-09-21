@@ -213,67 +213,67 @@ const ReportByProduct = () => {
   // }
   const columns = [
     {
-      title: '产品名称',
+      title: t<string>('pages.report.Product'),
       dataIndex: 'name',
       key: 'name',
     },
     {
-      title: 'Article Number',
+      title: t<string>('pages.report.ArticleNumber'),
       dataIndex: 'articleNumber',
       key: 'articleNumber',
     },
     {
-      title: '产品类别',
+      title: t<string>('pages.report.Category'),
       dataIndex: 'category',
       key: 'category',
     },
     {
-      title: '产品描述',
+      title: t<string>('pages.report.Description'),
       dataIndex: 'description',
       key: 'description',
     },
     {
-      title: '门店',
+      title: t<string>('pages.report.Store'),
       dataIndex: 'storeName',
       key: 'storeName',
     },
     {
-      title: '所属区域',
+      title: t<string>('pages.report.Region'),
       dataIndex: 'storeGroup',
       key: 'storeGroup',
     },
     {
-      title: '部门',
+      title: t<string>('pages.report.Department'),
       dataIndex: 'department',
       key: 'department',
     },
     {
-      title: '12周平均销量',
+      title: t<string>('pages.report.WeekAverageSalesVolume12'),
       dataIndex: 'averageVolumeFor12Week',
       key: 'averageVolumeFor12Week',
     },
     {
-      title: '12周平均销售额',
+      title: t<string>('pages.report.WeekAverageRevenue12'),
       dataIndex: 'averageAmountFor12Week',
       key: 'averageAmountFor12Week',
     },
     {
-      title: '4周平均销量',
+      title: t<string>('pages.report.WeekAverageSalesVolume4'),
       dataIndex: 'averageVolumeFor4Week',
       key: 'averageVolumeFor4Week',
     },
     {
-      title: '4周平均销售额',
+      title: t<string>('pages.report.WeekAverageRevenue4'),
       dataIndex: 'averageAmountFor12Week',
       key: 'averageAmountFor12Week',
     },
     {
-      title: '上周平均销量',
+      title: t<string>('pages.report.LastWeekSalesVolume'),
       dataIndex: 'averageVolumeForLastWeek',
       key: 'averageVolumeForLastWeek',
     },
     {
-      title: '上周周平均销售额',
+      title: t<string>('pages.report.LastWeekRevenue'),
       dataIndex: 'averageAmountForLastWeek',
       key: 'averageAmountForLastWeek',
     },
@@ -364,7 +364,7 @@ const ReportByProduct = () => {
               onSearch();
             }}
           >
-            查询
+            {t<string>('pages.report.Query')}
           </Button>
           <Button
             onClick={() => {
@@ -380,7 +380,7 @@ const ReportByProduct = () => {
               setChartLoading(false);
             }}
           >
-            重置
+            {t<string>('pages.report.Reset')}
           </Button>
         </div>
         <div className={styles.selectGroup3}>
@@ -396,9 +396,15 @@ const ReportByProduct = () => {
                 });
               }}
             >
-              <Radio.Button value="month">月</Radio.Button>
-              <Radio.Button value="week">周</Radio.Button>
-              <Radio.Button value="day">日</Radio.Button>
+              <Radio.Button value="month">
+                {t<string>(`pages.report.Month`)}
+              </Radio.Button>
+              <Radio.Button value="week">
+                {t<string>(`pages.report.Week`)}
+              </Radio.Button>
+              <Radio.Button value="day">
+                {t<string>(`pages.report.Day`)}
+              </Radio.Button>
             </Radio.Group>
             <Checkbox
               style={{ marginRight: '15px' }}
@@ -411,22 +417,22 @@ const ReportByProduct = () => {
                 });
               }}
             >
-              对比去年周期
+              {t<string>(`pages.report.SamePeriodLastYear`)}
             </Checkbox>
-            <Checkbox>记住我的选择</Checkbox>
+            <Checkbox>{t<string>(`pages.report.RememberMySelection`)}</Checkbox>
           </div>
         </div>
       </ContentPanel>
       <ContentPanel>
         <div className={styles.tableHeader}>
-          <div>销量趋势图</div>
+          <div>{t<string>(`pages.report.SalesVolumeTrend`)}</div>
           <Button
             disabled={chartData.length === 0}
             onClick={() => {
               volumnChart.current.downloadImage();
             }}
           >
-            导出
+            {t<string>(`pages.report.Export`)}
           </Button>
         </div>
         <Spin spinning={chartLoading}>
@@ -443,14 +449,14 @@ const ReportByProduct = () => {
       </ContentPanel>
       <ContentPanel>
         <div className={styles.tableHeader}>
-          <div>销售额趋势图</div>
+          <div>{t<string>(`pages.report.RevenueTrend`)}</div>
           <Button
             disabled={chartData.length === 0}
             onClick={() => {
               amountChart.current.downloadImage();
             }}
           >
-            导出
+            {t<string>(`pages.report.Export`)}
           </Button>
         </div>
         <Spin spinning={chartLoading}>
@@ -467,14 +473,14 @@ const ReportByProduct = () => {
       </ContentPanel>
       <ContentPanel>
         <div className={styles.tableHeader}>
-          <div>销量&销售额数据表 </div>
+          <div>{t<string>(`pages.report.SalesVolumeRevenueReport`)}</div>
           <Button
             disabled={!currentReportId.current}
             onClick={() => {
               exportReport();
             }}
           >
-            导出
+            {t<string>(`pages.report.Export`)}
           </Button>
         </div>
         <div className={styles.table}>

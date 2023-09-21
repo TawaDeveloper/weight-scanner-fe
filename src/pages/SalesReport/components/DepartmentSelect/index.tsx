@@ -1,6 +1,7 @@
 import { Select } from 'antd';
 import { useEffect, useState } from 'react';
 import { uniq } from 'lodash-es';
+import { t } from 'i18next';
 import type { SelectProps } from 'antd';
 import Icon from 'src/assets/report-department.png';
 import styles from './index.less';
@@ -30,11 +31,13 @@ const DepartmentSelect = ({ onChange, value }: IProps) => {
       <div className={styles.icon}>
         <img src={Icon} alt="" />
       </div>
-      <div className={styles.label}>已选部门</div>
+      <div className={styles.label}>
+        {t<string>('pages.report.SelectedDepartment')}
+      </div>
       <Select
         allowClear
         style={{ width: '272px' }}
-        placeholder="Please select"
+        placeholder={t<string>('pages.report.PleaseChoose')}
         options={options}
         value={value}
         onChange={(value: string) => {
