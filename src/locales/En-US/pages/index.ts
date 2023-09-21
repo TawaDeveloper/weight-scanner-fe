@@ -107,6 +107,7 @@ import paymentSummary from './paymentSummary';
 import pointsBudget from './pointsBudget';
 import operationLog from './operationLog';
 import couponPromotion from './couponPromotion';
+import report from './report';
 
 export default {
   login,
@@ -208,4 +209,5 @@ export default {
   pointsBudget,
   operationLog,
   couponPromotion,
+  report,
 };

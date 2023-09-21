@@ -1,4 +1,5 @@
 import { DatePicker } from 'antd';
+import { t } from 'i18next';
 import Icon from 'src/assets/report-calendar.png';
 import styles from './index.less';
 import { datePickerToTimestamp } from '@/utils';
@@ -13,7 +14,9 @@ const DateSelect = ({ onChange }: IProps) => {
       <div className={styles.icon}>
         <img src={Icon} alt="" />
       </div>
-      <div className={styles.label}>已选日期</div>
+      <div className={styles.label}>
+        {t<string>('pages.report.SelectedDate')}
+      </div>
       <RangePicker
         onChange={(dates: any) => {
           onChange(dates.map((item: any) => datePickerToTimestamp(item)));

@@ -1,6 +1,7 @@
 import { Select } from 'antd';
 import { useEffect, useState } from 'react';
 import { unionBy } from 'lodash-es';
+import { t } from 'i18next';
 import type { SelectProps } from 'antd';
 import styles from './index.less';
 import { bakeryAPI } from '@/services';
@@ -28,12 +29,12 @@ const StoreSelect = ({ onChange, value }: IProps) => {
   }, []);
   return (
     <div className={styles.root}>
-      <div className={styles.label}>门店</div>
+      <div className={styles.label}>{t<string>('pages.report.Store')}</div>
       <Select
         mode="multiple"
         allowClear
         style={{ width: '268px' }}
-        placeholder="请选择"
+        placeholder={t<string>('pages.report.PleaseChoose')}
         value={value}
         onChange={(value: string[]) => {
           onChange(value);

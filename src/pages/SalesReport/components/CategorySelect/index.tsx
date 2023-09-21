@@ -1,6 +1,7 @@
 import { Select } from 'antd';
 import { useEffect, useState } from 'react';
 import { unionBy } from 'lodash-es';
+import { t } from 'i18next';
 import type { SelectProps } from 'antd';
 import styles from './index.less';
 import { bakeryAPI } from '@/services';
@@ -28,13 +29,13 @@ const CategorySelect = ({ onChange, value }: IProps) => {
   }, []);
   return (
     <div className={styles.root}>
-      <div className={styles.label}>分类</div>
+      <div className={styles.label}>{t<string>('pages.report.Category')}</div>
       <Select
         mode="multiple"
         allowClear
         style={{ width: '268px' }}
         value={value}
-        placeholder="请选择"
+        placeholder={t<string>('pages.report.PleaseChoose')}
         onChange={(value: string[]) => {
           onChange(value);
         }}
