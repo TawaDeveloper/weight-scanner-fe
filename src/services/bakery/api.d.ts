@@ -792,20 +792,32 @@ declare namespace defs {
       /** 销售额 */
       amount?: number;
 
+      /** 产品名称 */
+      articleName?: string;
+
       /** 产品 */
       articleNumber?: string;
 
       /** 分类 */
       category?: string;
 
+      /** 分类名称 */
+      categoryName?: string;
+
       /** 部门 */
       department?: string;
+
+      /** 部门名称 */
+      departmentName?: string;
 
       /** 销售日期 */
       salesDate?: string;
 
       /** 门店 */
       storeId?: string;
+
+      /** 门店名称 */
+      storeName?: string;
 
       /** 销售量 */
       volume?: number;
@@ -1418,6 +1430,9 @@ declare namespace API {
         */
       export namespace articles {
         export type articlesParam = {
+          /** department */
+          department?: string;
+
           /** keyword */
           keyword?: string;
 
@@ -1598,8 +1613,8 @@ declare namespace API {
         */
       export namespace report {
         export type reportParam = {
-          /** articleNumbers */
-          articleNumbers?: Array<string>;
+          /** categories */
+          categories?: Array<string>;
 
           /** department */
           department: string;

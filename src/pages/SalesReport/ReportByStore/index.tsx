@@ -270,6 +270,7 @@ const ReportByStore = () => {
           <div className={styles.productSelect}>
             <ProductSelect
               value={userParams.articleNumbers}
+              department={userParams.department}
               onChange={(value: any) => {
                 setUserParams((item) => {
                   const newParams = { ...item };
