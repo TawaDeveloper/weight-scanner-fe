@@ -124,7 +124,6 @@ export default (props: IProps) => {
             style={{
               width: '200px',
             }}
-            decimalSeparator={'0'}
             precision={0}
             min={0}
             placeholder={t<string>(`pages.orderList.title0106`)}

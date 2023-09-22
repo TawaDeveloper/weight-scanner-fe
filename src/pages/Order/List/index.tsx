@@ -109,12 +109,12 @@ const OrderList = () => {
 
   const handleBatch = async (params: { [x in string]: any }) => {
     const { createTime } = params || {};
-
+    const selectTable = data?.data?.records?.filter(el => selectedRowKeys.includes(el.orderId || ''))
     const content = await bakeryAPI.order.exportOrderList.request(
       {
-        exportItems: selectedRowKeys.map((el) => {
-          return { orderId: el };
-        }),
+        exportItems: selectTable ? selectTable.map((el) => {
+          return { orderId: el.orderId || '', po: el.po };
+        }) : [],
         ...params,
         maxCreateTime: createTime
           ? datePickerToTimestamp(createTime[1], YYYY_MM_DD_MAX).toString()
