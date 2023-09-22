@@ -54,6 +54,11 @@ const ReportByCategory = lazy(() =>
 const LossFactor = lazy(() =>
   import(/* webpackChunkName: "Menu" */ '@/pages/Setting/LossFactor'),
 );
+
+const Ghost = lazy(() =>
+  import(/* webpackChunkName: "Ghost" */ '@/pages/Ghost'),
+);
+
 const baseRoutes = [
   {
     name: 'all',
@@ -65,6 +70,11 @@ const baseRoutes = [
     path: '/',
     name: 'index',
     component: SecurityLayout,
+  },
+  {
+    path: '/ghost',
+    name: 'ghost',
+    component: Ghost,
   },
   {
     path: '/user',
