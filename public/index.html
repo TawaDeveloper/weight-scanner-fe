@@ -30,5 +30,13 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      const PERMITTED_DOMAIN = "http://example.com";
+      window.addEventListener('message', function(event) {
+        console.log('message --- :', event);
+        if (event.origin === PERMITTED_DOMAIN) {
+        }
+      });
+    </script>
   </body>
 </html>
