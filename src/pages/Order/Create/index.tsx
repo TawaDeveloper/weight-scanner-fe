@@ -173,7 +173,9 @@ const CreateOrder = () => {
                     [el.key]: value,
                   };
                 });
-                actionRef.current?.onQuery();
+                if (searchParams.depId && searchParams.storeId) {
+                  actionRef.current?.onQuery();
+                }
               },
               options:
                 el.key === 'storeId'
