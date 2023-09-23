@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { useMount } from 'ahooks';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { stringify } from 'qs';
 import { loginStateAtom } from '@/atoms/login';
 import BasicLayout from './BasicLayout';
 import { getPermissionsMenus } from '@/utils/route-utils';
+import { bakeryAPI } from '@/services';
 // import { backofficeAPI } from '@/services';
 // import { PageLoading } from '@/components';
 
@@ -14,10 +15,17 @@ const SecurityLayout: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [login, setLogin] = useRecoilState(loginStateAtom);
-  // const { runAsync, loading } = useRequest(
-  //   backofficeAPI.webAdmin.getUserInfo.request,
-  // );
+  const token = localStorage.getItem('tawa_sso_token');
 
+  useEffect(() => {
+    if (token) {
+      bakeryAPI.account.userInfo.request().then((res) => {
+        if (res.data && res.success) {
+          sessionStorage.setItem('bakeryUserInfo', JSON.stringify(res.data))
+        }
+      })
+    }
+  }, [token])
   useMount(() => {
     if (login.isLogin) {
       const { routePremiss, filteredMenus } = getPermissionsMenus([]);
@@ -34,7 +42,7 @@ const SecurityLayout: React.FC = () => {
     const queryString = stringify({
       redirect: window.location.href,
     });
-    return <Navigate to={`/user/login?${queryString}`} replace />;
+    return <Navigate to={process.env.REACT_APP_SSO_LOGIN + `?${queryString}`} replace />;
   }
 
   if (location.pathname === '/' && login.indexPath) {

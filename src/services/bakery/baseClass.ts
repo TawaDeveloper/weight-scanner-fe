@@ -132,6 +132,38 @@ class Item {
   record_type = '';
 }
 
+class LoginUserInfo {
+  /** 账号 */
+  account = '';
+
+  /** 头像 */
+  avatar = '';
+
+  /** 邮箱 */
+  email = '';
+
+  /** google SSO token */
+  googleToken = '';
+
+  /** 登录方式 */
+  loginType = 'ACCOUNT';
+
+  /** 用户名 */
+  name = '';
+
+  /** 是否需要重置密码 */
+  needResetPwd = false;
+
+  /** 觉色列表 */
+  roles = [];
+
+  /** 账号登录 token(jwt) */
+  token = '';
+
+  /** 用户id */
+  userId = undefined;
+}
+
 class LossFactor {
   /** 分类 id（level == 3） */
   categoryId = '';
@@ -892,6 +924,7 @@ export const bakery = {
   EstDeliveredDateVO,
   IPage,
   Item,
+  LoginUserInfo,
   LossFactor,
   LossFactorTree,
   NewArticleItem,

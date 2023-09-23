@@ -6,6 +6,7 @@ import * as statisticalCommonInterface from './statisticalCommon';
 import * as statisticalSalesCategoryInterface from './statisticalSalesCategory';
 import * as statisticalSalesProductInterface from './statisticalSalesProduct';
 import * as statisticalSalesStoreInterface from './statisticalSalesStore';
+import * as accountInterface from './account';
 
 export const bakery = {
   lossFactor: lossFactorInterface,
@@ -16,4 +17,5 @@ export const bakery = {
   statisticalSalesCategory: statisticalSalesCategoryInterface,
   statisticalSalesProduct: statisticalSalesProductInterface,
   statisticalSalesStore: statisticalSalesStoreInterface,
+  account: accountInterface,
 };

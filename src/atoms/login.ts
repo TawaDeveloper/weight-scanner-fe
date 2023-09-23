@@ -13,15 +13,14 @@ export interface LoginStateAtomType {
   routesFlat: DynamicRouteType[];
 }
 
-const token = localStorage.getItem('token');
+const token = localStorage.getItem('tawa_sso_token');
 export const loginStateAtom = atom<LoginStateAtomType>({
   key: 'loginStateAtom',
   default: {
     role: null,
     id: null,
-    account: 'Tester',
-    isLogin: true,
-    // isLogin: true,
+    account: '',
+    isLogin: !!token,
     token,
     permission: {},
     indexPath: '/report/reportByCategory',
