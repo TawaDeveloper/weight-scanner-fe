@@ -62,7 +62,7 @@ const omitIdentityProps = (config: Record<string, any>) => {
  */
 
 const requestHandler = (url: string, options: Record<string, any>) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('tawa_sso_token');
   const lang = localStorage.getItem('lang') || DEFAULT_LANGUAGE;
 
   const query = stringify(options.params);
@@ -110,9 +110,9 @@ const errorHandler = (error: any) => {
       description: message,
     });
 
-    if (code === 101013 && !window.location.pathname.includes('/user/login')) {
-      window.location.href = `${window.location.origin}/user/login?redirect=${window.location.href}`;
-    }
+    // if (code === 101013 && !window.location.pathname.includes('/user/login')) {
+    //   window.location.href = `${process.env.REACT_APP_SSO_LOGIN}?redirect=${window.location.href}`;
+    // }
   } else {
     notification.error({
       description: `${i18n.t<string>(

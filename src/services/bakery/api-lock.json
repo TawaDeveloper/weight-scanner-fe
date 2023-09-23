@@ -3712,6 +3712,69 @@
           ]
         }
       ]
+    },
+    {
+      "description": "授权相关接口",
+      "name": "account",
+      "interfaces": [
+        {
+          "description": "获取/验证用户信息",
+          "name": "userInfo",
+          "method": "get",
+          "path": "/hot-deli-bakery/admin/user-info",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "LoginUserInfo",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
   "name": "bakery",
@@ -4341,6 +4404,165 @@
             "typeProperties": []
           },
           "name": "record_type",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "LoginUserInfo",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "account",
+          "description": "账号",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "avatar",
+          "description": "头像",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "email",
+          "description": "邮箱",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "googleToken",
+          "description": "google SSO token",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [
+              "'ACCOUNT'",
+              "'GOOGLE_SSO'"
+            ],
+            "typeProperties": []
+          },
+          "name": "loginType",
+          "description": "登录方式",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "name",
+          "description": "用户名",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "boolean",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "needResetPwd",
+          "description": "是否需要重置密码",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "number",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "roles",
+          "description": "觉色列表",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "token",
+          "description": "账号登录 token(jwt)",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "userId",
+          "description": "用户id",
           "required": false
         }
       ]

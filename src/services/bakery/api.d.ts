@@ -138,6 +138,38 @@ declare namespace defs {
       record_type?: string;
     }
 
+    export class LoginUserInfo {
+      /** 账号 */
+      account?: string;
+
+      /** 头像 */
+      avatar?: string;
+
+      /** 邮箱 */
+      email?: string;
+
+      /** google SSO token */
+      googleToken?: string;
+
+      /** 登录方式 */
+      loginType?: 'ACCOUNT' | 'GOOGLE_SSO';
+
+      /** 用户名 */
+      name?: string;
+
+      /** 是否需要重置密码 */
+      needResetPwd?: boolean;
+
+      /** 觉色列表 */
+      roles?: Array<number>;
+
+      /** 账号登录 token(jwt) */
+      token?: string;
+
+      /** 用户id */
+      userId?: number;
+    }
+
     export class LossFactor {
       /** 分类 id（level == 3） */
       categoryId?: string;
@@ -474,8 +506,7 @@ declare namespace defs {
 
       /** 单品周销售额目标 */
       weekSalesGoal?: number;
-
-      /** 实际订货量 */
+      
       actualOrderQuantity?: number;
     }
 
@@ -1677,6 +1708,22 @@ declare namespace API {
           params: reportParam,
           options?: reportOptions,
         ) => reportResponse;
+      }
+    }
+
+    /**
+     * 授权相关接口
+     */
+    export namespace account {
+      /**
+       * 获取/验证用户信息
+       * /hot-deli-bakery/admin/user-info
+       */
+      export namespace userInfo {
+        export type userInfoOptions = Record<string, any>;
+        export type userInfoResponse =
+          defs.bakery.Response<defs.bakery.LoginUserInfo>;
+        export type request = (options?: userInfoOptions) => userInfoResponse;
       }
     }
   }
