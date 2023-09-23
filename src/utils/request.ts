@@ -110,9 +110,9 @@ const errorHandler = (error: any) => {
       description: message,
     });
 
-    // if (code === 101013 && !window.location.pathname.includes('/user/login')) {
-    //   window.location.href = `${process.env.REACT_APP_SSO_LOGIN}?redirect=${window.location.href}`;
-    // }
+    if (code === 101013 && !window.location.pathname.includes('/user/login')) {
+      window.location.href = `${process.env.REACT_APP_SSO_LOGIN}?redirect=${window.location.href}`;
+    }
   } else {
     notification.error({
       description: `${i18n.t<string>(

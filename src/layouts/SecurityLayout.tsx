@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { useMount } from 'ahooks';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { stringify } from 'qs';
-
+import { useLocation, useNavigate } from 'react-router-dom';
 import { loginStateAtom } from '@/atoms/login';
 import BasicLayout from './BasicLayout';
 import { getPermissionsMenus } from '@/utils/route-utils';
@@ -39,10 +37,8 @@ const SecurityLayout: React.FC = () => {
   });
 
   if (!login.isLogin && location.pathname !== '/user/login') {
-    const queryString = stringify({
-      redirect: window.location.href,
-    });
-    return <Navigate to={process.env.REACT_APP_SSO_LOGIN + `?${queryString}`} replace />;
+    window.location.href = `${process.env.REACT_APP_SSO_LOGIN}?redirect=${window.location.href}`;
+    // return <Navigate to={process.env.REACT_APP_SSO_LOGIN + `?redirect=${window.location.href}`} replace />;
   }
 
   if (location.pathname === '/' && login.indexPath) {
