@@ -7,4 +7,5 @@ export default {
   enterAccount: '輸入帳號',
   enterPassword: '輸入密碼',
   passwordTip: '請輸入8-12位數字+字母+字符組合',
+  signOut: '退出',
 };

@@ -20,6 +20,7 @@ const AvatarDropdown: React.FC = () => {
     runAsync().then(({ success }) => {
       if (success) {
         localStorage.removeItem('tawa_sso_token');
+        localStorage.removeItem('username');
         setLogin({
           ...login,
           isLogin: false,
