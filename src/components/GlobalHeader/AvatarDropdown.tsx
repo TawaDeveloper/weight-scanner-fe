@@ -19,7 +19,7 @@ const AvatarDropdown: React.FC = () => {
   const logout = () => {
     runAsync().then(({ success }) => {
       if (success) {
-        localStorage.removeItem('token');
+        localStorage.removeItem('tawa_sso_token');
         setLogin({
           ...login,
           isLogin: false,
