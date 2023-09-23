@@ -30,5 +30,13 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      window.addEventListener('message', function(event) {
+        const { data = {} } = event;
+        if (event.origin.includes('99ranch') && data.action === 'SET_STORE') {
+          localStorage.setItem("tawa_sso_token", data.tawa_sso_token);
+        }
+      });
+    </script>
   </body>
 </html>

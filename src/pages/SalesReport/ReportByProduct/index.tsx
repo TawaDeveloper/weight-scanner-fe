@@ -163,7 +163,7 @@ const ReportByProduct = () => {
             .concat(
               response2.data.map((item: any) => {
                 const newItem: any = { ...item };
-           //     newItem.articleName = `${item.articleName} - Last year`;
+                //     newItem.articleName = `${item.articleName} - Last year`;
                 newItem.formatProductName = `${newItem.articleNumber} - ${newItem.articleName} - Last year`;
                 newItem.formatDate = moment(item.salesDate)
                   .add(1, 'year')
@@ -337,6 +337,7 @@ const ReportByProduct = () => {
           <div className={styles.productSelect}>
             <ProductSelect
               value={userParams.articleNumbers}
+              department={userParams.department}
               onChange={(value: any) => {
                 setUserParams((item) => {
                   const newParams = { ...item };

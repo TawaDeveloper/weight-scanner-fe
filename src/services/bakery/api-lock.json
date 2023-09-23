@@ -2515,6 +2515,21 @@
           "parameters": [
             {
               "in": "query",
+              "description": "department",
+              "name": "department",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "query",
               "description": "keyword",
               "name": "keyword",
               "required": false,
@@ -3335,8 +3350,8 @@
           "parameters": [
             {
               "in": "query",
-              "description": "articleNumbers",
-              "name": "articleNumbers",
+              "description": "categories",
+              "name": "categories",
               "required": false,
               "dataType": {
                 "typeArgs": [
@@ -7669,6 +7684,20 @@
             "enum": [],
             "typeProperties": []
           },
+          "name": "articleName",
+          "description": "产品名称",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
           "name": "articleNumber",
           "description": "产品",
           "required": false
@@ -7697,8 +7726,36 @@
             "enum": [],
             "typeProperties": []
           },
+          "name": "categoryName",
+          "description": "分类名称",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
           "name": "department",
           "description": "部门",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "departmentName",
+          "description": "部门名称",
           "required": false
         },
         {
@@ -7727,6 +7784,20 @@
           },
           "name": "storeId",
           "description": "门店",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "storeName",
+          "description": "门店名称",
           "required": false
         },
         {
