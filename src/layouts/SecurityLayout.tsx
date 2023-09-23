@@ -19,6 +19,7 @@ const SecurityLayout: React.FC = () => {
     if (token) {
       bakeryAPI.account.userInfo.request().then((res) => {
         if (res.data && res.success) {
+          localStorage.setItem('username', res.data.account || '');
           sessionStorage.setItem('bakeryUserInfo', JSON.stringify(res.data))
         }
       })
