@@ -1,0 +1,17 @@
+export default {
+  brandNameEN: '品牌英文名称',
+  brandNameSCH: '品牌简体名称',
+  brandNameTCH: '品牌繁体名称',
+  description: '品牌描述',
+  logo: '品牌LOGO',
+  updatedByName: '更新人',
+  updatedTime: '更新时间',
+  brandName: '品牌名称',
+  status: '状态',
+  createBrandBtn: '创建品牌',
+  okButton: '确认提交',
+  createBrand: '创建品牌',
+  updateBrand: '编辑品牌',
+  confirmDisable: '确定要禁用',
+  action: '操作',
+};

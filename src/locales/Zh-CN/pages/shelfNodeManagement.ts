@@ -1,0 +1,18 @@
+export default {
+  name: '编码',
+  path: '所属路径',
+  remark: '备注',
+  updatedByName: '更新人',
+  updatedTime: '更新时间',
+  type: '类型',
+  node: '节点',
+  position: '位置',
+  createNode: '创建节点',
+  createPos: '创建位置',
+  parentNode: '上级节点',
+  updateNode: '编辑节点',
+  import: '导入',
+  importModalTitle: '导入位置数据',
+  print: '打印',
+  autoCreateName: '自动生成',
+};

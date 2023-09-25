@@ -1,0 +1,18 @@
+export default {
+  warehouse_location: '所在仓库',
+  encoding_type: '编码类型',
+  encoding: '编码',
+  add_new: '新增',
+  print_encoding: '打印编码',
+  updater: '更新人',
+  operation: '操作',
+  delete: '删除',
+  generate_quantity: '生成数量',
+  update_time: '更新时间',
+  picking_cart: '拣货车',
+  picking_basket: '拣货篮子',
+  delete_tip: '删除后对应编码不可用，是否确认删除？',
+  please_select_at_least_1_code_record: '请至少选中1条编码记录',
+  not_in_the_same_warehouse: '所选记录不在同一个仓库，请检查',
+  not_the_same_type_of_code: '所选记录不是同一种编码类型，请检查',
+};

@@ -1,0 +1,17 @@
+export default {
+  channelType: '渠道类型',
+  createdTime: '创建时间',
+  orderNo: '订单号',
+  payee: '收款方',
+  payer: '付款方',
+  productName: '商品名称',
+  refundNo: '售后订单号',
+  shareAmount: '商品分账金额',
+  storeId: '店铺Id',
+  storeName: '店铺名',
+  taskNo: '任务编号',
+  taskNoItem: '任务编号-单项编号',
+  createdTimeStart: '开始时间',
+  createdTimeEnd: '结束时间',
+  exportButton: '导出',
+};

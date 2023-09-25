@@ -1,0 +1,28 @@
+{
+  "outDir": "src/services",
+  "name": "BackOffice",
+  "originUrl": "",
+  "originType": "SwaggerV2",
+  "transformPath": "./pontEngine/pontTransform",
+  "templatePath": "./pontEngine/pontTemplate",
+  "templateType": "",
+  "pollingTime": 1200,
+  "origins": [
+    {
+      "name": "bakery",
+      "originUrl": "http://10.89.24.26:8080/hot-deli-bakery/v2/api-docs",
+      "originType": "SwaggerV2",
+      "usingOperationId": true
+    }
+  ],
+  "spiltApiLock": true,
+  "usingOperationId": true,
+  "usingMultipleOrigins": true,
+  "prettierConfig": {},
+  "mocks": {
+    "enable": true,
+    "basePath": "",
+    "port": 8080,
+    "wrapper": "{\"code\": 0, \"data\": {response}, \"message\": \"\"}"
+  }
+}

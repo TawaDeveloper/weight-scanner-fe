@@ -1,0 +1,61 @@
+.pageContainer {
+  width: 100%;
+  background: #fff;
+  border-radius: 4px;
+  padding: 16px 8px;
+
+  .treeContainer {
+    width: 480px;
+    padding: 16px;
+  }
+
+  .spinning {
+    height: 100%;
+  }
+
+  .content {
+    background: #fff;
+    flex: auto;
+    min-width: 0;
+    border-radius: 4px;
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .treeNode {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    .treeNodeTitle {
+      //width: calc(100% - 80px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .actionContainer {
+      display: none;
+
+      span {
+        margin: 0 2px;
+
+        &:hover {
+          color: #1890ff;
+        }
+
+        &:last-child:hover {
+          color: #ff4d50;
+        }
+      }
+    }
+
+    &:hover .actionContainer {
+      display: block;
+    }
+  }
+}

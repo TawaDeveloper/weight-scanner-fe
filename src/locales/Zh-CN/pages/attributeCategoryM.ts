@@ -1,0 +1,15 @@
+export default {
+  title0001: '分类名称',
+  title0002: '状态',
+  title0003: '分类ID',
+  title0004: '分类名称',
+  title0005: '属性数量',
+  title0006: '更新人',
+  title0007: '更新时间',
+  title0008: '操作',
+  title0009: '已启用',
+  title0010: '未启用',
+  title0011: '启用',
+  title0012: '禁用',
+  title0013: '请输入，限50个字符',
+};

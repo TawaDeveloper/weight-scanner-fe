@@ -1,0 +1,116 @@
+@import url('../../../styles/default.less');
+
+.slogon {
+  width: 143px;
+  height: 145px;
+}
+.title {
+  color: #252733;
+  font-size: 32px;
+  font-weight: 600;
+}
+.main {
+  color: #252733;
+  width: 1280px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-around;
+  margin-top: 80px;
+  .input {
+    border-radius: 8px !important;
+    background: #F5F5F5 !important;
+    border-color: #F5F5F5 !important;
+    height: 48px !important;
+  }
+  .label {
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 16px;
+    line-height: 22px; /* 137.5% */
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+  @media screen and (max-width: @screen-sm) {
+    width: 95%;
+    max-width: 328px;
+  }
+
+  :global {
+    .@{ant-prefix}-tabs-nav-list {
+      margin: auto;
+      font-size: 16px;
+    }
+  }
+
+  .icon {
+    margin-left: 16px;
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 24px;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: color 0.3s;
+    float: left;
+
+    &:hover {
+      color: @primary-color;
+    }
+  }
+
+  .p {
+    float: left;
+  }
+
+  .other {
+    margin-top: 24px;
+    line-height: 22px;
+    text-align: left;
+    display: block;
+
+    .register {
+      float: right;
+    }
+  }
+
+  .prefixIcon {
+    color: @primary-color;
+    font-size: @font-size-base;
+  }
+
+  .outerContainer {
+    width: 453px;
+    box-sizing: border-box;
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  .selectLang {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .brandDisplay {
+    width: 700px;
+    height: 540px;
+    border-radius: 12px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #f9f9f9;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+    a {
+      text-decoration: none;
+    }
+  }
+  .button {
+    border-radius: 32px;
+    background: #2A6F50;
+    height: 48px;
+    font-size: 20px;
+  }
+  .logo {
+    height: 44px;
+    vertical-align: top;
+  }
+}
