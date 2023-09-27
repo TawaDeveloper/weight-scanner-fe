@@ -55,6 +55,12 @@ const LossFactor = lazy(() =>
   import(/* webpackChunkName: "Menu" */ '@/pages/Setting/LossFactor'),
 );
 
+const RolePermissionSetting = lazy(() =>
+  import(
+    /* webpackChunkName: "Menu" */ '@/pages/Setting/RolePermissionSetting'
+  ),
+);
+
 const Ghost = lazy(() =>
   import(/* webpackChunkName: "Ghost" */ '@/pages/Ghost'),
 );
@@ -195,6 +201,14 @@ const settingMenus = [
     name: 'menus.top.SalesTargetSetting',
     component: SalesTargetSetting,
     code: 'salesTargetSetting',
+    parentCode: 'setting',
+    skipAuthentication: true,
+  },
+  {
+    path: 'permission',
+    name: 'menus.top.rolePermissionSetting',
+    component: RolePermissionSetting,
+    code: 'rolePermissionSetting',
     parentCode: 'setting',
     skipAuthentication: true,
   },

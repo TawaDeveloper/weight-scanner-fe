@@ -1,4 +1,3 @@
-
 import { order } from './order';
 import { backoffice } from './backoffice';
 import { account } from './account';
@@ -10,7 +9,7 @@ import { warehouse } from './warehouse';
 import { message } from './message';
 import { finance } from './finance';
 import { bakery } from './bakery';
-
+import { tawa } from './tawa';
 export const bakeryAPI = bakery;
 export const orderAPI = order;
 export const backofficeAPI = backoffice;
@@ -22,6 +21,7 @@ export const searchAPI = search;
 export const warehouseAPI = warehouse;
 export const messageAPI = message;
 export const financeAPI = finance;
+export const tawaAPI = tawa;
 
 export default {
   order,
@@ -35,4 +35,6 @@ export default {
   warehouse,
   message,
   finance,
+  tawa
 };
+

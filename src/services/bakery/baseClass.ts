@@ -1,3 +1,31 @@
+class AddPermissionDto {
+  /** 英文名称 */
+  nameEnUs = '';
+
+  /** 中文名称 */
+  nameZhCn = '';
+
+  /** 繁体名称 */
+  nameZhTw = '';
+
+  /** 父 id */
+  parentId = undefined;
+
+  /** 排序 */
+  sort = undefined;
+
+  /** MENU=菜单;COMPONENT=组件;API=接口;STORE=门店;WAREHOUSE=仓库;BIZ_MODULE=业务模块;API_FIELD=接口字段 */
+  type = 'API';
+}
+
+class AddRolePermissionDto {
+  /** 权限列表 */
+  referIds = [];
+
+  /** 角色ID */
+  roleId = undefined;
+}
+
 class ArticleOption {
   /** 产品编号 */
   articleNumber = '';
@@ -94,6 +122,29 @@ class CreateOrderVO {
 
   /** PR 编号 */
   pr = '';
+}
+
+class EditPermissionDto {
+  /** id */
+  id = undefined;
+
+  /** 英文名称 */
+  nameEnUs = '';
+
+  /** 中文名称 */
+  nameZhCn = '';
+
+  /** 繁体名称 */
+  nameZhTw = '';
+
+  /** 父 id */
+  parentId = undefined;
+
+  /** 排序 */
+  sort = undefined;
+
+  /** MENU=菜单;COMPONENT=组件;API=接口;STORE=门店;WAREHOUSE=仓库;BIZ_MODULE=业务模块;API_FIELD=接口字段 */
+  type = 'API';
 }
 
 class EstDeliveredDateVO {
@@ -502,6 +553,32 @@ class OrderNewRefArticle {
   weekSalesGoal = undefined;
 }
 
+class PermissionVo {
+  /** 儿子节点 */
+  children = [];
+
+  /** 编码 */
+  code = '';
+
+  /** id */
+  id = undefined;
+
+  /** 层级 */
+  level = undefined;
+
+  /** 名称 */
+  name = '';
+
+  /** 父 id */
+  parentId = undefined;
+
+  /** 排序 */
+  sort = undefined;
+
+  /** MENU=菜单;COMPONENT=组件;API=接口;STORE=门店;WAREHOUSE=仓库;BIZ_MODULE=业务模块;API_FIELD=接口字段 */
+  type = 'API';
+}
+
 class PoDetailBaseVO {
   /** PO 单金额 */
   amount = undefined;
@@ -815,20 +892,32 @@ class StatisticalSalesChart {
   /** 销售额 */
   amount = undefined;
 
+  /** 产品名称 */
+  articleName = '';
+
   /** 产品 */
   articleNumber = '';
 
   /** 分类 */
   category = '';
 
+  /** 分类名称 */
+  categoryName = '';
+
   /** 部门 */
   department = '';
+
+  /** 部门名称 */
+  departmentName = '';
 
   /** 销售日期 */
   salesDate = '';
 
   /** 门店 */
   storeId = '';
+
+  /** 门店名称 */
+  storeName = '';
 
   /** 销售量 */
   volume = undefined;
@@ -914,6 +1003,8 @@ class UpdateSalesGoalDTO {
 }
 
 export const bakery = {
+  AddPermissionDto,
+  AddRolePermissionDto,
   ArticleOption,
   ArticleRefDTO,
   CategoryOption,
@@ -921,6 +1012,7 @@ export const bakery = {
   CreateOrderDTO,
   CreateOrderItem,
   CreateOrderVO,
+  EditPermissionDto,
   EstDeliveredDateVO,
   IPage,
   Item,
@@ -941,6 +1033,7 @@ export const bakery = {
   OrderListPageDTO,
   OrderNewOptionsVO,
   OrderNewRefArticle,
+  PermissionVo,
   PoDetailBaseVO,
   PoDetailItem,
   PoDetailItemDTO,
