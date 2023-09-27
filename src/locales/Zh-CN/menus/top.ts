@@ -137,4 +137,5 @@ export default {
   reportByCategory: '按类别销量统计',
   SalesTargetSetting: '销售目标设置',
   lossFactor: '损耗系数设置',
+  rolePermissionSetting: '角色权限设置',
 };
