@@ -2,6 +2,9 @@
 import sendRequest, { getEnvHost } from '@/utils/request';
 
 export type categoriesParam = {
+  /** department */
+  department?: string;
+
   /** keyword */
   keyword?: string;
 };

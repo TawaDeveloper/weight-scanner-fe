@@ -3448,6 +3448,21 @@
           "parameters": [
             {
               "in": "query",
+              "description": "department",
+              "name": "department",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "query",
               "description": "keyword",
               "name": "keyword",
               "required": false,

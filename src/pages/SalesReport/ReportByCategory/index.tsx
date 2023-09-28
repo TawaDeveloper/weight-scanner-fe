@@ -307,6 +307,7 @@ const ReportByCategory = () => {
           <div className={styles.storeSelect}>
             <CategorySelect
               value={userParams.categories}
+              department={userParams.department}
               onChange={(value) => {
                 setUserParams((item) => {
                   const newParams = { ...item };
