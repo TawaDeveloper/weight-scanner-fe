@@ -1489,7 +1489,7 @@
               "required": true,
               "dataType": {
                 "typeArgs": [],
-                "typeName": "AddRolePermissionDto",
+                "typeName": "AddOptRolePermissionDto",
                 "isDefsType": true,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
@@ -1816,7 +1816,7 @@
                 "typeArgs": [
                   {
                     "typeArgs": [],
-                    "typeName": "number",
+                    "typeName": "string",
                     "isDefsType": false,
                     "templateIndex": -1,
                     "compileTemplateKeyword": "#/definitions/",
@@ -4538,6 +4538,50 @@
   "name": "bakery",
   "baseClasses": [
     {
+      "name": "AddOptRolePermissionDto",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "number",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "referIds",
+          "description": "权限列表",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "roleId",
+          "description": "角色ID",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "AddPermissionDto",
       "templateArgs": [],
       "properties": [
@@ -4644,7 +4688,7 @@
             "typeArgs": [
               {
                 "typeArgs": [],
-                "typeName": "number",
+                "typeName": "string",
                 "isDefsType": false,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",

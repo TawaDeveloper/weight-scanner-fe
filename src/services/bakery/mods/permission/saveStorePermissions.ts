@@ -16,7 +16,7 @@ export function request(
   options?: saveStorePermissionsOptions,
 ): saveStorePermissionsResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/permissions/store';
+  const url = host + '/hot-deli-bakery/api/permissions/store';
   const fetchOption = {
     method: 'post',
     headers: {

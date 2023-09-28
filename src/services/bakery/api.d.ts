@@ -4,6 +4,14 @@ type ObjectMap<Key extends string | number | symbol = any, Value = any> = {
 
 declare namespace defs {
   export namespace bakery {
+    export class AddOptRolePermissionDto {
+      /** 权限列表 */
+      referIds: Array<number>;
+
+      /** 角色ID */
+      roleId: number;
+    }
+
     export class AddPermissionDto {
       /** 英文名称 */
       nameEnUs: string;
@@ -33,7 +41,7 @@ declare namespace defs {
 
     export class AddRolePermissionDto {
       /** 权限列表 */
-      referIds: Array<number>;
+      referIds: Array<string>;
 
       /** 角色ID */
       roleId: number;
@@ -1356,7 +1364,7 @@ declare namespace API {
        */
       export namespace saveOperationPermissions {
         export type saveOperationPermissionsBody =
-          defs.bakery.AddRolePermissionDto;
+          defs.bakery.AddOptRolePermissionDto;
         export type saveOperationPermissionsOptions = Record<string, any>;
         export type saveOperationPermissionsResponse =
           defs.bakery.Response<boolean>;
@@ -1439,7 +1447,7 @@ declare namespace API {
         };
         export type listStorePermissionsOptions = Record<string, any>;
         export type listStorePermissionsResponse = defs.bakery.Response<
-          Array<number>
+          Array<string>
         >;
         export type request = (
           path: listStorePermissionsPath,

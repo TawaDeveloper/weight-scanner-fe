@@ -1,3 +1,11 @@
+class AddOptRolePermissionDto {
+  /** 权限列表 */
+  referIds = [];
+
+  /** 角色ID */
+  roleId = undefined;
+}
+
 class AddPermissionDto {
   /** 英文名称 */
   nameEnUs = '';
@@ -1003,6 +1011,7 @@ class UpdateSalesGoalDTO {
 }
 
 export const bakery = {
+  AddOptRolePermissionDto,
   AddPermissionDto,
   AddRolePermissionDto,
   ArticleOption,

@@ -1,5 +1,5 @@
 import { t } from 'i18next';
-import { STATUS_TYPES, enumsObjectToArray } from '@/constants/enums';
+import { ROLE_STATUS_TYPES, enumsObjectToArray } from '@/constants/enums';
 import { timestampToPST } from '@/utils';
 //   {
 //     "id": 40,
@@ -58,8 +58,8 @@ export const tableFields = [
   {
     key: 'status',
     name: t<string>(`pages.rolePermissionSetting.status`),
-    render: (value: number) => {
-      return STATUS_TYPES[value];
+    render: (value: string) => {
+      return ROLE_STATUS_TYPES[value];
     },
   },
   // {
@@ -83,7 +83,7 @@ export const formFields = [
     name: t<string>(`pages.rolePermissionSetting.status`),
     type: 'select',
     props: () => ({
-      options: enumsObjectToArray(STATUS_TYPES),
+      options: enumsObjectToArray(ROLE_STATUS_TYPES),
     }),
   },
 ];
