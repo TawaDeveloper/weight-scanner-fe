@@ -4,6 +4,41 @@ type ObjectMap<Key extends string | number | symbol = any, Value = any> = {
 
 declare namespace defs {
   export namespace bakery {
+    export class AddPermissionDto {
+      /** 英文名称 */
+      nameEnUs: string;
+
+      /** 中文名称 */
+      nameZhCn: string;
+
+      /** 繁体名称 */
+      nameZhTw: string;
+
+      /** 父 id */
+      parentId: number;
+
+      /** 排序 */
+      sort?: number;
+
+      /** MENU=菜单;COMPONENT=组件;API=接口;STORE=门店;WAREHOUSE=仓库;BIZ_MODULE=业务模块;API_FIELD=接口字段 */
+      type:
+        | 'API'
+        | 'API_FIELD'
+        | 'BIZ_MODULE'
+        | 'COMPONENT'
+        | 'MENU'
+        | 'STORE'
+        | 'WAREHOUSE';
+    }
+
+    export class AddRolePermissionDto {
+      /** 权限列表 */
+      referIds: Array<number>;
+
+      /** 角色ID */
+      roleId: number;
+    }
+
     export class ArticleOption {
       /** 产品编号 */
       articleNumber?: string;
@@ -100,6 +135,36 @@ declare namespace defs {
 
       /** PR 编号 */
       pr?: string;
+    }
+
+    export class EditPermissionDto {
+      /** id */
+      id: number;
+
+      /** 英文名称 */
+      nameEnUs: string;
+
+      /** 中文名称 */
+      nameZhCn: string;
+
+      /** 繁体名称 */
+      nameZhTw: string;
+
+      /** 父 id */
+      parentId: number;
+
+      /** 排序 */
+      sort?: number;
+
+      /** MENU=菜单;COMPONENT=组件;API=接口;STORE=门店;WAREHOUSE=仓库;BIZ_MODULE=业务模块;API_FIELD=接口字段 */
+      type:
+        | 'API'
+        | 'API_FIELD'
+        | 'BIZ_MODULE'
+        | 'COMPONENT'
+        | 'MENU'
+        | 'STORE'
+        | 'WAREHOUSE';
     }
 
     export class EstDeliveredDateVO {
@@ -506,8 +571,41 @@ declare namespace defs {
 
       /** 单品周销售额目标 */
       weekSalesGoal?: number;
-      
+
       actualOrderQuantity?: number;
+    }
+
+    export class PermissionVo {
+      /** 儿子节点 */
+      children?: Array<defs.bakery.PermissionVo>;
+
+      /** 编码 */
+      code?: string;
+
+      /** id */
+      id?: number;
+
+      /** 层级 */
+      level?: number;
+
+      /** 名称 */
+      name?: string;
+
+      /** 父 id */
+      parentId?: number;
+
+      /** 排序 */
+      sort?: number;
+
+      /** MENU=菜单;COMPONENT=组件;API=接口;STORE=门店;WAREHOUSE=仓库;BIZ_MODULE=业务模块;API_FIELD=接口字段 */
+      type?:
+        | 'API'
+        | 'API_FIELD'
+        | 'BIZ_MODULE'
+        | 'COMPONENT'
+        | 'MENU'
+        | 'STORE'
+        | 'WAREHOUSE';
     }
 
     export class PoDetailBaseVO {
@@ -938,6 +1036,36 @@ declare namespace defs {
 declare namespace API {
   export namespace bakery {
     /**
+     * 授权相关接口
+     */
+    export namespace account {
+      /**
+       * 获取用户操作权限
+       * /hot-deli-bakery/admin/permission
+       */
+      export namespace permission {
+        export type permissionOptions = Record<string, any>;
+        export type permissionResponse = defs.bakery.Response<
+          Array<defs.bakery.PermissionVo>
+        >;
+        export type request = (
+          options?: permissionOptions,
+        ) => permissionResponse;
+      }
+
+      /**
+       * 获取/验证用户信息
+       * /hot-deli-bakery/admin/user-info
+       */
+      export namespace userInfo {
+        export type userInfoOptions = Record<string, any>;
+        export type userInfoResponse =
+          defs.bakery.Response<defs.bakery.LoginUserInfo>;
+        export type request = (options?: userInfoOptions) => userInfoResponse;
+      }
+    }
+
+    /**
      * 损耗系数
      */
     export namespace lossFactor {
@@ -1187,6 +1315,153 @@ declare namespace API {
           body: getPoDetailItemsForPageBody,
           options?: getPoDetailItemsForPageOptions,
         ) => getPoDetailItemsForPageResponse;
+      }
+    }
+
+    /**
+     * 权限管理
+     */
+    export namespace permission {
+      /**
+       * 新建权限
+       * /hot-deli-bakery/api/permissions
+       */
+      export namespace savePermissions {
+        export type savePermissionsBody = defs.bakery.AddPermissionDto;
+        export type savePermissionsOptions = Record<string, any>;
+        export type savePermissionsResponse = defs.bakery.Response<number>;
+        export type request = (
+          body: savePermissionsBody,
+          options?: savePermissionsOptions,
+        ) => savePermissionsResponse;
+      }
+
+      /**
+       * 修改权限
+       * /hot-deli-bakery/api/permissions
+       */
+      export namespace updatePermissions {
+        export type updatePermissionsBody = defs.bakery.EditPermissionDto;
+        export type updatePermissionsOptions = Record<string, any>;
+        export type updatePermissionsResponse = defs.bakery.Response<boolean>;
+        export type request = (
+          body: updatePermissionsBody,
+          options?: updatePermissionsOptions,
+        ) => updatePermissionsResponse;
+      }
+
+      /**
+       * 编辑操作权限
+       * /hot-deli-bakery/api/permissions/opt
+       */
+      export namespace saveOperationPermissions {
+        export type saveOperationPermissionsBody =
+          defs.bakery.AddRolePermissionDto;
+        export type saveOperationPermissionsOptions = Record<string, any>;
+        export type saveOperationPermissionsResponse =
+          defs.bakery.Response<boolean>;
+        export type request = (
+          body: saveOperationPermissionsBody,
+          options?: saveOperationPermissionsOptions,
+        ) => saveOperationPermissionsResponse;
+      }
+
+      /**
+       * 查询所有操作权限(选项)
+       * /hot-deli-bakery/api/permissions/opt/option
+       */
+      export namespace optPermissionOption {
+        export type optPermissionOptionOptions = Record<string, any>;
+        export type optPermissionOptionResponse = defs.bakery.Response<
+          Array<defs.bakery.PermissionVo>
+        >;
+        export type request = (
+          options?: optPermissionOptionOptions,
+        ) => optPermissionOptionResponse;
+      }
+
+      /**
+       * 查询操作权限
+       * /hot-deli-bakery/api/permissions/opt/{roleId}
+       */
+      export namespace listOperationPermissions {
+        export type listOperationPermissionsPath = {
+          /** roleId */
+          roleId: number;
+        };
+        export type listOperationPermissionsOptions = Record<string, any>;
+        export type listOperationPermissionsResponse = defs.bakery.Response<
+          Array<number>
+        >;
+        export type request = (
+          path: listOperationPermissionsPath,
+          options?: listOperationPermissionsOptions,
+        ) => listOperationPermissionsResponse;
+      }
+
+      /**
+       * 编辑门店数据权限
+       * /hot-deli-bakery/api/permissions/store
+       */
+      export namespace saveStorePermissions {
+        export type saveStorePermissionsBody = defs.bakery.AddRolePermissionDto;
+        export type saveStorePermissionsOptions = Record<string, any>;
+        export type saveStorePermissionsResponse =
+          defs.bakery.Response<boolean>;
+        export type request = (
+          body: saveStorePermissionsBody,
+          options?: saveStorePermissionsOptions,
+        ) => saveStorePermissionsResponse;
+      }
+
+      /**
+       * 查询所有门店数据权限(选项)
+       * /hot-deli-bakery/api/permissions/store/option
+       */
+      export namespace dataPermissionOption {
+        export type dataPermissionOptionOptions = Record<string, any>;
+        export type dataPermissionOptionResponse = defs.bakery.Response<
+          Array<defs.bakery.OptionVO>
+        >;
+        export type request = (
+          options?: dataPermissionOptionOptions,
+        ) => dataPermissionOptionResponse;
+      }
+
+      /**
+       * 查询门店数据权限
+       * /hot-deli-bakery/api/permissions/store/{roleId}
+       */
+      export namespace listStorePermissions {
+        export type listStorePermissionsPath = {
+          /** roleId */
+          roleId: number;
+        };
+        export type listStorePermissionsOptions = Record<string, any>;
+        export type listStorePermissionsResponse = defs.bakery.Response<
+          Array<number>
+        >;
+        export type request = (
+          path: listStorePermissionsPath,
+          options?: listStorePermissionsOptions,
+        ) => listStorePermissionsResponse;
+      }
+
+      /**
+       * 删除权限
+       * /hot-deli-bakery/api/permissions/{id}
+       */
+      export namespace deletePermissions {
+        export type deletePermissionsPath = {
+          /** id */
+          id: number;
+        };
+        export type deletePermissionsOptions = Record<string, any>;
+        export type deletePermissionsResponse = defs.bakery.Response<boolean>;
+        export type request = (
+          path: deletePermissionsPath,
+          options?: deletePermissionsOptions,
+        ) => deletePermissionsResponse;
       }
     }
 
@@ -1723,22 +1998,6 @@ declare namespace API {
           params: reportParam,
           options?: reportOptions,
         ) => reportResponse;
-      }
-    }
-
-    /**
-     * 授权相关接口
-     */
-    export namespace account {
-      /**
-       * 获取/验证用户信息
-       * /hot-deli-bakery/admin/user-info
-       */
-      export namespace userInfo {
-        export type userInfoOptions = Record<string, any>;
-        export type userInfoResponse =
-          defs.bakery.Response<defs.bakery.LoginUserInfo>;
-        export type request = (options?: userInfoOptions) => userInfoResponse;
       }
     }
   }

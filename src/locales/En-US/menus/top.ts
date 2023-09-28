@@ -137,4 +137,5 @@ export default {
   reportByCategory: 'Sales Report by Category',
   SalesTargetSetting: 'Sales Target Settings',
   lossFactor: 'Loss Factor',
+  rolePermissionSetting: 'Role permission settings',
 };

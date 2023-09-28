@@ -1,6 +1,136 @@
 {
   "mods": [
     {
+      "description": "授权相关接口",
+      "name": "account",
+      "interfaces": [
+        {
+          "description": "获取用户操作权限",
+          "name": "permission",
+          "method": "get",
+          "path": "/hot-deli-bakery/admin/permission",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [
+                  {
+                    "typeArgs": [],
+                    "typeName": "PermissionVo",
+                    "isDefsType": true,
+                    "templateIndex": -1,
+                    "compileTemplateKeyword": "#/definitions/",
+                    "enum": [],
+                    "typeProperties": []
+                  }
+                ],
+                "typeName": "Array",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "description": "获取/验证用户信息",
+          "name": "userInfo",
+          "method": "get",
+          "path": "/hot-deli-bakery/admin/user-info",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "LoginUserInfo",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
       "description": "损耗系数",
       "name": "lossFactor",
       "interfaces": [
@@ -1115,6 +1245,682 @@
                 "typeArgs": [],
                 "typeName": "PoDetailItemDTO",
                 "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "权限管理",
+      "name": "permission",
+      "interfaces": [
+        {
+          "consumes": [
+            "application/json"
+          ],
+          "description": "新建权限",
+          "name": "savePermissions",
+          "method": "post",
+          "path": "/hot-deli-bakery/api/permissions",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "number",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "body",
+              "description": "request",
+              "name": "request",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "AddPermissionDto",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "consumes": [
+            "application/json"
+          ],
+          "description": "修改权限",
+          "name": "updatePermissions",
+          "method": "put",
+          "path": "/hot-deli-bakery/api/permissions",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "boolean",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "body",
+              "description": "request",
+              "name": "request",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "EditPermissionDto",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "consumes": [
+            "application/json"
+          ],
+          "description": "编辑操作权限",
+          "name": "saveOperationPermissions",
+          "method": "post",
+          "path": "/hot-deli-bakery/api/permissions/opt",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "boolean",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "body",
+              "description": "request",
+              "name": "request",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "AddRolePermissionDto",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "description": "查询所有操作权限(选项)",
+          "name": "optPermissionOption",
+          "method": "get",
+          "path": "/hot-deli-bakery/api/permissions/opt/option",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [
+                  {
+                    "typeArgs": [],
+                    "typeName": "PermissionVo",
+                    "isDefsType": true,
+                    "templateIndex": -1,
+                    "compileTemplateKeyword": "#/definitions/",
+                    "enum": [],
+                    "typeProperties": []
+                  }
+                ],
+                "typeName": "Array",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "description": "查询操作权限",
+          "name": "listOperationPermissions",
+          "method": "get",
+          "path": "/hot-deli-bakery/api/permissions/opt/{roleId}",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [
+                  {
+                    "typeArgs": [],
+                    "typeName": "number",
+                    "isDefsType": false,
+                    "templateIndex": -1,
+                    "compileTemplateKeyword": "#/definitions/",
+                    "enum": [],
+                    "typeProperties": []
+                  }
+                ],
+                "typeName": "Array",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "path",
+              "description": "roleId",
+              "name": "roleId",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "number",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "consumes": [
+            "application/json"
+          ],
+          "description": "编辑门店数据权限",
+          "name": "saveStorePermissions",
+          "method": "post",
+          "path": "/hot-deli-bakery/api/permissions/store",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "boolean",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "body",
+              "description": "request",
+              "name": "request",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "AddRolePermissionDto",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "description": "查询所有门店数据权限(选项)",
+          "name": "dataPermissionOption",
+          "method": "get",
+          "path": "/hot-deli-bakery/api/permissions/store/option",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [
+                  {
+                    "typeArgs": [],
+                    "typeName": "OptionVO",
+                    "isDefsType": true,
+                    "templateIndex": -1,
+                    "compileTemplateKeyword": "#/definitions/",
+                    "enum": [],
+                    "typeProperties": []
+                  }
+                ],
+                "typeName": "Array",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "description": "查询门店数据权限",
+          "name": "listStorePermissions",
+          "method": "get",
+          "path": "/hot-deli-bakery/api/permissions/store/{roleId}",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [
+                  {
+                    "typeArgs": [],
+                    "typeName": "number",
+                    "isDefsType": false,
+                    "templateIndex": -1,
+                    "compileTemplateKeyword": "#/definitions/",
+                    "enum": [],
+                    "typeProperties": []
+                  }
+                ],
+                "typeName": "Array",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "header",
+              "description": "language [en_US, zh_CN, zh_TW]",
+              "name": "lang",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "path",
+              "description": "roleId",
+              "name": "roleId",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "number",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "in": "header",
+              "description": "Auth Token",
+              "name": "token",
+              "required": false,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "description": "删除权限",
+          "name": "deletePermissions",
+          "method": "delete",
+          "path": "/hot-deli-bakery/api/permissions/{id}",
+          "response": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "boolean",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Response",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "in": "path",
+              "description": "id",
+              "name": "id",
+              "required": true,
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "number",
+                "isDefsType": false,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
                 "enum": [],
@@ -3727,73 +4533,152 @@
           ]
         }
       ]
+    }
+  ],
+  "name": "bakery",
+  "baseClasses": [
+    {
+      "name": "AddPermissionDto",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "nameEnUs",
+          "description": "英文名称",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "nameZhCn",
+          "description": "中文名称",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "nameZhTw",
+          "description": "繁体名称",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "parentId",
+          "description": "父 id",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "sort",
+          "description": "排序",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [
+              "'API'",
+              "'API_FIELD'",
+              "'BIZ_MODULE'",
+              "'COMPONENT'",
+              "'MENU'",
+              "'STORE'",
+              "'WAREHOUSE'"
+            ],
+            "typeProperties": []
+          },
+          "name": "type",
+          "description": "MENU=菜单;COMPONENT=组件;API=接口;STORE=门店;WAREHOUSE=仓库;BIZ_MODULE=业务模块;API_FIELD=接口字段",
+          "required": true
+        }
+      ]
     },
     {
-      "description": "授权相关接口",
-      "name": "account",
-      "interfaces": [
+      "name": "AddRolePermissionDto",
+      "templateArgs": [],
+      "properties": [
         {
-          "description": "获取/验证用户信息",
-          "name": "userInfo",
-          "method": "get",
-          "path": "/hot-deli-bakery/admin/user-info",
-          "response": {
+          "dataType": {
             "typeArgs": [
               {
                 "typeArgs": [],
-                "typeName": "LoginUserInfo",
-                "isDefsType": true,
+                "typeName": "number",
+                "isDefsType": false,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
                 "enum": [],
                 "typeProperties": []
               }
             ],
-            "typeName": "Response",
-            "isDefsType": true,
+            "typeName": "Array",
+            "isDefsType": false,
             "templateIndex": -1,
             "compileTemplateKeyword": "#/definitions/",
             "enum": [],
             "typeProperties": []
           },
-          "parameters": [
-            {
-              "in": "header",
-              "description": "language [en_US, zh_CN, zh_TW]",
-              "name": "lang",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "in": "header",
-              "description": "Auth Token",
-              "name": "token",
-              "required": false,
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            }
-          ]
+          "name": "referIds",
+          "description": "权限列表",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "roleId",
+          "description": "角色ID",
+          "required": true
         }
       ]
-    }
-  ],
-  "name": "bakery",
-  "baseClasses": [
+    },
     {
       "name": "ArticleOption",
       "templateArgs": [],
@@ -4249,6 +5134,118 @@
           "name": "pr",
           "description": "PR 编号",
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "EditPermissionDto",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "id",
+          "description": "id",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "nameEnUs",
+          "description": "英文名称",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "nameZhCn",
+          "description": "中文名称",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "nameZhTw",
+          "description": "繁体名称",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "parentId",
+          "description": "父 id",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "sort",
+          "description": "排序",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [
+              "'API'",
+              "'API_FIELD'",
+              "'BIZ_MODULE'",
+              "'COMPONENT'",
+              "'MENU'",
+              "'STORE'",
+              "'WAREHOUSE'"
+            ],
+            "typeProperties": []
+          },
+          "name": "type",
+          "description": "MENU=菜单;COMPONENT=组件;API=接口;STORE=门店;WAREHOUSE=仓库;BIZ_MODULE=业务模块;API_FIELD=接口字段",
+          "required": true
         }
       ]
     },
@@ -6200,6 +7197,141 @@
           },
           "name": "weekSalesGoal",
           "description": "单品周销售额目标",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "PermissionVo",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "PermissionVo",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "children",
+          "description": "儿子节点",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "code",
+          "description": "编码",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "id",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "level",
+          "description": "层级",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "name",
+          "description": "名称",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "parentId",
+          "description": "父 id",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "sort",
+          "description": "排序",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [
+              "'API'",
+              "'API_FIELD'",
+              "'BIZ_MODULE'",
+              "'COMPONENT'",
+              "'MENU'",
+              "'STORE'",
+              "'WAREHOUSE'"
+            ],
+            "typeProperties": []
+          },
+          "name": "type",
+          "description": "MENU=菜单;COMPONENT=组件;API=接口;STORE=门店;WAREHOUSE=仓库;BIZ_MODULE=业务模块;API_FIELD=接口字段",
           "required": false
         }
       ]
