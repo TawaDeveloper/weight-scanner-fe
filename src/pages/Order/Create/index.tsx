@@ -22,6 +22,7 @@ const CreateOrder = () => {
   const actionRef = useRef<TableQueryActions>(null);
   const [show, setShow] = useState<{ type: string; data?: any }>();
   const [order, setOrder] = useState<defs.bakery.CreateOrderVO>();
+  const [submitLoading, setSubmitLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useState({
     storeId: '',
@@ -301,9 +302,10 @@ const CreateOrder = () => {
       )}
       <div className="submit-button-box">
         <Button
-          disabled={!searchParams.depId || !searchParams.storeId}
+          disabled={!searchParams.depId || !searchParams.storeId || submitLoading}
           className="submit-button"
           onClick={() => {
+            setSubmitLoading(true)
             bakeryAPI.order.createOrder
               .request({
                 dep: searchParams.depId,
@@ -318,6 +320,7 @@ const CreateOrder = () => {
                 }),
               })
               .then((res) => {
+                setSubmitLoading(false)
                 if (res.data && res.success) {
                   setOrder(res.data);
                   setShow({
