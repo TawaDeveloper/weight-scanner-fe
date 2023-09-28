@@ -16,7 +16,7 @@ export function request(
   options?: saveOperationPermissionsOptions,
 ): saveOperationPermissionsResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/permissions/opt';
+  const url = host + '/hot-deli-bakery/api/permissions/opt';
   const fetchOption = {
     method: 'post',
     headers: {
