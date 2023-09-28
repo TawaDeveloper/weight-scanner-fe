@@ -1,4 +1,4 @@
-import { Button, Card, InputNumber, message } from 'antd';
+import { Button, Card, InputNumber } from 'antd';
 import { useRequest } from 'ahooks';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import MarioListContent from '@tawa/mario-list-content';
@@ -22,6 +22,7 @@ const CreateOrder = () => {
   const actionRef = useRef<TableQueryActions>(null);
   const [show, setShow] = useState<{ type: string; data?: any }>();
   const [order, setOrder] = useState<defs.bakery.CreateOrderVO>();
+  const [submitLoading, setSubmitLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useState({
     storeId: '',
@@ -145,11 +146,7 @@ const CreateOrder = () => {
       },
     ],
     scroll: { x: 1260 },
-    pagination: {
-      defaultPageSize: 20,
-      pageSize: 20,
-      pageSizeOptions: [10, 20, 50, 100],
-    },
+    pagination: false,
   };
 
   const formProps = useMemo(() => {
@@ -292,7 +289,12 @@ const CreateOrder = () => {
               setSearchParams(values);
               run(values);
             } else {
-              message.error(values.storeId ? '请选择部门' : '请选中门店');
+              setSubmitData([]);
+              setSearchParams({
+                storeId: '',
+                depId: '',
+              });
+              // message.error(values.storeId ? '请选择部门' : '请选中门店');
             }
           }}
           toolbar={<></>}
@@ -300,9 +302,10 @@ const CreateOrder = () => {
       )}
       <div className="submit-button-box">
         <Button
-          disabled={!searchParams.depId || !searchParams.storeId}
+          disabled={!searchParams.depId || !searchParams.storeId || submitLoading}
           className="submit-button"
           onClick={() => {
+            setSubmitLoading(true)
             bakeryAPI.order.createOrder
               .request({
                 dep: searchParams.depId,
@@ -317,6 +320,7 @@ const CreateOrder = () => {
                 }),
               })
               .then((res) => {
+                setSubmitLoading(false)
                 if (res.data && res.success) {
                   setOrder(res.data);
                   setShow({
