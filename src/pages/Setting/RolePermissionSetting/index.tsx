@@ -9,12 +9,15 @@ import { tawaAPI } from '@/services';
 import { formFields, tableFields } from './fields';
 import OptPermissionDialog from './OptPermissionDialog';
 import DataPermissionDialog from './DataPermissionDialog';
+import PersonListDialog from './PersonListDialog';
 
 const RolePermissionSetting = () => {
   const actionRef = useRef<TableQueryActions>(null);
   const [currentOptRole, setCurrenOptRole] =
     useState<defs.tawa.PageRoleResponse | null>(null);
   const [currentDataRole, setCurrenDataRole] =
+    useState<defs.tawa.PageRoleResponse | null>(null);
+  const [currentUserListRole, setCurrenUserListRole] =
     useState<defs.tawa.PageRoleResponse | null>(null);
   const queryRoleList = (params: defs.tawa.PageRoleRequest) => {
     const { pageNum = 1, pageSize = 20 } = params || {};
@@ -36,6 +39,24 @@ const RolePermissionSetting = () => {
     rowKey: 'id',
     scroll: { x: 1500 },
     nextFields: [
+      {
+        key: 'userNum',
+        name: t<string>(`pages.rolePermissionSetting.userNum`),
+        render: (_value: any, _record: any) => {
+          if (_value) {
+            return (
+              <a
+                onClick={() => {
+                  setCurrenUserListRole(_record);
+                }}
+              >
+                {_value}
+              </a>
+            );
+          }
+          return '--';
+        },
+      },
       {
         key: 'operationPermission',
         name: t<string>(`pages.rolePermissionSetting.operationPermission`),
@@ -103,6 +124,14 @@ const RolePermissionSetting = () => {
           role={currentDataRole}
           onCancel={() => {
             setCurrenDataRole(null);
+          }}
+        />
+      )}
+      {currentUserListRole && (
+        <PersonListDialog
+          role={currentUserListRole}
+          onCancel={() => {
+            setCurrenUserListRole(null);
           }}
         />
       )}

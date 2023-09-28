@@ -8,7 +8,7 @@ export type listStorePermissionsPath = {
 export type listStorePermissionsOptions = Record<string, any>;
 
 export type listStorePermissionsResponse = Promise<
-  defs.bakery.Response<Array<number>>
+  defs.bakery.Response<Array<string>>
 >;
 
 /**
@@ -21,7 +21,7 @@ export function request(
   const host = getEnvHost();
   const url =
     host +
-    '/bakery/hot-deli-bakery/api/permissions/store/{roleId}'.replace(
+    '/hot-deli-bakery/api/permissions/store/{roleId}'.replace(
       /\{[\w]+\}/,
       String(path.roleId),
     );

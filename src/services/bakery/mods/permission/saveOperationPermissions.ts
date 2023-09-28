@@ -1,7 +1,7 @@
 /// <reference path="../../api.d.ts" />
 import sendRequest, { getEnvHost } from '@/utils/request';
 
-export type saveOperationPermissionsBody = defs.bakery.AddRolePermissionDto;
+export type saveOperationPermissionsBody = defs.bakery.AddOptRolePermissionDto;
 export type saveOperationPermissionsOptions = Record<string, any>;
 
 export type saveOperationPermissionsResponse = Promise<
@@ -16,7 +16,7 @@ export function request(
   options?: saveOperationPermissionsOptions,
 ): saveOperationPermissionsResponse {
   const host = getEnvHost();
-  const url = host + '/hot-deli-bakery/api/permissions/opt';
+  const url = host + '/bakery/hot-deli-bakery/api/permissions/opt';
   const fetchOption = {
     method: 'post',
     headers: {

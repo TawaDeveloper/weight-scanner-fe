@@ -1,6 +1,7 @@
-import { Modal, Tree } from 'antd';
-import { DataNode } from 'antd/lib/tree';
+import { Modal, Spin, Tree, message } from 'antd';
+import { DataNode, TreeProps } from 'antd/lib/tree';
 import { t } from 'i18next';
+import Title from 'antd/lib/typography/Title';
 import { useEffect, useState } from 'react';
 import { bakeryAPI } from '@/services';
 
@@ -12,7 +13,8 @@ const DataPermissionDialog = ({
   onCancel: () => void;
 }) => {
   const [treeData, setTreeData] = useState<DataNode[]>([]);
-
+  const [loading, setLoading] = useState<boolean>(false);
+  const [checkedKeys, setCheckedKeys] = useState<string[]>([]);
   const generateTreeData = (datas: defs.bakery.OptionVO[]) => {
     const treeNodes: DataNode[] = [];
     for (let i = 0, l = datas.length; i < l; i++) {
@@ -32,32 +34,61 @@ const DataPermissionDialog = ({
     return treeNodes;
   };
   const initTreeData = async () => {
-    const response = await bakeryAPI.permission.dataPermissionOption.request();
-    if (response.data) {
-      setTreeData(generateTreeData(response.data));
+    setLoading(true);
+    const dataPermissionOptionResponse =
+      await bakeryAPI.permission.dataPermissionOption.request();
+    if (dataPermissionOptionResponse.data) {
+      setTreeData(generateTreeData(dataPermissionOptionResponse.data));
     }
 
-    const response2 =
-      await bakeryAPI.permission.listOperationPermissions.request({
+    const listStorePermissionsResponse =
+      await bakeryAPI.permission.listStorePermissions.request({
         roleId: Number(role.id),
       });
-    console.log(response, response2);
+    if (listStorePermissionsResponse.data) {
+      setCheckedKeys(listStorePermissionsResponse.data);
+    }
+    setLoading(false);
   };
 
   useEffect(() => {
     initTreeData();
   }, []);
 
+  const save = async () => {
+    setLoading(true);
+    await bakeryAPI.permission.saveStorePermissions.request({
+      roleId: Number(role.id),
+      referIds: checkedKeys,
+    });
+    setLoading(false);
+    message.success(t<string>('pages.common.operationSuccess'));
+    onCancel();
+  };
+
+  const onCheck: TreeProps['onCheck'] = (checkedKeys) => {
+    setCheckedKeys(checkedKeys as any);
+    // currentCheckedKeys.current = checkedKeys as any;
+  };
+
   return (
     <Modal
       title={t<string>('pages.rolePermissionSetting.dataPermissionSetting')}
       open
       onCancel={onCancel}
+      onOk={save}
     >
-      <div>
-        {t<string>('pages.rolePermissionSetting.roleName')}: {role.name}
-      </div>
-      <Tree treeData={treeData} checkable />
+      <Spin spinning={loading}>
+        <Title level={5}>
+          {t<string>('pages.rolePermissionSetting.roleName')}: {role.name}
+        </Title>
+        <Tree
+          treeData={treeData}
+          checkable
+          onCheck={onCheck}
+          checkedKeys={checkedKeys}
+        />
+      </Spin>
     </Modal>
   );
 };

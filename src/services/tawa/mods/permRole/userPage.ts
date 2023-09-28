@@ -1,5 +1,5 @@
 /// <reference path="../../api.d.ts" />
-import sendRequest, { getEnvHost } from '@/utils/request';
+import sendRequest, { getEnvTawaHost } from '@/utils/request';
 
 export type userPageBody = defs.tawa.PageRuleUserRequest;
 export type userPageOptions = Record<string, any>;
@@ -15,8 +15,8 @@ export function request(
   body: userPageBody,
   options?: userPageOptions,
 ): userPageResponse {
-  const host = getEnvHost();
-  const url = host + '/tawa/perm/roles/users';
+  const host = getEnvTawaHost();
+  const url = host + '/tawa-api/perm/roles/users';
   const fetchOption = {
     method: 'post',
     headers: {

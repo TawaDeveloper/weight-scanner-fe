@@ -1,7 +1,8 @@
 import { Modal, Spin, Tree, message } from 'antd';
 import { DataNode, TreeProps } from 'antd/lib/tree';
+import Title from 'antd/lib/typography/Title';
 import { t } from 'i18next';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { bakeryAPI } from '@/services';
 
 const OptPermissionDialog = ({
@@ -13,7 +14,7 @@ const OptPermissionDialog = ({
 }) => {
   const [treeData, setTreeData] = useState<DataNode[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const currentCheckedKeys = useRef<number[]>([]);
+  const [checkedKeys, setCheckedKeys] = useState<number[]>([]);
 
   const generateTreeData = (datas: defs.bakery.PermissionVo[]) => {
     const treeNodes: DataNode[] = [];
@@ -35,16 +36,20 @@ const OptPermissionDialog = ({
   };
   const initTreeData = async () => {
     setLoading(true);
-    const response = await bakeryAPI.permission.optPermissionOption.request();
-    if (response.data) {
-      setTreeData(generateTreeData(response.data));
+    const optPermissionOptionResponse =
+      await bakeryAPI.permission.optPermissionOption.request();
+    if (optPermissionOptionResponse.data) {
+      setTreeData(generateTreeData(optPermissionOptionResponse.data));
     }
 
-    const response2 =
+    const listOperationPermissionsResponse =
       await bakeryAPI.permission.listOperationPermissions.request({
         roleId: Number(role.id),
       });
-    console.log(response, response2);
+    if (listOperationPermissionsResponse.data) {
+      setCheckedKeys(listOperationPermissionsResponse.data);
+    }
+
     setLoading(false);
   };
 
@@ -56,7 +61,7 @@ const OptPermissionDialog = ({
     setLoading(true);
     await bakeryAPI.permission.saveOperationPermissions.request({
       roleId: Number(role.id),
-      referIds: currentCheckedKeys.current,
+      referIds: checkedKeys,
     });
     setLoading(false);
     message.success(t<string>('pages.common.operationSuccess'));
@@ -64,7 +69,8 @@ const OptPermissionDialog = ({
   };
 
   const onCheck: TreeProps['onCheck'] = (checkedKeys) => {
-    currentCheckedKeys.current = checkedKeys as any;
+    setCheckedKeys(checkedKeys as any);
+    // currentCheckedKeys.current = checkedKeys as any;
   };
 
   return (
@@ -75,10 +81,15 @@ const OptPermissionDialog = ({
       onOk={save}
     >
       <Spin spinning={loading}>
-        <div>
+        <Title level={5}>
           {t<string>('pages.rolePermissionSetting.roleName')}: {role.name}
-        </div>
-        <Tree treeData={treeData} checkable onCheck={onCheck} />
+        </Title>
+        <Tree
+          treeData={treeData}
+          checkable
+          onCheck={onCheck}
+          checkedKeys={checkedKeys}
+        />
       </Spin>
     </Modal>
   );
