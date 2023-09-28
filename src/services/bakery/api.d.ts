@@ -1773,6 +1773,9 @@ declare namespace API {
         */
       export namespace categories {
         export type categoriesParam = {
+          /** department */
+          department?: string;
+
           /** keyword */
           keyword?: string;
         };
