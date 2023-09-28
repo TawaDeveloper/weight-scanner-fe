@@ -15,7 +15,7 @@ const DataPermissionDialog = ({
   const [treeData, setTreeData] = useState<DataNode[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [checkedKeys, setCheckedKeys] = useState<string[]>([]);
-  const generateTreeData = (datas: defs.bakery.OptionVO[]) => {
+  const generateTreeData = (datas: defs.bakery.OptionVO[], level: number) => {
     const treeNodes: DataNode[] = [];
     for (let i = 0, l = datas.length; i < l; i++) {
       const data = datas[i];
@@ -23,8 +23,11 @@ const DataPermissionDialog = ({
         title: data.label,
         key: `${data.value}`,
       };
+      if (level === 1) {
+        node.checkable = false;
+      }
       if (data.children && data.children?.length > 0) {
-        node.children = generateTreeData(data.children);
+        node.children = generateTreeData(data.children, level + 1);
       }
       if (!data.children || data.children.length === 0) {
         node.isLeaf = true;
@@ -38,7 +41,7 @@ const DataPermissionDialog = ({
     const dataPermissionOptionResponse =
       await bakeryAPI.permission.dataPermissionOption.request();
     if (dataPermissionOptionResponse.data) {
-      setTreeData(generateTreeData(dataPermissionOptionResponse.data));
+      setTreeData(generateTreeData(dataPermissionOptionResponse.data, 1));
     }
 
     const listStorePermissionsResponse =
