@@ -8,9 +8,15 @@ import { bakeryAPI } from '@/services';
 
 const columns: ColumnsType<defs.bakery.NewArticleItem> = [
   {
-    title: t<string>(`components.goodsSelect.title0005`),
+    title: t<string>(`pages.orderList.title0097`),
     dataIndex: 'descriptionEn',
     key: 'descriptionEn',
+    align: 'center',
+  },
+  {
+    title: t<string>(`pages.orderList.title0096`),
+    dataIndex: 'descriptionTc',
+    key: 'descriptionTc',
     align: 'center',
   },
   {
@@ -99,6 +105,11 @@ const TableSelect = (props: IProps) => {
           <Input
             disabled={loading}
             placeholder={t<string>(`components.goodsSelect.title0004`)}
+            onKeyDown={event => {
+              if (event.code === 'Enter') {
+                handlePagination()
+              }
+            }}
             onChange={handleChange}
             style={{ width: '100%' }}
           />
