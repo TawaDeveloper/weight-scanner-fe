@@ -8,7 +8,6 @@ import { getPermissionsMenus } from '@/utils/route-utils';
 import { bakeryAPI } from '@/services';
 // import { backofficeAPI } from '@/services';
 // import { PageLoading } from '@/components';
-
 const SecurityLayout: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
