@@ -196,7 +196,7 @@ const CreateOrder = () => {
   return (
     <Card>
       <div className="flex">
-        <div className="page-title">销量&销售额数据表</div>
+        <div className="page-title">{''}</div>
         <div className="button-group">
           <GoodsSelect
             disabled={!searchParams.depId || !searchParams.storeId}
