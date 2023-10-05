@@ -1,6 +1,7 @@
 /* eslint-disable no-bitwise */
 import moment from 'moment';
 import { DEFAULT_LANGUAGE, YYYY_MM_DD_HH_MM_SS } from '@/constants';
+import { StaticRouteType } from '@/config/router';
 
 export const readFileToText = (file: Blob): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -122,3 +123,58 @@ export const UTCToLocalDate = (
   }
   return moment.utc(dateTime).local().format(format);
 };
+
+export const findPermissionByCode = (
+  code: string,
+  items: defs.bakery.PermissionVo[],
+): any => {
+  let i = 0;
+  let found = null;
+
+  for (; i < items.length; i++) {
+    if (items[i].code === code) {
+      return items[i];
+    } else if (items[i].children) {
+      found = findPermissionByCode(code, items[i].children as any);
+      if (found) {
+        return found;
+      }
+    }
+  }
+};
+
+export const filterRouterByPermission = (
+  routers: StaticRouteType[],
+  permissions: defs.bakery.PermissionVo[],
+): any => {
+  const newRouters = routers.filter((item) => {
+    const findPermission = findPermissionByCode(item.code, permissions);
+    if (findPermission) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  newRouters.forEach((item) => {
+    if (item.children) {
+      item.children = filterRouterByPermission(item.children, permissions);
+    }
+  });
+  return newRouters;
+};
+
+export const filterMenusByPermission = (
+  menus: StaticRouteType[],
+  permissions: defs.bakery.PermissionVo[],
+): any => {
+  const newRouters = menus.filter((item) => {
+    const findPermission = findPermissionByCode(item.code, permissions);
+    if (findPermission) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return newRouters;
+};
+
