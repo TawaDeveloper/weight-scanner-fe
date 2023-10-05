@@ -3,18 +3,20 @@ import { useRequest } from 'ahooks';
 import { useMemo, useRef, useState } from 'react';
 import MarioListContent from '@tawa/mario-list-content';
 import { TableQueryActions } from '@tawa/mario-hooks/lib/useTableQuery';
+import { Link } from 'react-router-dom';
+import moment from 'moment';
+import { RcFile } from 'antd/lib/upload';
+import { t } from 'i18next';
 import { tableFields, formFields } from './fields';
 import { bakeryAPI } from '@/services';
 import AddModal from './AddModal';
 import { download } from '@/utils';
 import { CommonButton } from '@/components/CommonButton';
 import './index.less';
-import { Link } from 'react-router-dom';
-import moment from 'moment';
-import { RcFile } from 'antd/lib/upload';
-import { t } from 'i18next';
+
 import LogModal from './LogModal';
 import { DEFAULT_LANG, INITIAL_PAGE_PARAMS } from '@/constants';
+import PermissionComponent from '@/components/PermissionComponent';
 // import { useNavigate } from 'react-router-dom';
 
 const SalesTargetSetting = () => {
@@ -105,6 +107,7 @@ const SalesTargetSetting = () => {
             ...el,
             props: () => ({
               options:
+                // eslint-disable-next-line no-nested-ternary
                 el.key === 'storeId'
                   ? optionsData &&
                     optionsData?.data &&
@@ -145,6 +148,7 @@ const SalesTargetSetting = () => {
       if (!/^.*\.(?:xls|xlsx)$/i.test(file.name)) {
         message.error(t<string>(`components.goodsSelect.title0020`) as string);
       } else {
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         handleUpload(file);
       }
       return false;
@@ -175,24 +179,27 @@ const SalesTargetSetting = () => {
     <Card>
       <div className="flex">
         <div className="button-group">
-          <CommonButton
-            onClick={() => {
-              setItem(undefined);
-              setShow({
-                type: 'add',
-              });
-            }}
-          >
-            {t<string>(`pages.orderList.title0127`)}
-          </CommonButton>
-
-          <Upload {...uploadProps}>
-            <CommonButton loading={uploading}>
-              {' '}
-              {t<string>(`pages.orderList.title0128`)}
+          <PermissionComponent code="component:Setting:Create">
+            <CommonButton
+              onClick={() => {
+                setItem(undefined);
+                setShow({
+                  type: 'add',
+                });
+              }}
+            >
+              {t<string>(`pages.orderList.title0127`)}
             </CommonButton>
-          </Upload>
-          <Link to={''} onClick={() => downloadTemplate()}>
+          </PermissionComponent>
+          <PermissionComponent code="component:Setting:Batch Import">
+            <Upload {...uploadProps}>
+              <CommonButton loading={uploading}>
+                {' '}
+                {t<string>(`pages.orderList.title0128`)}
+              </CommonButton>
+            </Upload>
+          </PermissionComponent>
+          <Link to="" onClick={() => downloadTemplate()}>
             {t<string>(`pages.orderList.title0129`)}
           </Link>
         </div>
@@ -219,7 +226,7 @@ const SalesTargetSetting = () => {
           id={id}
           show={showLog}
           handleClose={() => setShowLog(false)}
-        ></LogModal>
+        />
       )}
     </Card>
   );
