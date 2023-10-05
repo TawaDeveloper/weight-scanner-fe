@@ -327,6 +327,8 @@ const CreateOrder = () => {
                     type: 'add',
                   });
                 }
+              }).catch(() => {
+                setSubmitLoading(false)
               });
           }}
         >
