@@ -14,7 +14,7 @@ const OptPermissionDialog = ({
 }) => {
   const [treeData, setTreeData] = useState<DataNode[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [checkedKeys, setCheckedKeys] = useState<number[]>([]);
+  const [checkedKeys, setCheckedKeys] = useState<any>({});
 
   const generateTreeData = (datas: defs.bakery.PermissionVo[]) => {
     const treeNodes: DataNode[] = [];
@@ -47,7 +47,7 @@ const OptPermissionDialog = ({
         roleId: Number(role.id),
       });
     if (listOperationPermissionsResponse.data) {
-      setCheckedKeys(listOperationPermissionsResponse.data);
+      setCheckedKeys({ checked: listOperationPermissionsResponse.data });
     }
 
     setLoading(false);
@@ -61,7 +61,7 @@ const OptPermissionDialog = ({
     setLoading(true);
     await bakeryAPI.permission.saveOperationPermissions.request({
       roleId: Number(role.id),
-      referIds: checkedKeys,
+      referIds: checkedKeys.checked as any,
     });
     setLoading(false);
     message.success(t<string>('pages.common.operationSuccess'));
@@ -70,7 +70,6 @@ const OptPermissionDialog = ({
 
   const onCheck: TreeProps['onCheck'] = (checkedKeys) => {
     setCheckedKeys(checkedKeys as any);
-    // currentCheckedKeys.current = checkedKeys as any;
   };
 
   return (
@@ -89,6 +88,7 @@ const OptPermissionDialog = ({
           checkable
           onCheck={onCheck}
           checkedKeys={checkedKeys}
+          checkStrictly
         />
       </Spin>
     </Modal>
