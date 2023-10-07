@@ -27,15 +27,20 @@ export const tableFields = [
     name: t<string>(`pages.orderList.title0095`),
   },
   {
+    key: 'quantity',
+    width: 200,
+    name: t<string>(`pages.orderList.title0113`),
+  },
+  {
     key: 'storeName',
     width: 160,
     name: t<string>(`pages.orderList.title0048`),
   },
-  {
-    key: 'storeId',
-    width: 160,
-    name: t<string>(`pages.orderList.title0007`),
-  },
+  // {
+  //   key: 'storeId',
+  //   width: 160,
+  //   name: t<string>(`pages.orderList.title0007`),
+  // },
   {
     key: 'depName',
     width: 160,
@@ -66,11 +71,7 @@ export const tableFields = [
     width: 200,
     name: t<string>(`pages.orderList.title0104`),
   },
-  {
-    key: 'quantity',
-    width: 200,
-    name: t<string>(`pages.orderList.title0113`),
-  },
+  
 ];
 
 export const formFields = [

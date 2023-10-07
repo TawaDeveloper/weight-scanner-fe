@@ -18,7 +18,7 @@ const TTL = 5 * 60 * 1000;
 const isValid = (value: any) => isNil(value);
 
 export const getEnvHost = () => process.env.REACT_APP_API_PATH || '';
-
+export const getEnvTawaHost = () => process.env.REACT_APP_TAWA_PATH || '';
 export const cleanObject = (obj: Record<string, any>) => {
   const result = { ...obj };
   Object.keys(result).forEach((key) => {

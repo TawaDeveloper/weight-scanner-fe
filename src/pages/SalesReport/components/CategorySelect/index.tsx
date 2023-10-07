@@ -5,18 +5,26 @@ import { t } from 'i18next';
 import type { SelectProps } from 'antd';
 import styles from './index.less';
 import { bakeryAPI } from '@/services';
+import { categoriesParam } from '@/services/bakery/mods/statisticalCommon/categories';
 
 interface IProps {
   value: string[];
   onChange: (value: string[]) => void;
+  department?: string | null;
 }
-const CategorySelect = ({ onChange, value }: IProps) => {
+const CategorySelect = ({ onChange, value, department }: IProps) => {
   const [options, setOptions] = useState<SelectProps['options']>([]);
   useEffect(() => {
     const loadAllCategorys = async () => {
-      const response = await bakeryAPI.statisticalCommon.categories.request({
+      const params: categoriesParam = {
         keyword: '',
-      });
+      };
+      if (department) {
+        params.department = department;
+      }
+      const response = await bakeryAPI.statisticalCommon.categories.request(
+        params,
+      );
       const newOptions = unionBy(response.data, 'id').map((item) => {
         return {
           value: item.id,
@@ -26,7 +34,7 @@ const CategorySelect = ({ onChange, value }: IProps) => {
       setOptions(newOptions);
     };
     loadAllCategorys();
-  }, []);
+  }, [department]);
   return (
     <div className={styles.root}>
       <div className={styles.label}>{t<string>('pages.report.Category')}</div>

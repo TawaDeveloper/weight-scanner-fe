@@ -109,11 +109,12 @@ const GoodsSelect = (props: StoreSelectProps) => {
       {open && (
         <Modal
           open={open}
+          centered={true}
           title={t<string>(`components.goodsSelect.title0001`)}
           onCancel={handleCancel}
           closable={false}
           footer={null}
-          width="1000px"
+          width="1200px"
         >
           <SelectCard
             depId={depId}
