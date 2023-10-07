@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { bakeryAPI } from '@/services';
 import styles from './index.less';
 import ContentPanel from '@/components/ContentPanel';
+import PermissionComponent from '@/components/PermissionComponent';
 
 type FactorSettingMap = {
   [key: string]: {
@@ -119,13 +120,15 @@ const LossFactor = () => {
           return renderNode(nodeData);
         }}
       />
-      <Button
-        onClick={() => {
-          save();
-        }}
-      >
-        保存
-      </Button>
+      <PermissionComponent code="component:Loss Factor:Create">
+        <Button
+          onClick={() => {
+            save();
+          }}
+        >
+          保存
+        </Button>
+      </PermissionComponent>
     </ContentPanel>
   );
 };

@@ -11,6 +11,7 @@ import ProductSelect from '../components/ProductSelect';
 import StoreSelect from '../components/StoreSelect';
 import { bakeryAPI } from '@/services';
 import { download } from '@/utils';
+import PermissionComponent from '@/components/PermissionComponent';
 
 interface UserParams {
   storeIds: string[];
@@ -429,14 +430,16 @@ const ReportByProduct = () => {
       <ContentPanel>
         <div className={styles.tableHeader}>
           <div>{t<string>(`pages.report.SalesVolumeTrend`)}</div>
-          <Button
-            disabled={chartData.length === 0}
-            onClick={() => {
-              volumnChart.current.downloadImage();
-            }}
-          >
-            {t<string>(`pages.report.Export`)}
-          </Button>
+          <PermissionComponent code="component:Product:Sales Volume Trend Export">
+            <Button
+              disabled={chartData.length === 0}
+              onClick={() => {
+                volumnChart.current.downloadImage();
+              }}
+            >
+              {t<string>(`pages.report.Export`)}
+            </Button>
+          </PermissionComponent>
         </div>
         <Spin spinning={chartLoading}>
           {chartData.length === 0 && <Empty />}
@@ -453,14 +456,16 @@ const ReportByProduct = () => {
       <ContentPanel>
         <div className={styles.tableHeader}>
           <div>{t<string>(`pages.report.RevenueTrend`)}</div>
-          <Button
-            disabled={chartData.length === 0}
-            onClick={() => {
-              amountChart.current.downloadImage();
-            }}
-          >
-            {t<string>(`pages.report.Export`)}
-          </Button>
+          <PermissionComponent code="component:Product:Revenue Trend Export">
+            <Button
+              disabled={chartData.length === 0}
+              onClick={() => {
+                amountChart.current.downloadImage();
+              }}
+            >
+              {t<string>(`pages.report.Export`)}
+            </Button>
+          </PermissionComponent>
         </div>
         <Spin spinning={chartLoading}>
           {chartData.length === 0 && <Empty />}
@@ -477,14 +482,16 @@ const ReportByProduct = () => {
       <ContentPanel>
         <div className={styles.tableHeader}>
           <div>{t<string>(`pages.report.SalesVolumeRevenueReport`)}</div>
-          <Button
-            disabled={!currentReportId.current}
-            onClick={() => {
-              exportReport();
-            }}
-          >
-            {t<string>(`pages.report.Export`)}
-          </Button>
+          <PermissionComponent code="component:Product:Sales Volume&Revenue Export">
+            <Button
+              disabled={!currentReportId.current}
+              onClick={() => {
+                exportReport();
+              }}
+            >
+              {t<string>(`pages.report.Export`)}
+            </Button>
+          </PermissionComponent>
         </div>
         <div className={styles.table}>
           <Table

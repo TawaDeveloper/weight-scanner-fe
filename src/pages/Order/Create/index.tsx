@@ -1,4 +1,4 @@
-import { Button, Card, InputNumber, message, notification } from 'antd';
+import { Button, Card, InputNumber, notification } from 'antd';
 import { useRequest } from 'ahooks';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import MarioListContent from '@tawa/mario-list-content';
@@ -307,7 +307,12 @@ const CreateOrder = () => {
               setSearchParams(values);
               run(values);
             } else {
-              message.error(values.storeId ? '请选择部门' : '请选中门店');
+              setSubmitData([]);
+              setSearchParams({
+                storeId: '',
+                depId: '',
+              });
+              // message.error(values.storeId ? '请选择部门' : '请选中门店');
             }
           }}
           toolbar={<></>}

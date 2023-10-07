@@ -6,7 +6,6 @@ import {
 } from '@ant-design/icons';
 import type { MenuDataItem } from '@ant-design/pro-layout';
 import {
-  permissionMenus,
   baseRoutes,
   orderMenus,
   salesReportMenus,
@@ -52,7 +51,7 @@ const menuTabs: StaticRouteType[] = [
     path: '/report',
     icon: <BarChartOutlined />,
     children: salesReportMenus,
-    code: 'report',
+    code: 'menu:Sales Report',
     component: SecurityLayout,
     skipAuthentication: true,
   },
@@ -61,24 +60,17 @@ const menuTabs: StaticRouteType[] = [
     path: '/order',
     icon: <UnorderedListOutlined />,
     children: orderMenus,
-    code: 'order',
+    code: 'menu:Order Management',
     component: SecurityLayout,
     skipAuthentication: true,
   },
-  {
-    name: 'menus.top.permission',
-    path: '/permissions',
-    icon: <SafetyCertificateOutlined />,
-    children: permissionMenus,
-    code: 'permissions',
-    component: SecurityLayout,
-  },
+
   {
     name: 'menus.top.setting',
     path: '/setting',
-    icon: <BarChartOutlined />,
+    icon: <SafetyCertificateOutlined />,
     children: settingMenus,
-    code: 'setting',
+    code: 'menu:Setting',
     component: SecurityLayout,
     skipAuthentication: true,
   },
