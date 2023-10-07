@@ -45,7 +45,7 @@ export function request(
 ): listResponse {
   const host = getEnvHost();
   const url =
-    host + '/bakery/hot-deli-bakery/api/statistics/product/sales/list';
+    host + '/hot-deli-bakery/api/statistics/product/sales/list';
   const fetchOption = {
     method: 'get',
     headers: {

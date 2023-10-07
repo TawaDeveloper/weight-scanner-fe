@@ -10,7 +10,7 @@ export type postSalesDataResponse = Promise<ObjectMap<any, object>>;
  */
 export function request(options?: postSalesDataOptions): postSalesDataResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/sap/post_sales_data';
+  const url = host + '/hot-deli-bakery/sap/post_sales_data';
   const fetchOption = {
     method: 'post',
     headers: {
