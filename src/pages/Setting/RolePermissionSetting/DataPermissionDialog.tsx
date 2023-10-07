@@ -4,6 +4,7 @@ import { t } from 'i18next';
 import Title from 'antd/lib/typography/Title';
 import { useEffect, useState } from 'react';
 import { bakeryAPI } from '@/services';
+import usePermission from '@/hooks/usePermission';
 
 const DataPermissionDialog = ({
   role,
@@ -15,6 +16,9 @@ const DataPermissionDialog = ({
   const [treeData, setTreeData] = useState<DataNode[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [checkedKeys, setCheckedKeys] = useState<string[]>([]);
+  const isCanUpdatePermission = usePermission(
+    'component:Setting:Update Permissions',
+  );
   const generateTreeData = (datas: defs.bakery.OptionVO[], level: number) => {
     const treeNodes: DataNode[] = [];
     for (let i = 0, l = datas.length; i < l; i++) {
@@ -22,6 +26,7 @@ const DataPermissionDialog = ({
       const node: DataNode = {
         title: data.label,
         key: `${data.value}`,
+        disableCheckbox: !isCanUpdatePermission,
       };
       if (level === 1) {
         node.checkable = false;
@@ -80,6 +85,9 @@ const DataPermissionDialog = ({
       open
       onCancel={onCancel}
       onOk={save}
+      okButtonProps={{
+        disabled: !isCanUpdatePermission,
+      }}
     >
       <Spin spinning={loading}>
         <Title level={5}>

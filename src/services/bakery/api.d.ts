@@ -658,7 +658,6 @@ declare namespace defs {
 
       /** 单品周销售额目标 */
       weekSalesGoal?: number;
-
       actualOrderQuantity?: number;
     }
 
