@@ -12,6 +12,11 @@ import { checkStatus, enumsObjectToArray } from '@/constants/enums';
 // "updatedTime": "2023-07-11T07:11:01.256Z"
 export const tableFields = [
   {
+    key: 'action',
+    width: 160,
+    name: t<string>(`pages.orderList.title0050`),
+  },
+  {
     key: 'descriptionTc',
     width: 160,
     name: t<string>(`pages.orderList.title0096`),
@@ -27,15 +32,25 @@ export const tableFields = [
     name: t<string>(`pages.orderList.title0095`),
   },
   {
+    key: 'quantity',
+    width: 200,
+    name: t<string>(`pages.orderList.title0113`),
+  },
+  {
+    key: 'lastQt',
+    width: 200,
+    name: t<string>(`pages.orderList.title0130`),
+  },
+  {
     key: 'storeName',
     width: 160,
     name: t<string>(`pages.orderList.title0048`),
   },
-  {
-    key: 'storeId',
-    width: 160,
-    name: t<string>(`pages.orderList.title0007`),
-  },
+  // {
+  //   key: 'storeId',
+  //   width: 160,
+  //   name: t<string>(`pages.orderList.title0007`),
+  // },
   {
     key: 'depName',
     width: 160,
@@ -66,11 +81,7 @@ export const tableFields = [
     width: 200,
     name: t<string>(`pages.orderList.title0104`),
   },
-  {
-    key: 'quantity',
-    width: 200,
-    name: t<string>(`pages.orderList.title0113`),
-  },
+  
 ];
 
 export const formFields = [

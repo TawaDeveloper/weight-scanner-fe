@@ -38,7 +38,7 @@ export function request(
   options?: chartOptions,
 ): chartResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/statistics/store/sales/chart';
+  const url = host + '/hot-deli-bakery/api/statistics/store/sales/chart';
   const fetchOption = {
     method: 'get',
     headers: {

@@ -14,7 +14,7 @@ export type storeTreeResponse = Promise<
 export function request(options?: storeTreeOptions): storeTreeResponse {
   const host = getEnvHost();
   const url =
-    host + '/bakery/hot-deli-bakery/api/statistical/common/store/tree';
+    host + '/hot-deli-bakery/api/statistical/common/store/tree';
   const fetchOption = {
     method: 'get',
     headers: {

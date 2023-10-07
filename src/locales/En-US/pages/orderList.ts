@@ -128,4 +128,6 @@ export default {
   title0127: 'Create',
   title0128: 'Batch import',
   title0129: 'Template download',
+  title0130: 'Last order quantity',
+  title0131: 'Partial failure',
 };
