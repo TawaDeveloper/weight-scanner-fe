@@ -1,7 +1,7 @@
 /// <reference path="../../api.d.ts" />
 import sendRequest, { getEnvHost } from '@/utils/request';
 
-export type postOrderTestBody = defs.bakery.SapOrderingDTO;
+export type postOrderTestBody = any;
 export type postOrderTestOptions = Record<string, any>;
 
 export type postOrderTestResponse = Promise<ObjectMap<any, object>>;
@@ -14,7 +14,7 @@ export function request(
   options?: postOrderTestOptions,
 ): postOrderTestResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/sap/post_order';
+  const url = host + '/hot-deli-bakery/sap/post_order';
   const fetchOption = {
     method: 'post',
     headers: {

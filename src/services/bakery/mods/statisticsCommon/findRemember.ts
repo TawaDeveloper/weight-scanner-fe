@@ -17,7 +17,7 @@ export function request(
   options?: findRememberOptions,
 ): findRememberResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/api/statistics/common/remember';
+  const url = host + '/hot-deli-bakery/api/statistics/common/remember';
   const fetchOption = {
     method: 'get',
     headers: {

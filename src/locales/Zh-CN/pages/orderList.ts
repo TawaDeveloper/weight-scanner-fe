@@ -128,4 +128,6 @@ export default {
   title0127: '新建',
   title0128: '批量导入',
   title0129: '模版下载',
+  title0130: '上次订货量',
+  title0131: '部分失败',
 };

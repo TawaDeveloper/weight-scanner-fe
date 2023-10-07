@@ -1,16 +1,18 @@
 /// <reference path="../../api.d.ts" />
 import sendRequest, { getEnvHost } from '@/utils/request';
 
-export type getMchOptions = Record<string, any>;
+export type testConnectionOptions = Record<string, any>;
 
-export type getMchResponse = Promise<Array<any>>;
+export type testConnectionResponse = Promise<string>;
 
 /**
- * @desc getMch
+ * @desc testConnection
  */
-export function request(options?: getMchOptions): getMchResponse {
+export function request(
+  options?: testConnectionOptions,
+): testConnectionResponse {
   const host = getEnvHost();
-  const url = host + '/hot-deli-bakery/sap/get_mch';
+  const url = host + '/hot-deli-bakery/sap/test_connection';
   const fetchOption = {
     method: 'get',
     headers: {

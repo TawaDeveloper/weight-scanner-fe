@@ -128,4 +128,5 @@ export default {
   title0127: '地址',
   title0128: '送达图片',
   title0129: '物流信息',
+  title0130: '上次订货量',
 };

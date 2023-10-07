@@ -10,7 +10,7 @@ export type getSalesSAP2Response = Promise<ObjectMap<any, object>>;
  */
 export function request(options?: getSalesSAP2Options): getSalesSAP2Response {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/sap/get_sales2';
+  const url = host + '/hot-deli-bakery/sap/get_sales2';
   const fetchOption = {
     method: 'get',
     headers: {

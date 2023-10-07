@@ -1,4 +1,4 @@
-class AddOptRolePermissionDto {
+export class AddOptRolePermissionDto {
   /** 权限列表 */
   referIds = [];
 
@@ -6,7 +6,7 @@ class AddOptRolePermissionDto {
   roleId = undefined;
 }
 
-class AddPermissionDto {
+export class AddPermissionDto {
   /** 英文名称 */
   nameEnUs = '';
 
@@ -26,7 +26,7 @@ class AddPermissionDto {
   type = 'API';
 }
 
-class AddRolePermissionDto {
+export class AddRolePermissionDto {
   /** 权限列表 */
   referIds = [];
 
@@ -34,7 +34,7 @@ class AddRolePermissionDto {
   roleId = undefined;
 }
 
-class ArticleOption {
+export class ArticleOption {
   /** 产品编号 */
   articleNumber = '';
 
@@ -45,7 +45,7 @@ class ArticleOption {
   id = undefined;
 }
 
-class ArticleRefDTO {
+export class ArticleRefDTO {
   /** 产品 Article Number 列表 */
   articleNumbers = [];
 
@@ -56,7 +56,7 @@ class ArticleRefDTO {
   storeId = '';
 }
 
-class CategoryOption {
+export class CategoryOption {
   /** 类别描述 */
   description = '';
 
@@ -67,7 +67,7 @@ class CategoryOption {
   mch = '';
 }
 
-class Content {
+export class Content {
   /** 前十二周平均销售额 */
   averageAmountFor12Week = undefined;
 
@@ -99,7 +99,7 @@ class Content {
   storeName = '';
 }
 
-class CreateOrderDTO {
+export class CreateOrderDTO {
   /** 部门 */
   dep = '';
 
@@ -110,7 +110,7 @@ class CreateOrderDTO {
   storeId = '';
 }
 
-class CreateOrderItem {
+export class CreateOrderItem {
   /** Article Number */
   articleNumber = '';
 
@@ -124,7 +124,7 @@ class CreateOrderItem {
   weekSalesGoal = undefined;
 }
 
-class CreateOrderVO {
+export class CreateOrderVO {
   /** 拦截的商品 article number */
   failedArticleNumbers = [];
 
@@ -138,7 +138,7 @@ class CreateOrderVO {
   result = undefined;
 }
 
-class EditPermissionDto {
+export class EditPermissionDto {
   /** id */
   id = undefined;
 
@@ -161,7 +161,7 @@ class EditPermissionDto {
   type = 'API';
 }
 
-class EstDeliveredDateVO {
+export class EstDeliveredDateVO {
   /** 日期 */
   date = '';
 
@@ -169,7 +169,7 @@ class EstDeliveredDateVO {
   dayOfWeek = '';
 }
 
-class IPage {
+export class IPage {
   /** current */
   current = undefined;
 
@@ -186,7 +186,7 @@ class IPage {
   total = undefined;
 }
 
-class LoginUserInfo {
+export class LoginUserInfo {
   /** 账号 */
   account = '';
 
@@ -218,7 +218,7 @@ class LoginUserInfo {
   userId = undefined;
 }
 
-class LossFactor {
+export class LossFactor {
   /** 分类 id（level == 3） */
   categoryId = '';
 
@@ -226,7 +226,7 @@ class LossFactor {
   lossFactor = undefined;
 }
 
-class LossFactorTree {
+export class LossFactorTree {
   /** 子节点列表 */
   children = [];
 
@@ -243,7 +243,7 @@ class LossFactorTree {
   name = '';
 }
 
-class NewArticleItem {
+export class NewArticleItem {
   /** Article Number */
   articleNumber = '';
 
@@ -254,7 +254,7 @@ class NewArticleItem {
   descriptionTc = '';
 }
 
-class NewArticlesDTO {
+export class NewArticlesDTO {
   /** 产品名称（搜索关键字） */
   articleName = '';
 
@@ -271,7 +271,7 @@ class NewArticlesDTO {
   storeId = '';
 }
 
-class NewSalesGoalDTO {
+export class NewSalesGoalDTO {
   /** 部门 ID */
   depId = '';
 
@@ -291,7 +291,7 @@ class NewSalesGoalDTO {
   year = undefined;
 }
 
-class OptionVO {
+export class OptionVO {
   /** 子选项列表 */
   children = [];
 
@@ -302,7 +302,7 @@ class OptionVO {
   value = undefined;
 }
 
-class OrderArticleEntity {
+export class OrderArticleEntity {
   /** articleNumber */
   articleNumber = '';
 
@@ -346,7 +346,7 @@ class OrderArticleEntity {
   vendorName = '';
 }
 
-class OrderDetailBaseVO {
+export class OrderDetailBaseVO {
   /** 订单金额 */
   amount = undefined;
 
@@ -384,7 +384,7 @@ class OrderDetailBaseVO {
   timezone = '';
 }
 
-class OrderDetailItem {
+export class OrderDetailItem {
   /** Article Number */
   articleNumber = '';
 
@@ -434,7 +434,7 @@ class OrderDetailItem {
   weekSalesGoal = undefined;
 }
 
-class OrderDetailItemDTO {
+export class OrderDetailItemDTO {
   /** 订单编号 */
   orderId = '';
 
@@ -445,7 +445,7 @@ class OrderDetailItemDTO {
   pageSize = undefined;
 }
 
-class OrderListExportDTO {
+export class OrderListExportDTO {
   /** 下单人 */
   createUserName = '';
 
@@ -480,7 +480,7 @@ class OrderListExportDTO {
   storeId = '';
 }
 
-class OrderListExportItem {
+export class OrderListExportItem {
   /** 订单编号 */
   orderId = '';
 
@@ -488,7 +488,7 @@ class OrderListExportItem {
   po = '';
 }
 
-class OrderListItem {
+export class OrderListItem {
   /** 订单金额 */
   amount = undefined;
 
@@ -532,7 +532,7 @@ class OrderListItem {
   timezone = '';
 }
 
-class OrderListOptionsVO {
+export class OrderListOptionsVO {
   /** 部门列表 */
   deps = [];
 
@@ -540,7 +540,7 @@ class OrderListOptionsVO {
   stores = [];
 }
 
-class OrderListPageDTO {
+export class OrderListPageDTO {
   /** 下单人 */
   createUserName = '';
 
@@ -572,7 +572,7 @@ class OrderListPageDTO {
   storeId = '';
 }
 
-class OrderNewOptionsVO {
+export class OrderNewOptionsVO {
   /** 部门列表 */
   deps = [];
 
@@ -580,7 +580,7 @@ class OrderNewOptionsVO {
   stores = [];
 }
 
-class OrderNewRefArticle {
+export class OrderNewRefArticle {
   /** Article Number */
   articleNumber = '';
 
@@ -609,7 +609,7 @@ class OrderNewRefArticle {
   weekSalesGoal = undefined;
 }
 
-class PermissionVo {
+export class PermissionVo {
   /** 儿子节点 */
   children = [];
 
@@ -635,7 +635,7 @@ class PermissionVo {
   type = 'API';
 }
 
-class PoDetailBaseVO {
+export class PoDetailBaseVO {
   /** PO 单金额 */
   amount = undefined;
 
@@ -685,7 +685,7 @@ class PoDetailBaseVO {
   timezone = '';
 }
 
-class PoDetailItem {
+export class PoDetailItem {
   /** Article Number */
   articleNumber = '';
 
@@ -723,7 +723,7 @@ class PoDetailItem {
   weekSalesGoal = undefined;
 }
 
-class PoDetailItemDTO {
+export class PoDetailItemDTO {
   /** 订单编号 */
   orderId = '';
 
@@ -737,7 +737,7 @@ class PoDetailItemDTO {
   po = '';
 }
 
-class Response {
+export class Response {
   /** 状态码：0-成功 */
   code = undefined;
 
@@ -751,7 +751,7 @@ class Response {
   success = false;
 }
 
-class SalesGoalListDTO {
+export class SalesGoalListDTO {
   /** 部门 */
   dep = '';
 
@@ -771,7 +771,7 @@ class SalesGoalListDTO {
   year = undefined;
 }
 
-class SalesGoalListItem {
+export class SalesGoalListItem {
   /** 部门 ID */
   depId = '';
 
@@ -803,7 +803,7 @@ class SalesGoalListItem {
   year = undefined;
 }
 
-class SalesGoalListOptionVO {
+export class SalesGoalListOptionVO {
   /** 部门列表 */
   deps = [];
 
@@ -814,7 +814,7 @@ class SalesGoalListOptionVO {
   yearWithMonths = [];
 }
 
-class SalesGoalOptLog {
+export class SalesGoalOptLog {
   /** 操作描述 */
   optDesc = '';
 
@@ -825,7 +825,7 @@ class SalesGoalOptLog {
   updateTime = '';
 }
 
-class SapPrEntity {
+export class SapPrEntity {
   /** articleNumber */
   articleNumber = '';
 
@@ -920,12 +920,12 @@ class SapPrEntity {
   updatedAt = '';
 }
 
-class SaveLossFactorDTO {
+export class SaveLossFactorDTO {
   /** 损耗系数列表 */
   list = [];
 }
 
-class StatisticalSalesCategoryReport {
+export class StatisticalSalesCategoryReport {
   /** 报表内容 */
   contents = [];
 
@@ -933,7 +933,7 @@ class StatisticalSalesCategoryReport {
   reportId = '';
 }
 
-class StatisticalSalesChart {
+export class StatisticalSalesChart {
   /** 销售额 */
   amount = undefined;
 
@@ -968,7 +968,7 @@ class StatisticalSalesChart {
   volume = undefined;
 }
 
-class StatisticalSalesProductReport {
+export class StatisticalSalesProductReport {
   /** 报表内容 */
   contents = [];
 
@@ -976,7 +976,7 @@ class StatisticalSalesProductReport {
   reportId = '';
 }
 
-class StatisticalSalesStoreReport {
+export class StatisticalSalesStoreReport {
   /** 报表内容 */
   contents = [];
 
@@ -984,7 +984,7 @@ class StatisticalSalesStoreReport {
   reportId = '';
 }
 
-class StatisticalSearchConditionVo {
+export class StatisticalSearchConditionVo {
   /** 查询产品编号 */
   articleNumbers = [];
 
@@ -1013,7 +1013,7 @@ class StatisticalSearchConditionVo {
   storeNames = [];
 }
 
-class StoreOption {
+export class StoreOption {
   /** 主键 */
   id = undefined;
 
@@ -1024,7 +1024,7 @@ class StoreOption {
   storeName = '';
 }
 
-class Timestamp {
+export class Timestamp {
   /** date */
   date = undefined;
 
@@ -1056,7 +1056,7 @@ class Timestamp {
   year = undefined;
 }
 
-class UpdateSalesGoalDTO {
+export class UpdateSalesGoalDTO {
   /** 部门 ID */
   dep = '';
 
@@ -1078,56 +1078,3 @@ class UpdateSalesGoalDTO {
   /** 年份 */
   year = undefined;
 }
-
-export const bakery = {
-  AddOptRolePermissionDto,
-  AddPermissionDto,
-  AddRolePermissionDto,
-  ArticleOption,
-  ArticleRefDTO,
-  CategoryOption,
-  Content,
-  CreateOrderDTO,
-  CreateOrderItem,
-  CreateOrderVO,
-  EditPermissionDto,
-  EstDeliveredDateVO,
-  IPage,
-  LoginUserInfo,
-  LossFactor,
-  LossFactorTree,
-  NewArticleItem,
-  NewArticlesDTO,
-  NewSalesGoalDTO,
-  OptionVO,
-  OrderArticleEntity,
-  OrderDetailBaseVO,
-  OrderDetailItem,
-  OrderDetailItemDTO,
-  OrderListExportDTO,
-  OrderListExportItem,
-  OrderListItem,
-  OrderListOptionsVO,
-  OrderListPageDTO,
-  OrderNewOptionsVO,
-  OrderNewRefArticle,
-  PermissionVo,
-  PoDetailBaseVO,
-  PoDetailItem,
-  PoDetailItemDTO,
-  Response,
-  SalesGoalListDTO,
-  SalesGoalListItem,
-  SalesGoalListOptionVO,
-  SalesGoalOptLog,
-  SapPrEntity,
-  SaveLossFactorDTO,
-  StatisticalSalesCategoryReport,
-  StatisticalSalesChart,
-  StatisticalSalesProductReport,
-  StatisticalSalesStoreReport,
-  StatisticalSearchConditionVo,
-  StoreOption,
-  Timestamp,
-  UpdateSalesGoalDTO,
-};

@@ -1,18 +1,20 @@
 /// <reference path="../../api.d.ts" />
 import sendRequest, { getEnvHost } from '@/utils/request';
 
-export type postAllArticleByRangeOptions = Record<string, any>;
+export type initializeOrderDataOptions = Record<string, any>;
 
-export type postAllArticleByRangeResponse = Promise<boolean>;
+export type initializeOrderDataResponse = Promise<
+  defs.bakery.Response<boolean>
+>;
 
 /**
- * @desc postAllArticleByRange
+ * @desc 上传所有訂單相關数据
  */
 export function request(
-  options?: postAllArticleByRangeOptions,
-): postAllArticleByRangeResponse {
+  options?: initializeOrderDataOptions,
+): initializeOrderDataResponse {
   const host = getEnvHost();
-  const url = host + '/hot-deli-bakery/sap/post_article_byrange';
+  const url = host + '/hot-deli-bakery/sap/initialize_database';
   const fetchOption = {
     method: 'post',
     headers: {
