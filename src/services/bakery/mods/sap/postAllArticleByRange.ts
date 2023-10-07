@@ -12,7 +12,7 @@ export function request(
   options?: postAllArticleByRangeOptions,
 ): postAllArticleByRangeResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/sap/post_article_byrange';
+  const url = host + '/hot-deli-bakery/sap/post_article_byrange';
   const fetchOption = {
     method: 'post',
     headers: {

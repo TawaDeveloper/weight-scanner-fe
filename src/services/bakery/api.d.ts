@@ -4,6 +4,49 @@ type ObjectMap<Key extends string | number | symbol = any, Value = any> = {
 
 declare namespace defs {
   export namespace bakery {
+    export class AddOptRolePermissionDto {
+      /** 权限列表 */
+      referIds: Array<number>;
+
+      /** 角色ID */
+      roleId: number;
+    }
+
+    export class AddPermissionDto {
+      /** 英文名称 */
+      nameEnUs: string;
+
+      /** 中文名称 */
+      nameZhCn: string;
+
+      /** 繁体名称 */
+      nameZhTw: string;
+
+      /** 父 id */
+      parentId: number;
+
+      /** 排序 */
+      sort?: number;
+
+      /** MENU=菜单;COMPONENT=组件;API=接口;STORE=门店;WAREHOUSE=仓库;BIZ_MODULE=业务模块;API_FIELD=接口字段 */
+      type:
+        | 'API'
+        | 'API_FIELD'
+        | 'BIZ_MODULE'
+        | 'COMPONENT'
+        | 'MENU'
+        | 'STORE'
+        | 'WAREHOUSE';
+    }
+
+    export class AddRolePermissionDto {
+      /** 权限列表 */
+      referIds: Array<string>;
+
+      /** 角色ID */
+      roleId: number;
+    }
+
     export class ArticleOption {
       /** 产品编号 */
       articleNumber?: string;
@@ -95,11 +138,47 @@ declare namespace defs {
     }
 
     export class CreateOrderVO {
+      /** 拦截的商品 article number */
+      failedArticleNumbers?: Array<string>;
+
       /** 订单编号 */
       orderId?: string;
 
       /** PR 编号 */
       pr?: string;
+
+      /** 下单结果：1-全部成功、2-部分成功、3-全部失败 */
+      result?: number;
+    }
+
+    export class EditPermissionDto {
+      /** id */
+      id: number;
+
+      /** 英文名称 */
+      nameEnUs: string;
+
+      /** 中文名称 */
+      nameZhCn: string;
+
+      /** 繁体名称 */
+      nameZhTw: string;
+
+      /** 父 id */
+      parentId: number;
+
+      /** 排序 */
+      sort?: number;
+
+      /** MENU=菜单;COMPONENT=组件;API=接口;STORE=门店;WAREHOUSE=仓库;BIZ_MODULE=业务模块;API_FIELD=接口字段 */
+      type:
+        | 'API'
+        | 'API_FIELD'
+        | 'BIZ_MODULE'
+        | 'COMPONENT'
+        | 'MENU'
+        | 'STORE'
+        | 'WAREHOUSE';
     }
 
     export class EstDeliveredDateVO {
@@ -125,17 +204,6 @@ declare namespace defs {
 
       /** total */
       total?: number;
-    }
-
-    export class Item {
-      /** articleNumber */
-      articleNumber?: string;
-
-      /** qty */
-      qty?: number;
-
-      /** record_type */
-      record_type?: string;
     }
 
     export class LoginUserInfo {
@@ -199,12 +267,16 @@ declare namespace defs {
       /** Article Number */
       articleNumber?: string;
 
-      /** 产品描述（产品名称） */
+      /** 产品描述（英语） */
+      descriptionEn?: string;
       description?: string;
+
+      /** 产品描述（繁体） */
+      descriptionTc?: string;
     }
 
     export class NewArticlesDTO {
-      /** 产品名称 */
+      /** 产品名称（搜索关键字） */
       articleName?: string;
 
       /** 部门 ID */
@@ -249,6 +321,50 @@ declare namespace defs {
 
       /** 选项值 */
       value?: object;
+    }
+
+    export class OrderArticleEntity {
+      /** articleNumber */
+      articleNumber?: string;
+
+      /** cnDescription */
+      cnDescription?: string;
+
+      /** createdAt */
+      createdAt?: string;
+
+      /** deleted */
+      deleted?: number;
+
+      /** dep */
+      dep?: string;
+
+      /** enDescription */
+      enDescription?: string;
+
+      /** id */
+      id?: number;
+
+      /** mch */
+      mch?: string;
+
+      /** note */
+      note?: string;
+
+      /** packSize */
+      packSize?: string;
+
+      /** price */
+      price?: number;
+
+      /** uom */
+      uom?: string;
+
+      /** updatedAt */
+      updatedAt?: string;
+
+      /** vendorName */
+      vendorName?: string;
     }
 
     export class OrderDetailBaseVO {
@@ -492,8 +608,14 @@ declare namespace defs {
       /** 日参考订货量 */
       dayRefQuantity?: number;
 
-      /** 产品描述 */
-      description?: string;
+      /** 产品描述 - 英文 */
+      descriptionEn?: string;
+
+      /** 产品描述 - 繁体 */
+      descriptionTc?: string;
+
+      /** 上次订货量 */
+      lastQt?: number;
 
       /** 规格尺寸 */
       packSize?: string;
@@ -506,8 +628,40 @@ declare namespace defs {
 
       /** 单品周销售额目标 */
       weekSalesGoal?: number;
-      
       actualOrderQuantity?: number;
+    }
+
+    export class PermissionVo {
+      /** 儿子节点 */
+      children?: Array<defs.bakery.PermissionVo>;
+
+      /** 编码 */
+      code?: string;
+
+      /** id */
+      id?: number;
+
+      /** 层级 */
+      level?: number;
+
+      /** 名称 */
+      name?: string;
+
+      /** 父 id */
+      parentId?: number;
+
+      /** 排序 */
+      sort?: number;
+
+      /** MENU=菜单;COMPONENT=组件;API=接口;STORE=门店;WAREHOUSE=仓库;BIZ_MODULE=业务模块;API_FIELD=接口字段 */
+      type?:
+        | 'API'
+        | 'API_FIELD'
+        | 'BIZ_MODULE'
+        | 'COMPONENT'
+        | 'MENU'
+        | 'STORE'
+        | 'WAREHOUSE';
     }
 
     export class PoDetailBaseVO {
@@ -700,23 +854,12 @@ declare namespace defs {
       updateTime?: string;
     }
 
-    export class SapOrderingDTO {
-      /** deptId */
-      deptId?: string;
-
-      /** items */
-      items: Array<defs.bakery.Item>;
-
-      /** storeId */
-      storeId?: string;
-    }
-
     export class SapPrEntity {
       /** articleNumber */
       articleNumber?: string;
 
       /** changedOn */
-      changedOn?: string;
+      changedOn?: defs.bakery.Timestamp;
 
       /** createdAt */
       createdAt?: string;
@@ -731,7 +874,7 @@ declare namespace defs {
       deletionIndicator?: string;
 
       /** deliveryDate */
-      deliveryDate?: string;
+      deliveryDate?: defs.bakery.Timestamp;
 
       /** desiredVendor */
       desiredVendor?: string;
@@ -743,7 +886,7 @@ declare namespace defs {
       id?: number;
 
       /** itemNumber */
-      itemNumber?: string;
+      itemNumber?: number;
 
       /** mch */
       mch?: string;
@@ -773,10 +916,10 @@ declare namespace defs {
       quantity?: number;
 
       /** releaseDate */
-      releaseDate?: string;
+      releaseDate?: defs.bakery.Timestamp;
 
       /** requisitionDate */
-      requisitionDate?: string;
+      requisitionDate?: defs.bakery.Timestamp;
 
       /** requisitioner */
       requisitioner?: string;
@@ -823,20 +966,32 @@ declare namespace defs {
       /** 销售额 */
       amount?: number;
 
+      /** 产品名称 */
+      articleName?: string;
+
       /** 产品 */
       articleNumber?: string;
 
       /** 分类 */
       category?: string;
 
+      /** 分类名称 */
+      categoryName?: string;
+
       /** 部门 */
       department?: string;
+
+      /** 部门名称 */
+      departmentName?: string;
 
       /** 销售日期 */
       salesDate?: string;
 
       /** 门店 */
       storeId?: string;
+
+      /** 门店名称 */
+      storeName?: string;
 
       /** 销售量 */
       volume?: number;
@@ -898,6 +1053,38 @@ declare namespace defs {
       storeName?: string;
     }
 
+    export class Timestamp {
+      /** date */
+      date?: number;
+
+      /** day */
+      day?: number;
+
+      /** hours */
+      hours?: number;
+
+      /** minutes */
+      minutes?: number;
+
+      /** month */
+      month?: number;
+
+      /** nanos */
+      nanos?: number;
+
+      /** seconds */
+      seconds?: number;
+
+      /** time */
+      time?: number;
+
+      /** timezoneOffset */
+      timezoneOffset?: number;
+
+      /** year */
+      year?: number;
+    }
+
     export class UpdateSalesGoalDTO {
       /** 部门 ID */
       dep?: string;
@@ -925,6 +1112,36 @@ declare namespace defs {
 
 declare namespace API {
   export namespace bakery {
+    /**
+     * 授权相关接口
+     */
+    export namespace account {
+      /**
+       * 获取用户操作权限
+       * /hot-deli-bakery/admin/permission
+       */
+      export namespace permission {
+        export type permissionOptions = Record<string, any>;
+        export type permissionResponse = defs.bakery.Response<
+          Array<defs.bakery.PermissionVo>
+        >;
+        export type request = (
+          options?: permissionOptions,
+        ) => permissionResponse;
+      }
+
+      /**
+       * 获取/验证用户信息
+       * /hot-deli-bakery/admin/user-info
+       */
+      export namespace userInfo {
+        export type userInfoOptions = Record<string, any>;
+        export type userInfoResponse =
+          defs.bakery.Response<defs.bakery.LoginUserInfo>;
+        export type request = (options?: userInfoOptions) => userInfoResponse;
+      }
+    }
+
     /**
      * 损耗系数
      */
@@ -1179,6 +1396,153 @@ declare namespace API {
     }
 
     /**
+     * 权限管理
+     */
+    export namespace permission {
+      /**
+       * 新建权限
+       * /hot-deli-bakery/api/permissions
+       */
+      export namespace savePermissions {
+        export type savePermissionsBody = defs.bakery.AddPermissionDto;
+        export type savePermissionsOptions = Record<string, any>;
+        export type savePermissionsResponse = defs.bakery.Response<number>;
+        export type request = (
+          body: savePermissionsBody,
+          options?: savePermissionsOptions,
+        ) => savePermissionsResponse;
+      }
+
+      /**
+       * 修改权限
+       * /hot-deli-bakery/api/permissions
+       */
+      export namespace updatePermissions {
+        export type updatePermissionsBody = defs.bakery.EditPermissionDto;
+        export type updatePermissionsOptions = Record<string, any>;
+        export type updatePermissionsResponse = defs.bakery.Response<boolean>;
+        export type request = (
+          body: updatePermissionsBody,
+          options?: updatePermissionsOptions,
+        ) => updatePermissionsResponse;
+      }
+
+      /**
+       * 编辑操作权限
+       * /hot-deli-bakery/api/permissions/opt
+       */
+      export namespace saveOperationPermissions {
+        export type saveOperationPermissionsBody =
+          defs.bakery.AddOptRolePermissionDto;
+        export type saveOperationPermissionsOptions = Record<string, any>;
+        export type saveOperationPermissionsResponse =
+          defs.bakery.Response<boolean>;
+        export type request = (
+          body: saveOperationPermissionsBody,
+          options?: saveOperationPermissionsOptions,
+        ) => saveOperationPermissionsResponse;
+      }
+
+      /**
+       * 查询所有操作权限(选项)
+       * /hot-deli-bakery/api/permissions/opt/option
+       */
+      export namespace optPermissionOption {
+        export type optPermissionOptionOptions = Record<string, any>;
+        export type optPermissionOptionResponse = defs.bakery.Response<
+          Array<defs.bakery.PermissionVo>
+        >;
+        export type request = (
+          options?: optPermissionOptionOptions,
+        ) => optPermissionOptionResponse;
+      }
+
+      /**
+       * 查询操作权限
+       * /hot-deli-bakery/api/permissions/opt/{roleId}
+       */
+      export namespace listOperationPermissions {
+        export type listOperationPermissionsPath = {
+          /** roleId */
+          roleId: number;
+        };
+        export type listOperationPermissionsOptions = Record<string, any>;
+        export type listOperationPermissionsResponse = defs.bakery.Response<
+          Array<number>
+        >;
+        export type request = (
+          path: listOperationPermissionsPath,
+          options?: listOperationPermissionsOptions,
+        ) => listOperationPermissionsResponse;
+      }
+
+      /**
+       * 编辑门店数据权限
+       * /hot-deli-bakery/api/permissions/store
+       */
+      export namespace saveStorePermissions {
+        export type saveStorePermissionsBody = defs.bakery.AddRolePermissionDto;
+        export type saveStorePermissionsOptions = Record<string, any>;
+        export type saveStorePermissionsResponse =
+          defs.bakery.Response<boolean>;
+        export type request = (
+          body: saveStorePermissionsBody,
+          options?: saveStorePermissionsOptions,
+        ) => saveStorePermissionsResponse;
+      }
+
+      /**
+       * 查询所有门店数据权限(选项)
+       * /hot-deli-bakery/api/permissions/store/option
+       */
+      export namespace dataPermissionOption {
+        export type dataPermissionOptionOptions = Record<string, any>;
+        export type dataPermissionOptionResponse = defs.bakery.Response<
+          Array<defs.bakery.OptionVO>
+        >;
+        export type request = (
+          options?: dataPermissionOptionOptions,
+        ) => dataPermissionOptionResponse;
+      }
+
+      /**
+       * 查询门店数据权限
+       * /hot-deli-bakery/api/permissions/store/{roleId}
+       */
+      export namespace listStorePermissions {
+        export type listStorePermissionsPath = {
+          /** roleId */
+          roleId: number;
+        };
+        export type listStorePermissionsOptions = Record<string, any>;
+        export type listStorePermissionsResponse = defs.bakery.Response<
+          Array<string>
+        >;
+        export type request = (
+          path: listStorePermissionsPath,
+          options?: listStorePermissionsOptions,
+        ) => listStorePermissionsResponse;
+      }
+
+      /**
+       * 删除权限
+       * /hot-deli-bakery/api/permissions/{id}
+       */
+      export namespace deletePermissions {
+        export type deletePermissionsPath = {
+          /** id */
+          id: number;
+        };
+        export type deletePermissionsOptions = Record<string, any>;
+        export type deletePermissionsResponse = defs.bakery.Response<boolean>;
+        export type request = (
+          path: deletePermissionsPath,
+          options?: deletePermissionsOptions,
+        ) => deletePermissionsResponse;
+      }
+    }
+
+    /**
      * 销售目标
      */
     export namespace salesGoal {
@@ -1295,7 +1659,9 @@ declare namespace API {
        */
       export namespace getExcel {
         export type getExcelOptions = Record<string, any>;
-        export type getExcelResponse = ObjectMap<any, object>;
+        export type getExcelResponse = defs.bakery.Response<
+          Array<defs.bakery.OrderArticleEntity>
+        >;
         export type request = (options?: getExcelOptions) => getExcelResponse;
       }
 
@@ -1310,39 +1676,15 @@ declare namespace API {
       }
 
       /**
-       * 获取sales data
-       * /hot-deli-bakery/sap/get_sales
+       * 上传所有訂單相關数据
+       * /hot-deli-bakery/sap/initialize_database
        */
-      export namespace getSalesSAP {
-        export type getSalesSAPOptions = Record<string, any>;
-        export type getSalesSAPResponse = ObjectMap<any, object>;
+      export namespace initializeOrderData {
+        export type initializeOrderDataOptions = Record<string, any>;
+        export type initializeOrderDataResponse = defs.bakery.Response<boolean>;
         export type request = (
-          options?: getSalesSAPOptions,
-        ) => getSalesSAPResponse;
-      }
-
-      /**
-       * 获取sales data
-       * /hot-deli-bakery/sap/get_sales2
-       */
-      export namespace getSalesSAP2 {
-        export type getSalesSAP2Options = Record<string, any>;
-        export type getSalesSAP2Response = ObjectMap<any, object>;
-        export type request = (
-          options?: getSalesSAP2Options,
-        ) => getSalesSAP2Response;
-      }
-
-      /**
-       * 获取store data
-       * /hot-deli-bakery/sap/get_store
-       */
-      export namespace getStoreSAP {
-        export type getStoreSAPOptions = Record<string, any>;
-        export type getStoreSAPResponse = ObjectMap<any, object>;
-        export type request = (
-          options?: getStoreSAPOptions,
-        ) => getStoreSAPResponse;
+          options?: initializeOrderDataOptions,
+        ) => initializeOrderDataResponse;
       }
 
       /**
@@ -1363,7 +1705,7 @@ declare namespace API {
        */
       export namespace postExcel {
         export type postExcelOptions = Record<string, any>;
-        export type postExcelResponse = ObjectMap<any, object>;
+        export type postExcelResponse = defs.bakery.Response<boolean>;
         export type request = (options?: postExcelOptions) => postExcelResponse;
       }
 
@@ -1378,20 +1720,6 @@ declare namespace API {
       }
 
       /**
-       * 提交订单测试接口
-       * /hot-deli-bakery/sap/post_order
-       */
-      export namespace postOrderTest {
-        export type postOrderTestBody = defs.bakery.SapOrderingDTO;
-        export type postOrderTestOptions = Record<string, any>;
-        export type postOrderTestResponse = ObjectMap<any, object>;
-        export type request = (
-          body: postOrderTestBody,
-          options?: postOrderTestOptions,
-        ) => postOrderTestResponse;
-      }
-
-      /**
        * postPr
        * /hot-deli-bakery/sap/post_pr_by_store
        */
@@ -1402,27 +1730,15 @@ declare namespace API {
       }
 
       /**
-       * postSalesSAP
-       * /hot-deli-bakery/sap/post_sales
-       */
-      export namespace postSalesSAP {
-        export type postSalesSAPOptions = Record<string, any>;
-        export type postSalesSAPResponse = boolean;
-        export type request = (
-          options?: postSalesSAPOptions,
-        ) => postSalesSAPResponse;
-      }
-
-      /**
-       * 上传所有销售数据（耗时）
+       * 上传所有销售数据
        * /hot-deli-bakery/sap/post_sales_data
        */
-      export namespace postSalesData {
-        export type postSalesDataOptions = Record<string, any>;
-        export type postSalesDataResponse = ObjectMap<any, object>;
+      export namespace initializeSalesData {
+        export type initializeSalesDataOptions = Record<string, any>;
+        export type initializeSalesDataResponse = defs.bakery.Response<boolean>;
         export type request = (
-          options?: postSalesDataOptions,
-        ) => postSalesDataResponse;
+          options?: initializeSalesDataOptions,
+        ) => initializeSalesDataResponse;
       }
 
       /**
@@ -1431,10 +1747,34 @@ declare namespace API {
        */
       export namespace postStoreSAP {
         export type postStoreSAPOptions = Record<string, any>;
-        export type postStoreSAPResponse = ObjectMap<any, object>;
+        export type postStoreSAPResponse = defs.bakery.Response<ObjectMap>;
         export type request = (
           options?: postStoreSAPOptions,
         ) => postStoreSAPResponse;
+      }
+
+      /**
+       * testConnection
+       * /hot-deli-bakery/sap/test_connection
+       */
+      export namespace testConnection {
+        export type testConnectionOptions = Record<string, any>;
+        export type testConnectionResponse = string;
+        export type request = (
+          options?: testConnectionOptions,
+        ) => testConnectionResponse;
+      }
+
+      /**
+       * postSalesPrice
+       * /hot-deli-bakery/sap/update_sales_price
+       */
+      export namespace postSalesPrice {
+        export type postSalesPriceOptions = Record<string, any>;
+        export type postSalesPriceResponse = any;
+        export type request = (
+          options?: postSalesPriceOptions,
+        ) => postSalesPriceResponse;
       }
     }
 
@@ -1449,6 +1789,9 @@ declare namespace API {
         */
       export namespace articles {
         export type articlesParam = {
+          /** department */
+          department?: string;
+
           /** keyword */
           keyword?: string;
 
@@ -1475,6 +1818,9 @@ declare namespace API {
         */
       export namespace categories {
         export type categoriesParam = {
+          /** department */
+          department?: string;
+
           /** keyword */
           keyword?: string;
         };
@@ -1629,8 +1975,8 @@ declare namespace API {
         */
       export namespace report {
         export type reportParam = {
-          /** articleNumbers */
-          articleNumbers?: Array<string>;
+          /** categories */
+          categories?: Array<string>;
 
           /** department */
           department: string;
@@ -1712,18 +2058,24 @@ declare namespace API {
     }
 
     /**
-     * 授权相关接口
+     * Test Controller
      */
-    export namespace account {
+    export namespace test {
       /**
-       * 获取/验证用户信息
-       * /hot-deli-bakery/admin/user-info
+       * msg
+       * /hot-deli-bakery/test/msg
        */
-      export namespace userInfo {
-        export type userInfoOptions = Record<string, any>;
-        export type userInfoResponse =
-          defs.bakery.Response<defs.bakery.LoginUserInfo>;
-        export type request = (options?: userInfoOptions) => userInfoResponse;
+      export namespace msg {
+        export type msgParam = {
+          /** name */
+          name: string;
+        };
+        export type msgOptions = Record<string, any>;
+        export type msgResponse = defs.bakery.Response;
+        export type request = (
+          params: msgParam,
+          options?: msgOptions,
+        ) => msgResponse;
       }
     }
   }

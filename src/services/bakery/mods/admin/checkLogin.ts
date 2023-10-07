@@ -12,7 +12,7 @@ export type checkLoginResponse = Promise<
  */
 export function request(options?: checkLoginOptions): checkLoginResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/admin/user/login/check';
+  const url = host + '/hot-deli-bakery/admin/user/login/check';
   const fetchOption = {
     method: 'post',
     headers: {

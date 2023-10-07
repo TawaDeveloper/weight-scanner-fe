@@ -20,7 +20,7 @@ export function request(
   const host = getEnvHost();
   const url =
     host +
-    '/bakery/hot-deli-bakery/api/statistical/common/export/{module}/{reportId}'.replace(
+    '/hot-deli-bakery/api/statistical/common/export/{module}/{reportId}'.replace(
       /\{[\w]+\}/,
       String(path.module),
     );

@@ -1,4 +1,4 @@
-import { Button, Card, InputNumber, message } from 'antd';
+import { Button, Card, InputNumber, message, notification } from 'antd';
 import { useRequest } from 'ahooks';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import MarioListContent from '@tawa/mario-list-content';
@@ -18,6 +18,7 @@ import { DEFAULT_LANG } from '@/constants';
 // import { useNavigate } from 'react-router-dom';
 
 const CreateOrder = () => {
+  const [api, contextHolder] = notification.useNotification();
   const lang = localStorage.getItem('lang') ?? DEFAULT_LANG;
   const actionRef = useRef<TableQueryActions>(null);
   const [show, setShow] = useState<{ type: string; data?: any }>();
@@ -145,7 +146,7 @@ const CreateOrder = () => {
         }),
       },
     ],
-    scroll: { x: 1260 },
+    scroll: { x: 1160 },
     pagination: {
       defaultPageSize: 20,
       pageSize: 20,
@@ -197,8 +198,12 @@ const CreateOrder = () => {
     };
   }, [optionsData]);
 
+  const dataFlag = useMemo(() => {
+    return submitData.some(el => el.actualOrderQuantity === 0 || !el.actualOrderQuantity)
+  }, [submitData])
   return (
     <Card>
+      {contextHolder}
       <div className="flex">
         <div className="page-title">{''}</div>
         <div className="button-group">
@@ -208,7 +213,9 @@ const CreateOrder = () => {
             storeId={searchParams.storeId}
             onChange={(values) => {
               if (values && values.products && values.products.length > 0) {
-                bakeryAPI.order.getNewRefArticle
+                const intersection = submitData.filter(el => values.products?.some(vel => vel.articleNumber === el.articleNumber))
+                if (!intersection || intersection.length === 0) {
+                  bakeryAPI.order.getNewRefArticle
                   .request({
                     depId: searchParams.depId,
                     storeId: searchParams.storeId,
@@ -247,6 +254,13 @@ const CreateOrder = () => {
                       }
                     }
                   });
+                } else {
+                  api['warning']({
+                    message: 'Notification Title',
+                    description:
+                      '不能添加重复商品',
+                  });
+                }            
               }
             }}
             type="button"
@@ -301,7 +315,7 @@ const CreateOrder = () => {
       )}
       <div className="submit-button-box">
         <Button
-          disabled={!searchParams.depId || !searchParams.storeId || submitLoading}
+          disabled={!searchParams.depId || !searchParams.storeId || submitLoading || dataFlag}
           className="submit-button"
           onClick={() => {
             setSubmitLoading(true)
@@ -334,7 +348,7 @@ const CreateOrder = () => {
           {t<string>(`pages.orderList.title0120`)}
         </Button>
       </div>
-      {show?.type === 'add' && <AddModal onClose={handleClose} />}
+      {show?.type === 'add' && <AddModal order={order} onClose={handleClose} />}
     </Card>
   );
 };

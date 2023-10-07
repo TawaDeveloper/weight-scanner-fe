@@ -10,7 +10,7 @@ export type getPrTestResponse = Promise<Array<defs.bakery.SapPrEntity>>;
  */
 export function request(options?: getPrTestOptions): getPrTestResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/sap/get_pr_test';
+  const url = host + '/hot-deli-bakery/sap/get_pr_test';
   const fetchOption = {
     method: 'get',
     headers: {

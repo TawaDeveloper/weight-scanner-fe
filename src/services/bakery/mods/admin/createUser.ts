@@ -14,7 +14,7 @@ export function request(
   options?: createUserOptions,
 ): createUserResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/admin/user/create';
+  const url = host + '/hot-deli-bakery/admin/user/create';
   const fetchOption = {
     method: 'post',
     headers: {
