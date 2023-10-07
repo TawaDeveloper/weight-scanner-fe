@@ -10,7 +10,7 @@ export type getMchResponse = Promise<Array<any>>;
  */
 export function request(options?: getMchOptions): getMchResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/sap/get_mch';
+  const url = host + '/hot-deli-bakery/sap/get_mch';
   const fetchOption = {
     method: 'get',
     headers: {

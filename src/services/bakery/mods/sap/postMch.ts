@@ -10,7 +10,7 @@ export type postMchResponse = Promise<boolean>;
  */
 export function request(options?: postMchOptions): postMchResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/sap/post_mch';
+  const url = host + '/hot-deli-bakery/sap/post_mch';
   const fetchOption = {
     method: 'post',
     headers: {

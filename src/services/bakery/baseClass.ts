@@ -1,3 +1,39 @@
+class AddOptRolePermissionDto {
+  /** 权限列表 */
+  referIds = [];
+
+  /** 角色ID */
+  roleId = undefined;
+}
+
+class AddPermissionDto {
+  /** 英文名称 */
+  nameEnUs = '';
+
+  /** 中文名称 */
+  nameZhCn = '';
+
+  /** 繁体名称 */
+  nameZhTw = '';
+
+  /** 父 id */
+  parentId = undefined;
+
+  /** 排序 */
+  sort = undefined;
+
+  /** MENU=菜单;COMPONENT=组件;API=接口;STORE=门店;WAREHOUSE=仓库;BIZ_MODULE=业务模块;API_FIELD=接口字段 */
+  type = 'API';
+}
+
+class AddRolePermissionDto {
+  /** 权限列表 */
+  referIds = [];
+
+  /** 角色ID */
+  roleId = undefined;
+}
+
 class ArticleOption {
   /** 产品编号 */
   articleNumber = '';
@@ -89,11 +125,40 @@ class CreateOrderItem {
 }
 
 class CreateOrderVO {
+  /** 拦截的商品 article number */
+  failedArticleNumbers = [];
+
   /** 订单编号 */
   orderId = '';
 
   /** PR 编号 */
   pr = '';
+
+  /** 下单结果：1-全部成功、2-部分成功、3-全部失败 */
+  result = undefined;
+}
+
+class EditPermissionDto {
+  /** id */
+  id = undefined;
+
+  /** 英文名称 */
+  nameEnUs = '';
+
+  /** 中文名称 */
+  nameZhCn = '';
+
+  /** 繁体名称 */
+  nameZhTw = '';
+
+  /** 父 id */
+  parentId = undefined;
+
+  /** 排序 */
+  sort = undefined;
+
+  /** MENU=菜单;COMPONENT=组件;API=接口;STORE=门店;WAREHOUSE=仓库;BIZ_MODULE=业务模块;API_FIELD=接口字段 */
+  type = 'API';
 }
 
 class EstDeliveredDateVO {
@@ -119,17 +184,6 @@ class IPage {
 
   /** total */
   total = undefined;
-}
-
-class Item {
-  /** articleNumber */
-  articleNumber = '';
-
-  /** qty */
-  qty = undefined;
-
-  /** record_type */
-  record_type = '';
 }
 
 class LoginUserInfo {
@@ -193,12 +247,15 @@ class NewArticleItem {
   /** Article Number */
   articleNumber = '';
 
-  /** 产品描述（产品名称） */
-  description = '';
+  /** 产品描述（英语） */
+  descriptionEn = '';
+
+  /** 产品描述（繁体） */
+  descriptionTc = '';
 }
 
 class NewArticlesDTO {
-  /** 产品名称 */
+  /** 产品名称（搜索关键字） */
   articleName = '';
 
   /** 部门 ID */
@@ -243,6 +300,50 @@ class OptionVO {
 
   /** 选项值 */
   value = undefined;
+}
+
+class OrderArticleEntity {
+  /** articleNumber */
+  articleNumber = '';
+
+  /** cnDescription */
+  cnDescription = '';
+
+  /** createdAt */
+  createdAt = '';
+
+  /** deleted */
+  deleted = undefined;
+
+  /** dep */
+  dep = '';
+
+  /** enDescription */
+  enDescription = '';
+
+  /** id */
+  id = undefined;
+
+  /** mch */
+  mch = '';
+
+  /** note */
+  note = '';
+
+  /** packSize */
+  packSize = '';
+
+  /** price */
+  price = undefined;
+
+  /** uom */
+  uom = '';
+
+  /** updatedAt */
+  updatedAt = '';
+
+  /** vendorName */
+  vendorName = '';
 }
 
 class OrderDetailBaseVO {
@@ -486,8 +587,14 @@ class OrderNewRefArticle {
   /** 日参考订货量 */
   dayRefQuantity = undefined;
 
-  /** 产品描述 */
-  description = '';
+  /** 产品描述 - 英文 */
+  descriptionEn = '';
+
+  /** 产品描述 - 繁体 */
+  descriptionTc = '';
+
+  /** 上次订货量 */
+  lastQt = undefined;
 
   /** 规格尺寸 */
   packSize = '';
@@ -500,6 +607,32 @@ class OrderNewRefArticle {
 
   /** 单品周销售额目标 */
   weekSalesGoal = undefined;
+}
+
+class PermissionVo {
+  /** 儿子节点 */
+  children = [];
+
+  /** 编码 */
+  code = '';
+
+  /** id */
+  id = undefined;
+
+  /** 层级 */
+  level = undefined;
+
+  /** 名称 */
+  name = '';
+
+  /** 父 id */
+  parentId = undefined;
+
+  /** 排序 */
+  sort = undefined;
+
+  /** MENU=菜单;COMPONENT=组件;API=接口;STORE=门店;WAREHOUSE=仓库;BIZ_MODULE=业务模块;API_FIELD=接口字段 */
+  type = 'API';
 }
 
 class PoDetailBaseVO {
@@ -692,23 +825,12 @@ class SalesGoalOptLog {
   updateTime = '';
 }
 
-class SapOrderingDTO {
-  /** deptId */
-  deptId = '';
-
-  /** items */
-  items = [];
-
-  /** storeId */
-  storeId = '';
-}
-
 class SapPrEntity {
   /** articleNumber */
   articleNumber = '';
 
   /** changedOn */
-  changedOn = '';
+  changedOn = new Timestamp();
 
   /** createdAt */
   createdAt = '';
@@ -723,7 +845,7 @@ class SapPrEntity {
   deletionIndicator = '';
 
   /** deliveryDate */
-  deliveryDate = '';
+  deliveryDate = new Timestamp();
 
   /** desiredVendor */
   desiredVendor = '';
@@ -735,7 +857,7 @@ class SapPrEntity {
   id = undefined;
 
   /** itemNumber */
-  itemNumber = '';
+  itemNumber = undefined;
 
   /** mch */
   mch = '';
@@ -765,10 +887,10 @@ class SapPrEntity {
   quantity = undefined;
 
   /** releaseDate */
-  releaseDate = '';
+  releaseDate = new Timestamp();
 
   /** requisitionDate */
-  requisitionDate = '';
+  requisitionDate = new Timestamp();
 
   /** requisitioner */
   requisitioner = '';
@@ -815,20 +937,32 @@ class StatisticalSalesChart {
   /** 销售额 */
   amount = undefined;
 
+  /** 产品名称 */
+  articleName = '';
+
   /** 产品 */
   articleNumber = '';
 
   /** 分类 */
   category = '';
 
+  /** 分类名称 */
+  categoryName = '';
+
   /** 部门 */
   department = '';
+
+  /** 部门名称 */
+  departmentName = '';
 
   /** 销售日期 */
   salesDate = '';
 
   /** 门店 */
   storeId = '';
+
+  /** 门店名称 */
+  storeName = '';
 
   /** 销售量 */
   volume = undefined;
@@ -890,6 +1024,38 @@ class StoreOption {
   storeName = '';
 }
 
+class Timestamp {
+  /** date */
+  date = undefined;
+
+  /** day */
+  day = undefined;
+
+  /** hours */
+  hours = undefined;
+
+  /** minutes */
+  minutes = undefined;
+
+  /** month */
+  month = undefined;
+
+  /** nanos */
+  nanos = undefined;
+
+  /** seconds */
+  seconds = undefined;
+
+  /** time */
+  time = undefined;
+
+  /** timezoneOffset */
+  timezoneOffset = undefined;
+
+  /** year */
+  year = undefined;
+}
+
 class UpdateSalesGoalDTO {
   /** 部门 ID */
   dep = '';
@@ -914,6 +1080,9 @@ class UpdateSalesGoalDTO {
 }
 
 export const bakery = {
+  AddOptRolePermissionDto,
+  AddPermissionDto,
+  AddRolePermissionDto,
   ArticleOption,
   ArticleRefDTO,
   CategoryOption,
@@ -921,9 +1090,9 @@ export const bakery = {
   CreateOrderDTO,
   CreateOrderItem,
   CreateOrderVO,
+  EditPermissionDto,
   EstDeliveredDateVO,
   IPage,
-  Item,
   LoginUserInfo,
   LossFactor,
   LossFactorTree,
@@ -931,6 +1100,7 @@ export const bakery = {
   NewArticlesDTO,
   NewSalesGoalDTO,
   OptionVO,
+  OrderArticleEntity,
   OrderDetailBaseVO,
   OrderDetailItem,
   OrderDetailItemDTO,
@@ -941,6 +1111,7 @@ export const bakery = {
   OrderListPageDTO,
   OrderNewOptionsVO,
   OrderNewRefArticle,
+  PermissionVo,
   PoDetailBaseVO,
   PoDetailItem,
   PoDetailItemDTO,
@@ -949,7 +1120,6 @@ export const bakery = {
   SalesGoalListItem,
   SalesGoalListOptionVO,
   SalesGoalOptLog,
-  SapOrderingDTO,
   SapPrEntity,
   SaveLossFactorDTO,
   StatisticalSalesCategoryReport,
@@ -958,5 +1128,6 @@ export const bakery = {
   StatisticalSalesStoreReport,
   StatisticalSearchConditionVo,
   StoreOption,
+  Timestamp,
   UpdateSalesGoalDTO,
 };

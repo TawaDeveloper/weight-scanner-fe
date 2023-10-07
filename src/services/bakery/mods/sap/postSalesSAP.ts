@@ -10,7 +10,7 @@ export type postSalesSAPResponse = Promise<boolean>;
  */
 export function request(options?: postSalesSAPOptions): postSalesSAPResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/sap/post_sales';
+  const url = host + '/hot-deli-bakery/sap/post_sales';
   const fetchOption = {
     method: 'post',
     headers: {

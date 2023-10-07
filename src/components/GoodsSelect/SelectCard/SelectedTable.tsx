@@ -13,13 +13,6 @@ const SelectedTable = (props: IProps) => {
 
   const columns: ColumnsType<defs.bakery.NewArticleItem> = [
     {
-      title: t<string>(`components.goodsSelect.title0005`),
-      dataIndex: 'descriptionEn',
-      key: 'descriptionEn',
-      align: 'center',
-      fixed: 'left',
-    },
-    {
       title: t<string>(`pages.orderList.title0095`),
       dataIndex: 'articleNumber',
       key: 'articleNumber',

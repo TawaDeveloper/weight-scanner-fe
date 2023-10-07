@@ -4,9 +4,10 @@ import { Modal, Button, Space, ModalProps, Row, Card } from 'antd';
 
 type IProps = {
   onClose: (type?: string) => void;
+  order?: defs.bakery.CreateOrderVO;
 };
 export default (props: IProps) => {
-  const { onClose } = props;
+  const { onClose, order } = props;
   const [open, setOpen] = useState(true);
 
   const handleClose = () => {
@@ -29,11 +30,25 @@ export default (props: IProps) => {
 
   return (
     <Modal {...modalProps}>
-      <Card style={{
-        padding: '24px',
-        marginBottom: '24px',
-        border: 'none'
-      }}>{t('pages.orderList.title0115') as string}</Card>
+      <Card
+        style={{
+          padding: '24px',
+          marginBottom: '24px',
+          border: 'none',
+        }}
+      >
+        {t('pages.orderList.title0115') as string}
+        {order &&
+          order.failedArticleNumbers &&
+          order.failedArticleNumbers.length > 0 && (
+            <>
+              <div>{t('pages.orderList.title0131') as string}</div>
+              {order.failedArticleNumbers.map((el) => (
+                <div key={`failed-Article-Numbers-${el}`}>{el}</div>
+              ))}
+            </>
+          )}
+      </Card>
       <Row justify="end">
         <Space>
           <Button onClick={handleClose}>

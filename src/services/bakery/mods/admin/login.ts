@@ -14,7 +14,7 @@ export function request(
   options?: loginOptions,
 ): loginResponse {
   const host = getEnvHost();
-  const url = host + '/bakery/hot-deli-bakery/admin/user/login';
+  const url = host + '/hot-deli-bakery/admin/user/login';
   const fetchOption = {
     method: 'post',
     headers: {
