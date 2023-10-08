@@ -199,8 +199,10 @@ const CreateOrder = () => {
   }, [optionsData]);
 
   const dataFlag = useMemo(() => {
-    return submitData.some(el => el.actualOrderQuantity === 0 || !el.actualOrderQuantity)
-  }, [submitData])
+    return submitData.some(
+      (el) => el.actualOrderQuantity === 0 || !el.actualOrderQuantity,
+    );
+  }, [submitData]);
   return (
     <Card>
       {contextHolder}
@@ -208,59 +210,63 @@ const CreateOrder = () => {
         <div className="page-title">{''}</div>
         <div className="button-group">
           <GoodsSelect
+            submitData={submitData}
             disabled={!searchParams.depId || !searchParams.storeId}
             depId={searchParams.depId}
             storeId={searchParams.storeId}
             onChange={(values) => {
               if (values && values.products && values.products.length > 0) {
-                const intersection = submitData.filter(el => values.products?.some(vel => vel.articleNumber === el.articleNumber))
+                const intersection = submitData.filter((el) =>
+                  values.products?.some(
+                    (vel) => vel.articleNumber === el.articleNumber,
+                  ),
+                );
                 if (!intersection || intersection.length === 0) {
                   bakeryAPI.order.getNewRefArticle
-                  .request({
-                    depId: searchParams.depId,
-                    storeId: searchParams.storeId,
-                    articleNumbers:
-                      values && values.products
-                        ? values?.products.map((el) =>
-                            el.articleNumber
-                              ? el.articleNumber?.toString()
-                              : '',
-                          )
-                        : [],
-                  })
-                  .then((res) => {
-                    if (res.data && res.success) {
-                      const _store = optionsData?.data?.stores?.find(
-                        (el) => el.value?.toString() === searchParams.storeId,
-                      );
-                      const _dep = optionsData?.data?.deps?.find(
-                        (el) => el.value?.toString() === searchParams.depId,
-                      );
-                      const _articles = res.data;
-                      if (_articles) {
-                        setSubmitData((_submitData) => {
-                          return [
-                            ..._submitData,
-                            ..._articles.map((el) => {
-                              return {
-                                ...el,
-                                storeId: _store?.value || '',
-                                storeName: _store?.label || '',
-                                depName: _dep?.label || '',
-                              };
-                            }),
-                          ];
-                        });
+                    .request({
+                      depId: searchParams.depId,
+                      storeId: searchParams.storeId,
+                      articleNumbers:
+                        values && values.products
+                          ? values?.products.map((el) =>
+                              el.articleNumber
+                                ? el.articleNumber?.toString()
+                                : '',
+                            )
+                          : [],
+                    })
+                    .then((res) => {
+                      if (res.data && res.success) {
+                        const _store = optionsData?.data?.stores?.find(
+                          (el) => el.value?.toString() === searchParams.storeId,
+                        );
+                        const _dep = optionsData?.data?.deps?.find(
+                          (el) => el.value?.toString() === searchParams.depId,
+                        );
+                        const _articles = res.data;
+                        if (_articles) {
+                          setSubmitData((_submitData) => {
+                            return [
+                              ..._submitData,
+                              ..._articles.map((el) => {
+                                return {
+                                  ...el,
+                                  storeId: _store?.value || '',
+                                  storeName: _store?.label || '',
+                                  depName: _dep?.label || '',
+                                };
+                              }),
+                            ];
+                          });
+                        }
                       }
-                    }
-                  });
+                    });
                 } else {
                   api['warning']({
                     message: 'Notification Title',
-                    description:
-                      '不能添加重复商品',
+                    description: '不能添加重复商品',
                   });
-                }            
+                }
               }
             }}
             type="button"
@@ -315,10 +321,15 @@ const CreateOrder = () => {
       )}
       <div className="submit-button-box">
         <Button
-          disabled={!searchParams.depId || !searchParams.storeId || submitLoading || dataFlag}
+          disabled={
+            !searchParams.depId ||
+            !searchParams.storeId ||
+            submitLoading ||
+            dataFlag
+          }
           className="submit-button"
           onClick={() => {
-            setSubmitLoading(true)
+            setSubmitLoading(true);
             bakeryAPI.order.createOrder
               .request({
                 dep: searchParams.depId,
@@ -333,15 +344,16 @@ const CreateOrder = () => {
                 }),
               })
               .then((res) => {
-                setSubmitLoading(false)
+                setSubmitLoading(false);
                 if (res.data && res.success) {
                   setOrder(res.data);
                   setShow({
                     type: 'add',
                   });
                 }
-              }).catch(() => {
-                setSubmitLoading(false)
+              })
+              .catch(() => {
+                setSubmitLoading(false);
               });
           }}
         >
