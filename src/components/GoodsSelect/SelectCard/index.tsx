@@ -8,6 +8,7 @@ import TableSelect from './TableSelect';
 type IProps = {
   storeId?: string
   depId?: string
+  submitData: Array<any>
   onChang?: (
     products: defs.bakery.NewArticleItem[],
     fileIds?: number[],
@@ -18,7 +19,7 @@ type IProps = {
 };
 
 const SelectCard = (props: IProps) => {
-  const { onChang, data, disabled = false, storeId, depId } = props;
+  const { onChang, data, disabled = false, storeId, depId, submitData } = props;
   const [tableV, setTableV] = useState<defs.bakery.NewArticleItem[]>(
     data || [],
   );
@@ -41,7 +42,7 @@ const SelectCard = (props: IProps) => {
     {
       label: t<string>(`components.goodsSelect.title0002`),
       children: (
-        <TableSelect onChang={handleSelect} data={tableV} storeId={storeId} depId={depId} disabled={disabled} />
+        <TableSelect onChang={handleSelect} submitData={submitData} data={tableV} storeId={storeId} depId={depId} disabled={disabled} />
       ),
       key: 'TableSelect',
     },

@@ -22,6 +22,7 @@ export type StoreSelectProps = {
   disabled?: boolean;
   value?: GoodsValue;
   tagsMaxLen?: number;
+  submitData: Array<any>;
   depId?: string;
   storeId?: string;
   defaultValue?: defs.bakery.NewArticleItem[];
@@ -34,6 +35,7 @@ const GoodsSelect = (props: StoreSelectProps) => {
     disabled,
     value,
     type = 'input',
+    submitData,
     placeholder,
     buttonTitle,
     tagsMaxLen = 10,
@@ -121,6 +123,7 @@ const GoodsSelect = (props: StoreSelectProps) => {
             storeId={storeId}
             onChang={handleChange}
             data={data}
+            submitData={submitData}
             disabled={disabled}
             onFileIdsChange={handleFiles}
           />

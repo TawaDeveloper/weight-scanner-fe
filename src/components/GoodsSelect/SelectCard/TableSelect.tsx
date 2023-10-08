@@ -30,12 +30,13 @@ const columns: ColumnsType<defs.bakery.NewArticleItem> = [
 type IProps = {
   depId?: string;
   storeId?: string;
+  submitData: Array<any>;
   onChang?: (values: defs.bakery.NewArticleItem[]) => void;
   data?: defs.bakery.NewArticleItem[];
   disabled?: boolean;
 };
 const TableSelect = (props: IProps) => {
-  const { data, onChang, disabled = false, storeId, depId } = props;
+  const { data, onChang, disabled = false, storeId, depId, submitData } = props;
   const [search, setSearch] = useState({
     articleName: '',
     pageNum: 1,
@@ -69,6 +70,7 @@ const TableSelect = (props: IProps) => {
   };
 
   const handleRowChange = (_: any, s_rows: defs.bakery.NewArticleItem[]) => {
+    // if (submitData.some(el => el.articleNumber === s_rows.))
     const list: defs.bakery.NewArticleItem[] = [];
     if (tableRes?.data) {
       rows.forEach((i) => {
@@ -82,11 +84,14 @@ const TableSelect = (props: IProps) => {
       onChang(list);
     }
   };
-
   const rowSelection = {
     disabled,
     selectedRowKeys,
     onChange: handleRowChange,
+    getCheckboxProps: (record: defs.bakery.NewArticleItem) => ({
+      disabled: submitData.some(el => el.articleNumber === record.articleNumber),
+      name: record.descriptionEn,
+    }),
   };
 
   useEffect(() => {
