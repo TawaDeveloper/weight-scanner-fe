@@ -14,4 +14,8 @@ export default {
   account: '用户账号',
   accountName: '账号名称',
   lastLoginTime: '最后登录时间',
+  action: '操作',
+  enabled: '启用',
+  disabled: '禁用',
+  delete: '移除',
 };

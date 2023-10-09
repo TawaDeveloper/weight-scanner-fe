@@ -14,4 +14,8 @@ export default {
   account: '用戶帳號',
   accountName: '帳號名稱',
   lastLoginTime: '最後登入時間',
+  action: '操作',
+  enabled: '啟用',
+  disabled: '禁用',
+  delete: '移除',
 };
