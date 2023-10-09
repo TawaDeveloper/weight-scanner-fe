@@ -14,4 +14,8 @@ export default {
   account: 'User account',
   accountName: 'Account name',
   lastLoginTime: 'Last login time',
+  action: 'action',
+  enabled: 'enabled',
+  disabled: 'disabled',
+  delete: 'remove',
 };

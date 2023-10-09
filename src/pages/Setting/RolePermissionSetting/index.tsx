@@ -23,6 +23,7 @@ const RolePermissionSetting = () => {
     const { pageNum = 1, pageSize = 20 } = params || {};
 
     return tawaAPI.permRole.list.request({
+      ...params,
       pageNum,
       pageSize,
       applicationCode: 'HotDeli',
@@ -30,7 +31,16 @@ const RolePermissionSetting = () => {
   };
 
   const { loading, data, run } = useRequest(queryRoleList);
-
+  const setRoleStatus = async (
+    role: defs.tawa.PageRoleResponse,
+    status: string,
+  ) => {
+    await tawaAPI.permRole.editStatus.request({
+      id: String(role.id),
+      status,
+    });
+    run({});
+  };
   const tableProps = {
     loading,
     fields: tableFields,
@@ -84,6 +94,29 @@ const RolePermissionSetting = () => {
               name: t<string>(`pages.rolePermissionSetting.setting`),
               onClick: () => {
                 setCurrenDataRole(record);
+              },
+            },
+          ],
+        }),
+      },
+      {
+        key: 'action',
+        name: t<string>(`pages.rolePermissionSetting.action`),
+        width: 120,
+        type: 'action',
+        props: (_: any, record: any) => ({
+          options: [
+            {
+              name:
+                record.status === 'ENABLE'
+                  ? t<string>(`pages.rolePermissionSetting.disabled`)
+                  : t<string>(`pages.rolePermissionSetting.enabled`),
+              onClick: () => {
+                if (record.status === 'ENABLE') {
+                  setRoleStatus(record, 'DISABLE');
+                } else {
+                  setRoleStatus(record, 'ENABLE');
+                }
               },
             },
           ],
