@@ -1,5 +1,5 @@
 /// <reference path="../../api.d.ts" />
-import sendRequest, { getEnvHost } from '@/utils/request';
+import sendRequest, { getEnvTawaHost } from '@/utils/request';
 
 export type removeUserBody = defs.tawa.RemoveUserRequest;
 export type removeUserOptions = Record<string, any>;
@@ -13,8 +13,8 @@ export function request(
   body: removeUserBody,
   options?: removeUserOptions,
 ): removeUserResponse {
-  const host = getEnvHost();
-  const url = host + '/tawa/perm/roles/user/remove';
+  const host = getEnvTawaHost();
+  const url = host + '/tawa-api/perm/roles/user/remove';
   const fetchOption = {
     method: 'put',
     headers: {

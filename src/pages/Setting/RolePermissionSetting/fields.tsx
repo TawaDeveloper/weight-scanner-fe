@@ -32,9 +32,10 @@ export const tableFields = [
     key: 'validityPeriod',
     name: t<string>(`pages.rolePermissionSetting.validityPeriod`),
     render: (_value: any, _record: any) => {
-      return `${timestampToPST(_record.validStartTime)} ~ ${timestampToPST(
-        _record.validEndTime,
-      )}`;
+      return `${timestampToPST(
+        _record.validStartTime,
+        'YYYY-MM-DD',
+      )} ~ ${timestampToPST(_record.validEndTime, 'YYYY-MM-DD')}`;
     },
   },
   {

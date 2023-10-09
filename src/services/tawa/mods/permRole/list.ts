@@ -13,7 +13,6 @@ export type listResponse = Promise<
  */
 export function request(body: listBody, options?: listOptions): listResponse {
   const host = getEnvTawaHost();
-  console.log(host);
   const url = host + '/tawa-api/perm/roles/list';
   const fetchOption = {
     method: 'post',
