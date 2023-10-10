@@ -130,4 +130,5 @@ export default {
   title0129: 'Template download',
   title0130: 'Last order quantity',
   title0131: 'Partial failure',
+  title0132: 'Region',
 };
