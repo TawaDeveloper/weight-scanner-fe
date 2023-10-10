@@ -130,4 +130,5 @@ export default {
   title0129: '模版下載',
   title0130: '上次訂貨量',
   title0131: '部分失敗',
+  title0132: '區域',
 };
