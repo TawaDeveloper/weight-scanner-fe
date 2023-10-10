@@ -69,7 +69,9 @@ const GoodsSelect = (props: StoreSelectProps) => {
     setOpen(false);
   };
   const handleOpen = () => {
-    setOpen(true);
+    if (storeId && depId) {
+      setOpen(true);
+    }
   };
   const handleFiles = (ids: number[]) => {
     setIds(ids);
