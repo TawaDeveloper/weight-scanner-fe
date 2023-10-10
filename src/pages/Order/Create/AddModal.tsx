@@ -37,12 +37,18 @@ export default (props: IProps) => {
           border: 'none',
         }}
       >
-        {t('pages.orderList.title0115') as string}
+        {order &&
+          order.result !== 3 &&
+          (t('pages.orderList.title0115') as string)}
         {order &&
           order.failedArticleNumbers &&
           order.failedArticleNumbers.length > 0 && (
             <>
-              <div>{t('pages.orderList.title0131') as string}</div>
+              <div>
+                {order.result === 2
+                  ? t('pages.orderList.title0131') as string
+                  : (t('pages.orderList.title0133') as string)}
+              </div>
               {order.failedArticleNumbers.map((el) => (
                 <div key={`failed-Article-Numbers-${el}`}>{el}</div>
               ))}
@@ -54,9 +60,11 @@ export default (props: IProps) => {
           <Button onClick={handleClose}>
             {t<string>(`button.common.close`)}
           </Button>
-          <Button onClick={handleOk} type="primary">
-            {t<string>(`pages.orderList.title0114`)}
-          </Button>
+          {order && order.result !== 3 && (
+            <Button onClick={handleOk} type="primary">
+              {t<string>(`pages.orderList.title0114`)}
+            </Button>
+          )}
         </Space>
       </Row>
     </Modal>

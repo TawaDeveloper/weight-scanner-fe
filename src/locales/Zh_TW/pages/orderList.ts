@@ -131,4 +131,5 @@ export default {
   title0130: '上次訂貨量',
   title0131: '部分失敗',
   title0132: '區域',
+  title0133: '全部失敗',
 };
