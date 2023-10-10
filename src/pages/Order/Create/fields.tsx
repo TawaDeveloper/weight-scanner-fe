@@ -89,13 +89,13 @@ export const formFields = [
     key: 'storeId',
     type: 'select',
     props: {
-      showSearch: true
+      showSearch: true,
     },
-    name: t<string>(`pages.orderList.title0089`),
+    name: `${t<string>(`pages.orderList.title0089`)}`,
   },
   {
     key: 'depId',
-    name: t<string>(`pages.orderList.title0090`),
+    name: `${t<string>(`pages.orderList.title0090`)}`,
     type: 'select',
   },
 ];

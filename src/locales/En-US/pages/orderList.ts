@@ -131,4 +131,5 @@ export default {
   title0130: 'Last order quantity',
   title0131: 'Partial failure',
   title0132: 'Region',
+  title0133: 'All failure',
 };
