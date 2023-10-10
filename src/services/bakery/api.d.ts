@@ -266,6 +266,10 @@ declare namespace defs {
 
       /** 用户id */
       userId?: number;
+
+      areaNameList?: Array<string>
+      departmentNameList?: Array<string>
+      storeNameList?: Array<string>
     }
 
     export class LossFactor {
