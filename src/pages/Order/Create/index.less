@@ -6,6 +6,19 @@
         gap: 20px;
     }
 }
+.ant-form-item-label {
+    label[for='storeId'], label[for='depId'] {
+        position: relative;
+        padding-right: 16px;
+        &::after {
+            position: absolute;
+            content: '*';
+            right: 0px;
+            top: 8px;
+            color: red;
+        }
+    }
+}
 .time-content {
     margin: 24px 0;
     display: flex;
