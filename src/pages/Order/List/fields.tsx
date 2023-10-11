@@ -6,6 +6,7 @@ import {
 } from '@/constants/enums';
 import { Link } from 'react-router-dom';
 import { timestampToZone } from '@/utils';
+import { YYYY_MM_DD } from '@/constants';
 
 // "brandId": 0,
 // "brandNameEN": "string",
@@ -104,7 +105,7 @@ export const tableFields = [
     width: 200,
     name: t<string>(`pages.orderList.title0040`),
     render: (value: string, record: any) => {
-      return timestampToZone(value, record.timezone);
+      return timestampToZone(value, record.timezone, YYYY_MM_DD);
     },
   },
 ];
