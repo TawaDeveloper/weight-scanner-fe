@@ -63,7 +63,7 @@ const ReportByStore = () => {
         })
         .then((response) => {
           setReportLoading(false);
-          setReportData(response.data?.contents);
+          setReportData(response.data ? response.data.contents : []);
           currentReportId.current = response.data?.reportId;
         });
     }
@@ -295,6 +295,7 @@ const ReportByStore = () => {
           </div>
           <Button
             type="primary"
+            disabled={!userParams || !userParams.department}
             style={{ marginRight: '20px' }}
             loading={chartLoading || reportLoading}
             onClick={() => {
@@ -418,7 +419,7 @@ const ReportByStore = () => {
           <div>{t<string>(`pages.report.SalesVolumeRevenueReport`)}</div>
           <PermissionComponent code="component:Store:Sales Volume&Revenue Export">
             <Button
-              disabled={reportData.length === 0}
+              disabled={!currentReportId.current}
               onClick={() => {
                 exportReport();
               }}

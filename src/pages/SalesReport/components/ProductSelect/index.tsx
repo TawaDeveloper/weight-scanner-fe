@@ -1,5 +1,5 @@
 import { Select, Spin } from 'antd';
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { t } from 'i18next';
 import { debounce } from 'lodash-es';
 import type { SelectProps } from 'antd';
@@ -24,7 +24,7 @@ const ProductSelect = ({ onChange, value, department }: IProps) => {
       setFetching(true);
       const params: articlesParam = {
         page: 1,
-        size: 200,
+        size: 500,
         keyword: value,
       };
       if (department) {
@@ -50,6 +50,28 @@ const ProductSelect = ({ onChange, value, department }: IProps) => {
     };
 
     return debounce(loadOptions, 1000);
+  }, [department]);
+
+  useEffect(() => {
+    const params: articlesParam = {
+      page: 1,
+      size: 1000,
+    };
+    if (department) {
+      params.department = department;
+    }
+    bakeryAPI.statisticalCommon.articles.request(params).then((response) => {
+      if (response.data && response.data.records) {
+        setOptions(
+          response.data.records.map((item) => {
+            return {
+              label: `${item.articleNumber} - ${item.description}`,
+              value: item.articleNumber,
+            };
+          }),
+        );
+      }
+    });
   }, [department]);
   return (
     <div className={styles.root}>

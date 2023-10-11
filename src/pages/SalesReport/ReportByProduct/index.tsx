@@ -362,6 +362,7 @@ const ReportByProduct = () => {
           </div>
           <Button
             type="primary"
+            disabled={!userParams || !userParams.department}
             style={{ marginRight: '20px' }}
             loading={chartLoading || reportLoading}
             onClick={() => {
