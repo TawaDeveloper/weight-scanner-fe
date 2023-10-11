@@ -170,12 +170,6 @@ const CreateOrder = () => {
                     [el.key]: value,
                   };
                 });
-                console.log(searchParams.depId, 'change')
-                console.log(searchParams.storeId, 'change')
-                if (searchParams.depId && searchParams.storeId) {
-                  setSubmitData([])
-                  actionRef.current?.onQuery();
-                }
               },
               options:
                 el.key === 'storeId'
@@ -196,10 +190,18 @@ const CreateOrder = () => {
     };
   }, [optionsData]);
 
+  useEffect(() => {
+    if (searchParams.storeId && searchParams.depId) {
+      setSubmitData([]);
+      actionRef.current?.onQuery();
+    }
+  }, [searchParams.depId, searchParams.storeId]);
   const dataFlag = useMemo(() => {
-    return submitData && submitData.length > 0 ? submitData.some(
-      (el) => el.actualOrderQuantity === 0 || !el.actualOrderQuantity,
-    ) : true;
+    return submitData && submitData.length > 0
+      ? submitData.some(
+          (el) => el.actualOrderQuantity === 0 || !el.actualOrderQuantity,
+        )
+      : true;
   }, [submitData]);
   return (
     <Card>
