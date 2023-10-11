@@ -53,7 +53,7 @@ export const tableFields = [
     name: t<string>(`pages.orderList.title0007`),
   },
   {
-    key: 'dep',
+    key: 'depName',
     width: 100,
     name: t<string>(`pages.orderList.title0090`),
   },
