@@ -17,7 +17,6 @@ import logo from '@/assets/99-logo.png';
 import styles from './BasicLayout.less';
 import { loginStateAtom } from '@/atoms/login';
 import NotFoundError from '@/pages/NotFound';
-import Header from '@/components/Header';
 
 NProgress.configure({ showSpinner: false });
 
@@ -96,7 +95,6 @@ const BasicLayout: React.FC = () => {
           className={styles.proLayoutDiv}
           style={{ minHeight: 'calc(100vh - 80px)' }}
         >
-          <Header />
           {accessed ? <Outlet /> : <NotFoundError />}
         </div>
       </Suspense>

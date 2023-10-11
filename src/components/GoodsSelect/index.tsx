@@ -92,7 +92,7 @@ const GoodsSelect = (props: StoreSelectProps) => {
           {showTags?.length ? (
             <div className={styles.storeTags}>
               {showTags?.map((item) => (
-                <Tag key={item.articleNumber}>{item.description}</Tag>
+                <Tag key={item.articleNumber}>{item.descriptionEn}</Tag>
               ))}
               {isTagsMax && <Tag>...</Tag>}
             </div>

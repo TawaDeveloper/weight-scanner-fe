@@ -37,23 +37,21 @@ export default (props: IProps) => {
           border: 'none',
         }}
       >
+        {order && order.result === 3
+          ? (t('pages.orderList.title0133') as string)
+          : (t('pages.orderList.title0134') as string)}
         {order &&
-          order.result !== 3 &&
-          (t('pages.orderList.title0115') as string)}
+          order.result !== 1 &&
+          (t('pages.orderList.title0137') as string)}
         {order &&
-          order.failedArticleNumbers &&
-          order.failedArticleNumbers.length > 0 && (
-            <>
-              <div>
-                {order.result === 2
-                  ? t('pages.orderList.title0131') as string
-                  : (t('pages.orderList.title0133') as string)}
-              </div>
-              {order.failedArticleNumbers.map((el) => (
-                <div key={`failed-Article-Numbers-${el}`}>{el}</div>
-              ))}
-            </>
-          )}
+          order.result === 2 &&
+          (t('pages.orderList.title0135', {
+            success: order.successNum,
+            error: order.failedNum,
+          }) as string)}
+        {order &&
+          order.result === 3 &&
+          (t('pages.orderList.title0136') as string)}
       </Card>
       <Row justify="end">
         <Space>

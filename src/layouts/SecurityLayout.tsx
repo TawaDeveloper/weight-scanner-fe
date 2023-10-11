@@ -11,6 +11,7 @@ import { filterMenusByPermission, filterRouterByPermission } from '@/utils';
 
 // import { backofficeAPI } from '@/services';
 // import { PageLoading } from '@/components';
+localStorage.setItem('tawa_sso_token', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsb2dpblR5cGUiOiJsb2dpbiIsImxvZ2luSWQiOjIsInJuU3RyIjoicFE4MVJSdk02Yjg5ZTBJQVl6RXRIYjF6TENFRE1HWU4iLCJ1c2VySWQiOjJ9.7zzDB7cVtPHLHCZ_QHboc9ShlKIxKHSbnBp4cr7775k')
 const SecurityLayout: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();

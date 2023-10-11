@@ -5066,6 +5066,20 @@
         {
           "dataType": {
             "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "failedNum",
+          "description": "失败数",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
             "typeName": "string",
             "isDefsType": false,
             "templateIndex": -1,
@@ -5103,6 +5117,20 @@
           },
           "name": "result",
           "description": "下单结果：1-全部成功、2-部分成功、3-全部失败",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "successNum",
+          "description": "成功数",
           "required": false
         }
       ]
@@ -5365,6 +5393,30 @@
         },
         {
           "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "areaNameList",
+          "description": "分区名列表",
+          "required": false
+        },
+        {
+          "dataType": {
             "typeArgs": [],
             "typeName": "string",
             "isDefsType": false,
@@ -5375,6 +5427,30 @@
           },
           "name": "avatar",
           "description": "头像",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "departmentNameList",
+          "description": "部门名列表",
           "required": false
         },
         {
@@ -5471,7 +5547,31 @@
             "typeProperties": []
           },
           "name": "roles",
-          "description": "觉色列表",
+          "description": "角色列表",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "storeNameList",
+          "description": "门店名列表",
           "required": false
         },
         {
