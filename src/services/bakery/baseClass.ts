@@ -128,6 +128,9 @@ class CreateOrderVO {
   /** 拦截的商品 article number */
   failedArticleNumbers = [];
 
+  /** 失败数 */
+  failedNum = undefined;
+
   /** 订单编号 */
   orderId = '';
 
@@ -136,6 +139,9 @@ class CreateOrderVO {
 
   /** 下单结果：1-全部成功、2-部分成功、3-全部失败 */
   result = undefined;
+
+  /** 成功数 */
+  successNum = undefined;
 }
 
 class EditPermissionDto {
@@ -190,8 +196,14 @@ class LoginUserInfo {
   /** 账号 */
   account = '';
 
+  /** 分区名列表 */
+  areaNameList = [];
+
   /** 头像 */
   avatar = '';
+
+  /** 部门名列表 */
+  departmentNameList = [];
 
   /** 邮箱 */
   email = '';
@@ -208,8 +220,11 @@ class LoginUserInfo {
   /** 是否需要重置密码 */
   needResetPwd = false;
 
-  /** 觉色列表 */
+  /** 角色列表 */
   roles = [];
+
+  /** 门店名列表 */
+  storeNameList = [];
 
   /** 账号登录 token(jwt) */
   token = '';
