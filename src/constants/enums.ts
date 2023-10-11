@@ -268,6 +268,11 @@ export const STATUS_TYPES = {
   [STATUS.ENABLED]: t<string>(`pages.common.enabled`),
 };
 
+export const ROLE_STATUS_TYPES = {
+  DISABLE: t<string>(`pages.common.disabled`),
+  ENABLE: t<string>(`pages.common.enabled`),
+};
+
 export const MESSAGE_STATUS_TYPES = {
   [STATUS.DISABLED]: t<string>(`pages.common.toBeSent`),
   [STATUS.ENABLED]: t<string>(`pages.common.hasBeenSent`),
@@ -315,11 +320,11 @@ export const DELIVERY_TYPE = {
 };
 
 export const WEEK_TYPE = {
-  'MONDAY': t<string>('pages.common.monday'),
-  'TUESDAY': t<string>('pages.common.tuesday'),
-  'WEDNESDAY': t<string>('pages.common.wednesday'),
-  'THURSDAY': t<string>('pages.common.thursday'),
-  'FRIDAY': t<string>('pages.common.friday'),
-  'SATURDAY': t<string>('pages.common.saturday'),
-  'SUNDAY': t<string>('pages.common.sunday'),
+  MONDAY: t<string>('pages.common.monday'),
+  TUESDAY: t<string>('pages.common.tuesday'),
+  WEDNESDAY: t<string>('pages.common.wednesday'),
+  THURSDAY: t<string>('pages.common.thursday'),
+  FRIDAY: t<string>('pages.common.friday'),
+  SATURDAY: t<string>('pages.common.saturday'),
+  SUNDAY: t<string>('pages.common.sunday'),
 };

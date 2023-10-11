@@ -13,6 +13,12 @@
       "originUrl": "http://10.89.24.26:8080/hot-deli-bakery/v2/api-docs",
       "originType": "SwaggerV2",
       "usingOperationId": true
+    },
+    {
+      "name": "tawa",
+      "originUrl": "https://tawa-api.dev.99ranch.online//tawa-api/v2/api-docs",
+      "originType": "SwaggerV2",
+      "usingOperationId": true
     }
   ],
   "spiltApiLock": true,

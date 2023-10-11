@@ -187,6 +187,36 @@ declare namespace defs {
         | 'WAREHOUSE';
     }
 
+    export class EditPermissionDto {
+      /** id */
+      id: number;
+
+      /** 英文名称 */
+      nameEnUs: string;
+
+      /** 中文名称 */
+      nameZhCn: string;
+
+      /** 繁体名称 */
+      nameZhTw: string;
+
+      /** 父 id */
+      parentId: number;
+
+      /** 排序 */
+      sort?: number;
+
+      /** MENU=菜单;COMPONENT=组件;API=接口;STORE=门店;WAREHOUSE=仓库;BIZ_MODULE=业务模块;API_FIELD=接口字段 */
+      type:
+        | 'API'
+        | 'API_FIELD'
+        | 'BIZ_MODULE'
+        | 'COMPONENT'
+        | 'MENU'
+        | 'STORE'
+        | 'WAREHOUSE';
+    }
+
     export class EstDeliveredDateVO {
       /** 日期 */
       date?: string;

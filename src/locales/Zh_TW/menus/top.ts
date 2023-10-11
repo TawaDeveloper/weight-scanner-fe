@@ -137,4 +137,5 @@ export default {
   reportByCategory: '類別銷量統計',
   SalesTargetSetting: '銷售目標設置',
   lossFactor: '損耗係數設置',
+  rolePermissionSetting: '角色權限設定',
 };

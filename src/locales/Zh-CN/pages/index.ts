@@ -108,6 +108,7 @@ import pointsBudget from './pointsBudget';
 import operationLog from './operationLog';
 import couponPromotion from './couponPromotion';
 import report from './report';
+import rolePermissionSetting from './rolePermissionSetting';
 
 export default {
   login,
@@ -211,4 +212,5 @@ export default {
   operationLog,
   couponPromotion,
   report,
+  rolePermissionSetting,
 };
