@@ -141,6 +141,9 @@ declare namespace defs {
       /** 拦截的商品 article number */
       failedArticleNumbers?: Array<string>;
 
+      /** 失败数 */
+      failedNum?: number;
+
       /** 订单编号 */
       orderId?: string;
 
@@ -149,6 +152,9 @@ declare namespace defs {
 
       /** 下单结果：1-全部成功、2-部分成功、3-全部失败 */
       result?: number;
+
+      /** 成功数 */
+      successNum?: number;
     }
 
     export class EditPermissionDto {
@@ -210,8 +216,14 @@ declare namespace defs {
       /** 账号 */
       account?: string;
 
+      /** 分区名列表 */
+      areaNameList?: Array<string>;
+
       /** 头像 */
       avatar?: string;
+
+      /** 部门名列表 */
+      departmentNameList?: Array<string>;
 
       /** 邮箱 */
       email?: string;
@@ -228,18 +240,17 @@ declare namespace defs {
       /** 是否需要重置密码 */
       needResetPwd?: boolean;
 
-      /** 觉色列表 */
+      /** 角色列表 */
       roles?: Array<number>;
+
+      /** 门店名列表 */
+      storeNameList?: Array<string>;
 
       /** 账号登录 token(jwt) */
       token?: string;
 
       /** 用户id */
       userId?: number;
-
-      areaNameList?: Array<string>
-      departmentNameList?: Array<string>
-      storeNameList?: Array<string>
     }
 
     export class LossFactor {
@@ -273,7 +284,6 @@ declare namespace defs {
 
       /** 产品描述（英语） */
       descriptionEn?: string;
-      description?: string;
 
       /** 产品描述（繁体） */
       descriptionTc?: string;

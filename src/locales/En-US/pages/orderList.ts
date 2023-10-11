@@ -131,5 +131,10 @@ export default {
   title0130: 'Last order quantity',
   title0131: 'Partial failure',
   title0132: 'Region',
-  title0133: 'All failure',
+  title0133: 'Order submission failed!',
+  title0134: 'Order Submitted Successfully!',
+  title0135:
+    'The order has automatically excluded {{error}} items that are not within the ordering scope; {{success}} items have been successfully submitted.',
+  title0136: 'All items in the order are not within the ordering scope.',
+  title0137: 'Notice',
 };
