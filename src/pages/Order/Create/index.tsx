@@ -15,6 +15,7 @@ import { WEEK_TYPE } from '@/constants/enums';
 import { t } from 'i18next';
 import { useNavigate } from 'react-router-dom';
 import { DEFAULT_LANG } from '@/constants';
+import PermissionComponent from '@/components/PermissionComponent';
 
 const CreateOrder = () => {
   const [api, contextHolder] = notification.useNotification();
@@ -209,70 +210,74 @@ const CreateOrder = () => {
       <div className="flex">
         <div className="page-title">{''}</div>
         <div className="button-group">
-          <GoodsSelect
-            submitData={submitData}
-            disabled={!searchParams.depId || !searchParams.storeId}
-            depId={searchParams.depId}
-            storeId={searchParams.storeId}
-            onChange={(values) => {
-              if (values && values.products && values.products.length > 0) {
-                const intersection = submitData.filter((el) =>
-                  values.products?.some(
-                    (vel) => vel.articleNumber === el.articleNumber,
-                  ),
-                );
-                if (!intersection || intersection.length === 0) {
-                  bakeryAPI.order.getNewRefArticle
-                    .request({
-                      depId: searchParams.depId,
-                      storeId: searchParams.storeId,
-                      articleNumbers:
-                        values && values.products
-                          ? values?.products.map((el) =>
-                              el.articleNumber
-                                ? el.articleNumber?.toString()
-                                : '',
-                            )
-                          : [],
-                    })
-                    .then((res) => {
-                      if (res.data && res.success) {
-                        const _store = optionsData?.data?.stores?.find(
-                          (el) => el.value?.toString() === searchParams.storeId,
-                        );
-                        const _dep = optionsData?.data?.deps?.find(
-                          (el) => el.value?.toString() === searchParams.depId,
-                        );
-                        const _articles = res.data;
-                        if (_articles) {
-                          setSubmitData((_submitData) => {
-                            return [
-                              ..._submitData,
-                              ..._articles.map((el) => {
-                                return {
-                                  ...el,
-                                  storeId: _store?.value || '',
-                                  storeName: _store?.label || '',
-                                  depName: _dep?.label || '',
-                                };
-                              }),
-                            ];
-                          });
+          <PermissionComponent code="component:Create New Order:Add Product">
+            <GoodsSelect
+              submitData={submitData}
+              disabled={!searchParams.depId || !searchParams.storeId}
+              depId={searchParams.depId}
+              storeId={searchParams.storeId}
+              onChange={(values) => {
+                if (values && values.products && values.products.length > 0) {
+                  const intersection = submitData.filter((el) =>
+                    values.products?.some(
+                      (vel) => vel.articleNumber === el.articleNumber,
+                    ),
+                  );
+                  if (!intersection || intersection.length === 0) {
+                    bakeryAPI.order.getNewRefArticle
+                      .request({
+                        depId: searchParams.depId,
+                        storeId: searchParams.storeId,
+                        articleNumbers:
+                          values && values.products
+                            ? values?.products.map((el) =>
+                                el.articleNumber
+                                  ? el.articleNumber?.toString()
+                                  : '',
+                              )
+                            : [],
+                      })
+                      .then((res) => {
+                        if (res.data && res.success) {
+                          const _store = optionsData?.data?.stores?.find(
+                            (el) =>
+                              el.value?.toString() === searchParams.storeId,
+                          );
+                          const _dep = optionsData?.data?.deps?.find(
+                            (el) => el.value?.toString() === searchParams.depId,
+                          );
+                          const _articles = res.data;
+                          if (_articles) {
+                            setSubmitData((_submitData) => {
+                              return [
+                                ..._submitData,
+                                ..._articles.map((el) => {
+                                  return {
+                                    ...el,
+                                    storeId: _store?.value || '',
+                                    storeName: _store?.label || '',
+                                    depName: _dep?.label || '',
+                                  };
+                                }),
+                              ];
+                            });
+                          }
                         }
-                      }
+                      });
+                  } else {
+                    api['warning']({
+                      message: 'Notification Title',
+                      description: '不能添加重复商品',
                     });
-                } else {
-                  api['warning']({
-                    message: 'Notification Title',
-                    description: '不能添加重复商品',
-                  });
+                  }
                 }
-              }
-            }}
-            type="button"
-            buttonType="primary"
-            buttonTitle={t<string>(`pages.orderList.title0119`)}
-          />
+              }}
+              type="button"
+              buttonType="primary"
+              buttonTitle={t<string>(`pages.orderList.title0119`)}
+            />
+          </PermissionComponent>
+
           {/* <CommonButton onClick={() => setShow({ type: 'add' })}>
             添加产品
           </CommonButton> */}
