@@ -141,7 +141,7 @@ const CreateOrder = () => {
         type: 'action',
         props: (_: any, record: defs.bakery.OrderNewRefArticle) => ({
           options: [
-            isHasPermission && {
+            isHasPermission ? {
               name: t<string>(`button.common.remove`),
               onClick: () => {
                 setSubmitData((_submitData) =>
@@ -150,7 +150,7 @@ const CreateOrder = () => {
                   ),
                 );
               },
-            },
+            } : {},
           ],
         }),
       },
@@ -161,7 +161,7 @@ const CreateOrder = () => {
   const formProps = useMemo(() => {
     return {
       fields: formFields.map((el) => {
-        if (el.key === 'storeId' || el.key === 'depId') {
+        if (el && el.key && el.key === 'storeId' || el.key === 'depId') {
           return {
             ...el,
             props: () => ({
