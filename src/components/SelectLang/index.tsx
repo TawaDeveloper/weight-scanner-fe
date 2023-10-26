@@ -10,7 +10,6 @@ import HeaderDropdown from '../HeaderDropdown';
 
 const SelectLang: React.FC<Record<string, any>> = (props) => {
   const [curLang, setCurLang] = useRecoilState(curLangAtom);
-  console.log(curLang, 'curLang')
   const inlineStyle = {
     cursor: 'pointer',
     padding: '12px',

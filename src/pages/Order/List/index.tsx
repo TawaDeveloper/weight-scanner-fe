@@ -57,13 +57,17 @@ const OrderList = () => {
     selectedRowKeys,
     onChange: setSelectedRowKeys,
   };
-
   const tableProps = {
     loading,
     fields: tableFields,
-    data: data?.data?.records,
+    data: data?.data?.records?.map((el, index) => {
+      return {
+        id: `${el.orderId }-${el.pr}-${el.po}`,
+        ...el,
+      }
+    }),
     total: data?.data?.total,
-    rowKey: 'orderId',
+    rowKey: 'id',
     rowSelection,
     nextFields: [],
     scroll: { x: 1260 },
@@ -73,7 +77,7 @@ const OrderList = () => {
       pageSizeOptions: [10, 20, 50, 100],
     },
   };
-
+  console.log(data?.data?.records)
   const formProps = useMemo(() => {
     return {
       fields: formFields.map((el) => {

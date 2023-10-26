@@ -16,6 +16,9 @@ import { t } from 'i18next';
 import { useNavigate } from 'react-router-dom';
 import { DEFAULT_LANG } from '@/constants';
 import PermissionComponent from '@/components/PermissionComponent';
+import { useRecoilState } from 'recoil';
+import { loginStateAtom } from '@/atoms/login';
+import { findPermissionByCode } from '@/utils';
 
 const CreateOrder = () => {
   const [api, contextHolder] = notification.useNotification();
@@ -24,7 +27,12 @@ const CreateOrder = () => {
   const [show, setShow] = useState<{ type: string; data?: any }>();
   const [order, setOrder] = useState<defs.bakery.CreateOrderVO>();
   const [submitLoading, setSubmitLoading] = useState<boolean>(false);
+  const [login] = useRecoilState(loginStateAtom);
   const navigate = useNavigate();
+  const isHasPermission = findPermissionByCode(
+    'component:Create New Order:Add Product',
+    login.permission as any,
+  );
   const [searchParams, setSearchParams] = useState({
     storeId: '',
     depId: '',
@@ -83,6 +91,7 @@ const CreateOrder = () => {
         data.data.map((el) => {
           return {
             ...el,
+            actualOrderQuantity: el.lastQt,
             storeId: _store?.value || '',
             storeName: _store?.label || '',
             depName: _dep?.label || '',
@@ -132,7 +141,7 @@ const CreateOrder = () => {
         type: 'action',
         props: (_: any, record: defs.bakery.OrderNewRefArticle) => ({
           options: [
-            {
+            isHasPermission ? {
               name: t<string>(`button.common.remove`),
               onClick: () => {
                 setSubmitData((_submitData) =>
@@ -141,7 +150,7 @@ const CreateOrder = () => {
                   ),
                 );
               },
-            },
+            } : {},
           ],
         }),
       },
@@ -149,11 +158,10 @@ const CreateOrder = () => {
     scroll: { x: 1160 },
     pagination: false,
   };
-
   const formProps = useMemo(() => {
     return {
       fields: formFields.map((el) => {
-        if (el.key === 'storeId' || el.key === 'depId') {
+        if (el && el.key && el.key === 'storeId' || el.key === 'depId') {
           return {
             ...el,
             props: () => ({
@@ -200,7 +208,7 @@ const CreateOrder = () => {
   const dataFlag = useMemo(() => {
     return submitData && submitData.length > 0
       ? submitData.some(
-          (el) => el.actualOrderQuantity === 0 || !el.actualOrderQuantity,
+          (el) => el.actualOrderQuantity === '',
         )
       : true;
   }, [submitData]);
