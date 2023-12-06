@@ -36,7 +36,9 @@ const routerViews = (routerItems: DynamicRouteType[]) => {
 
 export default () => {
   const { routes: routePremiss } = useRecoilValue(loginStateAtom);
+
   const routes = [...routePremiss, ...baseRoutes];
+
   return (
     <Suspense fallback={<PageLoading />}>
       <Locale>
@@ -45,3 +47,4 @@ export default () => {
     </Suspense>
   );
 };
+

@@ -28,7 +28,7 @@ const BasicLayout: React.FC = () => {
   const accessed = routesFlat.some(({ fullPath = '' }) =>
     location.pathname.includes(fullPath),
   );
-  const menuData = routes.filter((route) => !route.hideInMenu);
+  const menuData = routes ? [...routes].filter((route) => !route.hideInMenu) : []
   return (
     <ProLayout
       location={{
