@@ -45,6 +45,9 @@ const SalesTargetSetting = lazy(() =>
 const ReportByStore = lazy(() =>
   import(/* webpackChunkName: "Menu" */ '@/pages/SalesReport/ReportByStore'),
 );
+const ItemMeasure = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/ItemMaintenance/ItemMeasure'),
+);
 const ReportByProduct = lazy(() =>
   import(/* webpackChunkName: "Menu" */ '@/pages/SalesReport/ReportByProduct'),
 );
@@ -137,56 +140,18 @@ const orderMenus = [
     skipAuthentication: true,
   },
 ];
-const salesReportMenus = [
+
+const itemMaintenanceMenus = [
   {
-    path: 'reportByStore',
-    name: 'menus.top.reportByStore',
-    component: ReportByStore,
-    code: 'menu:Sales Report by Store',
-    parentCode: 'menu:Sales Report',
-    skipAuthentication: true,
-  },
-  {
-    path: 'reportByProduct',
-    name: 'menus.top.reportByProduct',
-    component: ReportByProduct,
-    code: 'menu:Sales Report by Product',
-    parentCode: 'menu:Sales Report',
-    skipAuthentication: true,
-  },
-  {
-    path: 'reportByCategory',
-    name: 'menus.top.reportByCategory',
-    component: ReportByCategory,
-    code: 'menu:Sales Report by Category',
-    parentCode: 'menu:Sales Report',
+    path: 'measure',
+    name: 'menus.top.measure',
+    component: ItemMeasure,
+    code: 'menu:Item Maintenance By measure',
+    parentCode: 'menu:Item Measure',
     skipAuthentication: true,
   },
 ];
 
-// const permissionMenus = [
-//   {
-//     path: 'organization',
-//     name: 'menus.top.organization',
-//     component: Organization,
-//     code: 'organization',
-//     parentCode: 'permissions',
-//   },
-//   {
-//     path: 'account',
-//     name: 'menus.top.account',
-//     component: Account,
-//     code: 'account',
-//     parentCode: 'permissions',
-//   },
-//   {
-//     path: 'menu',
-//     name: 'menus.top.menu',
-//     component: Menu,
-//     code: 'menu',
-//     parentCode: 'permissions',
-//   },
-// ];
 const settingMenus = [
   {
     path: 'lossfactor',
@@ -213,4 +178,4 @@ const settingMenus = [
     skipAuthentication: true,
   },
 ];
-export { orderMenus, baseRoutes, salesReportMenus, settingMenus };
+export { orderMenus, baseRoutes, itemMaintenanceMenus, settingMenus };

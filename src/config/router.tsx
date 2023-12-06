@@ -8,7 +8,7 @@ import type { MenuDataItem } from '@ant-design/pro-layout';
 import {
   baseRoutes,
   orderMenus,
-  salesReportMenus,
+  itemMaintenanceMenus,
   settingMenus,
 } from './routes';
 
@@ -47,11 +47,11 @@ export interface StaticRouteType extends MenuDataItem {
 // use a request result to instead it.
 const menuTabs: StaticRouteType[] = [
   {
-    name: 'menus.top.report',
-    path: '/report',
+    name: 'menus.top.item',
+    path: '/item',
     icon: <BarChartOutlined />,
-    children: salesReportMenus,
-    code: 'menu:Sales Report',
+    children: itemMaintenanceMenus,
+    code: 'menu:Item Maintenance',
     component: SecurityLayout,
     skipAuthentication: true,
   },
@@ -64,7 +64,6 @@ const menuTabs: StaticRouteType[] = [
     component: SecurityLayout,
     skipAuthentication: true,
   },
-
   {
     name: 'menus.top.setting',
     path: '/setting',

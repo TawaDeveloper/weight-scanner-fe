@@ -131,6 +131,7 @@ export default {
   couponPromotion: '优惠码活动列表',
   createOrder: 'Create New Order',
   poOrderDetail: 'Purchase Order Details',
+  item: 'Item Maintenance',
   report: 'Sales Report',
   reportByStore: 'Sales Report by Store',
   reportByProduct: 'Sales Report by Product',
