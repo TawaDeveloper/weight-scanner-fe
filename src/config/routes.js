@@ -115,7 +115,7 @@ const recordMenus = [
 const userMenus = [
   {
     path: 'maintainence',
-    name: 'menus.top.user',
+    name: 'menus.top.maintainence',
     component: ItemMeasure,
     code: 'menu:User Maintainence',
     parentCode: 'menu:User',

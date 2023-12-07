@@ -23,7 +23,7 @@ export const loginStateAtom = atom<LoginStateAtomType>({
     isLogin: !!token,
     token,
     permission: {},
-    indexPath: '/order/create',
+    indexPath: '/item/measure',
     routesFlat: [],
     routes: [],
   },
