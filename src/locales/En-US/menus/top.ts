@@ -132,6 +132,8 @@ export default {
   createOrder: 'Create New Order',
   poOrderDetail: 'Purchase Order Details',
   item: 'Item Maintenance',
+  record: 'Record',
+  imported: 'Import Record',
   report: 'Sales Report',
   reportByStore: 'Sales Report by Store',
   reportByProduct: 'Sales Report by Product',

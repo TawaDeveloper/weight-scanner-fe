@@ -102,6 +102,16 @@ const itemMaintenanceMenus = [
     skipAuthentication: true,
   },
 ];
+const recordMenus = [
+  {
+    path: 'imported',
+    name: 'menus.top.imported',
+    component: ItemMeasure,
+    code: 'menu:Import Record',
+    parentCode: 'menu:Record',
+    skipAuthentication: true,
+  },
+];
 
 const settingMenus = [
   {
@@ -129,4 +139,4 @@ const settingMenus = [
     skipAuthentication: true,
   },
 ];
-export { baseRoutes, itemMaintenanceMenus, settingMenus };
+export { baseRoutes, itemMaintenanceMenus, recordMenus, settingMenus };
