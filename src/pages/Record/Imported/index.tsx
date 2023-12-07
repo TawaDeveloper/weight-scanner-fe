@@ -12,6 +12,7 @@ import './index.less';
 import { useRef, useState } from 'react';
 import { backofficeAPI } from '@/services';
 import { TablePaginationConfig } from 'antd/es/table';
+import { CSVLink } from 'react-csv';
 
 const { RangePicker } = DatePicker;
 const INITIAL_PAGINATION = {
@@ -96,6 +97,11 @@ const RecordImported = () => {
     },
   ];
 
+  const headers = getColumns().map((item) => ({
+    label: item.title,
+    key: item.dataIndex,
+  }));
+
   return (
     <Card>
       {contextHolder}
@@ -116,7 +122,11 @@ const RecordImported = () => {
           </Form.Item>
           <div className="submit-btns">
             <Button type="primary">Display Record</Button>
-            <Button type="primary">Export Record</Button>
+            <Button type="primary">
+              <CSVLink type="primary" data={data} headers={headers}>
+                Export Record
+              </CSVLink>
+            </Button>
           </div>
         </div>
       </Form>

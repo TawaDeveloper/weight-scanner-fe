@@ -12,6 +12,8 @@ import './index.less';
 import { useRef, useState } from 'react';
 import { backofficeAPI } from '@/services';
 import { TablePaginationConfig } from 'antd/es/table';
+import { CSVLink } from 'react-csv';
+
 const INITIAL_PAGINATION = {
   current: 1,
   pageSize: 10,
@@ -99,6 +101,10 @@ const Maintainence = () => {
       align: 'center',
     },
   ];
+  const headers = getColumns().map((item) => ({
+    label: item.title,
+    key: item.dataIndex,
+  }));
   // rowSelection object indicates the need for row selection
   const rowSelection = {
     onChange: (selectedRowKeys: React.Key[], selectedRows: any[]) => {
@@ -125,7 +131,11 @@ const Maintainence = () => {
           </Form.Item>
           <div className="submit-btns">
             <Button type="primary">Search</Button>
-            <Button disabled={!selectedRowKeys.length}>Export</Button>
+            <Button disabled={!selectedRowKeys.length}>
+              <CSVLink type="primary" data={data} headers={headers}>
+                Export
+              </CSVLink>
+            </Button>
           </div>
         </div>
       </Form>
