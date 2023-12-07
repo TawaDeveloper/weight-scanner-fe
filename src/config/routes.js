@@ -27,18 +27,6 @@ const UserLayout = lazy(() =>
 // const Menu = lazy(() =>
 //   import(/* webpackChunkName: "Menu" */ '@/pages/Permission/Menu'),
 // );
-const OrderList = lazy(() =>
-  import(/* webpackChunkName: "Menu" */ '@/pages/Order/List'),
-);
-const OrderDetail = lazy(() =>
-  import(/* webpackChunkName: "Menu" */ '@/pages/Order/Detail'),
-);
-const PoDetail = lazy(() =>
-  import(/* webpackChunkName: "Menu" */ '@/pages/Order/PoDetail'),
-);
-const CreateOrder = lazy(() =>
-  import(/* webpackChunkName: "Menu" */ '@/pages/Order/Create'),
-);
 const SalesTargetSetting = lazy(() =>
   import(/* webpackChunkName: "Menu" */ '@/pages/SalesTargetSetting/List'),
 );
@@ -104,50 +92,13 @@ const baseRoutes = [
   },
 ];
 
-const orderMenus = [
-  {
-    path: 'list',
-    name: 'menus.top.order',
-    component: OrderList,
-    code: 'menu:OrderManagement1',
-    parentCode: 'menu:Order Management',
-    skipAuthentication: true,
-  },
-  {
-    path: 'create',
-    name: 'menus.top.createOrder',
-    component: CreateOrder,
-    code: 'menu:Create New Order',
-    parentCode: 'menu:Order Management',
-    skipAuthentication: true,
-  },
-  {
-    path: 'detail',
-    name: 'menus.top.orderDetails',
-    component: OrderDetail,
-    code: 'component:Setting:OrderDetail',
-    parentCode: 'menu:Order Management',
-    hideInMenu: true,
-    skipAuthentication: true,
-  },
-  {
-    path: 'po-detail',
-    name: 'menus.top.poOrderDetail',
-    component: PoDetail,
-    code: 'component:Setting:PoOrderDetail',
-    parentCode: 'menu:Order Management',
-    hideInMenu: true,
-    skipAuthentication: true,
-  },
-];
-
 const itemMaintenanceMenus = [
   {
     path: 'measure',
-    name: 'menus.top.measure',
+    name: 'menus.top.item',
     component: ItemMeasure,
     code: 'menu:Item Maintenance By measure',
-    parentCode: 'menu:Item Measure',
+    parentCode: 'menu:Item Maintenance',
     skipAuthentication: true,
   },
 ];
@@ -178,4 +129,4 @@ const settingMenus = [
     skipAuthentication: true,
   },
 ];
-export { orderMenus, baseRoutes, itemMaintenanceMenus, settingMenus };
+export { baseRoutes, itemMaintenanceMenus, settingMenus };
