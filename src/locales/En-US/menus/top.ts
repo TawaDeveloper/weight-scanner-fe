@@ -133,6 +133,8 @@ export default {
   poOrderDetail: 'Purchase Order Details',
   item: 'Item Maintenance',
   record: 'Record',
+  user: 'User',
+  maintainence: 'User Maintainence',
   imported: 'Import Record',
   report: 'Sales Report',
   reportByStore: 'Sales Report by Store',

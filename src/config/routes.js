@@ -112,5 +112,15 @@ const recordMenus = [
     skipAuthentication: true,
   },
 ];
+const userMenus = [
+  {
+    path: 'maintainence',
+    name: 'menus.top.user',
+    component: ItemMeasure,
+    code: 'menu:User Maintainence',
+    parentCode: 'menu:User',
+    skipAuthentication: true,
+  },
+];
 
-export { baseRoutes, itemMaintenanceMenus, recordMenus };
+export { baseRoutes, itemMaintenanceMenus, userMenus, recordMenus };
