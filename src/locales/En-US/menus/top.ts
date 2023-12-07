@@ -132,6 +132,7 @@ export default {
   createOrder: 'Create New Order',
   poOrderDetail: 'Purchase Order Details',
   item: 'Item Maintenance',
+  measure: 'Item Measure',
   record: 'Record',
   user: 'User',
   maintainence: 'User Maintainence',

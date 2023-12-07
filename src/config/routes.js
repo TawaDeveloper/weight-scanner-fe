@@ -39,6 +39,9 @@ const ItemMeasure = lazy(() =>
 const RecordImported = lazy(() =>
   import(/* webpackChunkName: "Menu" */ '@/pages/Record/Imported'),
 );
+const UserMaintainence = lazy(() =>
+  import(/* webpackChunkName: "Menu" */ '@/pages/user/Maintainence'),
+);
 const ReportByProduct = lazy(() =>
   import(/* webpackChunkName: "Menu" */ '@/pages/SalesReport/ReportByProduct'),
 );
@@ -108,7 +111,7 @@ const itemMaintenanceMenus = [
 const recordMenus = [
   {
     path: 'imported',
-    name: 'menus.top.record',
+    name: 'menus.top.imported',
     component: RecordImported,
     code: 'menu:Import Record',
     parentCode: 'menu:Record',
@@ -119,7 +122,7 @@ const userMenus = [
   {
     path: 'maintainence',
     name: 'menus.top.maintainence',
-    component: ItemMeasure,
+    component: UserMaintainence,
     code: 'menu:User Maintainence',
     parentCode: 'menu:User',
     skipAuthentication: true,
