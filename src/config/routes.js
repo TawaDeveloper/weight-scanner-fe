@@ -105,7 +105,7 @@ const itemMaintenanceMenus = [
 const recordMenus = [
   {
     path: 'imported',
-    name: 'menus.top.imported',
+    name: 'menus.top.record',
     component: ItemMeasure,
     code: 'menu:Import Record',
     parentCode: 'menu:Record',
@@ -113,30 +113,4 @@ const recordMenus = [
   },
 ];
 
-const settingMenus = [
-  {
-    path: 'lossfactor',
-    name: 'menus.top.lossFactor',
-    component: LossFactor,
-    code: 'menu:Loss Factor',
-    parentCode: 'menu:Setting',
-    skipAuthentication: true,
-  },
-  {
-    path: 'saletarget',
-    name: 'menus.top.SalesTargetSetting',
-    component: SalesTargetSetting,
-    code: 'menu:Sales Target Settings',
-    parentCode: 'menu:Setting',
-    skipAuthentication: true,
-  },
-  {
-    path: 'permission',
-    name: 'menus.top.rolePermissionSetting',
-    component: RolePermissionSetting,
-    code: 'menu:Role Permission Setting',
-    parentCode: 'menu:Setting',
-    skipAuthentication: true,
-  },
-];
-export { baseRoutes, itemMaintenanceMenus, recordMenus, settingMenus };
+export { baseRoutes, itemMaintenanceMenus, recordMenus };

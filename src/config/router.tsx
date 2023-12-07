@@ -4,12 +4,7 @@ import {
   UnorderedListOutlined,
 } from '@ant-design/icons';
 import type { MenuDataItem } from '@ant-design/pro-layout';
-import {
-  baseRoutes,
-  itemMaintenanceMenus,
-  recordMenus,
-  settingMenus,
-} from './routes';
+import { baseRoutes, itemMaintenanceMenus, recordMenus } from './routes';
 
 const SecurityLayout = lazy(() => import('@/layouts/SecurityLayout'));
 
@@ -60,15 +55,6 @@ const menuTabs: StaticRouteType[] = [
     icon: <UnorderedListOutlined />,
     children: recordMenus,
     code: 'menu:Record',
-    component: SecurityLayout,
-    skipAuthentication: true,
-  },
-  {
-    name: 'menus.top.setting',
-    path: '/setting',
-    icon: <SafetyCertificateOutlined />,
-    children: settingMenus,
-    code: 'menu:Setting',
     component: SecurityLayout,
     skipAuthentication: true,
   },
